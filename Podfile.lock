@@ -1,0 +1,10 @@
+PODS:
+  - BrainCloudCpp (0.0.1)
+
+DEPENDENCIES:
+  - BrainCloudCpp (= 0.0.1)
+
+SPEC CHECKSUMS:
+  BrainCloudCpp: 4fdd12c224bd73c28f1f34141fbce9f900360193
+
+COCOAPODS: 0.39.0
