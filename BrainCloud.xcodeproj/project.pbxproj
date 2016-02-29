@@ -13,9 +13,9 @@
 		D809D99F1C84B5C5004AAD42 /* BrainCloudWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D809D99D1C84B5C5004AAD42 /* BrainCloudWrapper.h */; };
 		D809D9A01C84B5C5004AAD42 /* BrainCloudWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D809D99D1C84B5C5004AAD42 /* BrainCloudWrapper.h */; };
 		D809D9A11C84B5C5004AAD42 /* BrainCloudWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D809D99D1C84B5C5004AAD42 /* BrainCloudWrapper.h */; };
-		D809D9A21C84B5C5004AAD42 /* BrainCloudWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.mm */; };
-		D809D9A31C84B5C5004AAD42 /* BrainCloudWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.mm */; };
-		D809D9A41C84B5C5004AAD42 /* BrainCloudWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.mm */; };
+		D809D9A21C84B5C5004AAD42 /* BrainCloudWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.m */; };
+		D809D9A31C84B5C5004AAD42 /* BrainCloudWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.m */; };
+		D809D9A41C84B5C5004AAD42 /* BrainCloudWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.m */; };
 		D809D9A71C84B9ED004AAD42 /* BrainCloudSaveDataHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = D809D9A51C84B9ED004AAD42 /* BrainCloudSaveDataHelper.h */; };
 		D809D9A81C84B9ED004AAD42 /* BrainCloudSaveDataHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = D809D9A51C84B9ED004AAD42 /* BrainCloudSaveDataHelper.h */; };
 		D809D9A91C84B9ED004AAD42 /* BrainCloudSaveDataHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = D809D9A51C84B9ED004AAD42 /* BrainCloudSaveDataHelper.h */; };
@@ -268,7 +268,7 @@
 		A0B7673BF710D6EDD136393F /* Pods-BrainCloud-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrainCloud-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrainCloud-iOS/Pods-BrainCloud-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A2AEE22EEBED295003A113D6 /* libPods-BrainCloud-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BrainCloud-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D809D99D1C84B5C5004AAD42 /* BrainCloudWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrainCloudWrapper.h; sourceTree = "<group>"; };
-		D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BrainCloudWrapper.mm; sourceTree = "<group>"; };
+		D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrainCloudWrapper.m; sourceTree = "<group>"; };
 		D809D9A51C84B9ED004AAD42 /* BrainCloudSaveDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrainCloudSaveDataHelper.h; sourceTree = "<group>"; };
 		D809D9A61C84B9ED004AAD42 /* BrainCloudSaveDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrainCloudSaveDataHelper.m; sourceTree = "<group>"; };
 		D84596E41C6D06D0003DA016 /* BrainCloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BrainCloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -598,7 +598,7 @@
 				D845976E1C6D23B3003DA016 /* BrainCloudTime.hh */,
 				D845976F1C6D23B3003DA016 /* BrainCloudTime.mm */,
 				D809D99D1C84B5C5004AAD42 /* BrainCloudWrapper.h */,
-				D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.mm */,
+				D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.m */,
 				D84597711C6D23B3003DA016 /* PlatformObjc.hh */,
 				D84597721C6D23B3003DA016 /* PlatformObjc.mm */,
 				D84597731C6D23B3003DA016 /* ReasonCodes.hh */,
@@ -1198,7 +1198,7 @@
 				D84597FE1C6D23B4003DA016 /* BrainCloudPlayerStatisticsEvent.mm in Sources */,
 				D84598221C6D23B4003DA016 /* BrainCloudScript.mm in Sources */,
 				D84598041C6D23B4003DA016 /* BrainCloudProduct.mm in Sources */,
-				D809D9A41C84B5C5004AAD42 /* BrainCloudWrapper.mm in Sources */,
+				D809D9A41C84B5C5004AAD42 /* BrainCloudWrapper.m in Sources */,
 				D84597E61C6D23B3003DA016 /* BrainCloudOneWayMatch.mm in Sources */,
 				D84598311C6D23B4003DA016 /* PlatformObjc.mm in Sources */,
 				D845983A1C6D23B4003DA016 /* ServiceName.mm in Sources */,
@@ -1246,7 +1246,7 @@
 				D84597FC1C6D23B4003DA016 /* BrainCloudPlayerStatisticsEvent.mm in Sources */,
 				D84598201C6D23B4003DA016 /* BrainCloudScript.mm in Sources */,
 				D84598021C6D23B4003DA016 /* BrainCloudProduct.mm in Sources */,
-				D809D9A21C84B5C5004AAD42 /* BrainCloudWrapper.mm in Sources */,
+				D809D9A21C84B5C5004AAD42 /* BrainCloudWrapper.m in Sources */,
 				D84597E41C6D23B3003DA016 /* BrainCloudOneWayMatch.mm in Sources */,
 				D845982F1C6D23B4003DA016 /* PlatformObjc.mm in Sources */,
 				D84598381C6D23B4003DA016 /* ServiceName.mm in Sources */,
@@ -1294,7 +1294,7 @@
 				D84597FD1C6D23B4003DA016 /* BrainCloudPlayerStatisticsEvent.mm in Sources */,
 				D84598211C6D23B4003DA016 /* BrainCloudScript.mm in Sources */,
 				D84598031C6D23B4003DA016 /* BrainCloudProduct.mm in Sources */,
-				D809D9A31C84B5C5004AAD42 /* BrainCloudWrapper.mm in Sources */,
+				D809D9A31C84B5C5004AAD42 /* BrainCloudWrapper.m in Sources */,
 				D84597E51C6D23B3003DA016 /* BrainCloudOneWayMatch.mm in Sources */,
 				D84598301C6D23B4003DA016 /* PlatformObjc.mm in Sources */,
 				D84598391C6D23B4003DA016 /* ServiceName.mm in Sources */,

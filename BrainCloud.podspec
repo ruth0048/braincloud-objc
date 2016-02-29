@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
   s.header_mappings_dir    = 'Shared'
   s.public_header_files    = 'Shared/**/*.{h,hh}'
   s.private_header_files   = 'Shared/**/{BrainCloudCallback,TypeHelpers}.hh'
-  s.source_files           = 'Shared/**/*.{hh,mm}'
+  s.source_files           = 'Shared/**/*.{h,hh,m,mm}'
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
@@ -46,5 +46,6 @@ Pod::Spec.new do |s|
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   s.dependency 'BrainCloudCpp', '2.21.0'
+  s.dependency 'SSKeychain', '1.3.1'
 
 end
