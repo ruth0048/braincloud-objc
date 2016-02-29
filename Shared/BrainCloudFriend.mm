@@ -26,6 +26,19 @@
                                             new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void) getExternalIdForProfileId:(NSString *)profileId
+                authenticationType:(NSString *)authenticationType
+                   completionBlock:(BCCompletionBlock)cb
+              errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                          cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()
+        ->getFriendService()
+        ->getExternalIdForProfileId([profileId UTF8String],
+                                    [authenticationType UTF8String],
+                                    new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)readFriendEntity:(NSString *)entityId
                 friendId:(NSString *)friendId
          completionBlock:(BCCompletionBlock)cb

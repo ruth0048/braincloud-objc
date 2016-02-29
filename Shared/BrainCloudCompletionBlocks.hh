@@ -26,4 +26,7 @@ typedef void (^BCRewardCompletionBlock)(NSString *json);
 
 typedef void (^BCFileUploadCompletedCompletionBlock)(NSString *fileUploadId, NSString *json);
 typedef void (^BCFileUploadFailedCompletionBlock)(NSString *fileUploadId, NSInteger statusCode, NSInteger returnCode, NSString *json);
+
+typedef void (^BCNetworkErrorCompletionBlock)();
+
 #endif

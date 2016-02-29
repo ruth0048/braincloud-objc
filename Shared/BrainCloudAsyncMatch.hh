@@ -39,7 +39,6 @@
 *
 * @param pushNotificationMessage Optional push notification message to send to the other party.
 *  Refer to the Push Notification functions for the syntax required.
-* @param matchId Optional match identifier. An id will be generated if not provided.
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
@@ -71,12 +70,20 @@
 *     "updatedAt": 1415641372974
 * }
 */
+- (void)createMatch:(NSString *)jsonOpponentIds 
+    pushNotificationMessage:(NSString *)pushMessage
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject;
+
+
 - (void)createMatch:(NSString *)jsonOpponentIds
     pushNotificationMessage:(NSString *)pushMessage
                     matchId:(NSString *)matchId
             completionBlock:(BCCompletionBlock)cb
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                   cbObject:(BCCallbackObject)cbObject;
+                   cbObject:(BCCallbackObject)cbObject
+DEPRECATED_MSG_ATTRIBUTE("Use version without matchId param instead. Removal after May 10 2016.");
 
 /**
 * Creates an instance of an asynchronous match with an initial turn.
@@ -105,7 +112,6 @@
 * @param jsonMatchState    JSON string blob provided by the caller
 * @param pushNotificationMessage Optional push notification message to send to the other party.
 * Refer to the Push Notification functions for the syntax required.
-* @param matchId Optional match identifier. An id will be generated if not provided.
 * @param nextPlayer Optionally, force the next player player to be a specific player
 * @param jsonSummary Optional JSON string defining what the other player will see as a summary of the game when listing their games
 * @param completionBlock Block to call on return of successful server response
@@ -142,12 +148,22 @@
 - (void)createMatchWithInitialTurn:(NSString *)jsonOpponentIds
                     jsonMatchState:(NSString *)matchState
            pushNotificationMessage:(NSString *)pushMessage
-                           matchId:(NSString *)matchId
                         nextPlayer:(NSString *)nextPlayer
                        jsonSummary:(NSString *)summary
                    completionBlock:(BCCompletionBlock)cb
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
                           cbObject:(BCCallbackObject)cbObject;
+
+- (void)createMatchWithInitialTurn:(NSString *)jsonOpponentIds
+                    jsonMatchState:(NSString *)matchState
+           pushNotificationMessage:(NSString *)pushMessage
+                           matchId:(NSString *)matchId
+                        nextPlayer:(NSString *)nextPlayer
+                       jsonSummary:(NSString *)summary
+                   completionBlock:(BCCompletionBlock)cb
+              errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                          cbObject:(BCCallbackObject)cbObject
+DEPRECATED_MSG_ATTRIBUTE("Use version without matchId param instead. Removal after May 10 2016.");
 
 /**
 * Submits a turn for the given match.

@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   s.name     = "BrainCloud"
-  s.version  = "0.0.1"
+  s.version  = "0.0.2"
   s.summary  = "A short description of BrainCloud."
   s.homepage = "http://getbraincloud.com/"
 
@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.source                 = {:git => "https://github.com/getbraincloud/braincloud-objc.git", :tag => "0.0.1"}
+  s.source                 = {:git => "https://github.com/getbraincloud/braincloud-objc.git", :tag => s.version}
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
@@ -45,6 +45,6 @@ Pod::Spec.new do |s|
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.dependency 'BrainCloudCpp', '0.0.1'
+  s.dependency 'BrainCloudCpp', '0.0.2'
 
 end

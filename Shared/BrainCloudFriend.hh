@@ -17,8 +17,11 @@
 * Service Name - Friend
 * Service Operation - GetFriendProfileInfoForExternalId
 *
-* @param in_externalId The friend's external id e.g. Facebook id
-* @param in_authenticationType The authentication type of the friend id e.g. Facebook
+* @param externalId The friend's external id e.g. Facebook id
+* @param authenticationType The authentication type of the friend id e.g. Facebook
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
 *
 * @return The JSON returned in the callback
 * {
@@ -36,6 +39,29 @@
                           completionBlock:(BCCompletionBlock)cb
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieves the external ID for the specified user profile ID on the specified social platform.
+ *
+ * @param profileId Profile (player) ID.
+ * @param authenticationType Associated authentication type.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @return The JSON returned in the callback
+ * {
+ *    "status": 200,
+ *    "data": {
+ *        "externalId": "19e1c0cf-9a2d-4d5c-9a71-1b0f6asdfb4b"
+ *    }
+ * }
+ */
+- (void) getExternalIdForProfileId:(NSString *)profileId
+                authenticationType:(NSString *)authenticationType
+                   completionBlock:(BCCompletionBlock)cb
+              errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                          cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Returns a particular entity of a particular friend.

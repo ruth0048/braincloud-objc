@@ -96,6 +96,18 @@
 - (void)enableLogging:(bool)shouldEnable;
 
 /**
+ * Returns whether the client is initialized.
+ * @return True if initialized, false otherwise.
+ */
+- (bool)isInitialized;
+
+/**
+ * Returns whether the client is authenticated with the brainCloud server.
+ * @return True if authenticated, false otherwise.
+ */
+- (bool)isAuthenticated;
+
+/**
  * Returns the list of packet timeouts.
  */
 - (NSArray *) getPacketTimeouts;
@@ -153,12 +165,22 @@
 - (void) setOldStyleStatusMessageErrorCallback:(bool)enabled;
 
 /**
+ * Sets whether the error callback is triggered when a 202 status
+ * is received from the server. By default this is true and should
+ * only be set to false for backward compatibility.
+ *
+ * @param in_isError If set to true, 202 is treated as an error
+ */
+- (void) setErrorCallbackOn202Status:(bool)isError;
+
+/**
 * set an interval in ms for which the BrainCloud will contact the server
 * and receive any pending events
 *
 * @param intervalInMilliseconds The time between heartbeats in milliseconds
 */
-- (void)setHeartbeatInterval:(int)intervalInMilliseconds;
+- (void)setHeartbeatInterval:(int)intervalInMilliseconds
+DEPRECATED_MSG_ATTRIBUTE("Removal after May 10 2016.");
 
 /**
 * Clears any pending messages from communication library.
@@ -220,6 +242,32 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
 - (void)deregisterRewardCallback;
 
 /**
+ * Registers a callback that is invloked for all errors generated
+ *
+ * @param ecb The global error callback handler.
+ */
+- (void)registerGlobalErrorCallback:(BCErrorCompletionBlock)ecb;
+
+/**
+ * Deregisters the global error callback
+ */
+- (void)deregisterGlobalErrorCallback;
+
+/**
+ * Registers a callback that is invloked for network errors.
+ * Note this is only called if enableNetworkErrorMessageCaching
+ * has been set to true.
+ *
+ * @param ecb The network error callback handler.
+ */
+- (void)registerNetworkErrorCallback:(BCNetworkErrorCompletionBlock)ecb;
+
+/**
+ * Deregisters the network error callback
+ */
+- (void)deregisterNetworkErrorCallback;
+
+/**
 * Run callbacks, to be called once per frame from your main thread
 */
 - (void)runCallBacks;
@@ -259,6 +307,49 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
  * @param in_bytesPerSec The low transfer rate threshold in bytes/sec
  */
 - (void) setUploadLowTransferRateThreshold:(int)in_bytesPerSec;
+
+
+/**
+ * Enables the message caching upon network error, which is disabled by default.
+ * Once enabled, if a client side network error is encountered
+ * (i.e. brainCloud server is unreachable presumably due to the client
+ * network being down) the sdk will do the following:
+ *
+ * 1 - cache the currently queued messages to brainCloud
+ * 2 - call the network error callback
+ * 3 - then expect the app to call either:
+ *     a) retryCachedMessages() to retry sending to brainCloud
+ *     b) flushCachedMessages() to dump all messages in the queue.
+ *
+ * Between steps 2 & 3, the app can prompt the user to retry connecting
+ * to brainCloud to determine whether to follow path 3a or 3b.
+ *
+ * Note that if path 3a is followed, and another network error is encountered,
+ * the process will begin all over again from step 1.
+ *
+ * WARNING - the brainCloud sdk will cache *all* api calls sent
+ * when a network error is encountered if this mechanism is enabled.
+ * This effectively freezes all communication with brainCloud.
+ * Apps must call either retryCachedMessages() or flushCachedMessages()
+ * for the brainCloud SDK to resume sending messages.
+ * resetCommunication() will also clear the message cache.
+ *
+ * @param in_enabled True if message should be cached on timeout
+ */
+- (void) enableNetworkErrorMessageCaching:(bool) in_enabled;
+
+/** Attempts to resend any cached messages. If no messages are in the cache,
+ * this method does nothing.
+ */
+- (void) retryCachedMessages;
+
+/** Flushs the cached messages to resume api call processing. This will dump
+ * all of the cached messages in the queue.
+ * @param in_sendApiErrorCallbacks If set to true API error callbacks will
+ * be called for every cached message with statusCode CLIENT_NETWORK_ERROR
+ * and reasonCode CLIENT_NETWORK_ERROR_TIMEOUT.
+ */
+- (void) flushCachedMessages:(bool) in_sendApiErrorCallbacks;
 
 //@property (getter=isSingleThreaded) BOOL singleThreaded;
 

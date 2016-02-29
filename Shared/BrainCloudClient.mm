@@ -72,6 +72,41 @@ public:
     }
 };
 
+class ObjCGlobalErrorCallback : public BrainCloud::IGlobalErrorCallback
+{
+public:
+    BCErrorCompletionBlock _globalErrorCallback;
+    BCCallbackObject m_cbObject;
+    
+    virtual void globalError(BrainCloud::ServiceName serviceName,
+                             BrainCloud::ServiceOperation serviceOperation, int statusCode,
+                             int returnCode, const std::string &jsonError)
+    {
+        if (_globalErrorCallback)
+        {
+            _globalErrorCallback([NSString stringWithCString:serviceName.getValue().c_str()
+                encoding:NSUTF8StringEncoding], [NSString stringWithCString:serviceOperation.getValue().c_str()
+                encoding:NSUTF8StringEncoding], statusCode, returnCode,
+                [NSString stringWithCString:jsonError.c_str() encoding:NSUTF8StringEncoding], m_cbObject);
+        }
+    }
+};
+
+class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
+{
+public:
+    BCNetworkErrorCompletionBlock _networkErrorCallback;
+    BCCallbackObject m_cbObject;
+    
+    virtual void networkError()
+    {
+        if (_networkErrorCallback)
+        {
+            _networkErrorCallback();
+        }
+    }
+};
+
 @interface BrainCloudClient ()
 {
     BrainCloud::BrainCloudClient *_client;
@@ -80,6 +115,8 @@ public:
     ObjCEventCallback _objcEventCallback;
     ObjCRewardCallback _objcRewardCallback;
     ObjCFileUploadCallback _objcFileUploadCallback;
+    ObjCGlobalErrorCallback _objcGlobalErrorCallback;
+    ObjCNetworkErrorCallback _objcNetworkErrorCallback;
 }
 @end
 
@@ -102,7 +139,6 @@ public:
     if (self)
     {
         _client = BrainCloud::BrainCloudClient::getInstance();
-        _client->SINGLE_THREADED = true;
         _timer = nil;
         _timerDisabled = false;
     }
@@ -143,6 +179,16 @@ public:
 - (void)enableLogging:(bool)shouldEnable
 {
     _client->enableLogging(shouldEnable);
+}
+
+- (bool)isInitialized
+{
+    return _client->isInitialized();
+}
+
+- (bool)isAuthenticated
+{
+    return _client->isAuthenticated();
 }
 
 - (void)dealloc
@@ -212,6 +258,30 @@ public:
     _client->deregisterRewardCallback();
 }
 
+- (void)registerGlobalErrorCallback:(BCErrorCompletionBlock)ecb
+{
+    _objcGlobalErrorCallback._globalErrorCallback = ecb;
+    _client->registerGlobalErrorCallback(&_objcGlobalErrorCallback);
+}
+
+- (void)deregisterGlobalErrorCallback
+{
+    _objcGlobalErrorCallback._globalErrorCallback = nil;
+    _client->deregisterGlobalErrorCallback();
+}
+
+- (void)registerNetworkErrorCallback:(BCNetworkErrorCompletionBlock)ecb
+{
+    _objcNetworkErrorCallback._networkErrorCallback = ecb;
+    _client->registerNetworkErrorCallback(&_objcNetworkErrorCallback);
+}
+
+- (void)deregisterNetworkErrorCallback
+{
+    _objcNetworkErrorCallback._networkErrorCallback = nil;
+    _client->deregisterNetworkErrorCallback();
+}
+
 - (const char *)sessionId
 {
     return _client->getSessionId();
@@ -259,6 +329,11 @@ public:
     _client->setOldStyleStatusMessageErrorCallback(enabled);
 }
 
+- (void) setErrorCallbackOn202Status:(bool)isError
+{
+    _client->setErrorCallbackOn202Status(isError);
+}
+
 - (void)setHeartbeatInterval:(int)intervalInMilliseconds
 {
     _client->setHeartbeatInterval(intervalInMilliseconds);
@@ -282,6 +357,21 @@ public:
 - (void) setUploadLowTransferRateThreshold:(int)in_bytesPerSec
 {
     _client->setUploadLowTransferRateThreshold(in_bytesPerSec);
+}
+
+- (void) enableNetworkErrorMessageCaching:(bool) in_enabled
+{
+    _client->enableNetworkErrorMessageCaching(in_enabled);
+}
+
+- (void) retryCachedMessages
+{
+    _client->retryCachedMessages();
+}
+
+- (void) flushCachedMessages:(bool) in_sendApiErrorCallbacks
+{
+    _client->flushCachedMessages(in_sendApiErrorCallbacks);
 }
 
 #pragma mark - Properties
