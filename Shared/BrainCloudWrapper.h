@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "BrainCloud.h"
 #import "BrainCloudClient.hh"
 
 typedef void (^BrainCloudWrapperSuccessfulCompletion)(NSString *serviceName,
