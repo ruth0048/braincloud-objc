@@ -11,7 +11,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 source 'https://github.com/getbraincloud/braincloud-specs.git'
 
 def shared_pods
-  pod 'BrainCloudCpp', '0.0.1'
+  pod 'BrainCloudCpp', '0.0.2'
   pod 'SSKeychain'
 end
 

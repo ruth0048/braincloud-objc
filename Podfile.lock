@@ -1,13 +1,13 @@
 PODS:
-  - BrainCloudCpp (0.0.1)
+  - BrainCloudCpp (0.0.2)
   - SSKeychain (1.3.1)
 
 DEPENDENCIES:
-  - BrainCloudCpp (= 0.0.1)
+  - BrainCloudCpp (= 0.0.2)
   - SSKeychain
 
 SPEC CHECKSUMS:
-  BrainCloudCpp: 4fdd12c224bd73c28f1f34141fbce9f900360193
+  BrainCloudCpp: c35c1cd63c0262ca7c5c3a2b620e1c0faaa4b7e2
   SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
 
 COCOAPODS: 0.39.0

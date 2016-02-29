@@ -591,10 +591,14 @@
 				D84597691C6D23B3003DA016 /* BrainCloudRedemptionCode.mm */,
 				D845976A1C6D23B3003DA016 /* BrainCloudS3Handling.hh */,
 				D845976B1C6D23B3003DA016 /* BrainCloudS3Handling.mm */,
+				D809D9A51C84B9ED004AAD42 /* BrainCloudSaveDataHelper.h */,
+				D809D9A61C84B9ED004AAD42 /* BrainCloudSaveDataHelper.m */,
 				D845976C1C6D23B3003DA016 /* BrainCloudScript.hh */,
 				D845976D1C6D23B3003DA016 /* BrainCloudScript.mm */,
 				D845976E1C6D23B3003DA016 /* BrainCloudTime.hh */,
 				D845976F1C6D23B3003DA016 /* BrainCloudTime.mm */,
+				D809D99D1C84B5C5004AAD42 /* BrainCloudWrapper.h */,
+				D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.mm */,
 				D84597711C6D23B3003DA016 /* PlatformObjc.hh */,
 				D84597721C6D23B3003DA016 /* PlatformObjc.mm */,
 				D84597731C6D23B3003DA016 /* ReasonCodes.hh */,
@@ -602,10 +606,6 @@
 				D84597751C6D23B3003DA016 /* ServiceName.mm */,
 				D84597761C6D23B3003DA016 /* TypeHelpers.hh */,
 				D84597771C6D23B3003DA016 /* TypeHelpers.mm */,
-				D809D99D1C84B5C5004AAD42 /* BrainCloudWrapper.h */,
-				D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.mm */,
-				D809D9A51C84B9ED004AAD42 /* BrainCloudSaveDataHelper.h */,
-				D809D9A61C84B9ED004AAD42 /* BrainCloudSaveDataHelper.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
