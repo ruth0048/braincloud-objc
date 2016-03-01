@@ -26,12 +26,11 @@ typedef void (^BrainCloudWrapperFailedCompletion)(NSString *serviceName,
 
 #pragma mark - Properties
 
-@property (strong, nonatomic, readonly) BrainCloudClient *client;
 @property (copy, nonatomic) NSString *storedAnonymousID;
 @property (copy, nonatomic) NSString *storedAuthenticationType;
 @property (copy, nonatomic) NSString *storedProfileID;
 
-#pragma mark - C++ Initialization
++ (BrainCloudWrapper *) sharedWrapper;
 
 - (void)initializeWithURL:(NSURL *)URL
               companyName:(NSString *)companyName

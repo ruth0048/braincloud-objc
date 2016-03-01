@@ -12,7 +12,6 @@
 
 @interface BrainCloudWrapper ()
 
-@property (strong, nonatomic, readwrite) BrainCloudClient *client;
 @property (strong, nonatomic) BrainCloudSaveDataHelper *helper;
 
 @property (copy, nonatomic) NSString *lastGameID;
@@ -33,11 +32,16 @@ NSString * const kPersistenceKeyProfileID          = @"profileId";
 #pragma mark - Getters & Setters
 
 - (BrainCloudClient *)client {
-    if (_client)
-        return _client;
-    
-    _client = [[BrainCloudClient alloc] init];
-    return _client;
+    return [BrainCloudClient defaultClient];
+}
+
++ (BrainCloudWrapper *) sharedWrapper {
+    static BrainCloudWrapper *sharedWrapper = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedWrapper = [[self alloc] init];
+    });
+    return sharedWrapper;
 }
 
 - (void)setStoredAnonymousID:(NSString *)storedAnonymousID {
@@ -74,8 +78,18 @@ NSString * const kPersistenceKeyProfileID          = @"profileId";
         self.storedAnonymousID = [self.client.authenticationService generateGUID];
     }
     
-    [self.client initializeIdentity:profileID.UTF8String
-                        anonymousId:anonymousID.UTF8String];
+    const char * szProfileID = "";
+    const char * szAnonymousID = "";
+    if (profileID != nil)
+    {
+        szProfileID = profileID.UTF8String;
+    }
+    if (anonymousID != nil)
+    {
+        szAnonymousID = anonymousID.UTF8String;
+    }
+    
+    [[BrainCloudClient defaultClient] initializeIdentity:szProfileID anonymousId:szAnonymousID];
 }
 
 - (void)initializeWithURL:(NSURL *)URL companyName:(NSString *)companyName secretKey:(NSString *)secretKey gameID:(NSString *)gameID gameName:(NSString *)gameName gameVersion:(NSString *)gameVersion {
@@ -84,7 +98,7 @@ NSString * const kPersistenceKeyProfileID          = @"profileId";
     self.lastSecretKey   = secretKey;
     self.lastURL         = URL;
     
-    [self.client initialize:URL.absoluteString
+    [[BrainCloudClient defaultClient ] initialize:URL.absoluteString
                   secretKey:secretKey
                      gameId:gameID
                 gameVersion:gameVersion];
@@ -97,14 +111,14 @@ NSString * const kPersistenceKeyProfileID          = @"profileId";
 - (void)authenticateAnonymousWithSuccess:(BrainCloudWrapperSuccessfulCompletion)success failure:(BrainCloudWrapperFailedCompletion)failure {
     [self _initializeIdentity];
     self.storedAuthenticationType = kAuthenticationAnonymous;
-    [[self.client authenticationService] authenticateAnonymous:YES
+    [[[BrainCloudClient defaultClient] authenticationService] authenticateAnonymous:YES
                                                completionBlock:success
                                           errorCompletionBlock:failure
                                                       cbObject:nil];
 }
 
 - (void)authenticateWithEmail:(NSString *)email password:(NSString *)password success:(BrainCloudWrapperSuccessfulCompletion)success failure:(BrainCloudWrapperFailedCompletion)failure {
-    [[self.client authenticationService] authenticateEmailPassword:email
+    [[[BrainCloudClient defaultClient] authenticationService] authenticateEmailPassword:email
                                                           password:password
                                                        forceCreate:YES
                                                    completionBlock:success
@@ -113,7 +127,7 @@ NSString * const kPersistenceKeyProfileID          = @"profileId";
 }
 
 - (void)authenticateWithFacebookUserID:(NSString *)facebookUserID authenticationToken:(NSString *)authenticationToken success:(BrainCloudWrapperSuccessfulCompletion)success failure:(BrainCloudWrapperFailedCompletion)failure {
-    [[self.client authenticationService] authenticateFacebook:facebookUserID
+    [[[BrainCloudClient defaultClient] authenticationService] authenticateFacebook:facebookUserID
                                           authenticationToken:authenticationToken
                                                   forceCreate:YES
                                               completionBlock:success
@@ -122,7 +136,7 @@ NSString * const kPersistenceKeyProfileID          = @"profileId";
 }
 
 - (void)authenticateWithUniversalUserID:(NSString *)userID password:(NSString *)password success:(BrainCloudWrapperSuccessfulCompletion)success failure:(BrainCloudWrapperFailedCompletion)failure {
-    [[self.client authenticationService] authenticateUniversal:userID
+    [[[BrainCloudClient defaultClient] authenticationService] authenticateUniversal:userID
                                                       password:password
                                                    forceCreate:YES
                                                completionBlock:success
@@ -146,7 +160,7 @@ NSString * const kPersistenceKeyProfileID          = @"profileId";
 #pragma mark - Updates
 
 - (void)update {
-    [self.client runCallBacks];
+    [[BrainCloudClient defaultClient] runCallBacks];
 }
 
 @end
