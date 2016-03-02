@@ -86,7 +86,7 @@ NSString * const kPersistenceKeyProfileID          = @"profileId";
     }
     if (anonymousID != nil)
     {
-        szAnonymousID = anonymousID.UTF8String;
+        szAnonymousID = self.storedAnonymousID.UTF8String;
     }
     
     [[BrainCloudClient defaultClient] initializeIdentity:szProfileID anonymousId:szAnonymousID];
@@ -112,9 +112,21 @@ NSString * const kPersistenceKeyProfileID          = @"profileId";
     [self _initializeIdentity];
     self.storedAuthenticationType = kAuthenticationAnonymous;
     [[[BrainCloudClient defaultClient] authenticationService] authenticateAnonymous:YES
-                                               completionBlock:success
-                                          errorCompletionBlock:failure
-                                                      cbObject:nil];
+        completionBlock:^(NSString *serviceName, NSString *serviceOperation, NSString *jsonData, BCCallbackObject cbObject)
+        {
+            NSData *data = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data
+                                                                    options:NSJSONReadingMutableContainers
+                                                                      error:nil];
+            
+            self.storedProfileID = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"profileId"];
+            success(serviceName, serviceOperation, jsonData, cbObject);
+        }
+        errorCompletionBlock:^(NSString *serviceName, NSString *serviceOperation, NSInteger statusCode, NSInteger returnCode, NSString *jsonError, BCCallbackObject cbObject)
+        {
+            failure(serviceName, serviceOperation, statusCode, returnCode, jsonError, cbObject);
+        }
+        cbObject:nil];
 }
 
 - (void)authenticateWithEmail:(NSString *)email password:(NSString *)password success:(BrainCloudWrapperSuccessfulCompletion)success failure:(BrainCloudWrapperFailedCompletion)failure {
