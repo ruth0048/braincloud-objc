@@ -1,4 +1,4 @@
-# brainCloud Objective-C Client Library
+# brainCloud Objective-C/Swift Library
 
 Thanks for downloading the brainCloud C++ client library! Here are a few notes to get you started. Further information about the brainCloud API, including example Tutorials can be found here:
 
