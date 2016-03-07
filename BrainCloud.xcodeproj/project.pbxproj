@@ -232,6 +232,9 @@
 		D84598511C6D2761003DA016 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D84598501C6D2761003DA016 /* libz.tbd */; };
 		D84598531C6D2771003DA016 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D84598521C6D2771003DA016 /* libz.tbd */; };
 		D84598551C6D2777003DA016 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D84598541C6D2777003DA016 /* libz.tbd */; };
+		DF1D3FB51C8DEEA000225572 /* ServiceOperation.hh in Headers */ = {isa = PBXBuildFile; fileRef = DF1D3FB31C8DEEA000225572 /* ServiceOperation.hh */; };
+		DF1D3FB61C8DEEA000225572 /* ServiceOperation.mm in Sources */ = {isa = PBXBuildFile; fileRef = DF1D3FB41C8DEEA000225572 /* ServiceOperation.mm */; };
+		DF1D3FB81C8DF1F700225572 /* StatusCodes.hh in Headers */ = {isa = PBXBuildFile; fileRef = DF1D3FB71C8DF1F700225572 /* StatusCodes.hh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -358,6 +361,9 @@
 		D84598501C6D2761003DA016 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D84598521C6D2771003DA016 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		D84598541C6D2777003DA016 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		DF1D3FB31C8DEEA000225572 /* ServiceOperation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ServiceOperation.hh; sourceTree = "<group>"; };
+		DF1D3FB41C8DEEA000225572 /* ServiceOperation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ServiceOperation.mm; sourceTree = "<group>"; };
+		DF1D3FB71C8DF1F700225572 /* StatusCodes.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StatusCodes.hh; sourceTree = "<group>"; };
 		E17C98B9136301F13EE8ACF0 /* libPods-BrainCloud-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BrainCloud-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -604,6 +610,9 @@
 				D84597731C6D23B3003DA016 /* ReasonCodes.hh */,
 				D84597741C6D23B3003DA016 /* ServiceName.hh */,
 				D84597751C6D23B3003DA016 /* ServiceName.mm */,
+				DF1D3FB31C8DEEA000225572 /* ServiceOperation.hh */,
+				DF1D3FB41C8DEEA000225572 /* ServiceOperation.mm */,
+				DF1D3FB71C8DF1F700225572 /* StatusCodes.hh */,
 				D84597761C6D23B3003DA016 /* TypeHelpers.hh */,
 				D84597771C6D23B3003DA016 /* TypeHelpers.mm */,
 			);
@@ -788,6 +797,7 @@
 				D809D99F1C84B5C5004AAD42 /* BrainCloudWrapper.h in Headers */,
 				D845978A1C6D23B3003DA016 /* BrainCloudCallback.hh in Headers */,
 				D84597CF1C6D23B3003DA016 /* BrainCloudIdentity.hh in Headers */,
+				DF1D3FB81C8DF1F700225572 /* StatusCodes.hh in Headers */,
 				D84597AB1C6D23B3003DA016 /* BrainCloudFile.hh in Headers */,
 				D84597991C6D23B3003DA016 /* BrainCloudDataStream.hh in Headers */,
 				D84597781C6D23B3003DA016 /* ACL.hh in Headers */,
@@ -817,6 +827,7 @@
 				D84597F91C6D23B4003DA016 /* BrainCloudPlayerStatisticsEvent.hh in Headers */,
 				D84597961C6D23B3003DA016 /* BrainCloudCompletionBlocks.hh in Headers */,
 				D84597931C6D23B3003DA016 /* brainCloudClientObjc.hh in Headers */,
+				DF1D3FB51C8DEEA000225572 /* ServiceOperation.hh in Headers */,
 				D84597DB1C6D23B3003DA016 /* BrainCloudMatchMaking.hh in Headers */,
 				D84597BD1C6D23B3003DA016 /* BrainCloudGlobalApp.hh in Headers */,
 				D84597D51C6D23B3003DA016 /* BrainCloudLeaderboard.hh in Headers */,
@@ -1234,6 +1245,7 @@
 				D84597A81C6D23B3003DA016 /* BrainCloudEvent.mm in Sources */,
 				D809D9AA1C84B9ED004AAD42 /* BrainCloudSaveDataHelper.m in Sources */,
 				D84597901C6D23B3003DA016 /* BrainCloudClient.mm in Sources */,
+				DF1D3FB61C8DEEA000225572 /* ServiceOperation.mm in Sources */,
 				D84597CC1C6D23B3003DA016 /* BrainCloudGlobalStatistics.mm in Sources */,
 				D84597AE1C6D23B3003DA016 /* BrainCloudFile.mm in Sources */,
 				D84598141C6D23B4003DA016 /* BrainCloudRedemptionCode.mm in Sources */,

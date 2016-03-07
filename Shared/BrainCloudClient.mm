@@ -122,7 +122,7 @@ public:
 
 @implementation BrainCloudClient
 
-+ (BrainCloudClient *)defaultClient
++ (BrainCloudClient *)getInstance
 {
     static BrainCloudClient *s_instance = nil;
     static dispatch_once_t onceToken = 0;
@@ -560,6 +560,11 @@ public:
     static BrainCloudFile *_fileService = nil;
     if (!_fileService) _fileService = [[BrainCloudFile alloc] init];
     return _fileService;
+}
+
++ (BrainCloudClient *)defaultClient
+{
+    return [BrainCloudClient getInstance];
 }
 
 @end

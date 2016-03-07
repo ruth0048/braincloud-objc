@@ -51,13 +51,14 @@
 */
 @interface BrainCloudClient : NSObject
 
+
 /**
-* BrainCloudClient is a singleton object. This method gives the caller access
-* to the singleton object in order to use the class.
-*
-* @return BrainCloudClient * - pointer to the singleton BrainCloudClient object
-*/
-+ (BrainCloudClient *)defaultClient;
+ * BrainCloudClient is a singleton object. This method gives the caller access
+ * to the singleton object in order to use the class.
+ *
+ * @return BrainCloudClient * - pointer to the singleton BrainCloudClient object
+ */
++ (BrainCloudClient *)getInstance;
 
 /**
  * Call this method before initialize to disable the internal timer.
@@ -353,7 +354,6 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
  */
 - (void) flushCachedMessages:(bool) in_sendApiErrorCallbacks;
 
-//@property (getter=isSingleThreaded) BOOL singleThreaded;
 
 @property(readonly) const char *sessionId;
 @property(readonly) BrainCloudAuthentication *authenticationService;
@@ -383,5 +383,10 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
 @property(readonly) BrainCloudProfanity *profanityService;
 @property(readonly) BrainCloudFile *fileService;
 @property NSInteger frameInterval;
+
+/**
+ * @deprecated Use getInstance instead
+ */
++ (BrainCloudClient *)defaultClient;
 
 @end
