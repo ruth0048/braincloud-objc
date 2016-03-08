@@ -149,7 +149,7 @@
 *          "experienceLevels":[
 *            {
 *              "level":1,
-*              "reward":{
+*              "rewards":{
 *                "currency":{
 *                  "gold":1000
 *                }
@@ -210,7 +210,7 @@
 *       "gameId":"com.bitheads.unityexample",
 *       "numericLevel":2,
 *       "experience":20,
-*       "reward":{
+*       "rewards":{
 *         "globalGameStatistics":null,
 *         "experiencePoints":null,
 *         "playerStatistics":null,

@@ -41,7 +41,8 @@
 *             "dateUploaded": 1437154770000,
 *             "relativeUrl": "/cust/testDoc.txt",
 *             "absoluteUrl": "http://internal.braincloudservers.com/s3/portal/g/12311331/cust/testDoc.txt",
-*             "md5Hash": "d41d8cd98f00b204e9800998ecf8427e"
+*             "md5Hash": "d41d8cd98f00b204e9800998ecf8427e",
+*             "md5HashHex" : "b895454d7210f7cb84aab76289ffd39c"
 *         }]
 *     }
 * }
@@ -79,7 +80,8 @@
 *             "dateUploaded": 1437154770000,
 *             "relativeUrl": "/cust/testDoc.txt",
 *             "absoluteUrl": "http://internal.braincloudservers.com/s3/portal/g/12311331/cust/testDoc.txt",
-*             "md5Hash": "d41d8cd98f00b204e9800998ecf8427e"
+*             "md5Hash": "d41d8cd98f00b204e9800998ecf8427e",
+*             "md5HashHex" : "b895454d7210f7cb84aab76289ffd39c"
 *         }]
 *     }
 * }
