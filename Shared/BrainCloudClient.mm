@@ -203,9 +203,19 @@ public:
     }
 }
 
-- (void)initializeIdentity:(const char *)profileId anonymousId:(const char *)anonymousId
+- (void)initializeIdentity:(NSString *)profileId anonymousId:(NSString *)anonymousId
 {
-    _client->initializeIdentity(profileId, anonymousId);
+    const char * szProfileId = "";
+    const char * szAnonymousId = "";
+    if (profileId != nil)
+    {
+        szProfileId = profileId.UTF8String;
+    }
+    if (anonymousId != nil)
+    {
+        szAnonymousId = anonymousId.UTF8String;
+    }
+    _client->initializeIdentity(szProfileId, szAnonymousId);
 }
 
 - (void)runCallBacks

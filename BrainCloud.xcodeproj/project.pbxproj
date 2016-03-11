@@ -235,8 +235,102 @@
 		DF1D3FB51C8DEEA000225572 /* ServiceOperation.hh in Headers */ = {isa = PBXBuildFile; fileRef = DF1D3FB31C8DEEA000225572 /* ServiceOperation.hh */; };
 		DF1D3FB61C8DEEA000225572 /* ServiceOperation.mm in Sources */ = {isa = PBXBuildFile; fileRef = DF1D3FB41C8DEEA000225572 /* ServiceOperation.mm */; };
 		DF1D3FB81C8DF1F700225572 /* StatusCodes.hh in Headers */ = {isa = PBXBuildFile; fileRef = DF1D3FB71C8DF1F700225572 /* StatusCodes.hh */; };
+		DF99CBEC1C935E72000B2418 /* ReasonCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD59AB21C8E294200A69FEF /* ReasonCodes.m */; };
+		DF99CBED1C935E72000B2418 /* ReasonCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD59AB21C8E294200A69FEF /* ReasonCodes.m */; };
+		DF99CBEE1C935E7A000B2418 /* StatusCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD59AB41C8E2CBA00A69FEF /* StatusCodes.m */; };
+		DF99CBEF1C935E7B000B2418 /* StatusCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD59AB41C8E2CBA00A69FEF /* StatusCodes.m */; };
 		DFD59AB31C8E294200A69FEF /* ReasonCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD59AB21C8E294200A69FEF /* ReasonCodes.m */; };
 		DFD59AB51C8E2CBA00A69FEF /* StatusCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD59AB41C8E2CBA00A69FEF /* StatusCodes.m */; };
+		DFF5CC8C1C9356A7002E62F8 /* TestAsyncMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC4E1C9356A1002E62F8 /* TestAsyncMatch.m */; };
+		DFF5CC8D1C9356A7002E62F8 /* TestAsyncMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC4E1C9356A1002E62F8 /* TestAsyncMatch.m */; };
+		DFF5CC8E1C9356A8002E62F8 /* TestAsyncMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC4E1C9356A1002E62F8 /* TestAsyncMatch.m */; };
+		DFF5CC8F1C9356AE002E62F8 /* TestAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC4F1C9356A1002E62F8 /* TestAuthentication.m */; };
+		DFF5CC901C9356AF002E62F8 /* TestAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC4F1C9356A1002E62F8 /* TestAuthentication.m */; };
+		DFF5CC911C9356AF002E62F8 /* TestAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC4F1C9356A1002E62F8 /* TestAuthentication.m */; };
+		DFF5CC921C9356B2002E62F8 /* TestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC501C9356A1002E62F8 /* TestClient.m */; };
+		DFF5CC931C9356B3002E62F8 /* TestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC501C9356A1002E62F8 /* TestClient.m */; };
+		DFF5CC941C9356B4002E62F8 /* TestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC501C9356A1002E62F8 /* TestClient.m */; };
+		DFF5CC951C9356B7002E62F8 /* TestDataStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC511C9356A1002E62F8 /* TestDataStream.m */; };
+		DFF5CC961C9356B8002E62F8 /* TestDataStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC511C9356A1002E62F8 /* TestDataStream.m */; };
+		DFF5CC971C9356B8002E62F8 /* TestDataStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC511C9356A1002E62F8 /* TestDataStream.m */; };
+		DFF5CC981C9356BC002E62F8 /* TestEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC521C9356A1002E62F8 /* TestEntity.m */; };
+		DFF5CC991C9356BC002E62F8 /* TestEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC521C9356A1002E62F8 /* TestEntity.m */; };
+		DFF5CC9A1C9356BD002E62F8 /* TestEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC521C9356A1002E62F8 /* TestEntity.m */; };
+		DFF5CC9B1C9356C1002E62F8 /* TestEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC531C9356A1002E62F8 /* TestEvent.m */; };
+		DFF5CC9C1C9356C1002E62F8 /* TestEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC531C9356A1002E62F8 /* TestEvent.m */; };
+		DFF5CC9D1C9356C2002E62F8 /* TestEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC531C9356A1002E62F8 /* TestEvent.m */; };
+		DFF5CC9E1C9356C6002E62F8 /* TestFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC541C9356A1002E62F8 /* TestFile.m */; };
+		DFF5CC9F1C9356C7002E62F8 /* TestFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC541C9356A1002E62F8 /* TestFile.m */; };
+		DFF5CCA01C9356C7002E62F8 /* TestFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC541C9356A1002E62F8 /* TestFile.m */; };
+		DFF5CCA11C9356D0002E62F8 /* TestFixtureBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC561C9356A1002E62F8 /* TestFixtureBase.m */; };
+		DFF5CCA21C9356D1002E62F8 /* TestFixtureBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC561C9356A1002E62F8 /* TestFixtureBase.m */; };
+		DFF5CCA31C9356D1002E62F8 /* TestFixtureBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC561C9356A1002E62F8 /* TestFixtureBase.m */; };
+		DFF5CCA41C9356D5002E62F8 /* TestFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC571C9356A1002E62F8 /* TestFriend.m */; };
+		DFF5CCA51C9356D6002E62F8 /* TestFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC571C9356A1002E62F8 /* TestFriend.m */; };
+		DFF5CCA61C9356D7002E62F8 /* TestFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC571C9356A1002E62F8 /* TestFriend.m */; };
+		DFF5CCA71C9356DA002E62F8 /* TestGamification.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC581C9356A1002E62F8 /* TestGamification.m */; };
+		DFF5CCA81C9356DB002E62F8 /* TestGamification.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC581C9356A1002E62F8 /* TestGamification.m */; };
+		DFF5CCA91C9356DB002E62F8 /* TestGamification.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC581C9356A1002E62F8 /* TestGamification.m */; };
+		DFF5CCAA1C9356DE002E62F8 /* TestGlobalApp.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC591C9356A1002E62F8 /* TestGlobalApp.m */; };
+		DFF5CCAB1C9356DF002E62F8 /* TestGlobalApp.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC591C9356A1002E62F8 /* TestGlobalApp.m */; };
+		DFF5CCAC1C9356E0002E62F8 /* TestGlobalApp.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC591C9356A1002E62F8 /* TestGlobalApp.m */; };
+		DFF5CCAD1C9356E3002E62F8 /* TestGlobalEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5A1C9356A1002E62F8 /* TestGlobalEntity.m */; };
+		DFF5CCAE1C9356E3002E62F8 /* TestGlobalEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5A1C9356A1002E62F8 /* TestGlobalEntity.m */; };
+		DFF5CCAF1C9356E4002E62F8 /* TestGlobalEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5A1C9356A1002E62F8 /* TestGlobalEntity.m */; };
+		DFF5CCB01C9356E7002E62F8 /* TestGlobalStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5B1C9356A1002E62F8 /* TestGlobalStatistics.m */; };
+		DFF5CCB11C9356E7002E62F8 /* TestGlobalStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5B1C9356A1002E62F8 /* TestGlobalStatistics.m */; };
+		DFF5CCB21C9356E8002E62F8 /* TestGlobalStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5B1C9356A1002E62F8 /* TestGlobalStatistics.m */; };
+		DFF5CCB31C9356EC002E62F8 /* TestIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5C1C9356A1002E62F8 /* TestIdentity.m */; };
+		DFF5CCB41C9356EC002E62F8 /* TestIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5C1C9356A1002E62F8 /* TestIdentity.m */; };
+		DFF5CCB51C9356ED002E62F8 /* TestIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5C1C9356A1002E62F8 /* TestIdentity.m */; };
+		DFF5CCB61C9356F1002E62F8 /* TestLeaderboard.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5D1C9356A1002E62F8 /* TestLeaderboard.m */; };
+		DFF5CCB71C9356F1002E62F8 /* TestLeaderboard.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5D1C9356A1002E62F8 /* TestLeaderboard.m */; };
+		DFF5CCB81C9356F2002E62F8 /* TestLeaderboard.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5D1C9356A1002E62F8 /* TestLeaderboard.m */; };
+		DFF5CCB91C9356F5002E62F8 /* TestMatchMaking.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5E1C9356A1002E62F8 /* TestMatchMaking.m */; };
+		DFF5CCBA1C9356F6002E62F8 /* TestMatchMaking.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5E1C9356A1002E62F8 /* TestMatchMaking.m */; };
+		DFF5CCBB1C9356F6002E62F8 /* TestMatchMaking.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5E1C9356A1002E62F8 /* TestMatchMaking.m */; };
+		DFF5CCBC1C9356FA002E62F8 /* TestOneWayMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5F1C9356A1002E62F8 /* TestOneWayMatch.m */; };
+		DFF5CCBD1C9356FA002E62F8 /* TestOneWayMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5F1C9356A1002E62F8 /* TestOneWayMatch.m */; };
+		DFF5CCBE1C9356FB002E62F8 /* TestOneWayMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC5F1C9356A1002E62F8 /* TestOneWayMatch.m */; };
+		DFF5CCBF1C9356FE002E62F8 /* TestPlaybackStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC601C9356A1002E62F8 /* TestPlaybackStream.m */; };
+		DFF5CCC01C9356FE002E62F8 /* TestPlaybackStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC601C9356A1002E62F8 /* TestPlaybackStream.m */; };
+		DFF5CCC11C9356FF002E62F8 /* TestPlaybackStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC601C9356A1002E62F8 /* TestPlaybackStream.m */; };
+		DFF5CCC21C935702002E62F8 /* TestPlayerState.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC611C9356A1002E62F8 /* TestPlayerState.m */; };
+		DFF5CCC31C935702002E62F8 /* TestPlayerState.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC611C9356A1002E62F8 /* TestPlayerState.m */; };
+		DFF5CCC41C935703002E62F8 /* TestPlayerState.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC611C9356A1002E62F8 /* TestPlayerState.m */; };
+		DFF5CCC51C935706002E62F8 /* TestPlayerStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC621C9356A1002E62F8 /* TestPlayerStatistics.m */; };
+		DFF5CCC61C935706002E62F8 /* TestPlayerStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC621C9356A1002E62F8 /* TestPlayerStatistics.m */; };
+		DFF5CCC71C935707002E62F8 /* TestPlayerStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC621C9356A1002E62F8 /* TestPlayerStatistics.m */; };
+		DFF5CCC81C93570A002E62F8 /* TestPlayerStatisticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC631C9356A1002E62F8 /* TestPlayerStatisticsEvent.m */; };
+		DFF5CCC91C93570B002E62F8 /* TestPlayerStatisticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC631C9356A1002E62F8 /* TestPlayerStatisticsEvent.m */; };
+		DFF5CCCA1C93570B002E62F8 /* TestPlayerStatisticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC631C9356A1002E62F8 /* TestPlayerStatisticsEvent.m */; };
+		DFF5CCCB1C93570E002E62F8 /* TestProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC641C9356A1002E62F8 /* TestProduct.m */; };
+		DFF5CCCC1C93570F002E62F8 /* TestProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC641C9356A1002E62F8 /* TestProduct.m */; };
+		DFF5CCCD1C93570F002E62F8 /* TestProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC641C9356A1002E62F8 /* TestProduct.m */; };
+		DFF5CCCE1C935712002E62F8 /* TestProfanity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC651C9356A1002E62F8 /* TestProfanity.m */; };
+		DFF5CCCF1C935712002E62F8 /* TestProfanity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC651C9356A1002E62F8 /* TestProfanity.m */; };
+		DFF5CCD01C935713002E62F8 /* TestProfanity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC651C9356A1002E62F8 /* TestProfanity.m */; };
+		DFF5CCD11C935717002E62F8 /* TestPushNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC661C9356A1002E62F8 /* TestPushNotification.m */; };
+		DFF5CCD21C935717002E62F8 /* TestPushNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC661C9356A1002E62F8 /* TestPushNotification.m */; };
+		DFF5CCD31C935718002E62F8 /* TestPushNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC661C9356A1002E62F8 /* TestPushNotification.m */; };
+		DFF5CCD41C93571B002E62F8 /* TestRedemptionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC671C9356A1002E62F8 /* TestRedemptionCode.m */; };
+		DFF5CCD51C93571B002E62F8 /* TestRedemptionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC671C9356A1002E62F8 /* TestRedemptionCode.m */; };
+		DFF5CCD61C93571C002E62F8 /* TestRedemptionCode.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC671C9356A1002E62F8 /* TestRedemptionCode.m */; };
+		DFF5CCD71C93571F002E62F8 /* TestS3Handling.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC681C9356A1002E62F8 /* TestS3Handling.m */; };
+		DFF5CCD81C935720002E62F8 /* TestS3Handling.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC681C9356A1002E62F8 /* TestS3Handling.m */; };
+		DFF5CCD91C935721002E62F8 /* TestS3Handling.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC681C9356A1002E62F8 /* TestS3Handling.m */; };
+		DFF5CCDA1C935723002E62F8 /* TestScript.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC691C9356A1002E62F8 /* TestScript.m */; };
+		DFF5CCDB1C935725002E62F8 /* TestScript.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC691C9356A1002E62F8 /* TestScript.m */; };
+		DFF5CCDC1C935726002E62F8 /* TestScript.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC691C9356A1002E62F8 /* TestScript.m */; };
+		DFF5CCDD1C935728002E62F8 /* TestTime.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC6A1C9356A1002E62F8 /* TestTime.m */; };
+		DFF5CCDE1C935729002E62F8 /* TestTime.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC6A1C9356A1002E62F8 /* TestTime.m */; };
+		DFF5CCDF1C935729002E62F8 /* TestTime.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC6A1C9356A1002E62F8 /* TestTime.m */; };
+		DFF5CCE01C935732002E62F8 /* TestUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC6C1C9356A1002E62F8 /* TestUser.m */; };
+		DFF5CCE11C935732002E62F8 /* TestUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC6C1C9356A1002E62F8 /* TestUser.m */; };
+		DFF5CCE21C935733002E62F8 /* TestUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF5CC6C1C9356A1002E62F8 /* TestUser.m */; };
+		DFF5CCE51C935A05002E62F8 /* ids.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFF5CCE31C935A00002E62F8 /* ids.txt */; };
+		DFF5CCE61C935A06002E62F8 /* ids.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFF5CCE31C935A00002E62F8 /* ids.txt */; };
+		DFF5CCE71C935A07002E62F8 /* ids.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFF5CCE31C935A00002E62F8 /* ids.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -368,6 +462,38 @@
 		DF1D3FB71C8DF1F700225572 /* StatusCodes.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StatusCodes.hh; sourceTree = "<group>"; };
 		DFD59AB21C8E294200A69FEF /* ReasonCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReasonCodes.m; sourceTree = "<group>"; };
 		DFD59AB41C8E2CBA00A69FEF /* StatusCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusCodes.m; sourceTree = "<group>"; };
+		DFF5CC4E1C9356A1002E62F8 /* TestAsyncMatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestAsyncMatch.m; path = Tests/TestAsyncMatch.m; sourceTree = "<group>"; };
+		DFF5CC4F1C9356A1002E62F8 /* TestAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestAuthentication.m; path = Tests/TestAuthentication.m; sourceTree = "<group>"; };
+		DFF5CC501C9356A1002E62F8 /* TestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestClient.m; path = Tests/TestClient.m; sourceTree = "<group>"; };
+		DFF5CC511C9356A1002E62F8 /* TestDataStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDataStream.m; path = Tests/TestDataStream.m; sourceTree = "<group>"; };
+		DFF5CC521C9356A1002E62F8 /* TestEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestEntity.m; path = Tests/TestEntity.m; sourceTree = "<group>"; };
+		DFF5CC531C9356A1002E62F8 /* TestEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestEvent.m; path = Tests/TestEvent.m; sourceTree = "<group>"; };
+		DFF5CC541C9356A1002E62F8 /* TestFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestFile.m; path = Tests/TestFile.m; sourceTree = "<group>"; };
+		DFF5CC551C9356A1002E62F8 /* TestFixtureBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFixtureBase.h; path = Tests/TestFixtureBase.h; sourceTree = "<group>"; };
+		DFF5CC561C9356A1002E62F8 /* TestFixtureBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestFixtureBase.m; path = Tests/TestFixtureBase.m; sourceTree = "<group>"; };
+		DFF5CC571C9356A1002E62F8 /* TestFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestFriend.m; path = Tests/TestFriend.m; sourceTree = "<group>"; };
+		DFF5CC581C9356A1002E62F8 /* TestGamification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestGamification.m; path = Tests/TestGamification.m; sourceTree = "<group>"; };
+		DFF5CC591C9356A1002E62F8 /* TestGlobalApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestGlobalApp.m; path = Tests/TestGlobalApp.m; sourceTree = "<group>"; };
+		DFF5CC5A1C9356A1002E62F8 /* TestGlobalEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestGlobalEntity.m; path = Tests/TestGlobalEntity.m; sourceTree = "<group>"; };
+		DFF5CC5B1C9356A1002E62F8 /* TestGlobalStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestGlobalStatistics.m; path = Tests/TestGlobalStatistics.m; sourceTree = "<group>"; };
+		DFF5CC5C1C9356A1002E62F8 /* TestIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestIdentity.m; path = Tests/TestIdentity.m; sourceTree = "<group>"; };
+		DFF5CC5D1C9356A1002E62F8 /* TestLeaderboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestLeaderboard.m; path = Tests/TestLeaderboard.m; sourceTree = "<group>"; };
+		DFF5CC5E1C9356A1002E62F8 /* TestMatchMaking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestMatchMaking.m; path = Tests/TestMatchMaking.m; sourceTree = "<group>"; };
+		DFF5CC5F1C9356A1002E62F8 /* TestOneWayMatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestOneWayMatch.m; path = Tests/TestOneWayMatch.m; sourceTree = "<group>"; };
+		DFF5CC601C9356A1002E62F8 /* TestPlaybackStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestPlaybackStream.m; path = Tests/TestPlaybackStream.m; sourceTree = "<group>"; };
+		DFF5CC611C9356A1002E62F8 /* TestPlayerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestPlayerState.m; path = Tests/TestPlayerState.m; sourceTree = "<group>"; };
+		DFF5CC621C9356A1002E62F8 /* TestPlayerStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestPlayerStatistics.m; path = Tests/TestPlayerStatistics.m; sourceTree = "<group>"; };
+		DFF5CC631C9356A1002E62F8 /* TestPlayerStatisticsEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestPlayerStatisticsEvent.m; path = Tests/TestPlayerStatisticsEvent.m; sourceTree = "<group>"; };
+		DFF5CC641C9356A1002E62F8 /* TestProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestProduct.m; path = Tests/TestProduct.m; sourceTree = "<group>"; };
+		DFF5CC651C9356A1002E62F8 /* TestProfanity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestProfanity.m; path = Tests/TestProfanity.m; sourceTree = "<group>"; };
+		DFF5CC661C9356A1002E62F8 /* TestPushNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestPushNotification.m; path = Tests/TestPushNotification.m; sourceTree = "<group>"; };
+		DFF5CC671C9356A1002E62F8 /* TestRedemptionCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestRedemptionCode.m; path = Tests/TestRedemptionCode.m; sourceTree = "<group>"; };
+		DFF5CC681C9356A1002E62F8 /* TestS3Handling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestS3Handling.m; path = Tests/TestS3Handling.m; sourceTree = "<group>"; };
+		DFF5CC691C9356A1002E62F8 /* TestScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestScript.m; path = Tests/TestScript.m; sourceTree = "<group>"; };
+		DFF5CC6A1C9356A1002E62F8 /* TestTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestTime.m; path = Tests/TestTime.m; sourceTree = "<group>"; };
+		DFF5CC6B1C9356A1002E62F8 /* TestUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestUser.h; path = Tests/TestUser.h; sourceTree = "<group>"; };
+		DFF5CC6C1C9356A1002E62F8 /* TestUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestUser.m; path = Tests/TestUser.m; sourceTree = "<group>"; };
+		DFF5CCE31C935A00002E62F8 /* ids.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ids.txt; path = Tests/ids.txt; sourceTree = "<group>"; };
 		E17C98B9136301F13EE8ACF0 /* libPods-BrainCloud-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BrainCloud-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -458,10 +584,11 @@
 				D84597291C6D06FE003DA016 /* BrainCloud-OSXTests */,
 				D84596E51C6D06D0003DA016 /* BrainCloud-tvOS */,
 				D84596F11C6D06D0003DA016 /* BrainCloud-tvOSTests */,
-				D84597331C6D0717003DA016 /* Shared */,
-				D84596C81C6D067E003DA016 /* Products */,
-				B0BB1A0C6359833D68A9637A /* Pods */,
 				C161767F570E49DCED3B78BA /* Frameworks */,
+				B0BB1A0C6359833D68A9637A /* Pods */,
+				D84596C81C6D067E003DA016 /* Products */,
+				D84597331C6D0717003DA016 /* Shared */,
+				DFF5CC4D1C93568A002E62F8 /* Tests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -743,6 +870,45 @@
 				D84598541C6D2777003DA016 /* libz.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DFF5CC4D1C93568A002E62F8 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DFF5CCE31C935A00002E62F8 /* ids.txt */,
+				DFF5CC4E1C9356A1002E62F8 /* TestAsyncMatch.m */,
+				DFF5CC4F1C9356A1002E62F8 /* TestAuthentication.m */,
+				DFF5CC501C9356A1002E62F8 /* TestClient.m */,
+				DFF5CC511C9356A1002E62F8 /* TestDataStream.m */,
+				DFF5CC521C9356A1002E62F8 /* TestEntity.m */,
+				DFF5CC531C9356A1002E62F8 /* TestEvent.m */,
+				DFF5CC541C9356A1002E62F8 /* TestFile.m */,
+				DFF5CC551C9356A1002E62F8 /* TestFixtureBase.h */,
+				DFF5CC561C9356A1002E62F8 /* TestFixtureBase.m */,
+				DFF5CC571C9356A1002E62F8 /* TestFriend.m */,
+				DFF5CC581C9356A1002E62F8 /* TestGamification.m */,
+				DFF5CC591C9356A1002E62F8 /* TestGlobalApp.m */,
+				DFF5CC5A1C9356A1002E62F8 /* TestGlobalEntity.m */,
+				DFF5CC5B1C9356A1002E62F8 /* TestGlobalStatistics.m */,
+				DFF5CC5C1C9356A1002E62F8 /* TestIdentity.m */,
+				DFF5CC5D1C9356A1002E62F8 /* TestLeaderboard.m */,
+				DFF5CC5E1C9356A1002E62F8 /* TestMatchMaking.m */,
+				DFF5CC5F1C9356A1002E62F8 /* TestOneWayMatch.m */,
+				DFF5CC601C9356A1002E62F8 /* TestPlaybackStream.m */,
+				DFF5CC611C9356A1002E62F8 /* TestPlayerState.m */,
+				DFF5CC621C9356A1002E62F8 /* TestPlayerStatistics.m */,
+				DFF5CC631C9356A1002E62F8 /* TestPlayerStatisticsEvent.m */,
+				DFF5CC641C9356A1002E62F8 /* TestProduct.m */,
+				DFF5CC651C9356A1002E62F8 /* TestProfanity.m */,
+				DFF5CC661C9356A1002E62F8 /* TestPushNotification.m */,
+				DFF5CC671C9356A1002E62F8 /* TestRedemptionCode.m */,
+				DFF5CC681C9356A1002E62F8 /* TestS3Handling.m */,
+				DFF5CC691C9356A1002E62F8 /* TestScript.m */,
+				DFF5CC6A1C9356A1002E62F8 /* TestTime.m */,
+				DFF5CC6B1C9356A1002E62F8 /* TestUser.h */,
+				DFF5CC6C1C9356A1002E62F8 /* TestUser.m */,
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1065,6 +1231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFF5CCE71C935A07002E62F8 /* ids.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1079,6 +1246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFF5CCE51C935A05002E62F8 /* ids.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1093,6 +1261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFF5CCE61C935A06002E62F8 /* ids.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1202,6 +1371,7 @@
 				D84598281C6D23B4003DA016 /* BrainCloudTime.mm in Sources */,
 				D84597AA1C6D23B3003DA016 /* BrainCloudEvent.mm in Sources */,
 				D809D9AC1C84B9ED004AAD42 /* BrainCloudSaveDataHelper.m in Sources */,
+				DF99CBED1C935E72000B2418 /* ReasonCodes.m in Sources */,
 				D84597921C6D23B3003DA016 /* BrainCloudClient.mm in Sources */,
 				D84597CE1C6D23B3003DA016 /* BrainCloudGlobalStatistics.mm in Sources */,
 				D84597B01C6D23B3003DA016 /* BrainCloudFile.mm in Sources */,
@@ -1221,6 +1391,7 @@
 				D845983A1C6D23B4003DA016 /* ServiceName.mm in Sources */,
 				D845981C1C6D23B4003DA016 /* BrainCloudS3Handling.mm in Sources */,
 				D84597B61C6D23B3003DA016 /* BrainCloudFriend.mm in Sources */,
+				DF99CBEF1C935E7B000B2418 /* StatusCodes.m in Sources */,
 				D84597DA1C6D23B3003DA016 /* BrainCloudLeaderboard.mm in Sources */,
 				D84597A41C6D23B3003DA016 /* BrainCloudEntity.mm in Sources */,
 				D84598401C6D23B4003DA016 /* TypeHelpers.mm in Sources */,
@@ -1236,7 +1407,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFF5CC9A1C9356BD002E62F8 /* TestEntity.m in Sources */,
+				DFF5CCDF1C935729002E62F8 /* TestTime.m in Sources */,
+				DFF5CCC11C9356FF002E62F8 /* TestPlaybackStream.m in Sources */,
+				DFF5CCC41C935703002E62F8 /* TestPlayerState.m in Sources */,
+				DFF5CCB81C9356F2002E62F8 /* TestLeaderboard.m in Sources */,
+				DFF5CCD31C935718002E62F8 /* TestPushNotification.m in Sources */,
+				DFF5CCBE1C9356FB002E62F8 /* TestOneWayMatch.m in Sources */,
+				DFF5CCA31C9356D1002E62F8 /* TestFixtureBase.m in Sources */,
+				DFF5CC971C9356B8002E62F8 /* TestDataStream.m in Sources */,
+				DFF5CCCD1C93570F002E62F8 /* TestProduct.m in Sources */,
+				DFF5CC8E1C9356A8002E62F8 /* TestAsyncMatch.m in Sources */,
 				D84596F31C6D06D0003DA016 /* BrainCloud_tvOSTests.m in Sources */,
+				DFF5CCB51C9356ED002E62F8 /* TestIdentity.m in Sources */,
+				DFF5CC941C9356B4002E62F8 /* TestClient.m in Sources */,
+				DFF5CCBB1C9356F6002E62F8 /* TestMatchMaking.m in Sources */,
+				DFF5CCA01C9356C7002E62F8 /* TestFile.m in Sources */,
+				DFF5CCA61C9356D7002E62F8 /* TestFriend.m in Sources */,
+				DFF5CCDC1C935726002E62F8 /* TestScript.m in Sources */,
+				DFF5CCAC1C9356E0002E62F8 /* TestGlobalApp.m in Sources */,
+				DFF5CC911C9356AF002E62F8 /* TestAuthentication.m in Sources */,
+				DFF5CCD91C935721002E62F8 /* TestS3Handling.m in Sources */,
+				DFF5CCC71C935707002E62F8 /* TestPlayerStatistics.m in Sources */,
+				DFF5CCE21C935733002E62F8 /* TestUser.m in Sources */,
+				DFF5CCAF1C9356E4002E62F8 /* TestGlobalEntity.m in Sources */,
+				DFF5CCCA1C93570B002E62F8 /* TestPlayerStatisticsEvent.m in Sources */,
+				DFF5CCB21C9356E8002E62F8 /* TestGlobalStatistics.m in Sources */,
+				DFF5CC9D1C9356C2002E62F8 /* TestEvent.m in Sources */,
+				DFF5CCD01C935713002E62F8 /* TestProfanity.m in Sources */,
+				DFF5CCA91C9356DB002E62F8 /* TestGamification.m in Sources */,
+				DFF5CCD61C93571C002E62F8 /* TestRedemptionCode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1287,7 +1487,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFF5CC981C9356BC002E62F8 /* TestEntity.m in Sources */,
+				DFF5CCDD1C935728002E62F8 /* TestTime.m in Sources */,
+				DFF5CCBF1C9356FE002E62F8 /* TestPlaybackStream.m in Sources */,
+				DFF5CCC21C935702002E62F8 /* TestPlayerState.m in Sources */,
+				DFF5CCB61C9356F1002E62F8 /* TestLeaderboard.m in Sources */,
+				DFF5CCD11C935717002E62F8 /* TestPushNotification.m in Sources */,
+				DFF5CCBC1C9356FA002E62F8 /* TestOneWayMatch.m in Sources */,
+				DFF5CCA11C9356D0002E62F8 /* TestFixtureBase.m in Sources */,
+				DFF5CC951C9356B7002E62F8 /* TestDataStream.m in Sources */,
+				DFF5CCCB1C93570E002E62F8 /* TestProduct.m in Sources */,
+				DFF5CC8C1C9356A7002E62F8 /* TestAsyncMatch.m in Sources */,
 				D845970F1C6D06E3003DA016 /* BrainCloud_iOSTests.m in Sources */,
+				DFF5CCB31C9356EC002E62F8 /* TestIdentity.m in Sources */,
+				DFF5CC921C9356B2002E62F8 /* TestClient.m in Sources */,
+				DFF5CCB91C9356F5002E62F8 /* TestMatchMaking.m in Sources */,
+				DFF5CC9E1C9356C6002E62F8 /* TestFile.m in Sources */,
+				DFF5CCA41C9356D5002E62F8 /* TestFriend.m in Sources */,
+				DFF5CCDA1C935723002E62F8 /* TestScript.m in Sources */,
+				DFF5CCAA1C9356DE002E62F8 /* TestGlobalApp.m in Sources */,
+				DFF5CC8F1C9356AE002E62F8 /* TestAuthentication.m in Sources */,
+				DFF5CCD71C93571F002E62F8 /* TestS3Handling.m in Sources */,
+				DFF5CCC51C935706002E62F8 /* TestPlayerStatistics.m in Sources */,
+				DFF5CCE01C935732002E62F8 /* TestUser.m in Sources */,
+				DFF5CCAD1C9356E3002E62F8 /* TestGlobalEntity.m in Sources */,
+				DFF5CCC81C93570A002E62F8 /* TestPlayerStatisticsEvent.m in Sources */,
+				DFF5CCB01C9356E7002E62F8 /* TestGlobalStatistics.m in Sources */,
+				DFF5CC9B1C9356C1002E62F8 /* TestEvent.m in Sources */,
+				DFF5CCCE1C935712002E62F8 /* TestProfanity.m in Sources */,
+				DFF5CCA71C9356DA002E62F8 /* TestGamification.m in Sources */,
+				DFF5CCD41C93571B002E62F8 /* TestRedemptionCode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1301,6 +1530,7 @@
 				D84598271C6D23B4003DA016 /* BrainCloudTime.mm in Sources */,
 				D84597A91C6D23B3003DA016 /* BrainCloudEvent.mm in Sources */,
 				D809D9AB1C84B9ED004AAD42 /* BrainCloudSaveDataHelper.m in Sources */,
+				DF99CBEC1C935E72000B2418 /* ReasonCodes.m in Sources */,
 				D84597911C6D23B3003DA016 /* BrainCloudClient.mm in Sources */,
 				D84597CD1C6D23B3003DA016 /* BrainCloudGlobalStatistics.mm in Sources */,
 				D84597AF1C6D23B3003DA016 /* BrainCloudFile.mm in Sources */,
@@ -1320,6 +1550,7 @@
 				D84598391C6D23B4003DA016 /* ServiceName.mm in Sources */,
 				D845981B1C6D23B4003DA016 /* BrainCloudS3Handling.mm in Sources */,
 				D84597B51C6D23B3003DA016 /* BrainCloudFriend.mm in Sources */,
+				DF99CBEE1C935E7A000B2418 /* StatusCodes.m in Sources */,
 				D84597D91C6D23B3003DA016 /* BrainCloudLeaderboard.mm in Sources */,
 				D84597A31C6D23B3003DA016 /* BrainCloudEntity.mm in Sources */,
 				D845983F1C6D23B4003DA016 /* TypeHelpers.mm in Sources */,
@@ -1335,7 +1566,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFF5CC991C9356BC002E62F8 /* TestEntity.m in Sources */,
+				DFF5CCDE1C935729002E62F8 /* TestTime.m in Sources */,
+				DFF5CCC01C9356FE002E62F8 /* TestPlaybackStream.m in Sources */,
+				DFF5CCC31C935702002E62F8 /* TestPlayerState.m in Sources */,
+				DFF5CCB71C9356F1002E62F8 /* TestLeaderboard.m in Sources */,
+				DFF5CCD21C935717002E62F8 /* TestPushNotification.m in Sources */,
+				DFF5CCBD1C9356FA002E62F8 /* TestOneWayMatch.m in Sources */,
+				DFF5CCA21C9356D1002E62F8 /* TestFixtureBase.m in Sources */,
+				DFF5CC961C9356B8002E62F8 /* TestDataStream.m in Sources */,
+				DFF5CCCC1C93570F002E62F8 /* TestProduct.m in Sources */,
+				DFF5CC8D1C9356A7002E62F8 /* TestAsyncMatch.m in Sources */,
 				D845972B1C6D06FE003DA016 /* BrainCloud_OSXTests.m in Sources */,
+				DFF5CCB41C9356EC002E62F8 /* TestIdentity.m in Sources */,
+				DFF5CC931C9356B3002E62F8 /* TestClient.m in Sources */,
+				DFF5CCBA1C9356F6002E62F8 /* TestMatchMaking.m in Sources */,
+				DFF5CC9F1C9356C7002E62F8 /* TestFile.m in Sources */,
+				DFF5CCA51C9356D6002E62F8 /* TestFriend.m in Sources */,
+				DFF5CCDB1C935725002E62F8 /* TestScript.m in Sources */,
+				DFF5CCAB1C9356DF002E62F8 /* TestGlobalApp.m in Sources */,
+				DFF5CC901C9356AF002E62F8 /* TestAuthentication.m in Sources */,
+				DFF5CCD81C935720002E62F8 /* TestS3Handling.m in Sources */,
+				DFF5CCC61C935706002E62F8 /* TestPlayerStatistics.m in Sources */,
+				DFF5CCE11C935732002E62F8 /* TestUser.m in Sources */,
+				DFF5CCAE1C9356E3002E62F8 /* TestGlobalEntity.m in Sources */,
+				DFF5CCC91C93570B002E62F8 /* TestPlayerStatisticsEvent.m in Sources */,
+				DFF5CCB11C9356E7002E62F8 /* TestGlobalStatistics.m in Sources */,
+				DFF5CC9C1C9356C1002E62F8 /* TestEvent.m in Sources */,
+				DFF5CCCF1C935712002E62F8 /* TestProfanity.m in Sources */,
+				DFF5CCA81C9356DB002E62F8 /* TestGamification.m in Sources */,
+				DFF5CCD51C93571B002E62F8 /* TestRedemptionCode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

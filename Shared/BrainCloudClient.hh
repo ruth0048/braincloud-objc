@@ -84,10 +84,10 @@
 * Initialize - initializes the identity service with the saved
 * anonymous installation id and most recently used profile id
 *
-* @param anonymousId  The anonymous installation id that was generated for this device
-* @param profileId The id of the profile id that was most recently used by the app (on this device)
+* @param anonymousId The anonymous installation id that was generated for this device
+* @param profileId The profile id that was most recently used by the app (on this device)
 */
-- (void)initializeIdentity:(const char *)profileId anonymousId:(const char *)anonymousId;
+- (void)initializeIdentity:(NSString *)profileId anonymousId:(NSString *)anonymousId;
 
 /**
  * Enables/disables the internal logging
