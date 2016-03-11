@@ -32,6 +32,11 @@
     BrainCloudClient *m_client;
     NSString *m_parentLevel;
     NSString *m_childAppId;
+    NSString *m_serverUrl;
+    NSString *m_appId;
+    NSString *m_secret;
+    NSString *m_version;
+    Boolean m_initUsers;
 
     __block bool _result;
     __block int _apiCountExpected;

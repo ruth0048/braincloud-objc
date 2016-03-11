@@ -8,10 +8,9 @@
 
 inhibit_all_warnings!
 source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/getbraincloud/braincloud-specs.git'
 
 def shared_pods
-  pod 'BrainCloudCpp'
+  pod 'BrainCloudCpp', :git => 'https://github.com/getbraincloud/braincloud-cpp', :commit => 'HEAD', :branch => 'develop'
   pod 'SSKeychain'
 end
 

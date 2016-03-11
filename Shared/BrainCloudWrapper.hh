@@ -44,7 +44,7 @@
 /**
  * Method initializes the BrainCloudClient.
  *
- * @param URL The url to the brainCloud server
+ * @param serverUrl The url to the brainCloud server
  * @param secretKey The secret key for your game
  * @param gameId The game id
  * @param gameVersion The game version
@@ -53,7 +53,7 @@
  * @param gameName The game name used in teh keychain for storing anonymous and profile ids.
  * You are free to pick anything you want.
  */
-- (void)initialize:(NSURL *)URL
+- (void)initialize:(NSString *)serverUrl
          secretKey:(NSString *)secretKey
             gameId:(NSString *)gameId
        gameVersion:(NSString *)gameVersion

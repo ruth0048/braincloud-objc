@@ -21,13 +21,7 @@
 @end
 
 @interface TestFixtureBase ()
-{
-    NSString *m_serverUrl;
-    NSString *m_appId;
-    NSString *m_secret;
-    NSString *m_version;
-    Boolean m_initUsers;
-}
+
 
 - (void)loadIds;
 - (void)createUsers;

@@ -1,4 +1,4 @@
-#import "BrainCloudWrapper.h"
+#import "BrainCloudWrapper.hh"
 
 #import "BrainCloudSaveDataHelper.h"
 
@@ -9,7 +9,7 @@
 @property (copy, nonatomic) NSString *lastGameId;
 @property (copy, nonatomic) NSString *lastGameVersion;
 @property (copy, nonatomic) NSString *lastSecretKey;
-@property (strong, nonatomic) NSURL *lastURL;
+@property (strong, nonatomic) NSString *lastServerUrl;
 
 @property (copy) BCCompletionBlock authSuccessCompletionBlock;
 @property (copy) BCErrorCompletionBlock authErrorCompletionBlock;
@@ -117,7 +117,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 
 
 
-- (void)initialize:(NSURL *)URL
+- (void)initialize:(NSString *)serverUrl
          secretKey:(NSString *)secretKey
             gameId:(NSString *)gameId
        gameVersion:(NSString *)gameVersion
@@ -127,12 +127,12 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     self.lastGameId      = gameId;
     self.lastGameVersion = gameVersion;
     self.lastSecretKey   = secretKey;
-    self.lastURL         = URL;
+    self.lastServerUrl   = serverUrl;
     
-    [[BrainCloudClient getInstance] initialize:URL.absoluteString
-                  secretKey:secretKey
-                     gameId:gameId
-                gameVersion:gameVersion];
+    [[BrainCloudClient getInstance] initialize:serverUrl
+                                     secretKey:secretKey
+                                        gameId:gameId
+                                   gameVersion:gameVersion];
         
     self.helper = [[BrainCloudSaveDataHelper alloc] initWithCompanyName:companyName gameName:gameName];
 }
