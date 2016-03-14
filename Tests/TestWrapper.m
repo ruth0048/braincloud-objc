@@ -25,6 +25,9 @@
 {
     [[BrainCloudWrapper getInstance] initialize:m_serverUrl secretKey:m_secret gameId:m_appId gameVersion:m_version companyName:@"wrapper" gameName:@"unittest"];
     
+    // clear out the old anonymous id
+    [[BrainCloudWrapper getInstance] setStoredAnonymousId:@""];
+    
     [[BrainCloudWrapper getInstance] authenticateAnonymous:successBlock
                                       errorCompletionBlock:failureBlock
                                                   cbObject:nil];
@@ -53,15 +56,18 @@
 
 - (void)testAuthenticateUniversal
 {
-    [[m_client authenticationService]
-        authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
-                     password:[TestFixtureBase getUser:@"UserA"].m_password
-                  forceCreate:true
-              completionBlock:successBlock
-         errorCompletionBlock:failureBlock
-                     cbObject:nil];
+    [[BrainCloudWrapper getInstance] initialize:m_serverUrl secretKey:m_secret gameId:m_appId gameVersion:m_version companyName:@"wrapper" gameName:@"unittest"];
+    
+    [[BrainCloudWrapper getInstance] authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+                                                  password:[TestFixtureBase getUser:@"UserA"].m_password
+                                               forceCreate:YES
+                                           completionBlock:successBlock
+                                      errorCompletionBlock:failureBlock
+                                                  cbObject:nil];
     [self waitForResult];
+    [self reset];
 }
+
 /*
 
 

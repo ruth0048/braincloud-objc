@@ -270,6 +270,6 @@
 /**
  * Run callbacks, to be called once per frame from your main thread
  */
-- (void)update;
+- (void)runCallbacks;
 
 @end
