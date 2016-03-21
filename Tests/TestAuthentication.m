@@ -45,24 +45,9 @@
 }
 - (void)testResetEmailPassword
 {
-    [[m_client authenticationService]
-     authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
-     password:[TestFixtureBase getUser:@"UserA"].m_password
-     forceCreate:true
-     completionBlock:successBlock
-     errorCompletionBlock:failureBlock
-     cbObject:nil];
-    [self waitForResult];
+    NSString* email = @"braincloudunittest@gmail.com";
     
-    [[m_client identityService]
-     attachEmailIdentity:[TestFixtureBase getUser:@"UserA"].m_email
-     authenticationToken:[TestFixtureBase getUser:@"UserA"].m_password
-     completionBlock:successBlock
-     errorCompletionBlock:failureBlock
-     cbObject:nil];
-    [self waitForResult];
-    
-    [[m_client authenticationService] resetEmailPassword:[TestFixtureBase getUser:@"UserA"].m_email
+    [[m_client authenticationService] resetEmailPassword:email
                                      withCompletionBlock:successBlock
                                     errorCompletionBlock:failureBlock
                                                 cbObject:nil];
