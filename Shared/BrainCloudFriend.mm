@@ -81,7 +81,7 @@
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->updateSummaryFriendData(
+    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updateSummaryFriendData(
         [jsonSummaryData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 

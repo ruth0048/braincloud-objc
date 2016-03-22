@@ -135,42 +135,11 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject;
 
-/**
-* Updates the "friend summary data" associated with the logged in player.
-* Some operations will return this summary data. For instance the social
-* leaderboards will return the player's score in the leaderboard along
-* with the friend summary data. Generally this data is used to provide
-* a quick overview of the player without requiring a separate API call
-* to read their public stats or entity data.
-*
-* Note this API call pre-dates the shared player data api (public entity/stats)
-* and thus usage for anything outside of social leaderboards should be
-* deprecated.
-*
-* Service Name - PlayerState
-* Service Operation - UpdateSummary
-*
-* @param jsonSummaryData A JSON string defining the summary data.
-* For example:
-* {
-*   "xp":123,
-*   "level":12,
-*   "highScore":45123
-* }
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
-*/
 - (void)updateSummaryFriendData:(NSString *)jsonSummaryData
                 completionBlock:(BCCompletionBlock)cb
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                       cbObject:(BCCallbackObject)cbObject;
+                       cbObject:(BCCallbackObject)cbObject
+DEPRECATED_MSG_ATTRIBUTE("Use version in BrainCloudPlayerState instead. Removal after June 21 2016.");
 
 /**
 * Finds a list of players matching the search text by performing a substring

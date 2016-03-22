@@ -26,16 +26,6 @@
         [leaderboardId UTF8String], replaceName, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
-- (void)getLeaderboard:(NSString *)leaderboardId
-           replaceName:(bool)replaceName
-       completionBlock:(BCCompletionBlock)cb
-  errorCompletionBlock:(BCErrorCompletionBlock)ecb
-              cbObject:(BCCallbackObject)cbObject
-{
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getLeaderboard(
-        [leaderboardId UTF8String], replaceName, new BrainCloudCallback(cb, ecb, cbObject));
-}
-
 - (void)getMultiSocialLeaderboard:(NSArray *)leaderboardIds
            leaderboardResultCount:(NSInteger)leaderboardResultCount
                       replaceName:(bool)replaceName
