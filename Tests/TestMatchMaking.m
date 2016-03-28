@@ -108,4 +108,26 @@
     [self waitForResult];
 }
 
+- (void)testFindPlayersWithAttributes {
+  [[m_client matchMakingService] findPlayersWithAttributes:10
+                                                numMatches:5
+                                            jsonAttributes:@""
+                                           completionBlock:successBlock
+                                      errorCompletionBlock:failureBlock
+                                                  cbObject:nil];
+  [self waitForResult];
+}
+
+- (void)testFindPlayersWithAttributesUsingFilter {
+  [[m_client matchMakingService]
+      findPlayersWithAttributesUsingFilter:10
+                                numMatches:5
+                            jsonAttributes:@""
+                           jsonExtraParams:@""
+                           completionBlock:successBlock
+                      errorCompletionBlock:failureBlock
+                                  cbObject:nil];
+  [self waitForResult];
+}
+
 @end
