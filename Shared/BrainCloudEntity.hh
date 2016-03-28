@@ -269,6 +269,45 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Method returns a shared entity for the given player and entity ID.
+ * An entity is shared if its ACL allows for the currently logged
+ * in player to read the data.
+ *
+ * Service Name - Entity
+ * Service Operation - READ_SHARED_ENTITY
+ *
+ * @param playerId The the profile ID of the player who owns the entity
+ * @param entityId The ID of the entity that will be retrieved
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @return The JSON returned in the callback is as follows:
+ * {
+ *     "status": 200,
+ *     "data": {
+ *         "entityId": "544db68a-48ad-4fc9-9f44-5fd36fc6445f",
+ *         "entityType": "publicInfo",
+ *         "version": 1,
+ *         "data": {
+ *             "name": "john",
+ *             "age": 30
+ *         },
+ *         "acl": {
+ *             "other": 1
+ *         },
+ *         "createdAt": 1395943044322,
+ *         "updatedAt": 1395943044322
+ *     }
+ * }
+ */
+- (void)getSharedEntityForPlayerId:(NSString *)playerId
+                          entityId:(NSString*)entityId
+                   completionBlock:(BCCompletionBlock)completionBlock
+              errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                          cbObject:(BCCallbackObject)cbObject;
+
+/**
 * Method returns all shared entities for the given player id.
 * An entity is shared if its ACL allows for the currently logged
 * in player to read the data.

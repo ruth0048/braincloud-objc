@@ -18,20 +18,22 @@
 
 - (NSString *)profileID
 {
-    return [NSString stringWithCString:BrainCloud::BrainCloudClient::getInstance()
-                                           ->getAuthenticationService()
-                                           ->getProfileId()
-                                           .c_str()
-                              encoding:NSUTF8StringEncoding];
+    const char* str = BrainCloud::BrainCloudClient::getInstance()
+    ->getAuthenticationService()
+    ->getProfileId()
+    .c_str();
+    
+    return [NSString stringWithUTF8String:str];
 }
 
 - (NSString *)anonymousID
 {
-    return [NSString stringWithCString:BrainCloud::BrainCloudClient::getInstance()
-                                           ->getAuthenticationService()
-                                           ->getAnonymousId()
-                                           .c_str()
-                              encoding:NSUTF8StringEncoding];
+    const char* str = BrainCloud::BrainCloudClient::getInstance()
+    ->getAuthenticationService()
+    ->getAnonymousId()
+    .c_str();
+    
+    return [NSString stringWithUTF8String:str];
 }
 
 - (void)initialize:(NSString *)profileID anonymousID:(NSString *)anonymousID
