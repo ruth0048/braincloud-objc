@@ -7,9 +7,12 @@
 //
 
 #import "BrainCloudFriend.hh"
+#import "FriendPlatformObjc.hh"
 
 #include "BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
+#include "FriendPlatform.h"
+#include "TypeHelpers.hh"
 
 @implementation BrainCloudFriend
 
@@ -93,6 +96,48 @@
 {
     BrainCloud::BrainCloudClient::getInstance()->getFriendService()->findPlayerByName(
         [searchText UTF8String], maxResults, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)findPlayerByUniversalId:(NSString *)searchText
+                     maxResults:(int)maxResults
+                completionBlock:(BCCompletionBlock)cb
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->findPlayerByUniversalId(
+        [searchText UTF8String], maxResults, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)listFriends:(FriendPlatformObjc *)friendPlatform
+      includeSummaryData:(bool)includeSummaryData
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
+{
+  BrainCloud::BrainCloudClient::getInstance()->getFriendService()->listFriends(
+      BrainCloud::FriendPlatform::fromString(
+          [[friendPlatform toString] UTF8String]),
+      includeSummaryData, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)addFriends:(NSArray *)profileIds
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
+{
+  BrainCloud::BrainCloudClient::getInstance()->getFriendService()->addFriends(
+      TypeHelpers::NSStringArrayToVector(profileIds),
+      new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)removeFriends:(NSArray *)profileIds
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
+{
+  BrainCloud::BrainCloudClient::getInstance()->getFriendService()->removeFriends(
+      TypeHelpers::NSStringArrayToVector(profileIds),
+      new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 @end
