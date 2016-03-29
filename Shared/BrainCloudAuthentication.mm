@@ -162,6 +162,18 @@
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)authenticateParse:(NSString *)userID
+                    token:(NSString *)token
+              forceCreate:(BOOL)forceCreate
+          completionBlock:(BCCompletionBlock)cb
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->authenticateParse(
+        [userID UTF8String], [token UTF8String], forceCreate,
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)resetEmailPassword:(NSString *)email
        withCompletionBlock:(BCCompletionBlock)completionBlock
       errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
