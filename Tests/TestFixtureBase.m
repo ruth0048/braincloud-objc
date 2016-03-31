@@ -40,9 +40,6 @@ NSMutableDictionary *m_users;
 
     _fileUploadCompletedReceived = [[NSMutableArray alloc] init];
     _fileUploadFailedReceived = [[NSMutableArray alloc] init];
-    
-    m_parentLevel = @"Master";
-    m_childAppId = @"10326";
 
     if (self)
     {
@@ -223,6 +220,16 @@ NSMutableDictionary *m_users;
         {
             NSRange range = [line rangeOfString:@"="];
             m_version = [line substringFromIndex:range.location + 1];
+        }
+        else if ([line hasPrefix:@"childAppId"])
+        {
+            NSRange range = [line rangeOfString:@"="];
+            m_childAppId = [line substringFromIndex:range.location + 1];
+        }
+        else if ([line hasPrefix:@"parentLevelName"])
+        {
+            NSRange range = [line rangeOfString:@"="];
+            m_parentLevel = [line substringFromIndex:range.location + 1];
         }
     }
 }
