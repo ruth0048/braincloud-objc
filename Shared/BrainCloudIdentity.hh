@@ -478,6 +478,74 @@
                      cbObject:(BCCallbackObject)cbObject;
 
 /**
+* Attach the user's Parse credentials to the current profile.
+*
+* Service Name - Identity
+* Service Operation - Attach
+*
+* @param googleUserId The Parse id of the user
+* @param authenticationToken The validated token from Parse
+*   (that will be further validated when sent to the bC service)
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*
+* Errors to watch for:  SWITCHING_PROFILES - this means that the Google identity you provided
+* already points to a different profile.  You will likely want to offer the player the
+* choice to *SWITCH* to that profile, or *MERGE* the profiles.
+*
+* To switch profiles, call clearSavedProfileID() and call authenticateParse().
+*/
+- (void)attachParseIdentity:(NSString *)parseId
+        authenticationToken:(NSString *)token
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Merge the profile associated with the provided Parse credentials with the
+* current profile.
+*
+* Service Name - Identity
+* Service Operation - Merge
+*
+* @param googleId The Parse id of the user
+* @param authenticationToken The validated token from Parse
+*   (that will be further validated when sent to the bC service)
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*
+*/
+- (void)mergeParseIdentity:(NSString *)parseId
+       authenticationToken:(NSString *)token
+           completionBlock:(BCCompletionBlock)cb
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Detach the Parse identity from this profile.
+*
+* Service Name - Identity
+* Service Operation - Detach
+*
+* @param googleId The Parse id of the user
+* @param continueAnon Proceed even if the profile will revert to anonymous?
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*
+* Watch for DOWNGRADING_TO_ANONYMOUS_ERROR - occurs if you set continueAnon to false, and
+* disconnecting this identity would result in the profile being anonymous (which means that
+* the profile wouldn't be retrievable if the user loses their device)
+*/
+- (void)detachParseIdentity:(NSString *)parseId
+               continueAnon:(bool)continueAnon
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject;
+
+/**
 * Switch to a Child Profile
 *
 * Service Name - Identity

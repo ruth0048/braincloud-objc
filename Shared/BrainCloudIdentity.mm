@@ -227,6 +227,42 @@
         [twitterId UTF8String], continueAnon, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)attachParseIdentity:(NSString *)parseId
+        authenticationToken:(NSString *)token
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject
+{
+  BrainCloud::BrainCloudClient::getInstance()
+      ->getIdentityService()
+      ->attachParseIdentity([parseId UTF8String], [token UTF8String],
+                            new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)mergeParseIdentity:(NSString *)parseId
+       authenticationToken:(NSString *)token
+           completionBlock:(BCCompletionBlock)cb
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject
+{
+  BrainCloud::BrainCloudClient::getInstance()
+      ->getIdentityService()
+      ->mergeParseIdentity([parseId UTF8String], [token UTF8String],
+                           new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)detachParseIdentity:(NSString *)parseId
+               continueAnon:(bool)continueAnon
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()
+        ->getIdentityService()
+        ->detachParseIdentity([parseId UTF8String],
+                            new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)switchToChildProfile:(NSString *)childProfileId
                   childAppId:(NSString *)childAppId
                  forceCreate:(bool)forceCreate

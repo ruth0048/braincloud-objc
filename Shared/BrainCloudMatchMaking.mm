@@ -144,4 +144,12 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)disableMatchMaking:(BCCompletionBlock)cb
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->disableMatchMaking(
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end

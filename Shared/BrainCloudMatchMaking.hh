@@ -406,4 +406,24 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Disables Match Making for the Player
+ *
+ * Service Name - MatchMaking
+ * Service Operation - EnableMatchMaking
+ *
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @return The JSON returned in the completion block is as follows:
+ * {
+ *   "status": 200,
+ *   "data": null
+ * }
+ */
+- (void)disableMatchMaking:(BCCompletionBlock)cb
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject;
+
 @end

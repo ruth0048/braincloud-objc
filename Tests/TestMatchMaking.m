@@ -18,6 +18,27 @@
 
 - (void)tearDown { [super tearDown]; }
 
+- (void)testEnableMatchMaking
+{
+    [[m_client matchMakingService] enableMatchMaking:successBlock
+                            errorCompletionBlock:failureBlock
+                                        cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testDisableMatchMaking
+{
+    [[m_client matchMakingService] disableMatchMaking:successBlock
+                                errorCompletionBlock:failureBlock
+                                            cbObject:nil];
+    [self waitForResult];
+
+    [[m_client matchMakingService] enableMatchMaking:successBlock
+                                errorCompletionBlock:failureBlock
+                                            cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testRead
 {
     [[m_client matchMakingService] read:successBlock
