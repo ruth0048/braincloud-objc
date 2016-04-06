@@ -103,16 +103,6 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     return [self.helper stringForKey:kPersistenceKeyProfileId];
 }
 
-- (void)setAlwaysAllowProfileSwitch:(BOOL)alwaysAllowProfileSwitch
-{
-    self.alwaysAllowProfileSwitch = alwaysAllowProfileSwitch;
-}
-
-- (BOOL)alwaysAllowProfileSwitch
-{
-    return self.alwaysAllowProfileSwitch;
-}
-
 #pragma mark - C++ Initialization
 
 
@@ -142,21 +132,21 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 {
     NSString *profileId = self.storedProfileId;
     NSString *anonymousId = self.storedAnonymousId;
-    
-    if (nil == self.storedAnonymousId || (nil != self.storedAnonymousId && nil == self.storedProfileId))
+
+    if(anonymousId.length <= 0 || profileId.length <= 0)
     {
-        self.storedAnonymousId = [[[BrainCloudClient getInstance] authenticationService] generateGUID];
+        anonymousId = [[[BrainCloudClient getInstance] authenticationService] generateGUID];
+        self.storedAnonymousId = anonymousId;
     }
-    
-    NSString *profileIdToAuthenticateWith = profileId;
+
     if (!isAnonymousAuth && self.alwaysAllowProfileSwitch)
     {
-        profileIdToAuthenticateWith = @"";
+        profileId = @"";
     }
     self.storedAuthenticationType = isAnonymousAuth ? kAuthenticationAnonymous : @"";
     
     // send our IDs to brainCloud
-    [[BrainCloudClient getInstance] initializeIdentity:profileIdToAuthenticateWith anonymousId:anonymousId];
+    [[BrainCloudClient getInstance] initializeIdentity:profileId anonymousId:anonymousId];
 }
 
 - (void)authenticateAnonymous:(BCCompletionBlock)completionBlock
@@ -165,7 +155,8 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 {
     [self _initializeIdentity:TRUE];
     
-    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject];
+    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject == nil ? [NSNull null] : cbObject];
+
     [[[BrainCloudClient getInstance] authenticationService] authenticateAnonymous:TRUE
                                                                   completionBlock:self.authSuccessCompletionBlock
                                                              errorCompletionBlock:self.authErrorCompletionBlock
@@ -181,7 +172,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 {
     [self _initializeIdentity:FALSE];
     
-    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject];
+    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject == nil ? [NSNull null] : cbObject];
     
     [[[BrainCloudClient getInstance] authenticationService] authenticateEmailPassword:email
                                                                              password:password
@@ -201,7 +192,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 {
     [self _initializeIdentity:FALSE];
     
-    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject];
+    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject == nil ? [NSNull null] : cbObject];
     
     [[[BrainCloudClient getInstance] authenticationService] authenticateExternal:userId
                                                              authenticationToken:authToken
@@ -222,7 +213,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 {
     [self _initializeIdentity:FALSE];
     
-    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject];
+    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject == nil ? [NSNull null] : cbObject];
     
     [[[BrainCloudClient getInstance] authenticationService] authenticateFacebook:fbUserId
                                                              authenticationToken:fbAuthToken
@@ -241,7 +232,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 {
     [self _initializeIdentity:FALSE];
     
-    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject];
+    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject == nil ? [NSNull null] : cbObject];
     
     [[[BrainCloudClient getInstance] authenticationService] authenticateGameCenter:gameCenterId
                                                                      forceCreate:YES
@@ -260,7 +251,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 {
     [self _initializeIdentity:FALSE];
     
-    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject];
+    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject == nil ? [NSNull null] : cbObject];
     
     [[[BrainCloudClient getInstance] authenticationService] authenticateGoogle:userID
                                                                          token:token
@@ -280,7 +271,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 {
     [self _initializeIdentity:FALSE];
     
-    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject];
+    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject == nil ? [NSNull null] : cbObject];
     
     [[[BrainCloudClient getInstance] authenticationService] authenticateSteam:userId
                                                                 sessionTicket:sessionticket
@@ -300,7 +291,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 {
     [self _initializeIdentity:FALSE];
     
-    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject];
+    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject == nil ? [NSNull null] : cbObject];
     
     [[[BrainCloudClient getInstance] authenticationService] authenticateTwitter:userId
                                                                           token:token
@@ -320,7 +311,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 {
     [self _initializeIdentity:FALSE];
     
-    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject];
+    NSArray *aco = @[completionBlock, errorCompletionBlock, cbObject == nil ? [NSNull null] : cbObject];
     
     [[[BrainCloudClient getInstance] authenticationService] authenticateUniversal:userId
                                                                          password:password
