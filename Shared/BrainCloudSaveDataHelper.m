@@ -20,27 +20,36 @@
 
 @implementation BrainCloudSaveDataHelper
 
-- (instancetype)initWithCompanyName:(NSString *)companyName gameName:(NSString *)gameName {
+- (instancetype)initWithCompanyName:(NSString *)companyName gameName:(NSString *)gameName
+{
     self = [self init];
-    if (nil != self) {
+
+    if (self != nil)
+    {
         self.path = [NSString stringWithFormat:@"%@.%@", companyName, gameName];
     }
+
     return self;
 }
 
-- (void)saveString:(NSString *)string forKey:(NSString *)key {
-    if (nil == self.path || 0 == self.path.length)
+- (void)saveString:(NSString *)string forKey:(NSString *)key
+{
+    if (self.path.length == 0)
         return;
     
-    if (nil == string) {
+    if (string.length == 0)
+    {
         [SSKeychain deletePasswordForService:self.path account:key];
-    } else {
+    }
+    else
+    {
         [SSKeychain setPassword:string forService:self.path account:key];
     }
 }
 
-- (NSString *)stringForKey:(NSString *)key {
-    if (nil == self.path || 0 == self.path.length)
+- (NSString *)stringForKey:(NSString *)key
+{
+    if (self.path.length == 0)
         return nil;
     
     return [SSKeychain passwordForService:self.path account:key];
