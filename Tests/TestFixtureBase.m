@@ -158,7 +158,7 @@ NSMutableDictionary *m_users;
 {
     [super setUp];
     [self loadIds];
-    m_client = [BrainCloudClient defaultClient];
+    m_client = [BrainCloudClient getInstance];
     [m_client initialize:m_serverUrl
                secretKey:m_secret
                   gameId:m_appId

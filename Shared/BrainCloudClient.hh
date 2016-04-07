@@ -387,6 +387,6 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
 /**
  * @deprecated Use getInstance instead
  */
-+ (BrainCloudClient *)defaultClient;
++ (BrainCloudClient *)defaultClient DEPRECATED_MSG_ATTRIBUTE("Use getInstance instead");
 
 @end
