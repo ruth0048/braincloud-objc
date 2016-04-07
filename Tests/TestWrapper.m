@@ -58,6 +58,8 @@
 
 - (void)testAuthenticateUniversal
 {
+  [BrainCloudWrapper getInstance].alwaysAllowProfileSwitch = YES;
+
   [[BrainCloudWrapper getInstance]
       authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
                    password:[TestFixtureBase getUser:@"UserA"].m_password
