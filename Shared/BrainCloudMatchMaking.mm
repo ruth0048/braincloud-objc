@@ -100,6 +100,17 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         rangeDelta, numMatches, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)findPlayersWithAttributes:(int)rangeDelta
+                       numMatches:(int)numMatches
+                   jsonAttributes:(NSString *)jsonAttributes
+                  completionBlock:(BCCompletionBlock)cb
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->findPlayersWithAttributes(
+        rangeDelta, numMatches, [jsonAttributes UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)findPlayersUsingFilter:(int)rangeDelta
                     numMatches:(int)numMatches
                jsonExtraParams:(NSString *)jsonExtraParams
@@ -113,11 +124,31 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                      new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)findPlayersWithAttributesUsingFilter:(int)rangeDelta
+                                  numMatches:(int)numMatches
+                              jsonAttributes:(NSString *)jsonAttributes
+                             jsonExtraParams:(NSString *)jsonExtraParams
+                             completionBlock:(BCCompletionBlock)cb
+                        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                    cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->findPlayersWithAttributesUsingFilter(
+        rangeDelta, numMatches, [jsonAttributes UTF8String], [jsonExtraParams UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)enableMatchMaking:(BCCompletionBlock)cb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->enableMatchMaking(
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)disableMatchMaking:(BCCompletionBlock)cb
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->disableMatchMaking(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 

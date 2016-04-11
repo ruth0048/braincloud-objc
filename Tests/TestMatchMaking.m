@@ -18,6 +18,27 @@
 
 - (void)tearDown { [super tearDown]; }
 
+- (void)testEnableMatchMaking
+{
+    [[m_client matchMakingService] enableMatchMaking:successBlock
+                            errorCompletionBlock:failureBlock
+                                        cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testDisableMatchMaking
+{
+    [[m_client matchMakingService] disableMatchMaking:successBlock
+                                errorCompletionBlock:failureBlock
+                                            cbObject:nil];
+    [self waitForResult];
+
+    [[m_client matchMakingService] enableMatchMaking:successBlock
+                                errorCompletionBlock:failureBlock
+                                            cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testRead
 {
     [[m_client matchMakingService] read:successBlock
@@ -106,6 +127,28 @@
                                          errorCompletionBlock:failureBlock
                                                      cbObject:nil];
     [self waitForResult];
+}
+
+- (void)testFindPlayersWithAttributes {
+  [[m_client matchMakingService] findPlayersWithAttributes:10
+                                                numMatches:5
+                                            jsonAttributes:@""
+                                           completionBlock:successBlock
+                                      errorCompletionBlock:failureBlock
+                                                  cbObject:nil];
+  [self waitForResult];
+}
+
+- (void)testFindPlayersWithAttributesUsingFilter {
+  [[m_client matchMakingService]
+      findPlayersWithAttributesUsingFilter:10
+                                numMatches:5
+                            jsonAttributes:@""
+                           jsonExtraParams:@""
+                           completionBlock:successBlock
+                      errorCompletionBlock:failureBlock
+                                  cbObject:nil];
+  [self waitForResult];
 }
 
 @end

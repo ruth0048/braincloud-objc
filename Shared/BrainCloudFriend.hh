@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
 
+@class FriendPlatformObjc;
 @interface BrainCloudFriend : NSObject
 
 /**
@@ -102,22 +103,13 @@
                    cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Returns list of friends with optional summary data.
-*
-* Service Name - Friend
-* Service Operation - ReadFriendsWithApplication
-*
-* @param includeSummaryData Whether to include summary data
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block
+* Deprecated - Use listFriends instead. Removal after June 21 2016.
 */
 - (void)readFriendsWithApplication:(bool)includeSummaryData
                    completionBlock:(BCCompletionBlock)cb
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                          cbObject:(BCCallbackObject)cbObject;
+                          cbObject:(BCCallbackObject)cbObject
+DEPRECATED_MSG_ATTRIBUTE("Use listFriends instead. Removal after June 21 2016.");
 
 /**
 * Read a friend's player state.
@@ -136,41 +128,13 @@
                      cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Updates the "friend summary data" associated with the logged in player.
-* Some operations will return this summary data. For instance the social
-* leaderboards will return the player's score in the leaderboard along
-* with the friend summary data. Generally this data is used to provide
-* a quick overview of the player without requiring a separate API call
-* to read their public stats or entity data.
-*
-* Note this API call pre-dates the shared player data api (public entity/stats)
-* and thus usage for anything outside of social leaderboards should be
-* deprecated.
-*
-* Service Name - PlayerState
-* Service Operation - UpdateSummary
-*
-* @param jsonSummaryData A JSON string defining the summary data.
-* For example:
-* {
-*   "xp":123,
-*   "level":12,
-*   "highScore":45123
-* }
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
-*/
+ * Deprecated - Use version in BrainCloudPlayerState instead. Removal after June 21 2016.
+ */
 - (void)updateSummaryFriendData:(NSString *)jsonSummaryData
                 completionBlock:(BCCompletionBlock)cb
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                       cbObject:(BCCallbackObject)cbObject;
+                       cbObject:(BCCallbackObject)cbObject
+DEPRECATED_MSG_ATTRIBUTE("Use version in BrainCloudPlayerState instead. Removal after June 21 2016.");
 
 /**
 * Finds a list of players matching the search text by performing a substring
@@ -208,5 +172,183 @@
          completionBlock:(BCCompletionBlock)cb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieves profile information for the partial matches of the specified text.
+ *
+ * @param searchText Universal ID text on which to search.
+ * @param maxResults Maximum number of results to return.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @return Object containing profile information.
+ *  The JSON returned in the callback
+ * {
+ *   "status":200,
+ *   "data": {
+ *     "matchedCount" : 20,
+ *     "matches" : [{
+ *       "profileId" : "17c7ee96-1b73-43d0-8817-cba1953bbf57",
+ *       "profileName" : "Donald Trump",
+ *       "playerSummaryData" : {}
+ *     },{
+ *       "profileId" : "19d7ee96-2x73-43d0-8817-cba1953bbf57",
+ *       "profileName" : "Donald Duck",
+ *       "playerSummaryData" : {}
+ *     }
+ *     ]
+ *   }
+ * }
+ *
+ * Alternatively, if there are too many results:
+ * {
+ *   "status":200,
+ *   "data": {
+ *     "matchedCount" : 2059,
+ *     "message" : "Too many results to return."
+ *   }
+ * }
+ */
+- (void)findPlayerByUniversalId:(NSString *)searchText
+                     maxResults:(int)maxResults
+                completionBlock:(BCCompletionBlock)cb
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieves a list of player and friend platform information for all friends of the current player.
+ *
+ * Service Name - Friend
+ * Service Operation - LIST_FRIENDS
+ *
+ * @param friendPlatform Friend platform to query.
+ * @param includeSummaryData  True if including summary data; false otherwise.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @return The JSON returned in the callback is as follows:
+ * Example 1: for friendPlatform = All
+ * {
+ *     "status": 200,
+ *     "data": {
+ *         "friends": [{
+ *             "externalData": {
+ *                 "Facebook": {
+ *                     "pictureUrl": "https://scontent.xx.fbcdn.net/hprofile-xfp1/v/t1.0-1/p50x50/XXX.jpg?oh=YYY&oe=ZZZ",
+ *                     "name": "scientist at large",
+ *                     "externalId": "100003668521730"
+ *
+ *                 },
+ *                 "brainCloud": {}
+ *             },
+ *             "playerId": "1aa3428c-5877-4624-a909-f2b1af931f00",
+ *             "name": "Mr. Peabody",
+ *             "summaryFriendData": {
+ *                 "LEVEL": -4
+ *             }
+ *         }, {
+ *             "externalData": {
+ *                 "Facebook": {
+ *                     "pictureUrl": "https://scontent.xx.fbcdn.net/hprofile-xfa1/v/t1.0-1/c0.11.50.50/p50x50/3AAA.jpg?oh=BBBa&oe=CCC",
+ *                     "name": "Aquaman",
+ *                     "externalId": "100003509724516"
+ *                 }
+ *             },
+ *             "playerId": "1598c5b6-1b09-431b-96bc-9c2c928cad3b",
+ *             "name": null,
+ *             "summaryFriendData": {
+ *                 "LEVEL": 1
+ *             }
+ *         }],
+ *         "server_time": 1458224807855
+ *     }
+ * }
+ *
+ * Example 2: for friendPlatform = Facebook
+ * {
+ *     "status": 200,
+ *     "data": {
+ *         "friends": [{
+ *             "externalData": {
+ *                 "Facebook": {
+ *                     "pictureUrl": "https://scontent.xx.fbcdn.net/hprofile-xfp1/v/t1.0-1/p50x50/XXX.jpg?oh=YYY&oe=ZZZ",
+ *                     "name": "scientist at large",
+ *                     "externalId": "100003668521730"
+ *                 }
+ *             },
+ *             "playerId": "1aa3428c-5877-4624-a909-f2b1af931f00",
+ *             "name": "Mr. Peabody",
+ *             "summaryFriendData": {
+ *                 "LEVEL": -4
+ *             }
+ *         }, {
+ *             "externalData": {
+ *                 "Facebook": {
+ *                     "pictureUrl": "https://scontent.xx.fbcdn.net/hprofile-xfa1/v/t1.0-1/c0.11.50.50/p50x50/3AAA.jpg?oh=BBBa&oe=CCC",
+ *                     "name": "Aquaman",
+ *                     "externalId": "100003509724516"
+ *                 }
+ *             },
+ *             "playerId": "1598c5b6-1b09-431b-96bc-9c2c928cad3b",
+ *             "name": null,
+ *             "summaryFriendData": {
+ *                 "LEVEL": 1
+ *             }
+ *         }],
+ *         "server_time": 1458224807855
+ *     }
+ * }
+ */
+- (void)listFriends:(FriendPlatformObjc *)friendPlatform
+      includeSummaryData:(bool)includeSummaryData
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Links the current player and the specified players as brainCloud friends.
+ *
+ * Service Name - Friend
+ * Service Operation - ADD_FRIENDS
+ *
+ * @param profileIds Collection of player IDs.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @return The JSON returned in the callback is as follows:
+ * {
+ *     "status": 200,
+ *     "data": null
+ * }
+ */
+- (void)addFriends:(NSArray *)profileIds
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Unlinks the current player and the specified players as brainCloud friends.
+ *
+ * Service Name - Friend
+ * Service Operation - REMOVE_FRIENDS
+ *
+ * @param profileIds Collection of player IDs.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @return The JSON returned in the callback is as follows:
+ * {
+ *     "status": 200,
+ *     "data": null
+ * }
+ */
+- (void)removeFriends:(NSArray *)profileIds
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject;
 
 @end

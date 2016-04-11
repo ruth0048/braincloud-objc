@@ -104,15 +104,6 @@ typedef NS_ENUM(NSUInteger, SortOrder)
               cbObject:(BCCallbackObject)cbObject;
 
 /**
- * @deprecated
- */
-- (void)getLeaderboard:(NSString *)leaderboardId
-           replaceName:(bool)replaceName
-       completionBlock:(BCCompletionBlock)cb
-  errorCompletionBlock:(BCErrorCompletionBlock)ecb
-              cbObject:(BCCallbackObject)cbObject __deprecated_msg("Use getSocialLeaderboard instead.");
-
-/**
  * Reads multiple social leaderboards.
  *
  * @param leaderboardIds NSArray of NSString leaderboard IDs.

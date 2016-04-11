@@ -18,20 +18,22 @@
 
 - (NSString *)profileID
 {
-    return [NSString stringWithCString:BrainCloud::BrainCloudClient::getInstance()
-                                           ->getAuthenticationService()
-                                           ->getProfileId()
-                                           .c_str()
-                              encoding:NSUTF8StringEncoding];
+    const char* str = BrainCloud::BrainCloudClient::getInstance()
+    ->getAuthenticationService()
+    ->getProfileId()
+    .c_str();
+    
+    return [NSString stringWithUTF8String:str];
 }
 
 - (NSString *)anonymousID
 {
-    return [NSString stringWithCString:BrainCloud::BrainCloudClient::getInstance()
-                                           ->getAuthenticationService()
-                                           ->getAnonymousId()
-                                           .c_str()
-                              encoding:NSUTF8StringEncoding];
+    const char* str = BrainCloud::BrainCloudClient::getInstance()
+    ->getAuthenticationService()
+    ->getAnonymousId()
+    .c_str();
+    
+    return [NSString stringWithUTF8String:str];
 }
 
 - (void)initialize:(NSString *)profileID anonymousID:(NSString *)anonymousID
@@ -157,6 +159,18 @@
 {
     BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->authenticateTwitter(
         [userID UTF8String], [token UTF8String], [secret UTF8String], forceCreate,
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)authenticateParse:(NSString *)userID
+                    token:(NSString *)token
+              forceCreate:(BOOL)forceCreate
+          completionBlock:(BCCompletionBlock)cb
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->authenticateParse(
+        [userID UTF8String], [token UTF8String], forceCreate,
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 

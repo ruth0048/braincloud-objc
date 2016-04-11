@@ -7,6 +7,7 @@
 //
 
 #import "TestFixtureBase.h"
+#import "FriendPlatformObjc.hh"
 
 @interface TestFriend : TestFixtureBase
 
@@ -35,6 +36,56 @@
                                completionBlock:successBlock
                           errorCompletionBlock:failureBlock
                                       cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testFindPlayerByUniversalId
+{
+    [[m_client friendService] findPlayerByUniversalId:@"name"
+                                    maxResults:10
+                               completionBlock:successBlock
+                          errorCompletionBlock:failureBlock
+                                      cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testListFriends
+{
+    [self addFriend];
+    
+    [[m_client friendService] listFriends:[FriendPlatformObjc All]
+                                    includeSummaryData:false
+                               completionBlock:successBlock
+                          errorCompletionBlock:failureBlock
+                                      cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testAddFriends
+{
+    [self addFriend];
+}
+
+- (void)testRemoveFriends
+{
+    [self addFriend];
+    
+    NSArray* array = @[[TestFixtureBase getUser:@"UserB"].m_profileId];
+    [[m_client friendService] removeFriends:array
+                         completionBlock:successBlock
+                    errorCompletionBlock:failureBlock
+                                cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)addFriend
+{
+    NSArray* array = @[[TestFixtureBase getUser:@"UserB"].m_profileId];
+    
+    [[m_client friendService] addFriends:array
+                          completionBlock:successBlock
+                     errorCompletionBlock:failureBlock
+                                 cbObject:nil];
     [self waitForResult];
 }
 

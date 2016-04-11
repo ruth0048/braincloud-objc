@@ -255,6 +255,49 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
            cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Finds matchmaking enabled players with additional attributes
+ *
+ * Service Name - MatchMaking
+ * Service Operation - FIND_PLAYERS
+ *
+ * @param rangeDelta The range delta
+ * @param numMatches The maximum number of matches to return
+ * @param jsonAttributes Attributes match criteria
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @return The JSON returned in the callback is as follows:
+ * {
+ *   "status": 200,
+ *   "data": {
+ *     "matchesFound" : [
+ *       {
+ *         "playerId" : "9073dff7-0df6-437e-9be6-39cd704dcoj4",
+ *         "playerName" : "Jane Smith",
+ *         "playerRating" : 25,
+ *         "pictureUrl" : "",
+ *         "summaryFriendData" : null
+ *       },
+ *       {
+ *         "playerId" : "9073dff7-0df6-437e-9be6-39cd704dcoj4",
+ *         "playerName" : "John Smith",
+ *         "playerRating" : 30,
+ *         "pictureUrl" : "",
+ *         "summaryFriendData" : null
+ *       }
+ *     ]
+ *   }
+ * }
+ */
+- (void)findPlayersWithAttributes:(int)rangeDelta
+                       numMatches:(int)numMatches
+                   jsonAttributes:(NSString *)jsonAttributes
+                  completionBlock:(BCCompletionBlock)cb
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject;
+
+/**
 * Finds matchmaking enabled players using a cloud code filter
 *
 * Service Name - MatchMaking
@@ -293,9 +336,55 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 - (void)findPlayersUsingFilter:(int)rangeDelta
                     numMatches:(int)numMatches
                jsonExtraParams:(NSString *)jsonExtraParams
-               completionBlock:(BCCompletionBlock)completionBlock
+               completionBlock:(BCCompletionBlock)cb
           errorCompletionBlock:(BCErrorCompletionBlock)ecb
                       cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Finds matchmaking enabled players using a cloud code filter
+ * and additional attributes
+ *
+ * Service Name - MatchMaking
+ * Service Operation - FIND_PLAYERS_USING_FILTER
+ *
+ * @param rangeDelta The range delta
+ * @param numMatches The maximum number of matches to return
+ * @param jsonAttributes Attributes match criteria
+ * @param jsonExtraParms Parameters to pass to the CloudCode filter script
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @return The JSON returned in the callback is as follows:
+ * {
+ *   "status": 200,
+ *   "data": {
+ *     "matchesFound" : [
+ *       {
+ *         "playerId" : "9073dff7-0df6-437e-9be6-39cd704dcoj4",
+ *         "playerName" : "Jane Smith",
+ *         "playerRating" : 25,
+ *         "pictureUrl" : "",
+ *         "summaryFriendData" : null
+ *       },
+ *       {
+ *         "playerId" : "9073dff7-0df6-437e-9be6-39cd704dcoj4",
+ *         "playerName" : "John Smith",
+ *         "playerRating" : 30,
+ *         "pictureUrl" : "",
+ *         "summaryFriendData" : null
+ *       }
+ *     ]
+ *   }
+ * }
+ */
+- (void)findPlayersWithAttributesUsingFilter:(int)rangeDelta
+                                  numMatches:(int)numMatches
+                              jsonAttributes:(NSString *)jsonAttributes
+                             jsonExtraParams:(NSString *)jsonExtraParams
+                             completionBlock:(BCCompletionBlock)cb
+                        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                    cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Enables Match Making for the Player
@@ -316,5 +405,25 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 - (void)enableMatchMaking:(BCCompletionBlock)cb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Disables Match Making for the Player
+ *
+ * Service Name - MatchMaking
+ * Service Operation - EnableMatchMaking
+ *
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @return The JSON returned in the completion block is as follows:
+ * {
+ *   "status": 200,
+ *   "data": null
+ * }
+ */
+- (void)disableMatchMaking:(BCCompletionBlock)cb
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject;
 
 @end

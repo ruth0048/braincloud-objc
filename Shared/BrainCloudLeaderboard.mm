@@ -22,17 +22,7 @@
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getLeaderboard(
-        [leaderboardId UTF8String], replaceName, new BrainCloudCallback(cb, ecb, cbObject));
-}
-
-- (void)getLeaderboard:(NSString *)leaderboardId
-           replaceName:(bool)replaceName
-       completionBlock:(BCCompletionBlock)cb
-  errorCompletionBlock:(BCErrorCompletionBlock)ecb
-              cbObject:(BCCallbackObject)cbObject
-{
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getLeaderboard(
+    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getSocialLeaderboard(
         [leaderboardId UTF8String], replaceName, new BrainCloudCallback(cb, ecb, cbObject));
 }
 

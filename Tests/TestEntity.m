@@ -25,13 +25,13 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 
 - (void)testCreateEntity
 {
-    NSString *entityId = [self createDefultEntity:ReadWrite];
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
     [self deleteEntity:entityId version:1];
 }
 
 - (void)testDeleteEntity
 {
-    NSString *entityId = [self createDefultEntity:ReadWrite];
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
     [[m_client entityService] deleteEntity:entityId
                                    version:1
                            completionBlock:successBlock
@@ -42,7 +42,7 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 
 - (void)testGetEntity
 {
-    NSString *entityId = [self createDefultEntity:ReadWrite];
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
     [[m_client entityService] getEntity:entityId
                         completionBlock:successBlock
                    errorCompletionBlock:failureBlock
@@ -53,7 +53,7 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 
 - (void)testGetSingleton
 {
-    NSString *entityId = [self createDefultEntity:None];
+    NSString *entityId = [self createDefaultEntity:None];
     [[m_client entityService] getSingleton:entityType
                         completionBlock:successBlock
                    errorCompletionBlock:failureBlock
@@ -64,7 +64,7 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 
 - (void)testUpdateEntity
 {
-    NSString *entityId = [self createDefultEntity:ReadWrite];
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
     [[m_client entityService] updateEntity:entityId
                                 entityType:entityType
                             jsonEntityData:entityData
@@ -77,9 +77,22 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
     [self deleteEntity:entityId version:2];
 }
 
+- (void)testGetSharedEntityForPlayerId
+{
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
+    [[m_client entityService]
+     getSharedEntityForPlayerId:[TestFixtureBase getUser:@"UserA"].m_profileId
+     entityId:entityId
+     completionBlock:successBlock
+     errorCompletionBlock:failureBlock
+     cbObject:nil];
+    [self waitForResult];
+    [self deleteEntity:entityId version:1];
+}
+
 - (void)testGetSharedEntitiesForPlayerId
 {
-    NSString *entityId = [self createDefultEntity:ReadWrite];
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
     [[m_client entityService]
         getSharedEntitiesForPlayerId:[TestFixtureBase getUser:@"UserA"].m_profileId
                      completionBlock:successBlock
@@ -91,7 +104,7 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 
 - (void)testGetEntitiesByType
 {
-    NSString *entityId = [self createDefultEntity:ReadWrite];
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
     [[m_client entityService] getEntitiesByType:entityType
                                 completionBlock:successBlock
                            errorCompletionBlock:failureBlock
@@ -102,7 +115,8 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 
 - (void)testUpdateSharedEntity
 {
-    NSString *entityId = [self createDefultEntity:ReadWrite];
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
+
     [[m_client entityService] updateSharedEntity:entityId
                                   targetPlayerId:[TestFixtureBase getUser:@"UserA"].m_profileId
                                       entityType:entityType
@@ -117,7 +131,7 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 
 - (void)testUpdateSingleton
 {
-    NSString *entityId = [self createDefultEntity:ReadWrite];
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
     [[m_client entityService] updateSingleton:entityType
                                jsonEntityData:entityData
                                 jsonEntityAcl:[ACL getAclJson:ReadWrite]
@@ -131,7 +145,7 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 
 - (void)testDeleteSingleton
 {
-    NSString *entityId = [self createDefultEntity:ReadWrite];
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
     [[m_client entityService] deleteSingleton:entityType
                                       version:1
                               completionBlock:successBlock
@@ -168,7 +182,7 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 }
 
 /* Helper functions */
-- (NSString *)createDefultEntity:(Access)access
+- (NSString *)createDefaultEntity:(Access)access
 {
     [[m_client entityService] createEntity:entityType
                             jsonEntityData:entityData

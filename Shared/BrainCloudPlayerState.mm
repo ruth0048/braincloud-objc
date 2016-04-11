@@ -101,4 +101,13 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         [contactEmail UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
+- (void)updateSummaryFriendData:(NSString *)jsonSummaryData
+                completionBlock:(BCCompletionBlock)cb
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updateSummaryFriendData(
+        [jsonSummaryData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end
