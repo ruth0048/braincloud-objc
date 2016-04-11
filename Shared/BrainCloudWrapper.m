@@ -41,6 +41,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedWrapper = [[self alloc] init];
+        sharedWrapper.alwaysAllowProfileSwitch = YES;
         
         // the generic authentication completion blocks
         
@@ -69,6 +70,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
             }
         };
     });
+    
     return sharedWrapper;
 }
 
