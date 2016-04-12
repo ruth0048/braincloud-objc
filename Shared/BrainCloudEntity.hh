@@ -379,6 +379,84 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Method gets list of entities from the server base on type and/or where clause
+ *
+ * Service Name - Entity
+ * Service Operation - GET_LIST
+ *
+ * @param whereJson Mongo style query string
+ * @param orderByJson Sort order
+ * @param maxReturn The maximum number of entities to return
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @return The JSON returned in the callback is as follows:
+ * {
+ *     "status": 200,
+ *     "data": {
+ *         "entities": [{
+ *             "entityId": "113db68a-48ad-4fc9-9f44-5fd36fc6445f",
+ *             "entityType": "person",
+ *             "version": 1,
+ *             "data": {
+ *                 "name": "john",
+ *                 "age": 30
+ *             },
+ *             "acl": {
+ *                 "other": 0
+ *             },
+ *             "createdAt": 1395943044322,
+ *             "updatedAt": 1395943044322
+ *         }, {
+ *             "entityId": "hfd6368a-48ad-4fc9-9f44-5fd36fc6445f",
+ *             "entityType": "person",
+ *             "version": 3,
+ *             "data": {
+ *                 "name": "jane",
+ *                 "age": 22
+ *             },
+ *             "acl": {
+ *                 "other": 0
+ *             },
+ *             "createdAt": 1395943044322,
+ *             "updatedAt": 1395943044322
+ *         }]
+ *     }
+ * }
+ */
+- (void)getList:(NSString *)whereJson
+                 orderBy:(NSString *)orderByJson
+               maxReturn:(int64_t)maxReturn
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Method gets a count of entities based on the where clause
+*
+* Service Name - Entity
+* Service Operation - GET_LIST_COUNT
+*
+* @param whereJson Mongo style query string
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*
+* @return The JSON returned in the completion block is as follows:
+* {
+*   "status": 200,
+*   "data": {
+*      "entityListCount" : 5
+*   }
+* }
+*/
+- (void)getListCount:(NSString *)whereJson
+     completionBlock:(BCCompletionBlock)completionBlock
+errorCompletionBlock:(BCErrorCompletionBlock)ecb
+            cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Method uses a paging system to iterate through entities
  * After retrieving a page of entities with this method,
  * use GetPageOffset() to retrieve previous or next pages.

@@ -60,7 +60,7 @@ NSString *testIndexedId = @"testIndexedId";
 {
     NSString *entityId = [self createDefultEntity:ReadWrite indexedId:testIndexedId];
 
-    [[m_client globalEntityService] getList:globalEntityType
+    [[m_client globalEntityService] getList:@"{ \"entityType\":\"testEntity\" }"
                                     orderBy:nil
                                   maxReturn:32
                             completionBlock:successBlock

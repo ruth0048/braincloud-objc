@@ -155,6 +155,34 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
     [self deleteEntity:entityId version:1];
 }
 
+- (void)testGetList
+{
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
+
+    [[m_client entityService] getList:@"{ \"entityType\":\"testEntity\" }"
+                                    orderBy:nil
+                                  maxReturn:32
+                            completionBlock:successBlock
+                       errorCompletionBlock:failureBlock
+                                   cbObject:nil];
+    [self waitForResult];
+
+    [self deleteEntity:entityId version:1];
+}
+
+- (void)testGetListCount
+{
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
+
+    [[m_client entityService] getListCount:@"{ \"entityType\":\"testEntity\" }"
+                                 completionBlock:successBlock
+                            errorCompletionBlock:failureBlock
+                                        cbObject:nil];
+    [self waitForResult];
+
+    [self deleteEntity:entityId version:1];
+}
+
 - (void)testGetPage
 {
     [[m_client entityService]
