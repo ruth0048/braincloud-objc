@@ -2,11 +2,9 @@
 //  BrainCloudClient.mm
 //  brainCloudClientObjc
 //
-//  Created by Ryan Homer on 7/4/2015.
 //  Copyright (c) 2015 bitHeads. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "BrainCloudClient.hh"
 #include "braincloud/BrainCloudClient.h"
 #include "TargetConditionals.h"
