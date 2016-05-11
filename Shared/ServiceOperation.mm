@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////
 
 #import "ServiceOperation.hh"
-#import "ServiceOperation.h"
+#import "braincloud/ServiceOperation.h"
 
 NSString const *const BrainCloudServiceOperationNone = [NSString stringWithCString:BrainCloud::ServiceOperation::None.getValue().c_str() encoding:NSASCIIStringEncoding];
 NSString const *const BrainCloudServiceOperationAuthenticate = [NSString stringWithCString:BrainCloud::ServiceOperation::Authenticate.getValue().c_str() encoding:NSASCIIStringEncoding];
