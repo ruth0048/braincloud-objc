@@ -20,11 +20,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   BrainCloudCpp:
-    :commit: 9501764fdd156e7a40909a01e752d45c2f04bd91
+    :commit: 0c306458aaabd9d7f66f441af0fc312d90985262
     :git: https://github.com/getbraincloud/braincloud-cpp
 
 SPEC CHECKSUMS:
-  BrainCloudCpp: 2e65fe65ebf323e2c0f0bdf7d5f5499ab4e0676a
+  BrainCloudCpp: 7331cb1c4f20f63770dd873e2c585e2e912d8dc3
   BrainCloudCurl: 47b0ee9d1d52d079e12027331ac04e9af16d93c7
   BrainCloudJsonCpp: 668a2cef2109fc8effbc473716d1f3d42f1fd346
   BrainCloudOpenSSL: 2a53ac6bfb0a89f8b7e21f06d0933414a5b33820

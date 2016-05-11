@@ -13,34 +13,33 @@ def shared_pods
 end
 
 target 'BrainCloud-iOS' do
-
   platform :ios, '9.0'
   shared_pods
-
 end
 
 target 'BrainCloud-iOSTests' do
-
 end
 
 target 'BrainCloud-OSX' do
-
   platform :osx, '10.9'
   shared_pods
-
 end
 
 target 'BrainCloud-OSXTests' do
-
 end
 
 target 'BrainCloud-tvOS' do
-
   platform :tvos, '9.0'
   shared_pods
-
 end
 
 target 'BrainCloud-tvOSTests' do
+end
 
+target 'BrainCloud-watchOS' do
+  platform :watchos, '2.0'
+  shared_pods
+end
+
+target 'BrainCloud-watchOSTests' do
 end
