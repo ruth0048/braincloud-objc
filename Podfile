@@ -2,7 +2,6 @@
 #  Podfile
 #  BrainCloud
 #
-#  Created by Benoit Sarrazin on Feb 11, 2016.
 #  Copyright (c) 2016 BitHeads Inc. All rights reserved.
 #
 
@@ -11,7 +10,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 def shared_pods
   pod 'BrainCloudCpp', :git => 'https://github.com/getbraincloud/braincloud-cpp', :branch => 'develop'
-  pod 'SSKeychain'
 end
 
 target 'BrainCloud-iOS' do

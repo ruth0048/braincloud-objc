@@ -6,7 +6,7 @@
 //  Copyright © 2015 bitHeads. All rights reserved.
 //
 
-#include "BrainCloudClient.h"
+#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
 #import "BrainCloudDataStream.hh"

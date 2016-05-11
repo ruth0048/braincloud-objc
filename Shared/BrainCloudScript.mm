@@ -1,4 +1,4 @@
-#include "BrainCloudClient.h"
+#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
 #import "BrainCloudScript.hh"

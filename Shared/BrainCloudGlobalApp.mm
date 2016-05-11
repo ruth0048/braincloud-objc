@@ -8,7 +8,7 @@
 
 #import "BrainCloudGlobalApp.hh"
 
-#include "BrainCloudClient.h"
+#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
 @implementation BrainCloudGlobalApp

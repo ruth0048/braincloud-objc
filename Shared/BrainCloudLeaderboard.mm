@@ -9,7 +9,7 @@
 #include <vector>
 #include <string>
 
-#include "BrainCloudClient.h"
+#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
 #import "BrainCloudLeaderboard.hh"

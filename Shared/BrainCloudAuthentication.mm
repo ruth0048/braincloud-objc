@@ -8,9 +8,9 @@
 
 #import "BrainCloudAuthentication.hh"
 
-#include "ServiceName.h"
-#include "ServiceOperation.h"
-#include "BrainCloudClient.h"
+#include "braincloud/ServiceName.h"
+#include "braincloud/ServiceOperation.h"
+#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
 

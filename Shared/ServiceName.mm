@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////
 
 #import "ServiceName.hh"
-#import "ServiceName.h"
+#import "braincloud/ServiceName.h"
 
 NSString const *const BrainCloudServiceNameNone = [NSString stringWithCString:BrainCloud::ServiceName::None.getValue().c_str() encoding:NSASCIIStringEncoding];
 NSString const *const BrainCloudServiceNameAuthenticate = [NSString stringWithCString:BrainCloud::ServiceName::Authenticate.getValue().c_str() encoding:NSASCIIStringEncoding];

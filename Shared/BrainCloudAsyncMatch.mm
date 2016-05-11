@@ -8,7 +8,7 @@
 
 #import "BrainCloudAsyncMatch.hh"
 
-#include "BrainCloudClient.h"
+#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
 @implementation BrainCloudAsyncMatch

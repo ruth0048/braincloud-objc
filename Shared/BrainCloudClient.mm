@@ -8,7 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "BrainCloudClient.hh"
-#include "BrainCloudClient.h"
+#include "braincloud/BrainCloudClient.h"
 #include "TargetConditionals.h"
 
 class ObjCEventCallback : public BrainCloud::IEventCallback

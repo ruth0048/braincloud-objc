@@ -1,11 +1,17 @@
 PODS:
-  - BrainCloudCpp (2.23.0)
+  - BrainCloudCpp (2.23.0):
+    - BrainCloudCurl
+    - BrainCloudJsonCpp
+    - SSKeychain
+  - BrainCloudCurl (1.0.1):
+    - BrainCloudOpenSSL
+  - BrainCloudJsonCpp (1.0.0)
+  - BrainCloudOpenSSL (1.0.0)
   - SSKeychain (1.4.0)
 
 DEPENDENCIES:
   - BrainCloudCpp (from `https://github.com/getbraincloud/braincloud-cpp`, branch
     `develop`)
-  - SSKeychain
 
 EXTERNAL SOURCES:
   BrainCloudCpp:
@@ -14,11 +20,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   BrainCloudCpp:
-    :commit: f69391150ec42ca712935bef0910c72491fd08dc
+    :commit: 9501764fdd156e7a40909a01e752d45c2f04bd91
     :git: https://github.com/getbraincloud/braincloud-cpp
 
 SPEC CHECKSUMS:
-  BrainCloudCpp: 51baf2e63ab4134b080cb714e63aad16573c836f
+  BrainCloudCpp: 2e65fe65ebf323e2c0f0bdf7d5f5499ab4e0676a
+  BrainCloudCurl: 47b0ee9d1d52d079e12027331ac04e9af16d93c7
+  BrainCloudJsonCpp: 668a2cef2109fc8effbc473716d1f3d42f1fd346
+  BrainCloudOpenSSL: 2a53ac6bfb0a89f8b7e21f06d0933414a5b33820
   SSKeychain: c71293fa57216a40ab06c23f4085387583293de4
 
 COCOAPODS: 0.39.0

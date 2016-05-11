@@ -8,7 +8,7 @@
 
 #import "BrainCloudGamification.hh"
 
-#include "BrainCloudClient.h"
+#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
 #include "TypeHelpers.hh"

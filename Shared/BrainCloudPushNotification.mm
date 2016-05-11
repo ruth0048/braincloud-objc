@@ -7,10 +7,10 @@
 //
 
 #import "BrainCloudPushNotification.hh"
-#include "BrainCloudClient.h"
+#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 #import "PlatformObjc.hh"
-#include "Platform.h"
+#include "braincloud/Platform.h"
 
 @implementation BrainCloudPushNotification
 

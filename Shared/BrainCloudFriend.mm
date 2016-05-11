@@ -9,9 +9,9 @@
 #import "BrainCloudFriend.hh"
 #import "FriendPlatformObjc.hh"
 
-#include "BrainCloudClient.h"
+#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
-#include "FriendPlatform.h"
+#include "braincloud/FriendPlatform.h"
 #include "TypeHelpers.hh"
 
 @implementation BrainCloudFriend

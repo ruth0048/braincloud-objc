@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PlatformObjc.hh"
-#include "Platform.h"
+#include "braincloud/Platform.h"
 
 @interface PlatformObjc ()
 @property (readwrite) NSString *value;
