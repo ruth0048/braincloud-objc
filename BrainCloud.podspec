@@ -2,7 +2,6 @@
 #  BrainCloud.podspec
 #  BrainCloud
 #
-#  Created by Benoit Sarrazin on Feb 11, 2016.
 #  Copyright (c) 2016 BitHeads Inc. All rights reserved.
 #
 
@@ -46,6 +45,5 @@ Pod::Spec.new do |s|
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   s.dependency 'BrainCloudCpp', '2.23.0'
-  s.dependency 'SSKeychain', '1.3.1'
 
 end
