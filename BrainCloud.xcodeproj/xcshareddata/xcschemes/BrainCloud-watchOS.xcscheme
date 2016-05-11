@@ -7,7 +7,7 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
+            buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
@@ -15,13 +15,13 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DF2230D01CE39E09003A7D8D"
-               BuildableName = "BrainCloud-watchOS.framework"
+               BuildableName = "BrainCloud.framework"
                BlueprintName = "BrainCloud-watchOS"
                ReferencedContainer = "container:BrainCloud.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
-            buildForTesting = "YES"
+            buildForTesting = "NO"
             buildForRunning = "NO"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
@@ -47,12 +47,27 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DF2230D01CE39E09003A7D8D"
-            BuildableName = "BrainCloud-watchOS.framework"
+            BuildableName = "BrainCloud.framework"
             BlueprintName = "BrainCloud-watchOS"
             ReferencedContainer = "container:BrainCloud.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "DYLD_INSERT_LIBRARIES"
+            value = "/usr/lib/libgmalloc.dylib"
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "MallocGuardEdges"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "MallocScribble"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
@@ -69,7 +84,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DF2230D01CE39E09003A7D8D"
-            BuildableName = "BrainCloud-watchOS.framework"
+            BuildableName = "BrainCloud.framework"
             BlueprintName = "BrainCloud-watchOS"
             ReferencedContainer = "container:BrainCloud.xcodeproj">
          </BuildableReference>
@@ -87,7 +102,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DF2230D01CE39E09003A7D8D"
-            BuildableName = "BrainCloud-watchOS.framework"
+            BuildableName = "BrainCloud.framework"
             BlueprintName = "BrainCloud-watchOS"
             ReferencedContainer = "container:BrainCloud.xcodeproj">
          </BuildableReference>
