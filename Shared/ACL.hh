@@ -10,15 +10,12 @@
 
 #pragma once
 
-typedef NS_ENUM(NSUInteger, Access)
-{
-    None,
-    ReadOnly,
-    ReadWrite
-};
+typedef NS_ENUM(NSUInteger, Access) { None, ReadOnly, ReadWrite };
 
 @interface ACL : NSObject
 
 + (NSString *)getAclJson:(Access)access;
+
++ (NSString *)getGroupAclJson:(Access)other memberAccess:(Access)member;
 
 @end

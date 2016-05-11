@@ -15,4 +15,9 @@
     return [NSString stringWithFormat:@"%@%lu", @"{ \"other\": ", (unsigned long)access];
 }
 
++ (NSString *)getGroupAclJson:(Access)other memberAccess:(Access)member
+{
+    return [NSString stringWithFormat:@"{ \"other\": %lu, \"member\": %lu }", (unsigned long)other, (unsigned long)member];
+}
+
 @end

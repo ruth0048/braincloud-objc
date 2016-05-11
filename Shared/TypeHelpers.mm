@@ -24,3 +24,9 @@ std::vector<std::string> TypeHelpers::NSStringArrayToVector(NSArray* array)
     
     return strings;
 }
+
+std::string TypeHelpers::NSStringToStdString(NSString* string)
+{
+    std::string str = string != nil ? [string UTF8String] : "";
+    return str;
+}

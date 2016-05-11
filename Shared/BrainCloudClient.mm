@@ -570,6 +570,13 @@ public:
     return _fileService;
 }
 
+- (BrainCloudGroup *)groupService
+{
+    static BrainCloudGroup *_groupService = nil;
+    if (!_groupService) _groupService = [[BrainCloudGroup alloc] init];
+    return _groupService;
+}
+
 + (BrainCloudClient *)defaultClient
 {
     return [BrainCloudClient getInstance];

@@ -35,6 +35,7 @@
 #import "BrainCloudDataStream.hh"
 #import "BrainCloudProfanity.hh"
 #import "BrainCloudFile.hh"
+#import "BrainCloudGroup.hh"
 
 /**
 * This class is responsible for accumulating client requests, bundling
@@ -382,6 +383,7 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
 @property(readonly) BrainCloudDataStream *dataStreamService;
 @property(readonly) BrainCloudProfanity *profanityService;
 @property(readonly) BrainCloudFile *fileService;
+@property(readonly) BrainCloudGroup *groupService;
 @property NSInteger frameInterval;
 
 /**

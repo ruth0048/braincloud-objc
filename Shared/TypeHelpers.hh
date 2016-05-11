@@ -13,6 +13,8 @@ class TypeHelpers
 {
 public:
     static std::vector<std::string> NSStringArrayToVector(NSArray* array);
+
+    static std::string NSStringToStdString(NSString* string);
 };
 
 

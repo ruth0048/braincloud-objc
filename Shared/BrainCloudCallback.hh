@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#import "braincloud/BrainCloudClient.h"
 
 class BrainCloudCallback : public BrainCloud::IServerCallback
 {
