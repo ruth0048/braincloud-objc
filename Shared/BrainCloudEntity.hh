@@ -460,8 +460,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * Service Name - Entity
  * Service Operation - READ_SHARED_ENTITIES_LIST
  *
- * @param in_playerId The player ID to retrieve shared entities for
- * @param in_whereJson Mongo style query
+ * @param playerId The player ID to retrieve shared entities for
+ * @param whereJson Mongo style query
  * @param orderByJson Sort order
  * @param maxReturn The maximum number of entities to return
  * @param completionBlock Block to call on return of successful server response
