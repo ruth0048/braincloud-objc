@@ -88,4 +88,80 @@
     [self waitForResult];
 }
 
+- (void)testSendTemplatedPushNotificationToGroup
+{
+    [[m_client groupService] createGroup:@"testGroup"
+                               groupType:@"test"
+                             isOpenGroup:NO
+                                     acl:@""
+                                jsonData:@""
+                     jsonOwnerAttributes:@""
+             jsonDefaultMemberAttributes:@""
+                         completionBlock:successBlock
+                    errorCompletionBlock:failureBlock
+                                cbObject:nil];
+    [self waitForResult];
+
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj =
+    [NSJSONSerialization JSONObjectWithData:data
+                                    options:NSJSONReadingMutableContainers
+                                      error:nil];
+
+    NSString* groupId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"groupId"];
+
+    [[m_client pushNotificationService] sendTemplatedPushNotificationToGroup:groupId
+                                                    notificationTemplateId:1
+                                                          substitutionsJson:@"{\"1\":\"test sub\"}"
+                                                           completionBlock:successBlock
+                                                      errorCompletionBlock:failureBlock
+                                                                  cbObject:nil];
+    [self waitForResult];
+
+    [[m_client groupService] deleteGroup:groupId
+                                 version:-1
+                         completionBlock:successBlock
+                    errorCompletionBlock:failureBlock
+                                cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testSendNormalizedPushNotificationToGroup
+{
+    [[m_client groupService] createGroup:@"testGroup"
+                               groupType:@"test"
+                             isOpenGroup:NO
+                                     acl:@""
+                                jsonData:@""
+                     jsonOwnerAttributes:@""
+             jsonDefaultMemberAttributes:@""
+                         completionBlock:successBlock
+                    errorCompletionBlock:failureBlock
+                                cbObject:nil];
+    [self waitForResult];
+
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj =
+    [NSJSONSerialization JSONObjectWithData:data
+                                    options:NSJSONReadingMutableContainers
+                                      error:nil];
+
+    NSString* groupId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"groupId"];
+
+    [[m_client pushNotificationService] sendNormalizedPushNotificationToGroup:groupId
+                                                      alertContentJson:@"{ \"body\": \"content of message\", \"title\": \"message title\" }"
+                                                           customDataJson:nil
+                                                             completionBlock:successBlock
+                                                        errorCompletionBlock:failureBlock
+                                                                    cbObject:nil];
+    [self waitForResult];
+
+    [[m_client groupService] deleteGroup:groupId
+                                 version:-1
+                         completionBlock:successBlock
+                    errorCompletionBlock:failureBlock
+                                cbObject:nil];
+    [self waitForResult];
+}
+
 @end

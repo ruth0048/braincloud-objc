@@ -455,6 +455,28 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Method gets list of shared entities for the specified player based on type and/or where clause
+ *
+ * Service Name - Entity
+ * Service Operation - READ_SHARED_ENTITIES_LIST
+ *
+ * @param in_playerId The player ID to retrieve shared entities for
+ * @param in_whereJson Mongo style query
+ * @param orderByJson Sort order
+ * @param maxReturn The maximum number of entities to return
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getSharedEntitiesListForPlayerId:(NSString *)playerId
+                               whereJson:(NSString *)whereJson
+                                 orderByJson:(NSString *)orderByJson
+                               maxReturn:(int32_t)maxReturn
+                         completionBlock:(BCCompletionBlock)completionBlock
+                    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                cbObject:(BCCallbackObject)cbObject;
+
+/**
 * Method gets a count of entities based on the where clause
 *
 * Service Name - Entity

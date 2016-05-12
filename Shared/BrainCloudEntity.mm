@@ -172,6 +172,23 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
+- (void)getSharedEntitiesListForPlayerId:(NSString *)playerId
+                               whereJson:(NSString *)whereJson
+                                 orderByJson:(NSString *)orderByJson
+                               maxReturn:(int32_t)maxReturn
+                         completionBlock:(BCCompletionBlock)completionBlock
+                    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                cbObject:(BCCallbackObject)cbObject
+{
+    std::string wh, order;
+
+    if (whereJson != nil) wh = [whereJson UTF8String];
+    if (orderByJson != nil) order = [orderByJson UTF8String];
+
+    BrainCloud::BrainCloudClient::getInstance()->getEntityService()->
+    getSharedEntitiesListForPlayerId([playerId UTF8String], wh, order, maxReturn, new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
 - (void)getListCount:(NSString *)whereJson
      completionBlock:(BCCompletionBlock)completionBlock
 errorCompletionBlock:(BCErrorCompletionBlock)ecb

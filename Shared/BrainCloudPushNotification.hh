@@ -168,4 +168,37 @@
                       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                   cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Sends a notification to a "group" of user based on a brainCloud portal configured notification template.
+ * Includes JSON defining the substitution params to use with the template.
+ * See the Portal documentation for more info.
+ *
+ * @param in_groupId Target group
+ * @param in_notificationTemplateId Template to use
+ * @param in_substitutionsJson Map of substitution positions to strings
+ * @param in_callback The method to be invoked when the server response is received
+ */
+- (void)sendTemplatedPushNotificationToGroup:(NSString *)groupId
+                      notificationTemplateId:(int)notificationTemplateId
+                           substitutionsJson:(NSString *)substitutionsJson
+                             completionBlock:(BCCompletionBlock)cb
+                        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                    cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Sends a notification to a "group" of user consisting of alert content and custom data.
+ * See the Portal documentation for more info.
+ *
+ * @param in_groupId Target group
+ * @param in_alertContentJson Body and title of alert
+ * @param in_customDataJson Optional custom data
+ * @param in_callback The method to be invoked when the server response is received
+ */
+- (void)sendNormalizedPushNotificationToGroup:(NSString *)groupId
+                             alertContentJson:(NSString *)alertContentJson
+                               customDataJson:(NSString *)customDataJson
+                              completionBlock:(BCCompletionBlock)cb
+                         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                     cbObject:(BCCallbackObject)cbObject;
+
 @end

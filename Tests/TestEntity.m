@@ -155,6 +155,22 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
     [self deleteEntity:entityId version:1];
 }
 
+- (void)testGetSharedEntitiesListForPlayerId
+{
+    NSString *entityId = [self createDefaultEntity:ReadWrite];
+
+    [[m_client entityService] getSharedEntitiesListForPlayerId:[TestFixtureBase getUser:@"UserA"].m_profileId
+                      whereJson:@"{ \"entityType\":\"testEntity\" }"
+                              orderByJson:nil
+                            maxReturn:32
+                      completionBlock:successBlock
+                 errorCompletionBlock:failureBlock
+                             cbObject:nil];
+    [self waitForResult];
+
+    [self deleteEntity:entityId version:1];
+}
+
 - (void)testGetList
 {
     NSString *entityId = [self createDefaultEntity:ReadWrite];

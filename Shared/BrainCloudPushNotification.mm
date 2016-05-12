@@ -115,4 +115,37 @@
                                 [substitutionJson UTF8String], brainCloudCallback);
 }
 
+- (void)sendTemplatedPushNotificationToGroup:(NSString *)groupId
+                      notificationTemplateId:(int)notificationTemplateId
+                           substitutionsJson:(NSString *)substitutionsJson
+                             completionBlock:(BCCompletionBlock)cb
+                        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                    cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    BrainCloud::BrainCloudClient::getInstance()
+    ->getPushNotificationService()
+    ->sendTemplatedPushNotificationToGroup([groupId UTF8String], notificationTemplateId,
+                                         [substitutionsJson UTF8String], brainCloudCallback);
+}
+
+- (void)sendNormalizedPushNotificationToGroup:(NSString *)groupId
+                             alertContentJson:(NSString *)alertContentJson
+                               customDataJson:(NSString *)customDataJson
+                              completionBlock:(BCCompletionBlock)cb
+                         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                     cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    std::string custom;
+    if(customDataJson != nil) custom = [customDataJson UTF8String];
+
+    BrainCloud::BrainCloudClient::getInstance()
+    ->getPushNotificationService()
+    ->sendNormalizedPushNotificationToGroup([groupId UTF8String], [alertContentJson UTF8String],
+                                           custom, brainCloudCallback);
+}
+
 @end
