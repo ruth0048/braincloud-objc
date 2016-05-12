@@ -6,9 +6,10 @@
 //  Copyright (c) 2015 bitHeads. All rights reserved.
 //
 
-#include <stdlib.h>
-#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
+#import "TypeHelpers.hh"
+#include "braincloud/BrainCloudClient.h"
+#include <stdlib.h>
 
 #import "BrainCloudGlobalEntity.hh"
 
@@ -183,6 +184,21 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 {
     BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->getPageOffset(
         [context UTF8String], pageOffset, new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)incrementGlobalEntityData:(NSString *)entityId
+                         jsonData:(NSString *)jsonData
+                       returnData:(BOOL)returnData
+                  completionBlock:(BCCompletionBlock)completionBlock
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()
+        ->getGlobalEntityService()
+        ->incrementGlobalEntityData(
+            [entityId UTF8String],
+            TypeHelpers::NSStringToStdString(jsonData), returnData ? true : false,
+            new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 @end

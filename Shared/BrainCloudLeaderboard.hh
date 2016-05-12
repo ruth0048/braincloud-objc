@@ -8,19 +8,17 @@
 
 #pragma once
 
-#import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, LeaderboardType)
-{
+typedef NS_ENUM(NSUInteger, LeaderboardType) {
     HIGH_VALUE,
     CUMULATIVE,
     LAST_VALUE,
     LOW_VALUE
 };
 
-typedef NS_ENUM(NSUInteger, RotationType)
-{
+typedef NS_ENUM(NSUInteger, RotationType) {
     NEVER,
     DAILY,
     WEEKLY,
@@ -28,8 +26,7 @@ typedef NS_ENUM(NSUInteger, RotationType)
     YEARLY
 };
 
-typedef NS_ENUM(NSUInteger, SortOrder)
-{
+typedef NS_ENUM(NSUInteger, SortOrder) {
     HIGH_TO_LOW,
     LOW_TO_HIGH
 };
@@ -98,10 +95,10 @@ typedef NS_ENUM(NSUInteger, SortOrder)
 *
 */
 - (void)getSocialLeaderboard:(NSString *)leaderboardId
-           replaceName:(bool)replaceName
-       completionBlock:(BCCompletionBlock)cb
-  errorCompletionBlock:(BCErrorCompletionBlock)ecb
-              cbObject:(BCCallbackObject)cbObject;
+                 replaceName:(bool)replaceName
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject;
 
 /**
  * Reads multiple social leaderboards.
@@ -178,7 +175,6 @@ typedef NS_ENUM(NSUInteger, SortOrder)
                   completionBlock:(BCCompletionBlock)cb
              errorCompletionBlock:(BCErrorCompletionBlock)ecb
                          cbObject:(BCCallbackObject)cbObject;
-
 
 /**
 * Method returns a page of global leaderboard results.
@@ -493,7 +489,7 @@ typedef NS_ENUM(NSUInteger, SortOrder)
                              jsonData:(NSString *)jsonData
                       leaderboardType:(LeaderboardType)leaderboardType
                          rotationType:(RotationType)rotationType
-                       roatationReset:(NSDate*)rotationReset
+                       roatationReset:(NSDate *)rotationReset
                         retainedCount:(int)retainedCount
                       completionBlock:(BCCompletionBlock)cb
                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -579,5 +575,20 @@ typedef NS_ENUM(NSUInteger, SortOrder)
                                  completionBlock:(BCCompletionBlock)cb
                             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                         cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieve the social leaderboard for a group.
+ *
+ * @param leaderboardId The leaderboard to retreive
+ * @param groupId The ID of the group
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getGroupSocialLeaderboard:(NSString *)leaderboardId
+                          groupId:(NSString *)groupId
+                  completionBlock:(BCCompletionBlock)cb
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject;
 
 @end

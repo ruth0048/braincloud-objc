@@ -861,8 +861,6 @@
 		D84597341C6D23A4003DA016 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				240895FC1CE3FCB70099720D /* BrainCloudGroup.hh */,
-				240895FD1CE3FCB70099720D /* BrainCloudGroup.mm */,
 				D809D9A51C84B9ED004AAD42 /* BrainCloudSaveDataHelper.h */,
 				D84597351C6D23B3003DA016 /* ACL.hh */,
 				24F29CE51CB2D2EE0075CB26 /* AuthenticationTypeObjc.hh */,
@@ -881,6 +879,7 @@
 				D845974C1C6D23B3003DA016 /* BrainCloudGlobalApp.hh */,
 				D845974E1C6D23B3003DA016 /* BrainCloudGlobalEntity.hh */,
 				D84597501C6D23B3003DA016 /* BrainCloudGlobalStatistics.hh */,
+				240895FC1CE3FCB70099720D /* BrainCloudGroup.hh */,
 				D84597521C6D23B3003DA016 /* BrainCloudIdentity.hh */,
 				D84597541C6D23B3003DA016 /* BrainCloudLeaderboard.hh */,
 				D84597561C6D23B3003DA016 /* BrainCloudMatchMaking.hh */,
@@ -922,6 +921,7 @@
 				D845974D1C6D23B3003DA016 /* BrainCloudGlobalApp.mm */,
 				D845974F1C6D23B3003DA016 /* BrainCloudGlobalEntity.mm */,
 				D84597511C6D23B3003DA016 /* BrainCloudGlobalStatistics.mm */,
+				240895FD1CE3FCB70099720D /* BrainCloudGroup.mm */,
 				D84597531C6D23B3003DA016 /* BrainCloudIdentity.mm */,
 				D84597551C6D23B3003DA016 /* BrainCloudLeaderboard.mm */,
 				D84597571C6D23B3003DA016 /* BrainCloudMatchMaking.mm */,
@@ -1087,8 +1087,8 @@
 		DFF5CC4D1C93568A002E62F8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				240896001CE3FCD90099720D /* TestGroup.m */,
-				DFF5CCE31C935A00002E62F8 /* ids.txt */,
+				DFF5CC551C9356A1002E62F8 /* TestFixtureBase.h */,
+				DFF5CC6B1C9356A1002E62F8 /* TestUser.h */,
 				DFF5CC4E1C9356A1002E62F8 /* TestAsyncMatch.m */,
 				DFF5CC4F1C9356A1002E62F8 /* TestAuthentication.m */,
 				DFF5CC501C9356A1002E62F8 /* TestClient.m */,
@@ -1096,13 +1096,13 @@
 				DFF5CC521C9356A1002E62F8 /* TestEntity.m */,
 				DFF5CC531C9356A1002E62F8 /* TestEvent.m */,
 				DFF5CC541C9356A1002E62F8 /* TestFile.m */,
-				DFF5CC551C9356A1002E62F8 /* TestFixtureBase.h */,
 				DFF5CC561C9356A1002E62F8 /* TestFixtureBase.m */,
 				DFF5CC571C9356A1002E62F8 /* TestFriend.m */,
 				DFF5CC581C9356A1002E62F8 /* TestGamification.m */,
 				DFF5CC591C9356A1002E62F8 /* TestGlobalApp.m */,
 				DFF5CC5A1C9356A1002E62F8 /* TestGlobalEntity.m */,
 				DFF5CC5B1C9356A1002E62F8 /* TestGlobalStatistics.m */,
+				240896001CE3FCD90099720D /* TestGroup.m */,
 				DFF5CC5C1C9356A1002E62F8 /* TestIdentity.m */,
 				DFF5CC5D1C9356A1002E62F8 /* TestLeaderboard.m */,
 				DFF5CC5E1C9356A1002E62F8 /* TestMatchMaking.m */,
@@ -1118,9 +1118,9 @@
 				DFF5CC681C9356A1002E62F8 /* TestS3Handling.m */,
 				DFF5CC691C9356A1002E62F8 /* TestScript.m */,
 				DFF5CC6A1C9356A1002E62F8 /* TestTime.m */,
-				DFF5CC6B1C9356A1002E62F8 /* TestUser.h */,
 				DFF5CC6C1C9356A1002E62F8 /* TestUser.m */,
 				DF99CBF01C936749000B2418 /* TestWrapper.m */,
+				DFF5CCE31C935A00002E62F8 /* ids.txt */,
 			);
 			name = Tests;
 			sourceTree = "<group>";

@@ -8,8 +8,8 @@
 
 #pragma once
 
-#import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#import <Foundation/Foundation.h>
 
 @interface BrainCloudGlobalEntity : NSObject
 
@@ -596,5 +596,25 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
       completionBlock:(BCCompletionBlock)completionBlock
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Partial increment of entity data field items. Partial set of items incremented as specified.
+ *
+ * Service Name - globalEntity
+ * Service Operation - INCREMENT_GLOBAL_ENTITY_DATA
+ *
+ * @param entityId The id of the entity to update
+ * @param jsonData The entity's data object
+ * @param returnData Should the entity be returned in the response?
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)incrementGlobalEntityData:(NSString *)entityId
+                       jsonData:(NSString *)jsonData
+                     returnData:(BOOL)returnData
+                completionBlock:(BCCompletionBlock)completionBlock
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject;
 
 @end

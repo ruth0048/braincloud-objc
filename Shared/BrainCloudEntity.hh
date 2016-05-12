@@ -8,8 +8,8 @@
 
 #pragma once
 
-#import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#import <Foundation/Foundation.h>
 
 @interface BrainCloudEntity : NSObject
 
@@ -21,10 +21,12 @@
 *
 * @param entityType The entity type as defined by the user
 * @param jsonEntityData The entity's data as a json string
-* @param jsonEntityAcl The entity's access control list as json. A null acl implies default
+* @param jsonEntityAcl The entity's access control list as json. A null acl
+* implies default
 * permissions which make the entity readable/writeable by only the player.
 * @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server
+* response
 * @param cbObject User object sent to the completion blocks
 *
 * @return The JSON returned in the completion block is as follows:
@@ -41,7 +43,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Method updates a new entity on the server. This operation results in the entity
+* Method updates a new entity on the server. This operation results in the
+* entity
 * data being completely replaced by the passed in JSON string.
 *
 * Service Name - Entity
@@ -50,13 +53,15 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param entityId The id of the entity to update
 * @param entityType The entity type as defined by the user
 * @param jsonEntityData The entity's data as a json string.
-* @param jsonEntityAcl The entity's access control list as json. A null acl implies default
+* @param jsonEntityAcl The entity's access control list as json. A null acl
+* implies default
 * permissions which make the entity readable/writeable by only the player.
 * @param version Current version of the entity. If the version of the
 * entity on the server does not match the version passed in, the
 * server operation will fail. Use -1 to skip version checking.
 * @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server
+* response
 * @param cbObject User object sent to the completion blocks
 *
 * @return The JSON returned in the completion block is as follows:
@@ -75,8 +80,10 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Method updates a new singleton entity on the server. This operation results in the entity
-* data being completely replaced by the passed in JSON string. If the entity doesn't exists it is created
+* Method updates a new singleton entity on the server. This operation results in
+* the entity
+* data being completely replaced by the passed in JSON string. If the entity
+* doesn't exists it is created
 *
 * Service Name - Entity
 * Service Operation - UpdateSingleton
@@ -84,13 +91,15 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param entityType The entity type as defined by the user
 * @param jsonEntityData The entity's data as a json string.
 * permissions which make the entity readable/writeable by only the player.
-* @param jsonEntityAcl The entity's access control list as json. A null acl implies default
+* @param jsonEntityAcl The entity's access control list as json. A null acl
+* implies default
 * permissions which make the entity readable/writeable by only the player.
 * @param version Current version of the entity. If the version of the
 * entity on the server does not match the version passed in, the
 * server operation will fail. Use -1 to skip version checking.
 * @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server
+* response
 * @param cbObject User object sent to the completion blocks
 *
 * @return The JSON returned in the completion block is as follows:
@@ -128,10 +137,12 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * entity on the server does not match the version passed in, the
 * server operation will fail. Use -1 to skip version checking.
 * @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server
+* response
 * @param cbObject User object sent to the completion blocks
 *
-* @return The JSON returned in the completion block is as follows. Note that status 200 is returned
+* @return The JSON returned in the completion block is as follows. Note that
+* status 200 is returned
 * whether or not the given entity was found on the server.
 * {
 *   "status":200,
@@ -155,10 +166,12 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * entity on the server does not match the version passed in, the
 * server operation will fail. Use -1 to skip version checking.
 * @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server
+* response
 * @param cbObject User object sent to the completion blocks
 *
-* @return The JSON returned in the completion block is as follows. Note that status 200 is returned
+* @return The JSON returned in the completion block is as follows. Note that
+* status 200 is returned
 * whether or not the given entity was found on the server.
 * {
 *   "status":200,
@@ -178,7 +191,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 *
 * @param entityId The entity id
 * @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server
+* response
 * @param cbObject User object sent to the completion blocks
 */
 - (void)getEntity:(NSString *)entityId
@@ -187,14 +201,16 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 
 /**
- * Method retreives a singleton entity on the server. If the entity doesn't exist, null is returned.
+ * Method retreives a singleton entity on the server. If the entity doesn't
+ * exist, null is returned.
  *
  * Service Name - Entity
  * Service Operation - GetSingleton
  *
  * @param entityType The entity type as defined by the user
  * @param completionBlock Block to call on return of successful server response
- * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server
+ * response
  * @param cbObject User object sent to the completion blocks
  *
  * @return The JSON returned in the completion block is as follows:
@@ -224,7 +240,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 *
 * @param entityType The entity type to search for
 * @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server
+* response
 * @param cbObject User object sent to the completion blocks
 *
 * @return JSON including the entities matching the given type
@@ -279,7 +296,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param playerId The the profile ID of the player who owns the entity
  * @param entityId The ID of the entity that will be retrieved
  * @param completionBlock Block to call on return of successful server response
- * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server
+ * response
  * @param cbObject User object sent to the completion blocks
  *
  * @return The JSON returned in the callback is as follows:
@@ -302,7 +320,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * }
  */
 - (void)getSharedEntityForPlayerId:(NSString *)playerId
-                          entityId:(NSString*)entityId
+                          entityId:(NSString *)entityId
                    completionBlock:(BCCompletionBlock)completionBlock
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
                           cbObject:(BCCallbackObject)cbObject;
@@ -317,7 +335,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 *
 * @param playerId The player id to retrieve shared entities for
 * @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server
+* response
 * @param cbObject User object sent to the completion blocks
 *
 * @return JSON including the shared entities for the given player id
@@ -349,7 +368,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                             cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Method updates a shared entity owned by another player. This operation results in the entity
+* Method updates a shared entity owned by another player. This operation results
+* in the entity
 * data being completely replaced by the passed in JSON string.
 *
 * Service Name - Entity
@@ -360,7 +380,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param entityType The entity type as defined by the user
 * @param jsonEntityData The entity's data as a json string.
 * @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server
+* response
 * @param cbObject User object sent to the completion blocks
 *
 * @return The JSON returned in the completion block is as follows:
@@ -388,7 +409,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param orderByJson Sort order
  * @param maxReturn The maximum number of entities to return
  * @param completionBlock Block to call on return of successful server response
- * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server
+ * response
  * @param cbObject User object sent to the completion blocks
  *
  * @return The JSON returned in the callback is as follows:
@@ -440,7 +462,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 *
 * @param whereJson Mongo style query string
 * @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server
+* response
 * @param cbObject User object sent to the completion blocks
 *
 * @return The JSON returned in the completion block is as follows:
@@ -467,7 +490,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param context The json context for the page request.
  *                   See the portal appendix documentation for format.
  * @param completionBlock Block to call on return of successful server response
- * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server
+ * response
  * @param cbObject User object sent to the completion blocks
  *
  * @return The JSON returned in the completion block is as follows:
@@ -494,7 +518,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  *              "page": 1,
  *              "moreAfter": true
  *         },
- *         "context": "eyJzZWFyY2hDcml0ZXJpYSI6eyJlbnRpdHlUeXBlIjoiYnVpbGRpbmciLCJnYW
+ *         "context":
+ * "eyJzZWFyY2hDcml0ZXJpYSI6eyJlbnRpdHlUeXBlIjoiYnVpbGRpbmciLCJnYW
  *              1lSWQiOiIxMDI4NyIsIiRvciI6W3sib3duZXJJZCI6Ijk5MjM4ZmFiLTkxYTItNDdiYy1
  *              iMDExLWJjMThhN2IyOWY3NiJ9LHsiYWNsLm90aGVyIjp7IiRuZSI6MH19XX0sInNvcnRD
  *              cml0ZXJpYSI6eyJjcmVhdGVkQXQiOjEsInVwZGF0ZWRBdCI6LTF9LCJwYWdpbmF0aW9uI
@@ -503,22 +528,25 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * }
  */
 - (void)getPage:(NSString *)context
-completionBlock:(BCCompletionBlock)completionBlock
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-       cbObject:(BCCallbackObject)cbObject;
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 /**
- * Method to retrieve previous or next pages after having called the GetPage method.
+ * Method to retrieve previous or next pages after having called the GetPage
+ * method.
  *
  * Service Name - Entity
  * Service Operation - GetPageOffset
  *
  * @param context The context string returned from the server from a
  *      previous call to GetPage or GetPageOffset
- * @param pageOffset The positive or negative page offset to fetch. Uses the last page
+ * @param pageOffset The positive or negative page offset to fetch. Uses the
+ * last page
  *      retrieved using the context string to determine a starting point.
  * @param completionBlock Block to call on return of successful server response
- * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server
+ * response
  * @param cbObject User object sent to the completion blocks
  *
  * @return The JSON returned in the completion block is as follows:
@@ -545,7 +573,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  *              "page": 2,
  *              "moreAfter": true
  *         },
- *         "context": "eyJzZWFyY2hDcml0ZXJpYSI6eyJlbnRpdHlUeXBlIjoiYnVpbGRpbmciLCJnYW
+ *         "context":
+ * "eyJzZWFyY2hDcml0ZXJpYSI6eyJlbnRpdHlUeXBlIjoiYnVpbGRpbmciLCJnYW
  *              1lSWQiOiIxMDI4NyIsIiRvciI6W3sib3duZXJJZCI6Ijk5MjM4ZmFiLTkxYTItNDdiYy1
  *              iMDExLWJjMThhN2IyOWY3NiJ9LHsiYWNsLm90aGVyIjp7IiRuZSI6MH19XX0sInNvcnRD
  *              cml0ZXJpYSI6eyJjcmVhdGVkQXQiOjEsInVwZGF0ZWRBdCI6LTF9LCJwYWdpbmF0aW9uI
@@ -558,5 +587,28 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
       completionBlock:(BCCompletionBlock)completionBlock
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject;
+
+
+/**
+ * Partial increment of entity data field items. Partial set of items incremented as specified.
+ *
+ * Service Name - entity
+ * Service Operation - INCREMENT_USER_ENTITY_DATA
+ *
+ * @param entityId The id of the entity to update
+ * @param targetPlayerId Profile ID of the entity owner
+ * @param jsonData The entity's data object
+ * @param returnData Should the entity be returned in the response?
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)incrementUserEntityData:(NSString *)entityId
+                 targetPlayerId:(NSString *)targetPlayerId
+                       jsonData:(NSString *)jsonData
+                     returnData:(BOOL)returnData
+                completionBlock:(BCCompletionBlock)completionBlock
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject;
 
 @end

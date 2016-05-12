@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 bitHeads. All rights reserved.
 //
 
-#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
+#import "TypeHelpers.hh"
+#include "braincloud/BrainCloudClient.h"
 
 #import "BrainCloudEntity.hh"
 
@@ -21,7 +22,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getEntityService()->createEntity(
-        [entityType UTF8String], [jsonEntityData UTF8String], [jsonEntityAcl UTF8String],
+        [entityType UTF8String], [jsonEntityData UTF8String],
+        [jsonEntityAcl UTF8String],
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -35,8 +37,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getEntityService()->updateEntity(
-        [entityId UTF8String], [entityType UTF8String], [jsonEntityData UTF8String],
-        [jsonEntityAcl UTF8String], version,
+        [entityId UTF8String], [entityType UTF8String],
+        [jsonEntityData UTF8String], [jsonEntityAcl UTF8String], version,
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -48,9 +50,11 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getEntityService()->updateSingleton(
-        [entityType UTF8String], [jsonEntityData UTF8String], [jsonEntityAcl UTF8String], version,
-        new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()
+        ->getEntityService()
+        ->updateSingleton([entityType UTF8String], [jsonEntityData UTF8String],
+                          [jsonEntityAcl UTF8String], version,
+                          new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)deleteEntity:(NSString *)entityId
@@ -60,7 +64,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getEntityService()->deleteEntity(
-        [entityId UTF8String], version, new BrainCloudCallback(completionBlock, ecb, cbObject));
+        [entityId UTF8String], version,
+        new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)deleteSingleton:(NSString *)entityType
@@ -70,7 +75,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getEntityService()->deleteEntity(
-        [entityType UTF8String], version, new BrainCloudCallback(completionBlock, ecb, cbObject));
+        [entityType UTF8String], version,
+        new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)getEntity:(NSString *)entityId
@@ -79,7 +85,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getEntityService()->getEntity(
-        [entityId UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+        [entityId UTF8String],
+        new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)getSingleton:(NSString *)entityType
@@ -88,7 +95,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getEntityService()->getSingleton(
-        [entityType UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+        [entityType UTF8String],
+        new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)getEntitiesByType:(NSString *)entityType
@@ -96,18 +104,24 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getEntityService()->getEntitiesByType(
-        [entityType UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()
+        ->getEntityService()
+        ->getEntitiesByType(
+            [entityType UTF8String],
+            new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)getSharedEntityForPlayerId:(NSString *)playerId
-                          entityId:(NSString*)entityId
+                          entityId:(NSString *)entityId
                    completionBlock:(BCCompletionBlock)completionBlock
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
                           cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getEntityService()->getSharedEntityForPlayerId(
-        [playerId UTF8String], [entityId UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()
+        ->getEntityService()
+        ->getSharedEntityForPlayerId(
+            [playerId UTF8String], [entityId UTF8String],
+            new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)getSharedEntitiesForPlayerId:(NSString *)playerId
@@ -115,8 +129,11 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 errorCompletionBlock:(BCErrorCompletionBlock)ecb
                             cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getEntityService()->getSharedEntitiesForPlayerId(
-        [playerId UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()
+        ->getEntityService()
+        ->getSharedEntitiesForPlayerId(
+            [playerId UTF8String],
+            new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)updateSharedEntity:(NSString *)entityId
@@ -128,26 +145,31 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getEntityService()->updateSharedEntity(
-        [entityId UTF8String], [targetPlayerId UTF8String], [entityType UTF8String],
-        [jsonEntityData UTF8String], version,
-        new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()
+        ->getEntityService()
+        ->updateSharedEntity(
+            [entityId UTF8String], [targetPlayerId UTF8String],
+            [entityType UTF8String], [jsonEntityData UTF8String], version,
+            new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)getList:(NSString *)whereJson
-        orderBy:(NSString *)orderByJson
-      maxReturn:(int64_t)maxReturn
-completionBlock:(BCCompletionBlock)completionBlock
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-       cbObject:(BCCallbackObject)cbObject
+                 orderBy:(NSString *)orderByJson
+               maxReturn:(int64_t)maxReturn
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
 {
     std::string wh, order;
 
-    if (whereJson != nil) wh = [whereJson UTF8String];
-    if (orderByJson != nil) order = [orderByJson UTF8String];
+    if (whereJson != nil)
+        wh = [whereJson UTF8String];
+    if (orderByJson != nil)
+        order = [orderByJson UTF8String];
 
     BrainCloud::BrainCloudClient::getInstance()->getEntityService()->getList(
-        wh, order, maxReturn, new BrainCloudCallback(completionBlock, ecb, cbObject));
+        wh, order, maxReturn,
+        new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)getListCount:(NSString *)whereJson
@@ -156,16 +178,18 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getEntityService()->getListCount(
-        [whereJson UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+        [whereJson UTF8String],
+        new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)getPage:(NSString *)context
-completionBlock:(BCCompletionBlock)completionBlock
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-       cbObject:(BCCallbackObject)cbObject
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getEntityService()->getPage(
-         [context UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+        [context UTF8String],
+        new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)getPageOffset:(NSString *)context
@@ -174,8 +198,26 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getEntityService()->getPageOffset(
-         [context UTF8String], pageOffset, new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()
+        ->getEntityService()
+        ->getPageOffset([context UTF8String], pageOffset,
+                        new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)incrementUserEntityData:(NSString *)entityId
+                 targetPlayerId:(NSString *)targetPlayerId
+                       jsonData:(NSString *)jsonData
+                     returnData:(BOOL)returnData
+                completionBlock:(BCCompletionBlock)completionBlock
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()
+        ->getEntityService()
+        ->incrementUserEntityData(
+            [entityId UTF8String], [targetPlayerId UTF8String],
+            TypeHelpers::NSStringToStdString(jsonData), returnData ? true : false,
+            new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 @end

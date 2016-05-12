@@ -209,6 +209,41 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
     [self waitForResult];
 }
 
+- (void)testIncrementUserEntityData
+{
+    [[m_client entityService] createEntity:entityType
+                            jsonEntityData:@"{\"test\": 123}"
+                             jsonEntityAcl:@""
+                           completionBlock:successBlock
+                      errorCompletionBlock:failureBlock
+                                  cbObject:nil];
+    [self waitForResult];
+
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:nil];
+
+    NSString *entityId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"entityId"];
+
+    [[m_client entityService] incrementUserEntityData:entityId
+                                       targetPlayerId:[TestFixtureBase getUser:@"UserA"].m_profileId
+                            jsonData:@"{\"test\": 123}"
+                                           returnData:YES
+                           completionBlock:successBlock
+                      errorCompletionBlock:failureBlock
+                                  cbObject:nil];
+    [self waitForResult];
+
+
+    [[m_client entityService] deleteEntity:entityId
+                                   version:-1
+                           completionBlock:successBlock
+                      errorCompletionBlock:failureBlock
+                                  cbObject:nil];
+    [self waitForResult];
+}
+
 /* Helper functions */
 - (NSString *)createDefaultEntity:(Access)access
 {

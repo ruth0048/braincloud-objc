@@ -160,13 +160,40 @@ NSString *testIndexedId = @"testIndexedId";
     [self waitForResult];
 }
 
+- (void)testIncrementGlobalEntityData
+{
+    [[m_client globalEntityService] createEntity:globalEntityType
+                                      timeToLive:10000
+                                   jsonEntityAcl:@""
+                                  jsonEntityData:@"{\"test\": 123}"
+                           completionBlock:successBlock
+                      errorCompletionBlock:failureBlock
+                                  cbObject:nil];
+    [self waitForResult];
+
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:nil];
+
+    NSString *entityId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"entityId"];
+
+    [[m_client globalEntityService] incrementGlobalEntityData:entityId
+                                             jsonData:@"{\"test\": 123}"
+                                           returnData:YES
+                                      completionBlock:successBlock
+                                 errorCompletionBlock:failureBlock
+                                             cbObject:nil];
+    [self waitForResult];
+}
+
 /* Helper functions */
 - (NSString *)createDefultEntity:(Access)access indexedId:(NSString *)indexedId
 {
     if (indexedId == nil)
     {
         [[m_client globalEntityService] createEntity:globalEntityType
-                                          timeToLive:1000
+                                          timeToLive:10000
                                        jsonEntityAcl:[ACL getAclJson:access]
                                       jsonEntityData:globalEntityData
                                      completionBlock:successBlock
@@ -177,7 +204,7 @@ NSString *testIndexedId = @"testIndexedId";
     {
         [[m_client globalEntityService] createEntityWithIndexedId:globalEntityType
                                                         indexedId:indexedId
-                                                       timeToLive:1000
+                                                       timeToLive:10000
                                                     jsonEntityAcl:[ACL getAclJson:access]
                                                    jsonEntityData:globalEntityData
                                                   completionBlock:successBlock

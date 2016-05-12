@@ -193,4 +193,17 @@
                                                    new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)getGroupSocialLeaderboard:(NSString *)leaderboardId
+                          groupId:(NSString *)groupId
+                  completionBlock:(BCCompletionBlock)cb
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()
+    ->getSocialLeaderboardService()
+    ->getGroupSocialLeaderboard([leaderboardId UTF8String],
+                                               [groupId UTF8String],
+                                               new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end
