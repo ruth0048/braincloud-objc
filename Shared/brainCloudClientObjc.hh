@@ -1,8 +1,8 @@
 //
-//  brainCloudClientObjc.h
+//  brainCloudClientObjc.hh
 //  brainCloudClientObjc
 //
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -27,6 +27,7 @@
 #import "BrainCloudGlobalApp.hh"
 #import "BrainCloudGlobalEntity.hh"
 #import "BrainCloudGlobalStatistics.hh"
+#import "BrainCloudGroup.hh"
 #import "BrainCloudIdentity.hh"
 #import "BrainCloudLeaderboard.hh"
 #import "BrainCloudMatchMaking.hh"
@@ -47,4 +48,3 @@
 #import "ServiceName.hh"
 #import "ServiceOperation.hh"
 #import "StatusCodes.hh"
-

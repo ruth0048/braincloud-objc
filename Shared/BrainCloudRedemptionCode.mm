@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-10-26.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #include "braincloud/BrainCloudClient.h"

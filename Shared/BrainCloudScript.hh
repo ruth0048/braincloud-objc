@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Ryan Homer on 29/4/2015.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -24,12 +24,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null //// this value depends on what the script returns
-* }
 * @see The API documentation site for more details on cloud code
 */
 - (void)runScript:(NSString *)scriptName
@@ -50,25 +44,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*  "status": 200,
-*  "data": {
-*      "result": {},
-*      "scriptName": "testScript",
-*      "jobId": "48266b95-d197-464d-bb6b-da70aa1e22a9",
-*      "runState": "Scheduled",
-*      "description": null,
-*      "gameId": "10170",
-*      "runEndTime": 0,
-*      "parameters": {
-*          "testParm1": 1
-*      },
-*      "runStartTime": 0,
-*      "scheduledStartTime": 1437576422378
-*      }
-* }
 * @see The API documentation site for more details on cloud code
 */
 - (void)scheduleRunScriptUTC:(NSString *)scriptName
@@ -90,25 +65,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*  "status": 200,
-*  "data": {
-*      "result": {},
-*      "scriptName": "testScript",
-*      "jobId": "48266b95-d197-464d-bb6b-da70aa1e22a9",
-*      "runState": "Scheduled",
-*      "description": null,
-*      "gameId": "10170",
-*      "runEndTime": 0,
-*      "parameters": {
-*          "testParm1": 1
-*      },
-*      "runStartTime": 0,
-*      "scheduledStartTime": 1437576422378
-*      }
-* }
 * @see The API documentation site for more details on cloud code
 */
 - (void)scheduleRunScriptMinutes:(NSString *)scriptName
@@ -130,17 +86,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*     "status": 200,
-*     "data": {
-*         "response": {
-*             "success": true
-*         },
-*         "success": true
-*     }
-* }
 * @see The API documentation site for more details on cloud code
 */
 - (void)runParentScript:(NSString *)scriptName

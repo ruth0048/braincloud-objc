@@ -17,15 +17,6 @@
  *
  * @param eventName Name of event
  * @param eventProperties Properties of event
- * @return json as follows
- *
- * {
- * "status": 200,
- * "data": {
- *   null
- *  }
- * }
- *
  */
 - (void)customPageEvent:(NSString *)eventName
     jsonEventProperties:(NSString *)jsonEventProperties
@@ -39,15 +30,6 @@
  *
  * @param eventName Name of event
  * @param eventProperties Properties of event
- * @return json as follows
- *
- * {
- * "status": 200,
- * "data": {
- *   null
- *  }
- * }
- *
  */
 - (void)customScreenEvent:(NSString *)eventName
       jsonEventProperties:(NSString *)jsonEventProperties
@@ -60,15 +42,6 @@
  *
  * @param eventName Name of event
  * @param eventProperties Properties of event
- * @return json as follows
- *
- * {
- * "status": 200,
- * "data": {
- *   null
- *  }
- * }
- *
  */
 - (void)customTrackEvent:(NSString *)eventName
      jsonEventProperties:(NSString *)jsonEventProperties

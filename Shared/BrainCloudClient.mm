@@ -2,7 +2,7 @@
 //  BrainCloudClient.mm
 //  brainCloudClientObjc
 //
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #import "BrainCloudClient.hh"

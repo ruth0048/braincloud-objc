@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-12.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -25,26 +25,6 @@
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 *
-* @return The JSON returned in the completion block is as follows:
-* {
-*    "status": 200,
-*    "data": {
-*     "playbackStreamId": "b8da4619-2ddc-4184-b654-cd11d12a3275",
-*     "gameId": "10000",
-*     "initiatingPlayerId": "198bcafcd-6e84-4c30-9f6e-3f9f016440c6",
-*     "targetPlayerId": "a6943c74-6655-4245-8b2b-13bb908d3f88",
-*     "status": "STARTED",
-*     "summary": {},
-*     "initialSharedData": {
-*      "entities": [],
-*      "statistics": {}
-*     },
-*     "events": [],
-*     "createdAt": 1425481184200,
-*     "updatedAt": 1425481184200
-*    }
-* }
-*
 */
 - (void)startStream:(NSString *)targetPlayerId
        includeSharedData:(bool)includeSharedData
@@ -62,27 +42,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*    "status": 200,
-*    "data": {
-*     "playbackStreamId": "b8da4619-2ddc-4184-b654-cd11d12a3275",
-*     "gameId": "10000",
-*     "initiatingPlayerId": "198bcafcd-6e84-4c30-9f6e-3f9f016440c6",
-*     "targetPlayerId": "a6943c74-6655-4245-8b2b-13bb908d3f88",
-*     "status": "COMPLETE",
-*     "summary": { total : 5 },
-*     "initialSharedData": {
-*      "entities": [ {entry : 3}, {entry : 2 }],
-*      "statistics": {}
-*     },
-*     "events": [],
-*     "createdAt": 1425481184200,
-*     "updatedAt": 1425481184200
-*    }
-*   }
-*
 */
 - (void)readStream:(NSString *)streamId
          completionBlock:(BCCompletionBlock)cb
@@ -99,13 +58,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*    "status": 200,
-*    "data": null
-* }
-*
 */
 - (void)endStream:(NSString *)streamId
          completionBlock:(BCCompletionBlock)cb
@@ -122,13 +74,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*    "status": 200,
-*    "data": null
-* }
-*
 */
 - (void)deleteStream:(NSString *)streamId
      completionBlock:(BCCompletionBlock)cb
@@ -147,13 +92,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*    "status": 200,
-*    "data": null
-* }
-*
 */
 - (void)addEvent:(NSString *)streamId
            jsonEventData:(NSString *)eventData
@@ -171,28 +109,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param initiatingPlayerId The player that started the stream
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*  "status": 200,
-*  "data": {
-*   "streams": [
-*    {
-*     "playbackStreamId": "b8da4619-2ddc-4184-b654-cd11d12a3275",
-*     "gameId": "10000",
-*     "initiatingPlayerId": "198bcadb-6e84-4c30-9f6e-3f9f016440c6",
-*     "targetPlayerId": "a6943c74-6636-4245-8b2b-13bb908d3f88",
-*     "status": "PROGRESS",
-*     "summary": {
-*      "total": 5
-*     },
-*     "createdAt": 1425481184200,
-*     "updatedAt": 1425484485139
-*    }
-*   ]
-*  }
-* }         
+* @param cbObject User object sent to the completion blocks       
 */
 - (void)getStreamSummariesForInitiatingPlayer:(NSString *)playerId
                               completionBlock:(BCCompletionBlock)cb
@@ -208,28 +125,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param targetPlayerId The player that started the stream
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*  "status": 200,
-*  "data": {
-*   "streams": [
-*    {
-*     "playbackStreamId": "b8da4619-2ddc-4184-b654-cd11d12a3275",
-*     "gameId": "10000",
-*     "initiatingPlayerId": "198bcadb-6e84-4c30-9f6e-3f9f016440c6",
-*     "targetPlayerId": "a6943c74-6636-4245-8b2b-13bb908d3f88",
-*     "status": "PROGRESS",
-*     "summary": {
-*      "total": 5
-*     },
-*     "createdAt": 1425481184200,
-*     "updatedAt": 1425484485139
-*    }
-*   ]
-*  }
-* }         
+* @param cbObject User object sent to the completion blocks   
 */
 - (void)getStreamSummariesForTargetPlayer:(NSString *)playerId
                           completionBlock:(BCCompletionBlock)cb

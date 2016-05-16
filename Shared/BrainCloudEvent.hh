@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-12.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -34,15 +34,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block includes the server generated
-* event id and is as follows:
-* {
-*   "status":200,
-*   "data":{
-*     "eventId":3824
-*   }
-* }
 */
 - (void)sendEvent:(NSString *)toPlayerId
                eventType:(NSString *)eventType
@@ -64,12 +55,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)updateIncomingEventData:(NSString *)fromPlayerId
                         eventId:(uint64_t)eventId
@@ -89,12 +74,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)deleteIncomingEvent:(NSString *)fromPlayerId
                     eventId:(uint64_t)eventId
@@ -116,12 +95,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)deleteSentEvent:(NSString *)toPlayerId
                 eventId:(uint64_t)eventId
@@ -140,36 +113,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*     "sent_events": [
-*         {
-*             "gameId": "10045",
-*             "eventData": {
-*                 "someMapAttribute": "someValue"
-*             },
-*             "createdAt": 1440528872855,
-*             "eventId": 1847,
-*             "fromPlayerId": "f89233ba-aeeb-4be2-b267-89781c2f0a12",
-*             "toPlayerId": "78a2a76b-1158-4a5a-b1dc-aa49e37997e8",
-*             "eventType": "type1"
-*         }
-*     ],
-*     "incoming_events": [
-*         {
-*             "gameId": "10045",
-*             "eventData": {
-*                 "someMapAttribute": "XXX"
-*             },
-*             "createdAt": 1440528981281,
-*             "eventId": 11981,
-*             "fromPlayerId": "36373298-b8bb-4b5c-917a-1c889fdae094",
-*             "toPlayerId": "f89233ba-aeeb-4be2-b267-89781c2f0a12",
-*             "eventType": "type1"
-*         }
-*     ]
-* }
 */
 - (void)getEvents:(bool)includeIncomingEvents
     includeSentEvents:(bool)includeSentEvents

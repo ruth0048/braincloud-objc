@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-10.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -23,17 +23,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the callback
-* {
-*   "status":200,
-*   "data": {
-*     "playerId" : "17c7ee96-1b73-43d0-8817-cba1953bbf57",
-*     "playerName" : "Donald Trump",
-*     "email" : "donald@trumpcastle.com",
-*     "playerSummaryData" : {},
-*   }
-* }
 */
 - (void)getFriendProfileInfoForExternalId:(NSString *)externalId
                         authenicationType:(NSString *)authenticationType
@@ -49,14 +38,6 @@
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the callback
- * {
- *    "status": 200,
- *    "data": {
- *        "externalId": "19e1c0cf-9a2d-4d5c-9a71-1b0f6asdfb4b"
- *    }
- * }
  */
 - (void) getExternalIdForProfileId:(NSString *)profileId
                 authenticationType:(NSString *)authenticationType
@@ -75,8 +56,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block
 */
 - (void)readFriendEntity:(NSString *)entityId
                 friendId:(NSString *)friendId
@@ -94,8 +73,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block
 */
 - (void)readFriendsEntities:(NSString *)entityType
             completionBlock:(BCCompletionBlock)cb
@@ -151,21 +128,6 @@ DEPRECATED_MSG_ATTRIBUTE("Use version in BrainCloudPlayerState instead. Removal 
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*     "status": 200,
-*     "data": {
-*         "matches": [
-*         {
-*             "profileId": "63d1fdbd-2971-4791-a248-f8cda1a79bba",
-*             "playerSummaryData": null,
-*             "profileName": "ABC"
-*         }
-*         ],
-*         "matchedCount": 1
-*     }
-* }
 */
 - (void)findPlayerByName:(NSString *)searchText
               maxResults:(int)maxResults
@@ -181,34 +143,6 @@ DEPRECATED_MSG_ATTRIBUTE("Use version in BrainCloudPlayerState instead. Removal 
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return Object containing profile information.
- *  The JSON returned in the callback
- * {
- *   "status":200,
- *   "data": {
- *     "matchedCount" : 20,
- *     "matches" : [{
- *       "profileId" : "17c7ee96-1b73-43d0-8817-cba1953bbf57",
- *       "profileName" : "Donald Trump",
- *       "playerSummaryData" : {}
- *     },{
- *       "profileId" : "19d7ee96-2x73-43d0-8817-cba1953bbf57",
- *       "profileName" : "Donald Duck",
- *       "playerSummaryData" : {}
- *     }
- *     ]
- *   }
- * }
- *
- * Alternatively, if there are too many results:
- * {
- *   "status":200,
- *   "data": {
- *     "matchedCount" : 2059,
- *     "message" : "Too many results to return."
- *   }
- * }
  */
 - (void)findPlayerByUniversalId:(NSString *)searchText
                      maxResults:(int)maxResults
@@ -227,79 +161,6 @@ DEPRECATED_MSG_ATTRIBUTE("Use version in BrainCloudPlayerState instead. Removal 
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the callback is as follows:
- * Example 1: for friendPlatform = All
- * {
- *     "status": 200,
- *     "data": {
- *         "friends": [{
- *             "externalData": {
- *                 "Facebook": {
- *                     "pictureUrl": "https://scontent.xx.fbcdn.net/hprofile-xfp1/v/t1.0-1/p50x50/XXX.jpg?oh=YYY&oe=ZZZ",
- *                     "name": "scientist at large",
- *                     "externalId": "100003668521730"
- *
- *                 },
- *                 "brainCloud": {}
- *             },
- *             "playerId": "1aa3428c-5877-4624-a909-f2b1af931f00",
- *             "name": "Mr. Peabody",
- *             "summaryFriendData": {
- *                 "LEVEL": -4
- *             }
- *         }, {
- *             "externalData": {
- *                 "Facebook": {
- *                     "pictureUrl": "https://scontent.xx.fbcdn.net/hprofile-xfa1/v/t1.0-1/c0.11.50.50/p50x50/3AAA.jpg?oh=BBBa&oe=CCC",
- *                     "name": "Aquaman",
- *                     "externalId": "100003509724516"
- *                 }
- *             },
- *             "playerId": "1598c5b6-1b09-431b-96bc-9c2c928cad3b",
- *             "name": null,
- *             "summaryFriendData": {
- *                 "LEVEL": 1
- *             }
- *         }],
- *         "server_time": 1458224807855
- *     }
- * }
- *
- * Example 2: for friendPlatform = Facebook
- * {
- *     "status": 200,
- *     "data": {
- *         "friends": [{
- *             "externalData": {
- *                 "Facebook": {
- *                     "pictureUrl": "https://scontent.xx.fbcdn.net/hprofile-xfp1/v/t1.0-1/p50x50/XXX.jpg?oh=YYY&oe=ZZZ",
- *                     "name": "scientist at large",
- *                     "externalId": "100003668521730"
- *                 }
- *             },
- *             "playerId": "1aa3428c-5877-4624-a909-f2b1af931f00",
- *             "name": "Mr. Peabody",
- *             "summaryFriendData": {
- *                 "LEVEL": -4
- *             }
- *         }, {
- *             "externalData": {
- *                 "Facebook": {
- *                     "pictureUrl": "https://scontent.xx.fbcdn.net/hprofile-xfa1/v/t1.0-1/c0.11.50.50/p50x50/3AAA.jpg?oh=BBBa&oe=CCC",
- *                     "name": "Aquaman",
- *                     "externalId": "100003509724516"
- *                 }
- *             },
- *             "playerId": "1598c5b6-1b09-431b-96bc-9c2c928cad3b",
- *             "name": null,
- *             "summaryFriendData": {
- *                 "LEVEL": 1
- *             }
- *         }],
- *         "server_time": 1458224807855
- *     }
- * }
  */
 - (void)listFriends:(FriendPlatformObjc *)friendPlatform
       includeSummaryData:(bool)includeSummaryData
@@ -317,12 +178,6 @@ DEPRECATED_MSG_ATTRIBUTE("Use version in BrainCloudPlayerState instead. Removal 
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the callback is as follows:
- * {
- *     "status": 200,
- *     "data": null
- * }
  */
 - (void)addFriends:(NSArray *)profileIds
          completionBlock:(BCCompletionBlock)cb
@@ -339,12 +194,6 @@ DEPRECATED_MSG_ATTRIBUTE("Use version in BrainCloudPlayerState instead. Removal 
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the callback is as follows:
- * {
- *     "status": 200,
- *     "data": null
- * }
  */
 - (void)removeFriends:(NSArray *)profileIds
       completionBlock:(BCCompletionBlock)cb

@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-06.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -28,12 +28,6 @@
 * @param errorCompletionBlock Block to call on return of unsuccessful server
 * response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)createEntity:(NSString *)entityType
       jsonEntityData:(NSString *)jsonEntityData
@@ -63,12 +57,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param errorCompletionBlock Block to call on return of unsuccessful server
 * response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)updateEntity:(NSString *)entityId
           entityType:(NSString *)entityType
@@ -101,22 +89,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param errorCompletionBlock Block to call on return of unsuccessful server
 * response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*    "data" :   {
-*         "entityId": "113db68a-48ad-4fc9-9f44-5fd36fc6445f",
-*         "entityType": "settings",
-*         "version": 1,
-*         "data": {
-*           "name": "john",
-*           "age": 30
-*         },
-*         "createdAt": 1395943044322,
-*         "updatedAt": 1395943044322
-*       },
-* }
 */
 - (void)updateSingleton:(NSString *)entityType
          jsonEntityData:(NSString *)jsonEntityData
@@ -140,14 +112,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param errorCompletionBlock Block to call on return of unsuccessful server
 * response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows. Note that
-* status 200 is returned
-* whether or not the given entity was found on the server.
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)deleteEntity:(NSString *)entityId
              version:(int64_t)version
@@ -169,14 +133,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param errorCompletionBlock Block to call on return of unsuccessful server
 * response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows. Note that
-* status 200 is returned
-* whether or not the given entity was found on the server.
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)deleteSingleton:(NSString *)entityType
                 version:(int64_t)version
@@ -212,22 +168,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param errorCompletionBlock Block to call on return of unsuccessful server
  * response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the completion block is as follows:
- * {
- *   "status":200,
- *    "data" :   {
- *         "entityId": "113db68a-48ad-4fc9-9f44-5fd36fc6445f",
- *         "entityType": "settings",
- *         "version": 1,
- *         "data": {
- *           "name": "john",
- *           "age": 30
- *         },
- *         "createdAt": 1395943044322,
- *         "updatedAt": 1395943044322
- *       },
- * }
  */
 - (void)getSingleton:(NSString *)entityType
      completionBlock:(BCCompletionBlock)completionBlock
@@ -243,42 +183,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param errorCompletionBlock Block to call on return of unsuccessful server
 * response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON including the entities matching the given type
-* {
-*   "status": 200,
-*   "data": {
-*     "entities": [
-*       {
-*         "entityId": "113db68a-48ad-4fc9-9f44-5fd36fc6445f",
-*         "entityType": "person",
-*         "version": 1,
-*         "data": {
-*           "name": "john",
-*           "age": 30
-*         },
-*         "acl": {
-*           "other": 0
-*         },
-*         "createdAt": 1395943044322,
-*         "updatedAt": 1395943044322
-*       },
-*       {
-*         "entityId": "255db68a-48ad-4fc9-9f44-5fd36fc6445f",
-*         "entityType": "person",
-*         "version": 1,
-*         "data": {
-*           "name": "mary",
-*           "age": 25
-*         },
-*         "acl": {
-*           "other": 0
-*         },
-*         "createdAt": 1395943044322,
-*         "updatedAt": 1395943044322
-*       }
-*     ]
-*   }
 */
 - (void)getEntitiesByType:(NSString *)entityType
           completionBlock:(BCCompletionBlock)completionBlock
@@ -299,25 +203,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param errorCompletionBlock Block to call on return of unsuccessful server
  * response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the callback is as follows:
- * {
- *     "status": 200,
- *     "data": {
- *         "entityId": "544db68a-48ad-4fc9-9f44-5fd36fc6445f",
- *         "entityType": "publicInfo",
- *         "version": 1,
- *         "data": {
- *             "name": "john",
- *             "age": 30
- *         },
- *         "acl": {
- *             "other": 1
- *         },
- *         "createdAt": 1395943044322,
- *         "updatedAt": 1395943044322
- *     }
- * }
  */
 - (void)getSharedEntityForPlayerId:(NSString *)playerId
                           entityId:(NSString *)entityId
@@ -338,29 +223,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param errorCompletionBlock Block to call on return of unsuccessful server
 * response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON including the shared entities for the given player id
-* {
-*   "status": 200,
-*   "data": {
-*     "entities": [
-*       {
-*         "entityId": "544db68a-48ad-4fc9-9f44-5fd36fc6445f",
-*         "entityType": "publicInfo",
-*         "version": 1,
-*         "data": {
-*           "name": "john",
-*           "age": 30
-*         },
-*         "acl": {
-*           "other": 1
-*         },
-*         "createdAt": 1395943044322,
-*         "updatedAt": 1395943044322
-*       }
-*     ]
-*   }
-* }
 */
 - (void)getSharedEntitiesForPlayerId:(NSString *)playerId
                      completionBlock:(BCCompletionBlock)completionBlock
@@ -383,12 +245,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param errorCompletionBlock Block to call on return of unsuccessful server
 * response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)updateSharedEntity:(NSString *)entityId
             targetPlayerId:(NSString *)targetPlayerId
@@ -412,40 +268,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param errorCompletionBlock Block to call on return of unsuccessful server
  * response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the callback is as follows:
- * {
- *     "status": 200,
- *     "data": {
- *         "entities": [{
- *             "entityId": "113db68a-48ad-4fc9-9f44-5fd36fc6445f",
- *             "entityType": "person",
- *             "version": 1,
- *             "data": {
- *                 "name": "john",
- *                 "age": 30
- *             },
- *             "acl": {
- *                 "other": 0
- *             },
- *             "createdAt": 1395943044322,
- *             "updatedAt": 1395943044322
- *         }, {
- *             "entityId": "hfd6368a-48ad-4fc9-9f44-5fd36fc6445f",
- *             "entityType": "person",
- *             "version": 3,
- *             "data": {
- *                 "name": "jane",
- *                 "age": 22
- *             },
- *             "acl": {
- *                 "other": 0
- *             },
- *             "createdAt": 1395943044322,
- *             "updatedAt": 1395943044322
- *         }]
- *     }
- * }
  */
 - (void)getList:(NSString *)whereJson
                  orderBy:(NSString *)orderByJson
@@ -487,14 +309,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param errorCompletionBlock Block to call on return of unsuccessful server
 * response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": {
-*      "entityListCount" : 5
-*   }
-* }
 */
 - (void)getListCount:(NSString *)whereJson
      completionBlock:(BCCompletionBlock)completionBlock
@@ -515,39 +329,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param errorCompletionBlock Block to call on return of unsuccessful server
  * response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the completion block is as follows:
- * {
- *     "status": 200,
- *     "data": {
- *         "results": {
- *             "moreBefore": false,
- *             "count": 200,
- *             "items": [
- *                 {
- *                     "entityId": "00edfd8e-5028-45d5-95d4-b1869cf2afaa",
- *                     "entityType": "testEntity",
- *                     "version": 1,
- *                     "data": {
- *                         "testName": "Test Name 01"
- *                     },
- *                     "acl": {
- *                         "other": 2
- *                     },
- *                     "createdAt": 1437505537168,
- *                     "updatedAt": 1437505537168
- *              }],
- *              "page": 1,
- *              "moreAfter": true
- *         },
- *         "context":
- * "eyJzZWFyY2hDcml0ZXJpYSI6eyJlbnRpdHlUeXBlIjoiYnVpbGRpbmciLCJnYW
- *              1lSWQiOiIxMDI4NyIsIiRvciI6W3sib3duZXJJZCI6Ijk5MjM4ZmFiLTkxYTItNDdiYy1
- *              iMDExLWJjMThhN2IyOWY3NiJ9LHsiYWNsLm90aGVyIjp7IiRuZSI6MH19XX0sInNvcnRD
- *              cml0ZXJpYSI6eyJjcmVhdGVkQXQiOjEsInVwZGF0ZWRBdCI6LTF9LCJwYWdpbmF0aW9uI
- *              jp7InJvd3NQZXJQYWdlIjo1MCwicGFnZU51bWJlciI6NH0sIm9wdGlvbnMiOm51bGx9"
- *     }
- * }
  */
 - (void)getPage:(NSString *)context
          completionBlock:(BCCompletionBlock)completionBlock
@@ -570,39 +351,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param errorCompletionBlock Block to call on return of unsuccessful server
  * response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the completion block is as follows:
- * {
- *     "status": 200,
- *     "data": {
- *         "results": {
- *             "moreBefore": true,
- *             "count": 200,
- *             "items": [
- *                 {
- *                     "entityId": "00edfd8e-5028-45d5-95d4-b1869cf2afaa",
- *                     "entityType": "testGlobalEntity",
- *                     "version": 1,
- *                     "data": {
- *                         "testName": "Test Name 01"
- *                     },
- *                     "acl": {
- *                         "other": 2
- *                     },
- *                     "createdAt": 1437505537168,
- *                     "updatedAt": 1437505537168
- *              }],
- *              "page": 2,
- *              "moreAfter": true
- *         },
- *         "context":
- * "eyJzZWFyY2hDcml0ZXJpYSI6eyJlbnRpdHlUeXBlIjoiYnVpbGRpbmciLCJnYW
- *              1lSWQiOiIxMDI4NyIsIiRvciI6W3sib3duZXJJZCI6Ijk5MjM4ZmFiLTkxYTItNDdiYy1
- *              iMDExLWJjMThhN2IyOWY3NiJ9LHsiYWNsLm90aGVyIjp7IiRuZSI6MH19XX0sInNvcnRD
- *              cml0ZXJpYSI6eyJjcmVhdGVkQXQiOjEsInVwZGF0ZWRBdCI6LTF9LCJwYWdpbmF0aW9uI
- *              jp7InJvd3NQZXJQYWdlIjo1MCwicGFnZU51bWJlciI6NH0sIm9wdGlvbnMiOm51bGx9"
- *     }
- * }
  */
 - (void)getPageOffset:(NSString *)context
            pageOffset:(int)pageOffset

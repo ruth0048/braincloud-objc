@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-06.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -22,21 +22,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON describing the global statistics:
-* {
-*   "status":200,
-*   "data":{
-*     "statisticsExceptions":{
-*     },
-*     "statistics":{
-*       "Level02_TimesBeaten":11,
-*       "Level01_TimesBeaten":1,
-*       "GameLogins":376,
-*       "PlayersWhoLikePirateClothing":12
-*     }
-*   }
-* }
 */
 - (void)readAllGlobalStats:(BCCompletionBlock)completionBlock
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -52,19 +37,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON with the subset of global statistics:
-* {
-*   "status":200,
-*   "data":{
-*     "statisticsExceptions":{
-*     },
-*     "statistics":{
-*       "Level02_TimesBeaten":11,
-*       "Level01_TimesBeaten":1
-*     }
-*   }
-* }
 */
 - (void)readGlobalStatsSubset:(NSArray *)globalStats
               completionBlock:(BCCompletionBlock)completionBlock
@@ -119,18 +91,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON describing the new value of the statistics incremented (similar to ReadAll):
-* {
-*   "status":200,
-*   "data":{
-*     "statisticsExceptions":{
-*     },
-*     "statistics":{
-*       "Level02_TimesBeaten":11,
-*     }
-*   }
-* }
 */
 - (void)incrementGlobalStats:(NSString *)jsonData
              completionBlock:(BCCompletionBlock)completionBlock

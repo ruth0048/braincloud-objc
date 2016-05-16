@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-12.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -31,60 +31,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": {
-*   "experiencePoints": 25,
-*   "achievementsGranted": [
-*     "ach01"
-*    ],
-*    "currencyAwarded": {
-*      "gems": {
-*        "purchased": 0,
-*        "balance": 10,
-*        "consumed": 0,
-*        "awarded": 10
-*      },
-*      "gold": {
-*        "purchased": 0,
-*        "balance": 2000,
-*        "consumed": 0,
-*        "awarded": 2000
-*      }
-*    },
-*    "totalPlayerStatistics": {
-*      "minions": 100,
-*      "wood": 55,
-*      "iron": 5
-*    },
-*    "experienceLevel": 2,
-*    "experienceLevelsAwarded": [
-*      2
-*    ],
-*    "playerStatisticsAwarded": {
-*      "minions": 100,
-*      "wood": 5,
-*      "iron": 5
-*    },
-*    "experiencePointsAwarded": 15,
-*    "currency": {
-*      "gems": {
-*        "purchased": 0,
-*        "balance": 20,
-*        "consumed": 0,
-*        "awarded": 20
-*      },
-*      "gold": {
-*        "purchased": 0,
-*        "balance": 3000,
-*        "consumed": 0,
-*        "awarded": 3000
-*      }
-*    }
-*  }
-* }
 */
 - (void)triggerPlayerStatisticsEvent:(NSString *)eventName
                      eventMultiplier:(int)multiplier

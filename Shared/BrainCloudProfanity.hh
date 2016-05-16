@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-04.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -27,15 +27,6 @@
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned is as follows:
- * {
- *     "status" : 200,
- *     "data" :
- *     {
- *          "foundCount": "1"
- *     }
- * }
  *
  * Significant error codes:
  *
@@ -70,16 +61,6 @@ cbObject:(BCCallbackObject)cbObject;
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
  *
- * @return The JSON returned is as follows:
- * {
- *     "status" : 200,
- *     "data" :
- *     {
- *          "foundCount": "2",
- *          "replaceString: "****** hello ****"
- *     }
- * }
- *
  * Significant error codes:
  *
  * 40421 - WebPurify not configured
@@ -112,16 +93,6 @@ cbObject:(BCCallbackObject)cbObject;
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned is as follows:
- * {
- *     "status" : 200,
- *     "data" :
- *     {
- *          "foundCount": "2",
- *          "foundList" : [ "bubby", "poop" ]
- *     }
- * }
  *
  * Significant error codes:
  *

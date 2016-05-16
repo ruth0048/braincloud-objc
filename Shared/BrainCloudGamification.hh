@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-12.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -22,102 +22,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-*
-* {
-*  "status": 200,
-*  "data": {
-*   "milestones": [
-*    {
-*     "id": "milestone02",
-*     "category": "general",
-*     "title": "Level 2 milestone",
-*     "status": "SATISFIED",
-*     "description": "Awarded when you get to level 2",
-*     "gameId": "10068",
-*     "rewards": {
-*      "currency": {
-*       "gold": 1000
-*      }
-*     },
-*     "extraData": null,
-*     "questId": null,
-*     "milestoneId": "milestone02"
-*    },
-*    {
-*     "id": "milestone01",
-*     "thresholds": {
-*      "playerStatistics": {
-*       "experiencePoints": 0
-*      }
-*     },
-*     "category": "general",
-*     "title": "Level 1 milestone",
-*     "status": "SATISFIED",
-*     "description": "Awarded when you get to player level 1",
-*     "gameId": "10068",
-*     "rewards": {
-*      "currency": {
-*       "gems": 10
-*      }
-*     },
-*     "extraData": null,
-*     "questId": null,
-*     "milestoneId": "milestone01"
-*    }
-*   ],
-*   "achievements": [
-*    {
-*     "fbEnabled": true,
-*     "imageUrl": null,
-*     "status": "NOT_AWARDED",
-*     "gameId": "10068",
-*     "steamEnabled": false,
-*     "extraData": null,
-*     "achievementId": "ach01",
-*     "invisibleUntilEarned": false,
-*     "steamAchievementId": "",
-*     "id": "ach01",
-*     "appleEnabled": false,
-*     "title": "Finish Tutorial",
-*     "fbGamePoints": 10,
-*     "description": "Achievement awarded when you finish the tutorial",
-*     "appleAchievementId": ""
-*    },
-*    {
-*     "fbEnabled": true,
-*     "imageUrl": null,
-*     "status": "NOT_AWARDED",
-*     "gameId": "10068",
-*     "steamEnabled": false,
-*     "extraData": null,
-*     "achievementId": "ach02",
-*     "invisibleUntilEarned": false,
-*     "steamAchievementId": "",
-*     "id": "ach02",
-*     "appleEnabled": false,
-*     "title": "Level up",
-*     "fbGamePoints": 10,
-*     "description": "Awarded when you level up for the first time!",
-*     "appleAchievementId": ""
-*    }
-*   ],
-*   "quests": [],
-*   "xp": {
-*    "xpCapped": false,
-*    "experiencePoints": 0,
-*    "xpLevel": {
-*     "gameId": "10068",
-*     "level": 0,
-*     "statusTitle": "Lesser",
-*     "experience": 0,
-*     "fbAction": ""
-*    },
-*    "experienceLevel": 0
-*   }
-*  }
-* }
 */
 - (void)readAllGamification:(bool)includeMetaData
             completionBlock:(BCCompletionBlock)cb
@@ -133,57 +37,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": {
-*     "milestones": [
-*       {
-*         "gameId": "com.bitheads.unityexample",
-*         "milestoneId": "milestone01",
-*         "playerStatistics": {
-*           "experiencePoints": null,
-*           "experienceLevel": null,
-*           "empty": true,
-*           "statistics": {}
-*         },
-*         "globalStatistics": {
-*           "statistics": {},
-*           "empty": true
-*         },
-*         "playerStatisticsUnlockThresholds": {
-*           "experiencePoints": null,
-*           "experienceLevel": null,
-*           "empty": true,
-*           "statistics": {}
-*         },
-*         "globalStatisticsUnlockThresholds": {
-*           "statistics": {},
-*           "empty": true
-*         },
-*         "reward": {
-*           "experiencePoints": null,
-*           "playerStatistics": null,
-*           "currencies": {
-*             "gems": 10
-*           },
-*           "globalGameStatistics": null,
-*           "achievement": null
-*         },
-*         "title": "Level 1 milestone",
-*         "extraData": null,
-*         "description": "Awarded when you get to player level 1",
-*         "category": "general",
-*         "key": {
-*           "gameId": "com.bitheads.unityexample",
-*           "milestoneId": "milestone01",
-*           "primaryKey": true
-*         }
-*       }
-*     ]
-*   }
-* }
 */
 - (void)readMilestones:(bool)includeMetaData
        completionBlock:(BCCompletionBlock)cb
@@ -199,47 +52,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": {
-*     "achievements": [
-*       {
-*         "gameId": "com.bitheads.unityexample",
-*         "achievementId": "ach01",
-*         "facebookUrl": "http://someurl.com",
-*         "title": "Finish Tutorial",
-*         "imageUrl": "http://someurl.com",
-*         "facebookGamePoints": 10,
-*         "extraData": null,
-*         "invisibleUntilEarned": null,
-*         "description": "Achievement awarded when you finish the tutorial",
-*         "key": {
-*           "gameId": "com.bitheads.unityexample",
-*           "achievementId": "ach01",
-*           "primaryKey": true
-*         }
-*       },
-*       {
-*         "gameId": "com.bitheads.unityexample",
-*         "achievementId": "ach02",
-*         "facebookUrl": "http://someurl.com",
-*         "title": "Level up",
-*         "imageUrl": "http://someurl.com",
-*         "facebookGamePoints": 10,
-*         "extraData": null,
-*         "invisibleUntilEarned": null,
-*         "description": "Awarded when you level up for the first time.",
-*         "key": {
-*           "gameId": "com.bitheads.unityexample",
-*           "achievementId": "ach02",
-*           "primaryKey": true
-*         }
-*       }
-*     ]
-*   }
-* }
 */
 - (void)readAchievements:(bool)includeMetaData
          completionBlock:(BCCompletionBlock)cb
@@ -256,32 +68,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*  "status": 200,
-*  "data": {
-*   "xp_levels": [
-*    {
-*     "level": 1,
-*     "statusTitle": "Peon",
-*     "experience": 0,
-*     "fbAction": ""
-*    },
-*    {
-*     "level": 2,
-*     "statusTitle": "Small Fry",
-*     "experience": 1000,
-*     "fbAction": "",
-*     "reward": {
-*      "currency": {
-*       "gold": 500
-*      }
-*     }
-*    }
-*   ]
-*  }
-* }
 */
 - (void)readXpLevelsMetaData:(BCCompletionBlock)cb
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -296,14 +82,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-*  {
-*   "status": 200,
-*   "data": {
-*     "achievements": []
-*   }
-* }
 */
 - (void)readAchievedAchievements:(bool)includeMetaData
                  completionBlock:(BCCompletionBlock)cb
@@ -319,14 +97,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": {
-*     "milestones": []
-*   }
-* }
 */
 - (void)readCompletedMilestones:(bool)includeMetaData
                 completionBlock:(BCCompletionBlock)cb
@@ -342,14 +112,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-*  {
-*   "status": 200,
-*   "data": {
-*     "milestones": []
-*   }
-* }
 */
 - (void)readInProgressMilestones:(bool)includeMetaData
                  completionBlock:(BCCompletionBlock)cb
@@ -366,14 +128,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":{
-*     "milestones": []
-*   }
-* }
 */
 - (void)readMilestonesByCategory:(NSString *)category
                  includeMetaData:(bool)includeMetaData
@@ -393,12 +147,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)awardAchievements:(NSArray*) achievementIds
           completionBlock:(BCCompletionBlock)cb
@@ -415,12 +163,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows.
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)resetMilestones:(NSArray *)milestoneIds
         completionBlock:(BCCompletionBlock)cb
@@ -436,20 +178,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
-*
-*
-*  {
-*   "status": 200,
-*   "data": {
-*     "quests": []
-*   }
-* }
 */
 - (void)readQuests:(bool)includeMetaData
          completionBlock:(BCCompletionBlock)cb
@@ -465,14 +193,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-*  {
-*   "status": 200,
-*   "data": {
-*     "quests": []
-*   }
-* }
 */
 - (void)readCompletedQuests:(bool)includeMetaData
             completionBlock:(BCCompletionBlock)cb
@@ -488,14 +208,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-*  {
-*   "status": 200,
-*   "data": {
-*     "quests": []
-*   }
-* }
 */
 - (void)readInProgressQuests:(bool)includeMetaData
              completionBlock:(BCCompletionBlock)cb
@@ -511,14 +223,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-*  {
-*   "status": 200,
-*   "data": {
-*     "quests": []
-*   }
-* }
 */
 - (void)readNotStartedQuests:(bool)includeMetaData
              completionBlock:(BCCompletionBlock)cb
@@ -534,14 +238,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-*  {
-*   "status": 200,
-*   "data": {
-*     "quests": []
-*   }
-* }
 */
 - (void)readQuestsWithStatus:(bool)includeMetaData
              completionBlock:(BCCompletionBlock)cb
@@ -557,14 +253,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-*  {
-*   "status": 200,
-*   "data": {
-*     "quests": []
-*   }
-* }
 */
 - (void)readQuestsWithBasicPercentage:(bool)includeMetaData
                       completionBlock:(BCCompletionBlock)cb
@@ -580,14 +268,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-*  {
-*   "status": 200,
-*   "data": {
-*     "quests": []
-*   }
-* }
 */
 - (void)readQuestsWithComplexPercentage:(bool)includeMetaData
                         completionBlock:(BCCompletionBlock)cb
@@ -604,14 +284,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data": {
-*     "quests": []
-*   }
-* }
 */
 - (void)readQuestsByCategory:(NSString *)category
              includeMetaData:(bool)includeMetaData

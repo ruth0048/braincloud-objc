@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-06.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -26,33 +26,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":
-*   {
-*      gameId : "game",
-*      entityId : "hucfshugvgvfhug",
-*      ownerId : "ubfcbvfbsdvbb",
-*      entityType : "",
-*      entityIndexedId : "",
-*      version : 1,
-*      timeToLive: 0,
-*      expiresAt : 9947395735758975,
-*      data :
-*      {
-*          field : "value"
-*      },
-*      acl :
-*      {
-*          other, 1
-*      },
-*      createdAt : 74889479874,
-*      updatedAt : 73847474897487
-*
-*   }
-* }
 */
 - (void)createEntity:(NSString *)entityType
           timeToLive:(int64_t)timeToLive
@@ -76,33 +49,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":
-*   {
-*      gameId : "game",
-*      entityId : "hucfshugvgvfhug",
-*      ownerId : "ubfcbvfbsdvbb",
-*      entityType : "",
-*      entityIndexedId : "hhjdyjghjd",
-*      version : 1,
-*      timeToLive: 0,
-*      expiresAt : 9947395735758975,
-*      data :
-*      {
-*          field : "value"
-*      },
-*      acl :
-*      {
-*          other, 1
-*      },
-*      createdAt : 74889479874,
-*      updatedAt : 73847474897487
-*
-*   }
-* }
 */
 - (void)createEntityWithIndexedId:(NSString *)entityType
                         indexedId:(NSString *)indexedId
@@ -125,33 +71,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":
-*   {
-*      gameId : "game",
-*      entityId : "hucfshugvgvfhug",
-*      ownerId : "ubfcbvfbsdvbb",
-*      entityType : "",
-*      entityIndexedId : "",
-*      version : 1,
-*      timeToLive: 0,
-*      expiresAt : 9947395735758975,
-*      data :
-*      {
-*          field : "value"
-*      },
-*      acl :
-*      {
-*          other, 1
-*      },
-*      createdAt : 74889479874,
-*      updatedAt : 73847474897487
-*
-*   }
-* }
 */
 - (void)updateEntity:(NSString *)entityId
              version:(int64_t)version
@@ -172,33 +91,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":
-*   {
-*      gameId : "game",
-*      entityId : "hucfshugvgvfhug",
-*      ownerId : "ubfcbvfbsdvbb",
-*      entityType : "",
-*      entityIndexedId : "",
-*      version : 1,
-*      timeToLive: 0,
-*      expiresAt : 9947395735758975,
-*      data :
-*      {
-*          field : "value"
-*      },
-*      acl :
-*      {
-*          other, 1
-*      },
-*      createdAt : 74889479874,
-*      updatedAt : 73847474897487
-*
-*   }
-* }
 */
 - (void)updateEntityAcl:(NSString *)entityId
                 version:(int64_t)version
@@ -219,33 +111,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":
-*   {
-*      gameId : "game",
-*      entityId : "hucfshugvgvfhug",
-*      ownerId : "ubfcbvfbsdvbb",
-*      entityType : "",
-*      entityIndexedId : "",
-*      version : 1,
-*      data :
-*      timeToLive: 0,
-*      expiresAt : 9947395735758975,
-*      {
-*          field : "value"
-*      },
-*      acl :
-*      {
-*          other, 1
-*      },
-*      createdAt : 74889479874,
-*      updatedAt : 73847474897487
-*
-*   }
-* }
 */
 - (void)updateEntityTimeToLive:(NSString *)entityId
                        version:(int64_t)version
@@ -265,14 +130,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":
-*   {
-*   }
-* }
 */
 - (void)deleteEntity:(NSString *)entityId
              version:(int64_t)version
@@ -290,33 +147,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":
-*   {
-*      gameId : "game",
-*      entityId : "hucfshugvgvfhug",
-*      ownerId : "ubfcbvfbsdvbb",
-*      entityType : "",
-*      entityIndexedId : "",
-*      version : 1,
-*      timeToLive: 0,
-*      expiresAt : 9947395735758975,
-*      data :
-*      {
-*          field : "value"
-*      },
-*      acl :
-*      {
-*          other, 1
-*      },
-*      createdAt : 74889479874,
-*      updatedAt : 73847474897487
-*
-*   }
-* }
 */
 - (void)readEntity:(NSString *)entityId
          completionBlock:(BCCompletionBlock)completionBlock
@@ -335,56 +165,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":
-*   {
-*      entities : [
-*          {
-*              gameId : "game",
-*              entityId : "hucfshugvgvfhug",
-*              ownerId : "ubfcbvfbsdvbb",
-*              entityType : "",
-*              entityIndexedId : "",
-*              version : 1,
-*              timeToLive: 0,
-*              expiresAt : 9947395735758975,
-*              data :
-*              {
-*                  field : "value"
-*              },
-*              acl :
-*              {
-*                  other, 1
-*              },
-*              createdAt : 74889479874,
-*              updatedAt : 73847474897487
-*          },
-*          {
-*              gameId : "game",
-*              entityId : "dgdgg",
-*              ownerId : "ubfcbvfbsdvbb",
-*              entityType : "",
-*              entityIndexedId : "",
-*              version : 1,
-*              timeToLive: 0,
-*              expiresAt : 9947395735758975,
-*              data :
-*              {
-*                  field : "value2"
-*              },
-*              acl :
-*              {
-*                  other, 1
-*              },
-*              createdAt : 74889479874,
-*              updatedAt : 73847474897487
-*          }
-*
-*   }
-* }
 */
 - (void)getList:(NSString *)where
                  orderBy:(NSString *)orderBy
@@ -404,56 +184,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":
-*   {
-*      entities : [
-*          {
-*              gameId : "game",
-*              entityId : "hucfshugvgvfhug",
-*              ownerId : "ubfcbvfbsdvbb",
-*              entityType : "",
-*              entityIndexedId : "",
-*              version : 1,
-*              timeToLive: 0,
-*              expiresAt : 9947395735758975,
-*              data :
-*              {
-*                  field : "value"
-*              },
-*              acl :
-*              {
-*                  other, 1
-*              },
-*              createdAt : 74889479874,
-*              updatedAt : 73847474897487
-*          },
-*          {
-*              gameId : "game",
-*              entityId : "dgdgg",
-*              ownerId : "ubfcbvfbsdvbb",
-*              entityType : "",
-*              entityIndexedId : "",
-*              version : 1,
-*              timeToLive: 0,
-*              expiresAt : 9947395735758975,
-*              data :
-*              {
-*                  field : "value2"
-*              },
-*              acl :
-*              {
-*                  other, 1
-*              },
-*              createdAt : 74889479874,
-*              updatedAt : 73847474897487
-*          }
-*
-*   }
-* }
 */
 - (void)getListByIndexedId:(NSString *)entityIndexedId
                  maxReturn:(int64_t)maxReturn
@@ -471,15 +201,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":
-*   {
-*      "entityListCount" : 5
-*   }
-* }
 */
 - (void)getListCount:(NSString *)where
      completionBlock:(BCCompletionBlock)completionBlock
@@ -499,42 +220,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*     "status": 200,
-*     "data": {
-*         "results": {
-*             "moreBefore": false,
-*             "count": 200,
-*             "items": [
-*                 {
-*                     "entityId": "00edfd8e-5028-45d5-95d4-b1869cf2afaa",
-*                     "ownerId": "153a5ac3-582e-42d7-9e7d-aa80ca7e6689",
-*                     "entityType": "testGlobalEntity",
-*                     "entityIndexedId": null,
-*                     "version": 1,
-*                     "data": {
-*                         "globalTestName": "Test Name 01"
-*                     },
-*                     "acl": {
-*                         "other": 2
-*                     },
-*                     "expiresAt": 9223372036854776000,
-*                     "timeToLive": 0,
-*                     "createdAt": 1437505537168,
-*                     "updatedAt": 1437505537168
-*              }],
-*              "page": 1,
-*              "moreAfter": true
-*         },
-*         "context": "eyJzZWFyY2hDcml0ZXJpYSI6eyJlbnRpdHlUeXBlIjoiYnVpbGRpbmciLCJnYW
-*              1lSWQiOiIxMDI4NyIsIiRvciI6W3sib3duZXJJZCI6Ijk5MjM4ZmFiLTkxYTItNDdiYy1
-*              iMDExLWJjMThhN2IyOWY3NiJ9LHsiYWNsLm90aGVyIjp7IiRuZSI6MH19XX0sInNvcnRD
-*              cml0ZXJpYSI6eyJjcmVhdGVkQXQiOjEsInVwZGF0ZWRBdCI6LTF9LCJwYWdpbmF0aW9uI
-*              jp7InJvd3NQZXJQYWdlIjo1MCwicGFnZU51bWJlciI6NH0sIm9wdGlvbnMiOm51bGx9"
-*     }
-* }
 */
 - (void)getPage:(NSString *)context
          completionBlock:(BCCompletionBlock)completionBlock
@@ -554,42 +239,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*     "status": 200,
-*     "data": {
-*         "results": {
-*             "moreBefore": true,
-*             "count": 200,
-*             "items": [
-*                 {
-*                     "entityId": "00edfd8e-5028-45d5-95d4-b1869cf2afaa",
-*                     "ownerId": "153a5ac3-582e-42d7-9e7d-aa80ca7e6689",
-*                     "entityType": "testGlobalEntity",
-*                     "entityIndexedId": null,
-*                     "version": 1,
-*                     "data": {
-*                         "globalTestName": "Test Name 01"
-*                     },
-*                     "acl": {
-*                         "other": 2
-*                     },
-*                     "expiresAt": 9223372036854776000,
-*                     "timeToLive": 0,
-*                     "createdAt": 1437505537168,
-*                     "updatedAt": 1437505537168
-*              }],
-*              "page": 2,
-*              "moreAfter": true
-*         },
-*         "context": "eyJzZWFyY2hDcml0ZXJpYSI6eyJlbnRpdHlUeXBlIjoiYnVpbGRpbmciLCJnYW
-*              1lSWQiOiIxMDI4NyIsIiRvciI6W3sib3duZXJJZCI6Ijk5MjM4ZmFiLTkxYTItNDdiYy1
-*              iMDExLWJjMThhN2IyOWY3NiJ9LHsiYWNsLm90aGVyIjp7IiRuZSI6MH19XX0sInNvcnRD
-*              cml0ZXJpYSI6eyJjcmVhdGVkQXQiOjEsInVwZGF0ZWRBdCI6LTF9LCJwYWdpbmF0aW9uI
-*              jp7InJvd3NQZXJQYWdlIjo1MCwicGFnZU51bWJlciI6NH0sIm9wdGlvbnMiOm51bGx9"
-*     }
-* }
 */
 - (void)getPageOffset:(NSString *)context
            pageOffset:(int)pageOffset

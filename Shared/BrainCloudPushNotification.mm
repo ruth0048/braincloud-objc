@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Ryan Homer on 2/5/2015.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #import "BrainCloudPushNotification.hh"

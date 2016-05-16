@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Ryan Homer on 8/4/2015.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -97,14 +97,10 @@ extern NSString *const AUTH_FACEBOOK;
 * Service Name - Authenticate
 * Service Operation - Authenticate
 *
-* @param gameCenterId The player's game center id  (use the playerID property from the local
-*GKPlayer object)
+* @param gameCenterId The player's game center id  (use the playerID property from the local GKPlayer object)
 * @param forceCreate Should a new profile be created for this user if the account does not exist?
 * @param success The method to call in event of successful login
 * @param failure The method to call in the event of an error during authentication
-*
-* @returns   performs the success callback on success, failure callback on failure
-*
 */
 - (void)authenticateGameCenter:(NSString *)gameCenterID
                    forceCreate:(BOOL)forceCreate
@@ -163,8 +159,7 @@ extern NSString *const AUTH_FACEBOOK;
                      cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Authenticate the user using a steam userid and session ticket (without any validation on the
-*userid).
+* Authenticate the user using a steam userid and session ticket (without any validation on the userid).
 *
 * Service Name - Authenticate
 * Service Operation - Authenticate
@@ -175,9 +170,6 @@ extern NSString *const AUTH_FACEBOOK;
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @returns   performs the success callback on success, failure callback on failure
-*
 */
 - (void)authenticateSteam:(NSString *)userID
             sessionTicket:(NSString *)sessionticket
@@ -198,9 +190,6 @@ extern NSString *const AUTH_FACEBOOK;
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @returns   performs the success callback on success, failure callback on failure
-*
 */
 - (void)authenticateGoogle:(NSString *)userID
                      token:(NSString *)token
@@ -222,9 +211,6 @@ extern NSString *const AUTH_FACEBOOK;
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @returns   runs the completion block on success, errorCompletion block on failure
-*
 */
 - (void)authenticateTwitter:(NSString *)userID
                       token:(NSString *)token
@@ -246,9 +232,6 @@ extern NSString *const AUTH_FACEBOOK;
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @returns   performs the success callback on success, failure callback on failure
- *
  */
 - (void)authenticateParse:(NSString *)userID
                     token:(NSString *)token
@@ -267,14 +250,8 @@ extern NSString *const AUTH_FACEBOOK;
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": {}
-* }
 *
 * Note the follow error reason codes:
-*
 * SECURITY_ERROR (40209) - If the email address cannot be found.
 */
 - (void)resetEmailPassword:(NSString *)email
@@ -283,10 +260,8 @@ extern NSString *const AUTH_FACEBOOK;
                   cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Authenticate the user via cloud code (which in turn validates the supplied credentials against an
-*external system).
-* This allows the developer to extend brainCloud authentication to support other backend
-*authentication systems.
+* Authenticate the user via cloud code (which in turn validates the supplied credentials against an external system).
+* This allows the developer to extend brainCloud authentication to support other backend authentication systems.
 *
 * Service Name - Authenticate
 * Server Operation - Authenticate
@@ -295,8 +270,6 @@ extern NSString *const AUTH_FACEBOOK;
 * @param token The user token (password etc)
 * @param externalAuthName The name of the cloud script to call for external authentication
 * @param force Should a new profile be created for this user if the account does not exist?
-*
-* @returns   runs the completion block on success, errorCompletion block on failure
 */
 - (void)authenticateExternal:(NSString *)userID
          authenticationToken:(NSString *)authToken

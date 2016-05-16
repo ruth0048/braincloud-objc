@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Ryan Homer on 7/4/2015.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -196,17 +196,17 @@ DEPRECATED_MSG_ATTRIBUTE("Removal after May 10 2016.");
  * @param ecb A completion block which takes a json string as it's only parameter.
  * The json format looks like the following:
  * {
- *	 "events": [{
- *	    "fromPlayerId": "178ed06a-d575-4591-8970-e23a5d35f9df",
- *	    "eventId": 3967,
- *	    "createdAt": 1441742105908,
- *	    "gameId": "123",
- *	    "toPlayerId": "178ed06a-d575-4591-8970-e23a5d35f9df",
- *	    "eventType": "test",
- *	    "eventData": {"testData": 117}
- *	  }],
- *	  ]
- *	}
+ *   "events": [{
+ *      "fromPlayerId": "178ed06a-d575-4591-8970-e23a5d35f9df",
+ *      "eventId": 3967,
+ *      "createdAt": 1441742105908,
+ *      "gameId": "123",
+ *      "toPlayerId": "178ed06a-d575-4591-8970-e23a5d35f9df",
+ *      "eventType": "test",
+ *      "eventData": {"testData": 117}
+ *    }],
+ *    ]
+ *  }
  */
 - (void)registerEventCallback:(BCEventCompletionBlock)ecb;
 

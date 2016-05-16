@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-06.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -26,42 +26,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": {
-*     "vcPurchased": null,
-*     "id": "210ee817-d555-40c3-b109-c24a84c84dc7",
-*     "experiencePoints": 10,
-*     "sent_events": [],
-*     "vcClaimed": null,
-*     "server_time": 1395950294285,
-*     "experienceLevel": 1,
-*     "incoming_events": [],
-*     "currency": {
-*       "gems": {
-*         "purchased": 0,
-*         "balance": 0,
-*         "consumed": 0,
-*         "awarded": 0
-*       },
-*       "gold": {
-*         "purchased": 0,
-*         "balance": 0,
-*         "consumed": 0,
-*         "awarded": 0
-*       }
-*     },
-*     "statistics": {
-*       "minions": 0,
-*       "wood": 50,
-*       "pantelons": 3,
-*       "iron": 0
-*     },
-*     "abTestingId": 60
-*   }
-* }
 */
 - (void)readPlayerState:(BCCompletionBlock)completionBlock
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -79,12 +43,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)deletePlayer:(BCCompletionBlock)completionBlock
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -103,12 +61,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)resetPlayerState:(BCCompletionBlock)completionBlock
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -123,12 +75,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)logout:(BCCompletionBlock)completionBlock
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -144,15 +90,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":
-*   {
-*     "playerName": "someName"
-*   }
-* }
 */
 - (void)updatePlayerName:(NSString *)playerName
          completionBlock:(BCCompletionBlock)completionBlock
@@ -168,17 +105,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": {
-*     "attributes": {
-*          "key1": "value1",
-*          "key2": "value2"
-*     }
-*   }
-* }
 */
 - (void)getAttributes:(BCCompletionBlock)completionBlock
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -195,11 +121,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-* }
 */
 - (void)updateAttributes:(NSString *)jsonAttributes
             wipeExisting:(bool)wipeExisting
@@ -217,11 +138,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-* }
 */
 - (void)removeAttributes:(NSArray *)attributeNames
          completionBlock:(BCCompletionBlock)completionBlock
@@ -238,14 +154,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the completion block is as follows:
- * {
- *     "status": 200,
- *     "data": {
- *         "playerPictureUrl": "https://some.domain.com/mypicture.jpg"
- *      }
- * }
  */
 - (void)updatePlayerPictureUrl:(NSString *)pictureUrl
                completionBlock:(BCCompletionBlock)completionBlock
@@ -261,14 +169,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  *
  * @param contactEmail Updated email
  * @param callback The method to be invoked when the server response is received
- *
- * @return The JSON returned in the callback is as follows:
- * {
- *     "status": 200,
- *     "data": {
- *         "contactEmail": "someName@somedomain.com"
- *     }
- * }
  */
 - (void)updateContactEmail:(NSString *)contactEmail
            completionBlock:(BCCompletionBlock)completionBlock
@@ -300,12 +200,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)updateSummaryFriendData:(NSString *)jsonSummaryData
                 completionBlock:(BCCompletionBlock)cb

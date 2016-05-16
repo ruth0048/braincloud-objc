@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-07.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -54,44 +54,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) {
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @returns JSON string representing the entries in the leaderboard.
-* Note that the friend summary data is returned for each record
-* in the leaderboard.
-*
-* {
-*   "status": 200,
-*   "data": {
-*     "social_leaderboard": [
-*       {
-*         "updatedAt": 1395840936348,
-*         "pictureUrl": null,
-*         "playerId": "26f8bb07-3e94-458b-8485-f9031c3a6ef1",
-*         "createdAt": 1395840936348,
-*         "name": "You",
-*         "otherData": null,
-*         "authenticationType": null,
-*         "externalId": null,
-*         "summaryFriendData": null,
-*         "score": 20000
-*       },
-*       {
-*         "updatedAt": 1395840936351,
-*         "pictureUrl": null,
-*         "playerId": "3ad8bc09-4a34-e324-1231-3b2c1c3a6bc6",
-*         "createdAt": 1395840936351,
-*         "name": "Jenny Goldsmith",
-*         "otherData": null,
-*         "authenticationType": null,
-*         "externalId": null,
-*         "summaryFriendData": null,
-*         "score": 10000
-*       }
-*     ],
-*     "timeBeforeReset": 588182412,
-*     "server_time": 1395840957588
-*   }
-* }
 *
 */
 - (void)getSocialLeaderboard:(NSString *)leaderboardId
@@ -195,52 +157,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) {
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @returns JSON string representing the entries in the leaderboard.
-* Note that the friend summary data is returned for each record
-* in the leaderboard.
-*
-* {
-*  "status": 200,
-*  "data": {
-*   "leaderboardId": "abc",
-*   "moreBefore": false,
-*   "timeBeforeReset": 48085996,
-*   "leaderboard": [
-*    {
-*     "playerId": "8c86f306-73ea-4536-9c92-aba086064d2c",
-*     "score": 10,
-*     "data": {
-*      "nickname": "batman"
-*     },
-*     "createdAt": 1433863814394,
-*     "updatedAt": 1433863814394,
-*     "index": 0,
-*     "rank": 1,
-*     "name": "",
-*     "summaryFriendData": {
-*      "xp": 12,
-*      "favColour": "red"
-*     }
-*    },
-*    {
-*     "playerId": "ab21c0af-9d3e-4a81-b3c8-ddc1fb77d9a1",
-*     "score": 8,
-*     "data": {
-*      "nickname": "robin"
-*     },
-*     "createdAt": 1433864253221,
-*     "updatedAt": 1433864253221,
-*     "index": 1,
-*     "rank": 2,
-*     "name": "",
-*     "summaryFriendData": null
-*    }
-*   ],
-*   "server_time": 1433864314004,
-*   "moreAfter": false
-*  }
-* }
 */
 - (void)getGlobalLeaderboardPage:(NSString *)leaderboardId
                        sortOrder:(SortOrder)sortOrder
@@ -268,10 +184,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) {
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @returns JSON string representing the entries in the leaderboard.
-* See GetGlobalLeaderboardPage documentation. Note that historial leaderboards do not
-* include the 'timeBeforeReset' parameter.
 */
 - (void)getGlobalLeaderboardPageByVersion:(NSString *)leaderboardId
                                 sortOrder:(SortOrder)sortOrder
@@ -300,52 +212,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) {
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @returns JSON string representing the entries in the leaderboard.
-* Note that the friend summary data is returned for each record
-* in the leaderboard.
-*
-* {
-*  "status": 200,
-*  "data": {
-*   "leaderboardId": "abc",
-*   "moreBefore": false,
-*   "timeBeforeReset": 48085996,
-*   "leaderboard": [
-*    {
-*     "playerId": "8c86f306-73ea-4536-9c92-aba086064d2c",
-*     "score": 10,
-*     "data": {
-*      "nickname": "batman"
-*     },
-*     "createdAt": 1433863814394,
-*     "updatedAt": 1433863814394,
-*     "index": 0,
-*     "rank": 1,
-*     "name": "",
-*     "summaryFriendData": {
-*      "xp": 12,
-*      "favColour": "red"
-*     }
-*    },
-*    {
-*     "playerId": "ab21c0af-9d3e-4a81-b3c8-ddc1fb77d9a1",
-*     "score": 8,
-*     "data": {
-*      "nickname": "robin"
-*     },
-*     "createdAt": 1433864253221,
-*     "updatedAt": 1433864253221,
-*     "index": 1,
-*     "rank": 2,
-*     "name": "",
-*     "summaryFriendData": null
-*    }
-*   ],
-*   "server_time": 1433864314004,
-*   "moreAfter": false
-*  }
-* }
 */
 - (void)getGlobalLeaderboardView:(NSString *)leaderboardId
                        sortOrder:(SortOrder)sortOrder
@@ -373,10 +239,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) {
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @returns JSON string representing the entries in the leaderboard.
-* See GetGlobalLeaderboardView documentation. Note that historial leaderboards do not
-* include the 'timeBeforeReset' parameter.
 */
 - (void)getGlobalLeaderboardViewByVersion:(NSString *)leaderboardId
                                 sortOrder:(SortOrder)sortOrder
@@ -397,30 +259,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) {
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @returns JSON string representing the leaderboard versions.
-* {
-*   "status": 200,
-*   "data": {
-*     "leaderboardId":"L1",
-*     "leaderboardType":"HIGH_VALUE",
-*     "rotationType":"WEEKLY",
-*     "retainedCount":2,
-*     "versions":[
-*        {
-*         "versionId":27,
-*         "startingAt":1434499200000,
-*         "endingAt":1435104000000
-*        },
-*        {
-*         "versionId":26,
-*         "startingAt":1433894400000,
-*         "endingAt":1434499200000
-*        }
-*        ]
-*     }
-*   }
-* }
 */
 - (void)getGlobalLeaderboardVersions:(NSString *)leaderboardId
                      completionBlock:(BCCompletionBlock)cb
@@ -443,12 +281,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) {
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": null
-* }
 */
 - (void)postScoreToLeaderboard:(NSString *)leaderboardId
                          score:(int)score
@@ -477,12 +309,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) {
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data": null
-* }
 */
 - (void)postScoreToDynamicLeaderboard:(NSString *)leaderboardId
                                 score:(int)score
@@ -502,12 +328,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) {
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": null
-* }
 */
 - (void)resetLeaderboardScore:(NSString *)leaderboardId
               completionBlock:(BCCompletionBlock)cb
@@ -536,13 +356,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) {
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":{
-*   }
-* }
 */
 - (void)getCompletedLeaderboardTournament:(NSString *)leaderboardId
                               replaceName:(bool)replaceName
@@ -561,13 +374,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) {
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":{
-*   }
-* }
 */
 - (void)triggerSocialLeaderboardTournamentReward:(NSString *)leaderboardId
                                        eventName:(NSString *)eventName

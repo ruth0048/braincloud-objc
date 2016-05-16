@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-10.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -20,20 +20,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*     "status": 200,
-*     "data": {
-*         "lastMatch": 0,
-*         "matchAttackExpiry": 0,
-*         "matchEnabled": false,
-*         "sharedAPIToken": null,
-*         "shieldExpiry": 0,
-*         "playerRating": 100,
-*         "matchesPlayed": 0
-*     }
-* }
 */
 - (void)read:(BCCompletionBlock)cb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -49,12 +35,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": null
-* }
 */
 - (void)setPlayerRating:(int)rating
         completionBlock:(BCCompletionBlock)completionBlock
@@ -70,12 +50,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": null
-* }
 */
 - (void)resetPlayerRating:(BCCompletionBlock)cb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -91,12 +65,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": null
-* }
 */
 - (void)incrementPlayerRating:(int)increment
               completionBlock:(BCCompletionBlock)completionBlock
@@ -113,12 +81,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": null
-* }
 */
 - (void)decrementPlayerRating:(int)decrement
               completionBlock:(BCCompletionBlock)completionBlock
@@ -134,12 +96,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": null
-* }
 */
 - (void)turnShieldOn:(BCCompletionBlock)cb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -155,12 +111,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": null
-* }
 */
 - (void)turnShieldOnFor:(int)minutes
         completionBlock:(BCCompletionBlock)completionBlock
@@ -176,12 +126,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": null
-* }
 */
 - (void)turnShieldOff:(BCCompletionBlock)cb
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -199,14 +143,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": {
-*     "shieldExpiry": 1433259734956
-*   }
-* }
 */
 - (void)getShieldExpiry:(NSString *)playerId
         completionBlock:(BCCompletionBlock)cb
@@ -224,29 +160,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": {
-*     "matchesFound" : [
-*       {
-*         "playerId" : "9073dff7-0df6-437e-9be6-39cd704dcoj4",
-*         "playerName" : "Jane Smith",
-*         "playerRating" : 25,
-*         "pictureUrl" : "",
-*         "summaryFriendData" : null
-*       },
-*       {
-*         "playerId" : "9073dff7-0df6-437e-9be6-39cd704dcoj4",
-*         "playerName" : "John Smith",
-*         "playerRating" : 30,
-*         "pictureUrl" : "",
-*         "summaryFriendData" : null
-*       }
-*     ]
-*   }
-* }
 */
 - (void)findPlayers:(int)rangeDelta
          numMatches:(int)numMatches
@@ -266,29 +179,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the callback is as follows:
- * {
- *   "status": 200,
- *   "data": {
- *     "matchesFound" : [
- *       {
- *         "playerId" : "9073dff7-0df6-437e-9be6-39cd704dcoj4",
- *         "playerName" : "Jane Smith",
- *         "playerRating" : 25,
- *         "pictureUrl" : "",
- *         "summaryFriendData" : null
- *       },
- *       {
- *         "playerId" : "9073dff7-0df6-437e-9be6-39cd704dcoj4",
- *         "playerName" : "John Smith",
- *         "playerRating" : 30,
- *         "pictureUrl" : "",
- *         "summaryFriendData" : null
- *       }
- *     ]
- *   }
- * }
  */
 - (void)findPlayersWithAttributes:(int)rangeDelta
                        numMatches:(int)numMatches
@@ -309,29 +199,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": {
-*     "matchesFound" : [
-*       {
-*         "playerId" : "9073dff7-0df6-437e-9be6-39cd704dcoj4",
-*         "playerName" : "Jane Smith",
-*         "playerRating" : 25,
-*         "pictureUrl" : "",
-*         "summaryFriendData" : null
-*       },
-*       {
-*         "playerId" : "9073dff7-0df6-437e-9be6-39cd704dcoj4",
-*         "playerName" : "John Smith",
-*         "playerRating" : 30,
-*         "pictureUrl" : "",
-*         "summaryFriendData" : null
-*       }
-*     ]
-*   }
-* }
 */
 - (void)findPlayersUsingFilter:(int)rangeDelta
                     numMatches:(int)numMatches
@@ -354,29 +221,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the callback is as follows:
- * {
- *   "status": 200,
- *   "data": {
- *     "matchesFound" : [
- *       {
- *         "playerId" : "9073dff7-0df6-437e-9be6-39cd704dcoj4",
- *         "playerName" : "Jane Smith",
- *         "playerRating" : 25,
- *         "pictureUrl" : "",
- *         "summaryFriendData" : null
- *       },
- *       {
- *         "playerId" : "9073dff7-0df6-437e-9be6-39cd704dcoj4",
- *         "playerName" : "John Smith",
- *         "playerRating" : 30,
- *         "pictureUrl" : "",
- *         "summaryFriendData" : null
- *       }
- *     ]
- *   }
- * }
  */
 - (void)findPlayersWithAttributesUsingFilter:(int)rangeDelta
                                   numMatches:(int)numMatches
@@ -395,12 +239,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": null
-* }
 */
 - (void)enableMatchMaking:(BCCompletionBlock)cb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -415,12 +253,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the completion block is as follows:
- * {
- *   "status": 200,
- *   "data": null
- * }
  */
 - (void)disableMatchMaking:(BCCompletionBlock)cb
       errorCompletionBlock:(BCErrorCompletionBlock)ecb

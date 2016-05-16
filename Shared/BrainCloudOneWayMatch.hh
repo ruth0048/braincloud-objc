@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-11.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -24,25 +24,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*    "status": 200,
-*    "data": {
-*        "playbackStreamId": "d18719db-9d02-2341-b62f-8e2f013369be",
-*        "initiatingPlayerId": "d175f6ac-9221-4adc-aea4-f25f2426ff62",
-*        "targetPlayerId": "07a0d23e-996b-4488-90ae-cb438342423a54",
-*        "status": "STARTED",
-*        "summary": {},
-*        "initialSharedData": {
-*            "entities": [],
-*            "statistics": {}
-*        },
-*        "events": [],
-*        "createdAt": 1437419496282,
-*        "updatedAt": 1437419496282
-*    }
-* }
 */
 - (void)startMatch:(NSString *)otherPlayerId
               rangeDelta:(int32_t)range
@@ -60,12 +41,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": null
-* }
 */
 - (void)cancelMatch:(NSString *)playbackStreamId
          completionBlock:(BCCompletionBlock)cb
@@ -82,12 +57,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data": null
-* }
 */
 - (void)completeMatch:(NSString *)playbackStreamId
       completionBlock:(BCCompletionBlock)cb

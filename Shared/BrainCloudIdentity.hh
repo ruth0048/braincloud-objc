@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-13.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -558,44 +558,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*     "status": 200,
-*     "data": {
-*         "vcPurchased": 0,
-*         "experiencePoints": 0,
-*         "xpCapped": false,
-*         "playerName": "TestUser",
-*         "vcClaimed": 0,
-*         "rewards": {
-*             "rewardDetails": {},
-*             "rewards": {},
-*             "currency": {
-*                 "credits": {
-*                     "purchased": 0,
-*                     "balance": 0,
-*                     "consumed": 0,
-*                     "awarded": 0
-*                 },
-*                 "gold": {
-*                     "purchased": 0,
-*                     "balance": 0,
-*                     "consumed": 0,
-*                     "awarded": 0
-*                 }
-*             }
-*         },
-*         "loginCount": 1,
-*         "server_time": 1441901094386,
-*         "experienceLevel": 0,
-*         "currency": {},
-*         "statistics": {},
-*         "id": "a17b347b-695b-431f-b1e7-5f783a562310",
-*         "profileId": "a17t347b-692b-43ef-b1e7-5f783a566310",
-*         "newUser": false
-*     }
-* }
 */
 - (void)switchToChildProfile:(NSString *)childProfileId
                   childAppId:(NSString *)childAppId
@@ -616,44 +578,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*     "status": 200,
-*     "data": {
-*         "vcPurchased": 0,
-*         "experiencePoints": 0,
-*         "xpCapped": false,
-*         "playerName": "TestUser",
-*         "vcClaimed": 0,
-*         "rewards": {
-*             "rewardDetails": {},
-*             "rewards": {},
-*             "currency": {
-*                 "credits": {
-*                     "purchased": 0,
-*                     "balance": 0,
-*                     "consumed": 0,
-*                     "awarded": 0
-*                 },
-*                 "gold": {
-*                     "purchased": 0,
-*                     "balance": 0,
-*                     "consumed": 0,
-*                     "awarded": 0
-*                 }
-*             }
-*         },
-*         "loginCount": 1,
-*         "server_time": 1441901094386,
-*         "experienceLevel": 0,
-*         "currency": {},
-*         "statistics": {},
-*         "id": "a17b347b-695b-431f-b1e7-5f783a562310",
-*         "profileId": "a17t347b-692b-43ef-b1e7-5f783a566310",
-*         "newUser": false
-*     }
-* }
 */
 - (void)switchToSingletonChildProfile:(NSString *)childAppId
                  forceCreate:(bool)forceCreate
@@ -672,15 +596,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*     "status": 200,
-*     "data": {
-*         "profileId": "1d1h32aa-4c41-404f-bc18-29b3fg5wab8a",
-*         "gameId": "123456"
-*     }
-* }
 */
 - (void)switchToParentProfile:(NSString *)parentLevelName
               completionBlock:(BCCompletionBlock)cb
@@ -697,27 +612,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*     "status": 200,
-*     "data": {
-*         "children": [
-*             {
-*                 "appId": "123456",
-*                 "profileId": "b7h32751-befd-4a89-b6da-cd55hs3b2a86",
-*                 "profileName": "Child1",
-*                 "summaryFriendData": null
-*             },
-*             {
-*                 "appId": "123457",
-*                 "profileId": "a17b3432-195b-45hf-b1e7-5f78g3462310",
-*                 "profileName": "Child2",
-*                 "summaryFriendData": null
-*             }
-*         ]
-*     }
-* }
 */
 - (void)getChildProfiles:(bool)includeSummaryData
          completionBlock:(BCCompletionBlock)cb

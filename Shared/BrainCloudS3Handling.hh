@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-13.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -24,28 +24,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @returns  The JSON returned in the callback is as follows.
-* {
-*     "status": 200,
-*     "data": {
-*         "fileDetails": [{
-*             "gameId": "12311331",
-*             "fileId": "3780516b-14f8-4055-8899-8eaab6ac7e82",
-*             "shortName": "Test Doc",
-*             "fileName": "testDoc.txt",
-*             "type": "g",
-*             "subType": "cust",
-*             "category": null,
-*             "fileSize": 4,
-*             "dateUploaded": 1437154770000,
-*             "relativeUrl": "/cust/testDoc.txt",
-*             "absoluteUrl": "http://internal.braincloudservers.com/s3/portal/g/12311331/cust/testDoc.txt",
-*             "md5Hash": "d41d8cd98f00b204e9800998ecf8427e",
-*             "md5HashHex" : "b895454d7210f7cb84aab76289ffd39c"
-*         }]
-*     }
-* }
 */
 - (void)getUpdatedFiles:(NSString *)category
             fileDetails:(NSString *)details
@@ -63,28 +41,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @returns  The JSON returned in the callback is as follows.
-* {
-*     "status": 200,
-*     "data": {
-*         "fileDetails": [{
-*             "gameId": "12311331",
-*             "fileId": "3780516b-14f8-4055-8899-8eaab6ac7e82",
-*             "shortName": "Test Doc",
-*             "fileName": "testDoc.txt",
-*             "type": "g",
-*             "subType": "cust",
-*             "category": null,
-*             "fileSize": 4,
-*             "dateUploaded": 1437154770000,
-*             "relativeUrl": "/cust/testDoc.txt",
-*             "absoluteUrl": "http://internal.braincloudservers.com/s3/portal/g/12311331/cust/testDoc.txt",
-*             "md5Hash": "d41d8cd98f00b204e9800998ecf8427e",
-*             "md5HashHex" : "b895454d7210f7cb84aab76289ffd39c"
-*         }]
-*     }
-* }
 */
 - (void)getFileList:(NSString *)category
          completionBlock:(BCCompletionBlock)cb

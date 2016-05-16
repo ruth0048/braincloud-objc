@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-04.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -25,30 +25,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data": {
-*     "updatedAt": 1395693913234,
-*     "currencyMap": {
-*       "gems": {
-*         "purchased": 0,
-*         "balance": 0,
-*         "consumed": 0,
-*         "awarded": 0
-*       },
-*       "gold": {
-*         "purchased": 0,
-*         "balance": 123,
-*         "consumed": 0,
-*         "awarded": 123
-*       }
-*     },
-*     "playerId": "acf11847-055f-470d-abb7-b93052201491",
-*     "createdAt": 1395693907421
-*   }
-* }
 */
 - (void)awardCurrency:(NSString *)currencyType
                amount:(int)amount
@@ -67,30 +43,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data": {
-*     "updatedAt": 1395693913234,
-*     "currencyMap": {
-*       "gems": {
-*         "purchased": 0,
-*         "balance": 0,
-*         "consumed": 0,
-*         "awarded": 0
-*       },
-*       "gold": {
-*         "purchased": 0,
-*         "balance": 0,
-*         "consumed": 123,
-*         "awarded": 123
-*       }
-*     },
-*     "playerId": "acf11847-055f-470d-abb7-b93052201491",
-*     "createdAt": 1395693907421
-*   }
-* }
 */
 - (void)consumeCurrency:(NSString *)currencyType
                  amount:(int)amount
@@ -111,24 +63,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data": {
-*     "updatedAt": 1395693676208,
-*     "currencyMap": {
-*       "gold": {
-*         "purchased": 0,
-*         "balance": 0,
-*         "consumed": 0,
-*         "awarded": 0
-*       }
-*     },
-*     "playerId": "6ea79853-4025-4159-8014-60a6f17ac4e6",
-*     "createdAt": 1395693676208
-*   }
-* }
 */
 - (void)getCurrency:(NSString *)currencyType
          completionBlock:(BCCompletionBlock)completionBlock
@@ -144,12 +78,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)resetCurrency:(BCCompletionBlock)completionBlock
  errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
@@ -164,46 +92,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data":
-*   {
-*      {
-* "promotions": [
-*  {
-*   "gameId": "10019",
-*   "promotionId": 9,
-*   "type": "SCHEDULED",
-*   "name": "session >= 2",
-*   "message": "test1",
-*   "enabled": true,
-*   "targetAllUsers": false,
-*   "segments": [
-*    5
-*   ],
-*   "prices": [
-*    {
-*     "itemId": "regGems150",
-*     "priceId": 1
-*    }
-*   ],
-*   "notifications": [
-*    {
-*     "trigger": "ACTIVATED",
-*     "notificationTemplateId": 10
-*    }
-*   ],
-*   "startAt": 1415374185745,
-*   "endAt": 1415806185745,
-*   "createdAt": 0,
-*   "updatedAt": 1415729753294
-*  }
-* ]
-*}
-*   }
-* }
 */
 - (void)getEligiblePromotions:(BCCompletionBlock)completionBlock
          errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
@@ -229,26 +117,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":{
-*      "product_inventory":[
-*          {
-*              "gameId":"com.roger.football",
-*              "itemId":"0000001",
-*              "title":"Item 0000001",
-*              "description":"Buy 5 footballs",
-*              "imageUrl":"http:",
-*              "fbUrl":"http:",
-*              "currency":{"footballs":5},
-*              "priceData":{"currency":"USD","price":1000}
-*           }
-*       ],
-*       "server_time":1398960658981
-*    }
-* }
 */
 - (void)getSalesInventory:(NSString *)platform
              userCurrency:(NSString *)userCurrency
@@ -277,26 +145,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":{
-*      "product_inventory":[
-*          {
-*              "gameId":"com.roger.football",
-*              "itemId":"0000001",
-*              "title":"Item 0000001",
-*              "description":"Buy 5 footballs",
-*              "imageUrl":"http:",
-*              "fbUrl":"http:",
-*              "currency":{"footballs":5},
-*              "priceData":{"currency":"USD","price":1000}
-*           }
-*       ],
-*       "server_time":1398960658981
-*    }
-* }
 */
 - (void)getSalesInventoryByCategory:(NSString *)platform
                        userCurrency:(NSString *)userCurrency
@@ -316,18 +164,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data":
-*   {
-*      "steamStatus" : 200,
-*      "steamData" :
-*      {
-*      }
-*   }
-* }
 */
 - (void)startSteamTransaction:(NSString *)language
                        itemId:(NSString *)itemId
@@ -346,18 +182,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data":
-*   {
-*      "steamStatus" : 200,
-*      "steamData" :
-*      {
-*      }
-*   }
-* }
 */
 - (void)finalizeSteamTransaction:(NSString *)transId
                  completionBlock:(BCCompletionBlock)completionBlock
@@ -375,15 +199,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data":
-*   {
-*      "result" : "OK"
-*   }
-* }
 */
 - (void)verifyMicrosoftReceipt:(NSString *)receipt
                completionBlock:(BCCompletionBlock)completionBlock
@@ -400,36 +215,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data":
-*   {
-*      "playerCurrency" : {
-*         "playerId" : "sfhsjdfhfjhf",
-*         "currencyMap" : {
-*             "coin" : {
-*                 "purchased" : NumberLong(0),
-*                 "balance" : NumberLong(5000),
-*                 "consumed" : NumberLong(0),
-*                 "awarded" : NumberLong(5000)
-*             },
-*             "bar" : {
-*                 "purchased" : NumberLong(0),
-*                 "balance" : NumberLong(2),
-*                 "consumed" : NumberLong(0),
-*                 "awarded" : NumberLong(2)
-*             }
-*         },
-*         "createdAt" : 763578645786,
-*         "updatedAt" : 8692486255764,
-*       },
-*       "appleReceipt" : "gsgsfvgvg",
-*       "status" : 0,
-*       "server_time" : 987490827457
-*   }
-* }
 */
 - (void)verifyItunesReceipt:(NSString *)base64EncReceiptData
             completionBlock:(BCCompletionBlock)completionBlock
@@ -449,14 +234,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status": 200,
-*   "data":
-*   {
-*      "result" : "OK"
-*   }
-* }
 */
 - (void)confirmGooglePlayPurchase:(NSString *)orderId
                         productId:(NSString *)productId
@@ -475,30 +252,6 @@
 * @param in_amount The amount of currency to award
 * @param in_parentLevel The level of the parent containing the currency
 * @param in_callback The method to be invoked when the server response is received
-*
-* @return The JSON returned in the callback is as follows:
-* {
-*   "status":200,
-*   "data": {
-*     "updatedAt": 1395693913234,
-*     "currencyMap": {
-*       "gems": {
-*         "purchased": 0,
-*         "balance": 0,
-*         "consumed": 0,
-*         "awarded": 0
-*       },
-*       "gold": {
-*         "purchased": 0,
-*         "balance": 123,
-*         "consumed": 0,
-*         "awarded": 123
-*       }
-*     },
-*     "playerId": "acf11847-055f-470d-abb7-b93052201491",
-*     "createdAt": 1395693907421
-*   }
-* }
 */
 - (void)awardParentCurrency:(NSString *)currencyType
                      amount:(int)amount
@@ -517,30 +270,6 @@
 * @param in_amount The amount of currency to consume
 * @param in_parentLevel The level of the parent containing the currency
 * @param in_callback The method to be invoked when the server response is received
-*
-* @return The JSON returned in the callback is as follows:
-* {
-*   "status":200,
-*   "data": {
-*     "updatedAt": 1395693913234,
-*     "currencyMap": {
-*       "gems": {
-*         "purchased": 0,
-*         "balance": 0,
-*         "consumed": 0,
-*         "awarded": 0
-*       },
-*       "gold": {
-*         "purchased": 0,
-*         "balance": 123,
-*         "consumed": 0,
-*         "awarded": 123
-*       }
-*     },
-*     "playerId": "acf11847-055f-470d-abb7-b93052201491",
-*     "createdAt": 1395693907421
-*   }
-* }
 */
 - (void)consumeParentCurrency:(NSString *)currencyType
                        amount:(int)amount
@@ -561,24 +290,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data": {
-*     "updatedAt": 1395693913234,
-*     "currencyMap": {
-*       "gems": {
-*         "purchased": 0,
-*         "balance": 0,
-*         "consumed": 0,
-*         "awarded": 0
-*       }
-*     },
-*     "playerId": "acf11847-055f-470d-abb7-b93052201491",
-*     "createdAt": 1395693907421
-*   }
-* }
 */
 - (void)getParentCurrency:(NSString *)currencyType
               parentLevel:(NSString *)parentLevel
@@ -596,12 +307,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*     "status": 200,
-*     "data": null
-* }
 */
 - (void)resetParentCurrency:(NSString *)parentLevel
             completionBlock:(BCCompletionBlock)completionBlock

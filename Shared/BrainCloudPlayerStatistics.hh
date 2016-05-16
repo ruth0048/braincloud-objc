@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Hill, Bradley on 2015-08-06.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -22,19 +22,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":{
-*     "statistics":{
-*       "minions":0,
-*       "wood":50,
-*       "pantelons":3,
-*       "iron":0
-*     }
-*   }
-* }
 */
 - (void)readAllPlayerStats:(BCCompletionBlock)completionBlock
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -50,17 +37,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON with the subset of global statistics:
-* {
-*   "status":200,
-*   "data":{
-*     "statistics":{
-*       "wood":11,
-*       "minions":1
-*     }
-*   }
-* }
 */
 - (void)readPlayerStatsSubset:(NSArray *)playerStats
               completionBlock:(BCCompletionBlock)completionBlock
@@ -77,14 +53,6 @@
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return The JSON returned in the completion block is as follows:
- * {
- *   "status":200,
- *   "data":{
- *     "playerStatistics": []
- *   }
- * }
  */
 - (void)readPlayerStatsForCategory:(NSString *)category
                    completionBlock:(BCCompletionBlock)cb
@@ -100,12 +68,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)resetAllPlayerStats:(BCCompletionBlock)completionBlock
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -137,55 +99,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON describing the new value of the statistics and any rewards that were triggered:
-*  {
-*    "status":200,
-*    "data":{
-*      "experiencePoints":10,
-*      "xpCapped":false,
-*      "rewardDetails":{
-*        "xp":{
-*          "experienceLevels":[
-*            {
-*              "level":1,
-*              "rewards":{
-*                "currency":{
-*                  "gold":1000
-*                }
-*              }
-*            }
-*          ]
-*        }
-*      },
-*      "rewards":{
-*        "experienceLevels":[
-*          1
-*        ],
-*        "currency":{
-*          "gold":1000
-*        }
-*      },
-*      "experienceLevel":1,
-*      "statistics":{
-*        "LIVES":1
-*      },
-*      "currency":{
-*        "gems":{
-*          "purchased":0,
-*          "balance":10,
-*          "consumed":0,
-*          "awarded":10
-*        },
-*        "gold":{
-*          "purchased":0,
-*          "balance":2000,
-*          "consumed":0,
-*          "awarded":2000
-*        }
-*      }
-*    }
-*  }
 */
 - (void)incrementPlayerStats:(NSString *)jsonData
              completionBlock:(BCCompletionBlock)completionBlock
@@ -201,35 +114,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON describing the next experience level for the player.
-* {
-*   "status":200,
-*   "data":{
-*     "xp_level":{
-*       "gameId":"com.bitheads.unityexample",
-*       "numericLevel":2,
-*       "experience":20,
-*       "rewards":{
-*         "globalGameStatistics":null,
-*         "experiencePoints":null,
-*         "playerStatistics":null,
-*         "achievement":null,
-*         "currencies":{
-*           "gems":10,
-*           "gold":2000
-*         }
-*       },
-*       "facebookAction":"",
-*       "statusTitle":"Jester",
-*       "key":{
-*         "gameId":"com.bitheads.unityexample",
-*         "numericLevel":2,
-*         "primaryKey":true
-*       }
-*     }
-*   }
-* }
 */
 - (void)getNextExperienceLevel:(BCCompletionBlock)completionBlock
           errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -246,27 +130,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON describing the player's .
-* {
-*   "status":200,
-*   "data":{
-*     "statisticsExceptions":{
-*     },
-*     "milestones":{
-*     },
-*     "experiencePoints":110,
-*     "quests":{
-*     },
-*     "experienceLevel":1,
-*     "statistics":{
-*       "minions":0,
-*       "wood":50,
-*       "pantelons":3,
-*       "iron":0
-*     }
-*   }
-* }
 */
 - (void)incrementExperiencePoints:(int)xpValue
                   completionBlock:(BCCompletionBlock)completionBlock
@@ -285,12 +148,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return The JSON returned in the completion block is as follows.
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)setExperiencePoints:(int)xpValue
             completionBlock:(BCCompletionBlock)completionBlock

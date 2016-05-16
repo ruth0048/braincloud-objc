@@ -3,7 +3,7 @@
 //  brainCloudClientObjc
 //
 //  Created by Ryan Homer on 2/5/2015.
-//  Copyright (c) 2015 bitHeads. All rights reserved.
+//  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
 #pragma once
@@ -19,12 +19,6 @@
  * @param cb Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return JSON as follows:
- * {
- *   "status":200,
- *   "data":null
- * }
  */
 - (void)deregisterAllPushNotificationDeviceTokens:(BCCompletionBlock)cb
                              errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -39,12 +33,6 @@
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return JSON as follows:
- * {
- *   "status":200,
- *   "data":null
- * }
  */- (void)deregisterPushNotificationDeviceToken:(PlatformObjc *) platform
                                      deviceToken:(NSString *)deviceToken
                                  completionBlock:(BCCompletionBlock)cb
@@ -62,12 +50,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON describing the new value of the statistics and any rewards that were triggered:
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)registerPushNotificationDeviceToken:(PlatformObjc *) platform
                                 deviceToken:(NSString *)deviceToken
@@ -85,12 +67,6 @@
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- *
- * @return JSON describing the new value of the statistics and any rewards that were triggered:
- * {
- *   "status":200,
- *   "data":null
- * }
  */
 - (void)registerPushNotificationDeviceTokenData:(PlatformObjc *) platform
                                     deviceToken:(NSData *)deviceToken
@@ -107,12 +83,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON describing the result
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)sendSimplePushNotification:(NSString *)toPlayerId
                            message:(NSString *)message
@@ -129,12 +99,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON describing the result
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)sendRichPushNotification:(NSString *)toPlayerId
           notificationTemplateId:(int)notificationTemplateId
@@ -154,12 +118,6 @@
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
-*
-* @return JSON describing the result
-* {
-*   "status":200,
-*   "data":null
-* }
 */
 - (void)sendRichPushNotificationWithParams:(NSString *)toPlayerId
                     notificationTemplateId:(int)notificationTemplateId
