@@ -29,21 +29,16 @@ extern NSString *const AUTH_FACEBOOK;
 - (void)initialize:(NSString *)profileID anonymousID:(NSString *)anonymousID;
 
 /**
-* Generates a GUID for use as an anonymous installation id for brainCloud.  This method is provided
-*as a convenience to the
-* client application - but clients can override this id with a scheme of their own if they'd like
-*(as long as the scheme in place
-* generates unique ids per client device).
-*
-* @returns the id
-*/
-- (NSString *)generateGUID;
+ * Used to create the anonymous installation id for the brainCloud profile.
+ * @returns A unique Anonymous ID
+ */
+- (NSString *)generateAnonymousId;
 
-/**
-* Used to create the anonymous installation id for the brainCloud profile.
-* Normally only called once when the application starts for the first time.
-*/
-- (void)generateNewAnonymousID;
+/* DEPRECATED - Use generateAnonymousId instead - Removal after August 17 2016 */
+- (NSString *)generateGUID DEPRECATED_MSG_ATTRIBUTE("Use generateAnonymousId instead - Removal after August 17 2016");
+
+/* DEPRECATED - Use generateAnonymousId instead - Removal after August 17 2016 */
+- (void)generateNewAnonymousID DEPRECATED_MSG_ATTRIBUTE("Use generateAnonymousId instead - Removal after August 17 2016");
 
 /**
 * Used to clear the saved profile id - to use in cases when the user is

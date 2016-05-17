@@ -155,7 +155,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     
     if (nil == self.storedAnonymousId || (nil != self.storedAnonymousId && nil == self.storedProfileId))
     {
-        anonymousId= [[[BrainCloudClient getInstance] authenticationService] generateGUID];
+        anonymousId= [[[BrainCloudClient getInstance] authenticationService] generateAnonymousId];
         profileId = @"";
         self.storedAnonymousId = anonymousId;
         self.storedProfileId = profileId;

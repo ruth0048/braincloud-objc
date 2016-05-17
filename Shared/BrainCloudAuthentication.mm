@@ -42,6 +42,8 @@
         [profileID UTF8String], [anonymousID UTF8String]);
 }
 
+- (NSString *)generateAnonymousId { return [NSUUID UUID].UUIDString; }
+
 - (NSString *)generateGUID { return [NSUUID UUID].UUIDString; }
 
 - (void)generateNewAnonymousID
