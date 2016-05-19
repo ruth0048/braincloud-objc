@@ -305,4 +305,12 @@
         includeSummaryData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)getIdentities:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->
+        getIdentities(new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end

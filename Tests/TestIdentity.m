@@ -69,4 +69,12 @@
     [self waitForResult];
 }
 
+- (void)testGetIdentities
+{
+    [[m_client identityService] getIdentities:successBlock
+                            errorCompletionBlock:failureBlock
+                                        cbObject:nil];
+    [self waitForResult];
+}
+
 @end
