@@ -632,4 +632,18 @@
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject;
 
+/**
+* Retrieve list of expired identities
+*
+* Service Name - Identity
+* Service Operation - GET_EXPIRED_IDENTITIES
+*
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*/
+- (void)getExpiredIdentities:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject;
+
 @end

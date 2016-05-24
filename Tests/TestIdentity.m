@@ -77,4 +77,12 @@
     [self waitForResult];
 }
 
+- (void)testGetExpiredIdentities
+{
+    [[m_client identityService] getExpiredIdentities:successBlock
+                         errorCompletionBlock:failureBlock
+                                     cbObject:nil];
+    [self waitForResult];
+}
+
 @end

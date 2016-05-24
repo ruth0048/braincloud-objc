@@ -309,8 +309,18 @@
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->
-        getIdentities(new BrainCloudCallback(cb, ecb, cbObject));
+  BrainCloud::BrainCloudClient::getInstance()
+      ->getIdentityService()
+      ->getIdentities(new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getExpiredIdentities:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject
+{
+  BrainCloud::BrainCloudClient::getInstance()
+      ->getIdentityService()
+      ->getExpiredIdentities(new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 @end
