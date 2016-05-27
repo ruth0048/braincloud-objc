@@ -1,6 +1,6 @@
 # brainCloud Objective-C/Swift Library
 
-Thanks for downloading the brainCloud C++ client library! Here are a few notes to get you started. Further information about the brainCloud API, including example Tutorials can be found here:
+Thanks for downloading the brainCloud Objective-C/Swift client library! Here are a few notes to get you started. Further information about the brainCloud API, including example Tutorials can be found here:
 
 http://getbraincloud.com/apidocs/
 
@@ -15,6 +15,10 @@ The library is distributed through `CocoaPods`. In order to install the library,
 ```ruby
 pod 'BrainCloud'
 ```
+
+Note that if you're using Cocoapods 1.0.0 and the use_frameworks! flag, please refer to the project setup page for additional information:
+
+http://getbraincloud.com/apidocs/tutorials/objective-c-tutorials/
 
 If you're a newcomer to the `CocoaPods` world, you can find documentation on how to set up your Xcode project here:
 
