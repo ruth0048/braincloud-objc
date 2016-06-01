@@ -8,6 +8,7 @@
 
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
+#include "brainCloud/AuthenticationType.h"
 
 #import "BrainCloudIdentity.hh"
 
@@ -321,6 +322,21 @@
   BrainCloud::BrainCloudClient::getInstance()
       ->getIdentityService()
       ->getExpiredIdentities(new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)refreshIdentity:(NSString *)externalId
+    authenticationToken:(NSString *)token
+     authenticationType:(AuthenticationTypeObjc *)type
+        completionBlock:(BCCompletionBlock)cb
+   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+               cbObject:(BCCallbackObject)cbObject
+{
+  BrainCloud::BrainCloudClient::getInstance()
+      ->getIdentityService()
+      ->refreshIdentity([externalId UTF8String], [token UTF8String],
+                        BrainCloud::AuthenticationType::fromString(
+                            [[type toString] UTF8String]),
+                        new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 @end

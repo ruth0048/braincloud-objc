@@ -7,6 +7,7 @@
 //
 
 #import "TestFixtureBase.h"
+#import "AuthenticationTypeObjC.hh"
 
 @interface TestIdentity : TestFixtureBase
 
@@ -83,6 +84,17 @@
                          errorCompletionBlock:failureBlock
                                      cbObject:nil];
     [self waitForResult];
+}
+
+- (void)testRefreshIdentity
+{
+    [[m_client identityService] refreshIdentity:[TestFixtureBase getUser:@"UserA"].m_id
+                            authenticationToken:[TestFixtureBase getUser:@"UserA"].m_password
+                             authenticationType:[AuthenticationTypeObjc Universal]
+                           completionBlock:successBlock
+                                errorCompletionBlock:failureBlock
+                                            cbObject:nil];
+    [self waitForFailedResult];
 }
 
 @end
