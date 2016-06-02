@@ -10,6 +10,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#import "AuthenticationTypeObjc.hh"
 
 @interface BrainCloudIdentity : NSObject
 
@@ -645,5 +646,25 @@
 - (void)getExpiredIdentities:(BCCompletionBlock)cb
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Refreshes an identity for this player
+ *
+ * Service Name - identity
+ * Service Operation - REFRESH_IDENTITY
+ *
+ * @param externalId User ID
+ * @param authenticationToken Password or client side token
+ * @param authenticationType Type of authentication
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)refreshIdentity:(NSString *)externalId
+    authenticationToken:(NSString *)token
+     authenticationType:(AuthenticationTypeObjc *)type
+        completionBlock:(BCCompletionBlock)cb
+   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+               cbObject:(BCCallbackObject)cbObject;
 
 @end
