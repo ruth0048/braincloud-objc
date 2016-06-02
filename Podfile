@@ -18,6 +18,8 @@ target 'BrainCloud-iOS' do
 end
 
 target 'BrainCloud-iOSTests' do
+  platform :ios, '9.0'
+  shared_pods
 end
 
 target 'BrainCloud-OSX' do
@@ -26,6 +28,8 @@ target 'BrainCloud-OSX' do
 end
 
 target 'BrainCloud-OSXTests' do
+  platform :osx, '10.9'
+  shared_pods
 end
 
 target 'BrainCloud-tvOS' do
@@ -34,6 +38,8 @@ target 'BrainCloud-tvOS' do
 end
 
 target 'BrainCloud-tvOSTests' do
+  platform :tvos, '9.0'
+  shared_pods
 end
 
 target 'BrainCloud-watchOS' do
@@ -42,4 +48,6 @@ target 'BrainCloud-watchOS' do
 end
 
 target 'BrainCloud-watchOSTests' do
+  platform :watchos, '2.0'
+  shared_pods
 end
