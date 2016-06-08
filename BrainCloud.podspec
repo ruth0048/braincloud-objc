@@ -39,6 +39,11 @@ Pod::Spec.new do |s|
   s.private_header_files   = 'Shared/**/{BrainCloudCallback,TypeHelpers}.hh'
   s.source_files           = 'Shared/**/*.{h,hh,m,mm}'
 
+  # hack for use_frameworks!
+  s.xcconfig = {
+    'USER_HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/BrainCloudCpp/include"'
+  }
+
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   s.libraries                = 'c++', 'z'
