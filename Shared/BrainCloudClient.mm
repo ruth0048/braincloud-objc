@@ -382,6 +382,11 @@ public:
     _client->flushCachedMessages(in_sendApiErrorCallbacks);
 }
 
+- (void) insertEndOfMessageBundleMarker
+{
+    _client->insertEndOfMessageBundleMarker();
+}
+
 #pragma mark - Properties
 
 - (BrainCloudAuthentication *)authenticationService
