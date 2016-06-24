@@ -8,8 +8,8 @@
 
 #pragma once
 
-#import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#import <Foundation/Foundation.h>
 
 @interface BrainCloudScript : NSObject
 
@@ -89,10 +89,26 @@
 * @see The API documentation site for more details on cloud code
 */
 - (void)runParentScript:(NSString *)scriptName
-          jsonScriptData:(NSString *)jsonScriptData
-         parentLevelName:(NSString *)parentLevelName
-         completionBlock:(BCCompletionBlock)cb
-    errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                cbObject:(BCCallbackObject)cbObject;
+         jsonScriptData:(NSString *)jsonScriptData
+        parentLevelName:(NSString *)parentLevelName
+        completionBlock:(BCCompletionBlock)cb
+   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+               cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Cancels a scheduled cloud code script
+ *
+ * Service Name - Script
+ * Service Operation - CANCEL_SCHEDULED_SCRIPT
+ *
+ * @param jobId ID of script job to cancel
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)cancelScheduledScript:(NSString *)jobId
+              completionBlock:(BCCompletionBlock)cb
+         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                     cbObject:(BCCallbackObject)cbObject;
 
 @end

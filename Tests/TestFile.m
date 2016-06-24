@@ -261,4 +261,39 @@ long createFile(const char * in_path, int in_size)
     [self waitForResult];
 }
 
+- (void)testGetCDNUrl
+{
+    NSString * filename = @"uploadsimplefile.txt";
+    NSString * uploadId = nil;
+    if (![self simpleUpload:5 cloudPath:@"" cloudFilename:filename uploadId:&uploadId])
+    {
+        return;
+    }
+
+    if ([_fileUploadCompletedReceived count] != 1)
+    {
+        _XCTPrimitiveFail(self, @"Uploads completed not 1");
+        return;
+    }
+    if ([_fileUploadFailedReceived count] != 0)
+    {
+        _XCTPrimitiveFail(self, @"Uploads failed not 0");
+        return;
+    }
+
+    [[m_client fileService] getCDNUrl:@""
+                             cloudFileName:filename
+                           completionBlock:successBlock
+                      errorCompletionBlock:failureBlock
+                                  cbObject:nil];
+    [self waitForResult];
+
+    [[m_client fileService] deleteUserFile:@""
+                             cloudFilename:filename
+                           completionBlock:successBlock
+                      errorCompletionBlock:failureBlock
+                                  cbObject:nil];
+    [self waitForResult];
+}
+
 @end

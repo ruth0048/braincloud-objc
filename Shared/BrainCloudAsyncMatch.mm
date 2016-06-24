@@ -15,19 +15,6 @@
 
 - (void)createMatch:(NSString *)jsonOpponentIds
     pushNotificationMessage:(NSString *)pushMessage
-                    matchId:(NSString *)matchId
-            completionBlock:(BCCompletionBlock)cb
-       errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                   cbObject:(BCCallbackObject)cbObject
-{
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->createMatch(
-        [jsonOpponentIds UTF8String], [pushMessage UTF8String], [matchId UTF8String],
-        new BrainCloudCallback(cb, ecb, cbObject));
-}
-
-//deprecated
-- (void)createMatch:(NSString *)jsonOpponentIds
-    pushNotificationMessage:(NSString *)pushMessage
             completionBlock:(BCCompletionBlock)cb
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
@@ -49,23 +36,6 @@
     BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->createMatchWithInitialTurn(
         [jsonOpponentIds UTF8String], [matchState UTF8String], [pushMessage UTF8String],
         [nextPlayer UTF8String], [summary UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
-}
-
-// deprecated
-- (void)createMatchWithInitialTurn:(NSString *)jsonOpponentIds
-                    jsonMatchState:(NSString *)matchState
-           pushNotificationMessage:(NSString *)pushMessage
-                           matchId:(NSString *)matchId
-                        nextPlayer:(NSString *)nextPlayer
-                       jsonSummary:(NSString *)summary
-                   completionBlock:(BCCompletionBlock)cb
-              errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                          cbObject:(BCCallbackObject)cbObject
-{
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->createMatchWithInitialTurn(
-        [jsonOpponentIds UTF8String], [matchState UTF8String], [pushMessage UTF8String],
-        [matchId UTF8String], [nextPlayer UTF8String], [summary UTF8String],
-        new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)submitTurn:(NSString *)ownerId

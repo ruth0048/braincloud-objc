@@ -6,10 +6,10 @@
 //  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
-#import "BrainCloudPushNotification.hh"
-#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
+#import "BrainCloudPushNotification.hh"
 #import "PlatformObjc.hh"
+#include "braincloud/BrainCloudClient.h"
 #include "braincloud/Platform.h"
 
 @implementation BrainCloudPushNotification
@@ -19,27 +19,24 @@
                                          cbObject:(BCCallbackObject)cbObject
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
-    
+
     BrainCloud::BrainCloudClient::getInstance()
-    ->getPushNotificationService()
-    ->deregisterAllPushNotificationDeviceTokens(brainCloudCallback);
+        ->getPushNotificationService()
+        ->deregisterAllPushNotificationDeviceTokens(brainCloudCallback);
 }
 
-- (void)deregisterPushNotificationDeviceToken:(PlatformObjc *) platform
+- (void)deregisterPushNotificationDeviceToken:(PlatformObjc *)platform
                                   deviceToken:(NSString *)deviceToken
                               completionBlock:(BCCompletionBlock)cb
                          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                      cbObject:(BCCallbackObject)cbObject
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
-    
+
     std::string platformStr = [[platform toString] UTF8String];
     BrainCloud::Platform cppPlatform = BrainCloud::Platform::fromString(platformStr);
-    BrainCloud::BrainCloudClient::getInstance()
-    ->getPushNotificationService()
-    ->deregisterPushNotificationDeviceToken(cppPlatform,
-                                            [deviceToken cStringUsingEncoding:NSUTF8StringEncoding],
-                                            brainCloudCallback);
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->deregisterPushNotificationDeviceToken(
+        cppPlatform, [deviceToken cStringUsingEncoding:NSUTF8StringEncoding], brainCloudCallback);
 }
 
 - (void)registerPushNotificationDeviceToken:(PlatformObjc *)platform
@@ -50,26 +47,27 @@
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getPushNotificationService()
-        ->registerPushNotificationDeviceToken(
-            [[platform toString] UTF8String], [deviceToken cStringUsingEncoding:NSUTF8StringEncoding],
-            brainCloudCallback);
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->registerPushNotificationDeviceToken(
+        BrainCloud::Platform::fromString([[platform toString] UTF8String]),
+        [deviceToken cStringUsingEncoding:NSUTF8StringEncoding], brainCloudCallback);
 }
 
-- (void)registerPushNotificationDeviceTokenData:(PlatformObjc *) platform
+- (void)registerPushNotificationDeviceTokenData:(PlatformObjc *)platform
                                     deviceToken:(NSData *)deviceToken
                                 completionBlock:(BCCompletionBlock)cb
                            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                        cbObject:(BCCallbackObject)cbObject
 {
-    const uint32_t * tokenBytes = (const uint32_t *) [deviceToken bytes];
-    NSString * nsDeviceToken = [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x",
-                                ntohl(tokenBytes[0]), ntohl(tokenBytes[1]), ntohl(tokenBytes[2]),
-                                ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
-                                ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
-    [self registerPushNotificationDeviceToken:platform deviceToken:nsDeviceToken completionBlock:cb
-        errorCompletionBlock:ecb cbObject:cbObject];
+    const uint32_t *tokenBytes = (const uint32_t *)[deviceToken bytes];
+    NSString *nsDeviceToken =
+        [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x", ntohl(tokenBytes[0]), ntohl(tokenBytes[1]),
+                                   ntohl(tokenBytes[2]), ntohl(tokenBytes[3]), ntohl(tokenBytes[4]),
+                                   ntohl(tokenBytes[5]), ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
+    [self registerPushNotificationDeviceToken:platform
+                                  deviceToken:nsDeviceToken
+                              completionBlock:cb
+                         errorCompletionBlock:ecb
+                                     cbObject:cbObject];
 }
 
 - (void)sendSimplePushNotification:(NSString *)toPlayerId
@@ -80,10 +78,8 @@
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getPushNotificationService()
-        ->sendSimplePushNotification([toPlayerId UTF8String], [message UTF8String],
-                                     brainCloudCallback);
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendSimplePushNotification(
+        [toPlayerId UTF8String], [message UTF8String], brainCloudCallback);
 }
 
 - (void)sendRichPushNotification:(NSString *)toPlayerId
@@ -94,25 +90,21 @@
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getPushNotificationService()
-        ->sendRichPushNotification([toPlayerId UTF8String], notificationTemplateId,
-                                   brainCloudCallback);
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendRichPushNotification(
+        [toPlayerId UTF8String], notificationTemplateId, brainCloudCallback);
 }
 
 - (void)sendRichPushNotificationWithParams:(NSString *)toPlayerId
                     notificationTemplateId:(int)notificationTemplateId
-                          substitutionJson:(NSString*)substitutionJson
+                          substitutionJson:(NSString *)substitutionJson
                            completionBlock:(BCCompletionBlock)cb
                       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                   cbObject:(BCCallbackObject)cbObject
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
-    
-    BrainCloud::BrainCloudClient::getInstance()
-    ->getPushNotificationService()
-    ->sendRichPushNotificationWithParams([toPlayerId UTF8String], notificationTemplateId,
-                                [substitutionJson UTF8String], brainCloudCallback);
+
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendRichPushNotificationWithParams(
+        [toPlayerId UTF8String], notificationTemplateId, [substitutionJson UTF8String], brainCloudCallback);
 }
 
 - (void)sendTemplatedPushNotificationToGroup:(NSString *)groupId
@@ -124,10 +116,8 @@
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
-    BrainCloud::BrainCloudClient::getInstance()
-    ->getPushNotificationService()
-    ->sendTemplatedPushNotificationToGroup([groupId UTF8String], notificationTemplateId,
-                                         [substitutionsJson UTF8String], brainCloudCallback);
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendTemplatedPushNotificationToGroup(
+        [groupId UTF8String], notificationTemplateId, [substitutionsJson UTF8String], brainCloudCallback);
 }
 
 - (void)sendNormalizedPushNotificationToGroup:(NSString *)groupId
@@ -140,12 +130,10 @@
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
     std::string custom;
-    if(customDataJson != nil) custom = [customDataJson UTF8String];
+    if (customDataJson != nil) custom = [customDataJson UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()
-    ->getPushNotificationService()
-    ->sendNormalizedPushNotificationToGroup([groupId UTF8String], [alertContentJson UTF8String],
-                                           custom, brainCloudCallback);
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendNormalizedPushNotificationToGroup(
+        [groupId UTF8String], [alertContentJson UTF8String], custom, brainCloudCallback);
 }
 
 @end

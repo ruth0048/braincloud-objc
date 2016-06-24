@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, GroupMemberRole) { UNKNOWN, MEMBER, ADMIN, OWNER, OTHER };
+typedef NS_ENUM(NSUInteger, AutoJoinStrategy) { JoinFirstGroup, JoinRandomGroup };
 
 @interface BrainCloudGroup : NSObject
 
@@ -77,6 +78,27 @@ typedef NS_ENUM(NSUInteger, GroupMemberRole) { UNKNOWN, MEMBER, ADMIN, OWNER, OT
                 completionBlock:(BCCompletionBlock)cb
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Automatically join an open group that matches the search criteria and has space available.
+ *
+ * Service Name - group
+ * Service Operation - AUTO_JOIN_GROUP
+ *
+ * @param groupType Name of the associated group type.
+ * @param autoJoinStrategy Selection strategy to employ when there are multiple matches
+ * @param dataQueryJson Query parameters (optional)
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server
+ * response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)autoJoinGroup:(NSString *)groupType
+     autoJoinStrategy:(AutoJoinStrategy)autoJoinStrategy
+        dataQueryJson:(NSString *)dataQueryJson
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject;
 
 /**
  * Cancel an outstanding invitation to the group.
@@ -219,7 +241,6 @@ typedef NS_ENUM(NSUInteger, GroupMemberRole) { UNKNOWN, MEMBER, ADMIN, OWNER, OT
  *
  * @param groupId ID of the group.
  * @param jsonData Partial data map with incremental values.
- * @param returnData Should the group data be returned in the response?
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server
  * response
@@ -228,7 +249,6 @@ typedef NS_ENUM(NSUInteger, GroupMemberRole) { UNKNOWN, MEMBER, ADMIN, OWNER, OT
  */
 - (void)incrementGroupData:(NSString *)groupId
                   jsonData:(NSString *)jsonData
-                returnData:(BOOL)returnData
            completionBlock:(BCCompletionBlock)cb
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject;
@@ -242,7 +262,6 @@ typedef NS_ENUM(NSUInteger, GroupMemberRole) { UNKNOWN, MEMBER, ADMIN, OWNER, OT
  * @param groupId ID of the group.
  * @param entityId ID of the entity.
  * @param jsonData Partial data map with incremental values.
- * @param returnData Should the group entity be returned in the response?
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server
  * response
@@ -251,7 +270,6 @@ typedef NS_ENUM(NSUInteger, GroupMemberRole) { UNKNOWN, MEMBER, ADMIN, OWNER, OT
 - (void)incrementGroupEntityData:(NSString *)groupId
                         entityId:(NSString *)entityId
                         jsonData:(NSString *)jsonData
-                      returnData:(BOOL)returnData
                  completionBlock:(BCCompletionBlock)cb
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject;
@@ -383,6 +401,23 @@ typedef NS_ENUM(NSUInteger, GroupMemberRole) { UNKNOWN, MEMBER, ADMIN, OWNER, OT
          completionBlock:(BCCompletionBlock)cb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Read the specified group's data.
+ *
+ * Service Name - group
+ * Service Operation - READ_GROUP_DATA
+ *
+ * @param groupId ID of the group.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)readGroupData:(NSString *)groupId
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject;
+
 /**
  * Read a page of group entity information.
  *

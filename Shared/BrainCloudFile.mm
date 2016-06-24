@@ -77,6 +77,16 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     getFileService()->deleteUserFiles([cloudPath UTF8String], recurse, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)getCDNUrl:(NSString *)cloudPath
+    cloudFileName:(NSString *)cloudFileName
+  completionBlock:(BCCompletionBlock)cb
+errorCompletionBlock:(BCErrorCompletionBlock)ecb
+         cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->
+    getFileService()->getCDNUrl([cloudPath UTF8String], [cloudFileName UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void) cancelUpload:(NSString *)uploadId
 {
     BrainCloud::BrainCloudClient::getInstance()->

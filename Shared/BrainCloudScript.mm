@@ -1,5 +1,5 @@
-#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
+#include "braincloud/BrainCloudClient.h"
 
 #import "BrainCloudScript.hh"
 
@@ -13,8 +13,7 @@
 {
     BrainCloud::BrainCloudClient::getInstance()->getScriptService()->runScript(
         [scriptName cStringUsingEncoding:NSUTF8StringEncoding],
-        [jsonScriptData cStringUsingEncoding:NSUTF8StringEncoding],
-        new BrainCloudCallback(cb, ecb, cbObject));
+        [jsonScriptData cStringUsingEncoding:NSUTF8StringEncoding], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)scheduleRunScriptUTC:(NSString *)scriptName
@@ -28,8 +27,7 @@
     struct tm *timeStruct = localtime(&time);
 
     BrainCloud::BrainCloudClient::getInstance()->getScriptService()->scheduleRunScriptUTC(
-        [scriptName UTF8String], [jsonScriptData UTF8String], timeStruct,
-        new BrainCloudCallback(cb, ecb, cbObject));
+        [scriptName UTF8String], [jsonScriptData UTF8String], timeStruct, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)scheduleRunScriptMinutes:(NSString *)scriptName
@@ -45,15 +43,24 @@
 }
 
 - (void)runParentScript:(NSString *)scriptName
-          jsonScriptData:(NSString *)jsonScriptData
-         parentLevelName:(NSString *)parentLevelName
-         completionBlock:(BCCompletionBlock)cb
-    errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                cbObject:(BCCallbackObject)cbObject
+         jsonScriptData:(NSString *)jsonScriptData
+        parentLevelName:(NSString *)parentLevelName
+        completionBlock:(BCCompletionBlock)cb
+   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+               cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getScriptService()->runParentScript(
         [scriptName UTF8String], [jsonScriptData UTF8String], [parentLevelName UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)cancelScheduledScript:(NSString *)jobId
+              completionBlock:(BCCompletionBlock)cb
+         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                     cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getScriptService()->cancelScheduledScript(
+        [jobId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 @end

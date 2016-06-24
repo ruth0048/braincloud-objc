@@ -6,8 +6,8 @@
 //  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#import <Foundation/Foundation.h>
 
 @class FriendPlatformObjc;
 @interface BrainCloudFriend : NSObject
@@ -31,6 +31,22 @@
                                  cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Returns player state of a particular user.
+ *
+ * Service Name - Friend
+ * Service Operation - GET_SUMMARY_DATA_FOR_PROFILE_ID
+ *
+ * @param profileId Profile (player) ID.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getSummaryDataForProfileId:(NSString *)profileId
+                   completionBlock:(BCCompletionBlock)cb
+              errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                          cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Retrieves the external ID for the specified user profile ID on the specified social platform.
  *
  * @param profileId Profile (player) ID.
@@ -39,11 +55,11 @@
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
  */
-- (void) getExternalIdForProfileId:(NSString *)profileId
-                authenticationType:(NSString *)authenticationType
-                   completionBlock:(BCCompletionBlock)cb
-              errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                          cbObject:(BCCallbackObject)cbObject;
+- (void)getExternalIdForProfileId:(NSString *)profileId
+               authenticationType:(NSString *)authenticationType
+                  completionBlock:(BCCompletionBlock)cb
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Returns a particular entity of a particular friend.
@@ -80,15 +96,6 @@
                    cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Deprecated - Use listFriends instead. Removal after June 21 2016.
-*/
-- (void)readFriendsWithApplication:(bool)includeSummaryData
-                   completionBlock:(BCCompletionBlock)cb
-              errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                          cbObject:(BCCallbackObject)cbObject
-DEPRECATED_MSG_ATTRIBUTE("Use listFriends instead. Removal after June 21 2016.");
-
-/**
 * Read a friend's player state.
 *
 * Service Name - PlayerState
@@ -103,15 +110,6 @@ DEPRECATED_MSG_ATTRIBUTE("Use listFriends instead. Removal after June 21 2016.")
               completionBlock:(BCCompletionBlock)cb
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject;
-
-/**
- * Deprecated - Use version in BrainCloudPlayerState instead. Removal after June 21 2016.
- */
-- (void)updateSummaryFriendData:(NSString *)jsonSummaryData
-                completionBlock:(BCCompletionBlock)cb
-           errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                       cbObject:(BCCallbackObject)cbObject
-DEPRECATED_MSG_ATTRIBUTE("Use version in BrainCloudPlayerState instead. Removal after June 21 2016.");
 
 /**
 * Finds a list of players matching the search text by performing a substring

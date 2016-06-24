@@ -292,7 +292,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  */
 - (void)getSharedEntitiesListForPlayerId:(NSString *)playerId
                                whereJson:(NSString *)whereJson
-                                 orderByJson:(NSString *)orderByJson
+                             orderByJson:(NSString *)orderByJson
                                maxReturn:(int32_t)maxReturn
                          completionBlock:(BCCompletionBlock)completionBlock
                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -358,7 +358,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject;
 
-
 /**
  * Partial increment of entity data field items. Partial set of items incremented as specified.
  *
@@ -366,19 +365,35 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * Service Operation - INCREMENT_USER_ENTITY_DATA
  *
  * @param entityId The id of the entity to update
- * @param targetPlayerId Profile ID of the entity owner
  * @param jsonData The entity's data object
- * @param returnData Should the entity be returned in the response?
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
  */
 - (void)incrementUserEntityData:(NSString *)entityId
-                 targetPlayerId:(NSString *)targetPlayerId
                        jsonData:(NSString *)jsonData
-                     returnData:(BOOL)returnData
                 completionBlock:(BCCompletionBlock)completionBlock
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Partial increment of entity data field items. Partial set of items incremented as specified.
+ *
+ * Service Name - entity
+ * Service Operation - INCREMENT_SHARED_USER_ENTITY_DATA
+ *
+ * @param entityId The id of the entity to update
+ * @param targetPlayerId Profile ID of the entity owner
+ * @param jsonData The entity's data object
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)incrementSharedUserEntityData:(NSString *)entityId
+                       targetPlayerId:(NSString *)targetPlayerId
+                             jsonData:(NSString *)jsonData
+                      completionBlock:(BCCompletionBlock)completionBlock
+                 errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                             cbObject:(BCCallbackObject)cbObject;
 
 @end

@@ -254,14 +254,12 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  *
  * @param entityId The id of the entity to update
  * @param jsonData The entity's data object
- * @param returnData Should the entity be returned in the response?
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
  */
 - (void)incrementGlobalEntityData:(NSString *)entityId
                        jsonData:(NSString *)jsonData
-                     returnData:(BOOL)returnData
                 completionBlock:(BCCompletionBlock)completionBlock
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject;

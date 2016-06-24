@@ -66,6 +66,30 @@ NSString *_parentLevelName = @"Master";
     [self waitForResult];
 }
 
+- (void)testCancelScheduledScript
+{
+    time_t currentTime = time(0);
+    struct tm *timeStruct = localtime(&currentTime);
+    timeStruct->tm_mday += 1;
+
+    [[m_client scriptService] scheduleRunScriptMinutes:scriptName
+                                        jsonScriptData:@""
+                                        minutesFromNow:10
+                                       completionBlock:successBlock
+                                  errorCompletionBlock:failureBlock
+                                              cbObject:nil];
+    [self waitForResult];
+
+    NSDictionary* json = [NSJSONSerialization JSONObjectWithData:[self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    NSString* jobId = [[json objectForKey:@"data"] objectForKey:@"jobId"];
+
+    [[m_client scriptService] cancelScheduledScript:jobId
+                                       completionBlock:successBlock
+                                  errorCompletionBlock:failureBlock
+                                              cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testRunParentScript
 {
     [self goToChildProfile];

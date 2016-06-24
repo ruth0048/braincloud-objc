@@ -39,6 +39,15 @@
     [self waitForResult];
 }
 
+- (void)testGetSummaryDataForProfileId
+{
+    [[m_client friendService] getSummaryDataForProfileId:[TestFixtureBase getUser:@"UserA"].m_profileId
+                                        completionBlock:successBlock
+                                   errorCompletionBlock:failureBlock
+                                               cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testFindPlayerByUniversalId
 {
     [[m_client friendService] findPlayerByUniversalId:@"name"
