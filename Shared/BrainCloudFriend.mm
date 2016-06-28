@@ -42,6 +42,17 @@
                                     new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)getSummaryDataForProfileId:(NSString *)profileId
+                   completionBlock:(BCCompletionBlock)cb
+              errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                          cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()
+    ->getFriendService()
+    ->getSummaryDataForProfileId([profileId UTF8String],
+                                new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)readFriendEntity:(NSString *)entityId
                 friendId:(NSString *)friendId
          completionBlock:(BCCompletionBlock)cb
@@ -59,15 +70,6 @@
 {
     BrainCloud::BrainCloudClient::getInstance()->getFriendService()->readFriendsEntities(
         [entityType UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
-}
-
-- (void)readFriendsWithApplication:(bool)includeSummaryData
-                   completionBlock:(BCCompletionBlock)cb
-              errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                          cbObject:(BCCallbackObject)cbObject
-{
-    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->readFriendsWithApplication(
-        includeSummaryData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)readFriendPlayerState:(NSString *)friendId

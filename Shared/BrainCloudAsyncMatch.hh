@@ -49,15 +49,6 @@
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject;
 
-
-- (void)createMatch:(NSString *)jsonOpponentIds
-    pushNotificationMessage:(NSString *)pushMessage
-                    matchId:(NSString *)matchId
-            completionBlock:(BCCompletionBlock)cb
-       errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                   cbObject:(BCCallbackObject)cbObject
-DEPRECATED_MSG_ATTRIBUTE("Use version without matchId param instead. Removal after May 10 2016.");
-
 /**
 * Creates an instance of an asynchronous match with an initial turn.
 *
@@ -99,17 +90,6 @@ DEPRECATED_MSG_ATTRIBUTE("Use version without matchId param instead. Removal aft
                    completionBlock:(BCCompletionBlock)cb
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
                           cbObject:(BCCallbackObject)cbObject;
-
-- (void)createMatchWithInitialTurn:(NSString *)jsonOpponentIds
-                    jsonMatchState:(NSString *)matchState
-           pushNotificationMessage:(NSString *)pushMessage
-                           matchId:(NSString *)matchId
-                        nextPlayer:(NSString *)nextPlayer
-                       jsonSummary:(NSString *)summary
-                   completionBlock:(BCCompletionBlock)cb
-              errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                          cbObject:(BCCallbackObject)cbObject
-DEPRECATED_MSG_ATTRIBUTE("Use version without matchId param instead. Removal after May 10 2016.");
 
 /**
 * Submits a turn for the given match.

@@ -27,4 +27,23 @@
     [self waitForResult];
 }
 
+- (void)testGetCDNUrl
+{
+    [[m_client s3HandlingService] getFileList:@"test"
+                              completionBlock:successBlock
+                         errorCompletionBlock:failureBlock
+                                     cbObject:nil];
+    [self waitForResult];
+
+    NSData* jsonData =  [[self jsonResponse] dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+    NSString* fileId = [[[[json objectForKey:@"data"] objectForKey:@"fileDetails"] objectAtIndex:0] objectForKey:@"fileId"];
+
+    [[m_client s3HandlingService] getCDNUrl:fileId
+                              completionBlock:successBlock
+                         errorCompletionBlock:failureBlock
+                                     cbObject:nil];
+    [self waitForResult];
+}
+
 @end

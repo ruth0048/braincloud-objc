@@ -222,9 +222,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 }
 
 - (void)incrementUserEntityData:(NSString *)entityId
-                 targetPlayerId:(NSString *)targetPlayerId
                        jsonData:(NSString *)jsonData
-                     returnData:(BOOL)returnData
                 completionBlock:(BCCompletionBlock)completionBlock
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject
@@ -232,9 +230,25 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     BrainCloud::BrainCloudClient::getInstance()
         ->getEntityService()
         ->incrementUserEntityData(
-            [entityId UTF8String], [targetPlayerId UTF8String],
-            TypeHelpers::NSStringToStdString(jsonData), returnData ? true : false,
+            [entityId UTF8String],
+            TypeHelpers::NSStringToStdString(jsonData),
             new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+
+- (void)incrementSharedUserEntityData:(NSString *)entityId
+                 targetPlayerId:(NSString *)targetPlayerId
+                       jsonData:(NSString *)jsonData
+                completionBlock:(BCCompletionBlock)completionBlock
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()
+    ->getEntityService()
+    ->incrementSharedUserEntityData(
+                              [entityId UTF8String], [targetPlayerId UTF8String],
+                              TypeHelpers::NSStringToStdString(jsonData),
+                              new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 @end

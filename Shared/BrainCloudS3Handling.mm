@@ -6,8 +6,8 @@
 //  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
-#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
+#include "braincloud/BrainCloudClient.h"
 
 #import "BrainCloudS3Handling.hh"
 
@@ -30,6 +30,15 @@
 {
     BrainCloud::BrainCloudClient::getInstance()->getS3HandlingService()->getFileList(
         [category UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getCDNUrl:(NSString *)fileId
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getS3HandlingService()->getCDNUrl(
+        [fileId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 @end

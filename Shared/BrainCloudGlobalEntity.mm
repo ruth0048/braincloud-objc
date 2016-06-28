@@ -188,7 +188,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 
 - (void)incrementGlobalEntityData:(NSString *)entityId
                          jsonData:(NSString *)jsonData
-                       returnData:(BOOL)returnData
                   completionBlock:(BCCompletionBlock)completionBlock
              errorCompletionBlock:(BCErrorCompletionBlock)ecb
                          cbObject:(BCCallbackObject)cbObject
@@ -197,7 +196,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         ->getGlobalEntityService()
         ->incrementGlobalEntityData(
             [entityId UTF8String],
-            TypeHelpers::NSStringToStdString(jsonData), returnData ? true : false,
+            TypeHelpers::NSStringToStdString(jsonData),
             new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 

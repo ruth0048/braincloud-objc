@@ -61,6 +61,22 @@ NSString *groupId = @"";
   [self deleteGroupAsUserA];
 }
 
+- (void)testAutoJoinGroup {
+    [self createGroupAsUserA:YES];
+    [self authenticate:@"UserB"];
+
+    [[m_client groupService] autoJoinGroup:groupType
+                          autoJoinStrategy:JoinFirstGroup
+                             dataQueryJson:nil
+                                   completionBlock:successBlock
+                              errorCompletionBlock:failureBlock
+                                          cbObject:nil];
+    [self waitForResult];
+
+    [self logout];
+    [self deleteGroupAsUserA];
+}
+
 - (void)testAddGroupMember {
   [self authenticate:@"UserA"];
   [self createGroup];
@@ -178,7 +194,6 @@ NSString *groupId = @"";
 
   [[m_client groupService] incrementGroupData:groupId
                                      jsonData:testJsonPair
-                                   returnData:YES
                               completionBlock:successBlock
                          errorCompletionBlock:failureBlock
                                      cbObject:nil];
@@ -197,7 +212,6 @@ NSString *groupId = @"";
   [[m_client groupService] incrementGroupEntityData:groupId
                                            entityId:entityId
                                            jsonData:testJsonPair
-                                         returnData:NO
                                     completionBlock:successBlock
                                errorCompletionBlock:failureBlock
                                            cbObject:nil];
@@ -292,6 +306,19 @@ NSString *groupId = @"";
   [self waitForResult];
 
   [self deleteGroup];
+}
+
+- (void)testReadGroupData {
+    [self authenticate:@"UserA"];
+    [self createGroup];
+
+    [[m_client groupService] readGroupData:groupId
+                       completionBlock:successBlock
+                  errorCompletionBlock:failureBlock
+                              cbObject:nil];
+    [self waitForResult];
+
+    [self deleteGroup];
 }
 
 - (void)testReadGroupEntitiesPage {
@@ -507,9 +534,13 @@ NSString *groupId = @"";
 /* Helper functions */
 
 - (void)createGroupAsUserA {
-  [self authenticate:@"UserA"];
-  [self createGroup];
-  [self logout];
+    [self createGroupAsUserA:NO];
+}
+
+- (void)createGroupAsUserA:(BOOL)isOpen {
+    [self authenticate:@"UserA"];
+    [self createGroup:isOpen];
+    [self logout];
 }
 
 - (void)deleteGroupAsUserA {
@@ -530,9 +561,13 @@ NSString *groupId = @"";
 }
 
 - (void)createGroup {
+    [self createGroup:NO];
+}
+
+- (void)createGroup:(BOOL)isOpen {
   [[m_client groupService] createGroup:@"testGroup"
                              groupType:groupType
-                           isOpenGroup:NO
+                           isOpenGroup:isOpen
                                    acl:testAcl
                               jsonData:testJsonPair
                    jsonOwnerAttributes:testJsonPair

@@ -180,7 +180,6 @@ NSString *testIndexedId = @"testIndexedId";
 
     [[m_client globalEntityService] incrementGlobalEntityData:entityId
                                              jsonData:@"{\"test\": 123}"
-                                           returnData:YES
                                       completionBlock:successBlock
                                  errorCompletionBlock:failureBlock
                                              cbObject:nil];

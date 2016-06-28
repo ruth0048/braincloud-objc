@@ -176,13 +176,13 @@
 - (void) setErrorCallbackOn202Status:(bool)isError;
 
 /**
-* set an interval in ms for which the BrainCloud will contact the server
-* and receive any pending events
+* THIH METHOD IS FOR DEBUGGING USE ONLY
+* Hearbeat interval is automatically set based on the session timeout setting
+* in the brainCloud portal.
 *
 * @param intervalInMilliseconds The time between heartbeats in milliseconds
 */
-- (void)setHeartbeatInterval:(int)intervalInMilliseconds
-DEPRECATED_MSG_ATTRIBUTE("Removal after May 10 2016.");
+- (void)setHeartbeatInterval:(int)intervalInMilliseconds;
 
 /**
 * Clears any pending messages from communication library.
@@ -355,6 +355,22 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
  */
 - (void) flushCachedMessages:(bool) in_sendApiErrorCallbacks;
 
+/**
+ * Inserts a marker which will tell the brainCloud comms layer
+ * to close the message bundle off at this point. Any messages queued
+ * before this method was called will likely be bundled together in
+ * the next send to the server.
+ *
+ * To ensure that only a single message is sent to the server you would
+ * do something like this:
+ *
+ * InsertEndOfMessageBundleMarker()
+ * SomeApiCall()
+ * InsertEndOfMessageBundleMarker()
+ *
+ */
+- (void) insertEndOfMessageBundleMarker;
+
 
 @property(readonly) const char *sessionId;
 @property(readonly) BrainCloudAuthentication *authenticationService;
@@ -385,10 +401,5 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
 @property(readonly) BrainCloudFile *fileService;
 @property(readonly) BrainCloudGroup *groupService;
 @property NSInteger frameInterval;
-
-/**
- * @deprecated Use getInstance instead
- */
-+ (BrainCloudClient *)defaultClient DEPRECATED_MSG_ATTRIBUTE("Use getInstance instead");
 
 @end
