@@ -6,9 +6,9 @@
 //  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
-#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 #import "TypeHelpers.hh"
+#include "braincloud/BrainCloudClient.h"
 
 #import "BrainCloudPlayerStatistics.hh"
 
@@ -27,10 +27,8 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getPlayerStatisticsService()
-    ->readPlayerStatsSubset(TypeHelpers::NSStringArrayToVector(playerStats),
-                                new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getPlayerStatisticsService()->readPlayerStatsSubset(
+        TypeHelpers::NSStringArrayToVector(playerStats), new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)readPlayerStatsForCategory:(NSString *)category
@@ -38,10 +36,8 @@
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
                           cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getPlayerStatisticsService()
-        ->readPlayerStatsForCategory([category UTF8String],
-                                     new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getPlayerStatisticsService()->readPlayerStatsForCategory(
+        [category UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)resetAllPlayerStats:(BCCompletionBlock)completionBlock
@@ -65,9 +61,8 @@
           errorCompletionBlock:(BCErrorCompletionBlock)ecb
                       cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getPlayerStatisticsService()
-        ->getNextExperienceLevel(new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getPlayerStatisticsService()->getNextExperienceLevel(
+        new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)incrementExperiencePoints:(int)xpValue
@@ -75,10 +70,8 @@
              errorCompletionBlock:(BCErrorCompletionBlock)ecb
                          cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getPlayerStatisticsService()
-        ->incrementExperiencePoints(xpValue,
-                                    new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getPlayerStatisticsService()->incrementExperiencePoints(
+        xpValue, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)setExperiencePoints:(int)xpValue
@@ -88,6 +81,15 @@
 {
     BrainCloud::BrainCloudClient::getInstance()->getPlayerStatisticsService()->setExperiencePoints(
         xpValue, new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)processStatistics:(NSString *)jsonData
+          completionBlock:(BCCompletionBlock)completionBlock
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getPlayerStatisticsService()->processStatistics(
+        [jsonData UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 @end

@@ -87,6 +87,18 @@
     [self waitForResult];
 }
 
+- (void)testGetPlayersOnlineStatus
+{
+    NSArray* array = @[[TestFixtureBase getUser:@"UserB"].m_profileId];
+    [[m_client friendService] getPlayersOnlineStatus:array
+                            completionBlock:successBlock
+                       errorCompletionBlock:failureBlock
+                                   cbObject:nil];
+    [self waitForResult];
+}
+
+//Helpers
+
 - (void)addFriend
 {
     NSArray* array = @[[TestFixtureBase getUser:@"UserB"].m_profileId];
