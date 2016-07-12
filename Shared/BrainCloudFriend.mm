@@ -131,12 +131,12 @@
         TypeHelpers::NSStringArrayToVector(profileIds), new BrainCloudCallback(cb, ecb, cbObject));
 }
 
-- (void)getPlayersOnlineStatus:(NSArray *)profileIds
-               completionBlock:(BCCompletionBlock)cb
-          errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                      cbObject:(BCCallbackObject)cbObject
+- (void)getUsersOnlineStatus:(NSArray *)profileIds
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->getPlayersOnlineStatus(
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->getUsersOnlineStatus(
         TypeHelpers::NSStringArrayToVector(profileIds), new BrainCloudCallback(cb, ecb, cbObject));
 }
 
