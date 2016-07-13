@@ -198,4 +198,20 @@
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Get users online status
+ *
+ * Service Name - Friend
+ * Service Operation - GET_USERS_ONLINE_STATUS
+ *
+ * @param profileIds Collection of profile IDs.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getUsersOnlineStatus:(NSArray *)profileIds
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject;
+
 @end

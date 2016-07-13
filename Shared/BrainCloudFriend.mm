@@ -9,10 +9,10 @@
 #import "BrainCloudFriend.hh"
 #import "FriendPlatformObjc.hh"
 
-#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
-#include "braincloud/FriendPlatform.h"
 #include "TypeHelpers.hh"
+#include "braincloud/BrainCloudClient.h"
+#include "braincloud/FriendPlatform.h"
 
 @implementation BrainCloudFriend
 
@@ -22,24 +22,18 @@
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getFriendService()
-        ->getFriendProfileInfoForExternalId([externalId UTF8String],
-                                            [authenticationType UTF8String],
-                                            new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->getFriendProfileInfoForExternalId(
+        [externalId UTF8String], [authenticationType UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
-- (void) getExternalIdForProfileId:(NSString *)profileId
-                authenticationType:(NSString *)authenticationType
-                   completionBlock:(BCCompletionBlock)cb
-              errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                          cbObject:(BCCallbackObject)cbObject
+- (void)getExternalIdForProfileId:(NSString *)profileId
+               authenticationType:(NSString *)authenticationType
+                  completionBlock:(BCCompletionBlock)cb
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getFriendService()
-        ->getExternalIdForProfileId([profileId UTF8String],
-                                    [authenticationType UTF8String],
-                                    new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->getExternalIdForProfileId(
+        [profileId UTF8String], [authenticationType UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)getSummaryDataForProfileId:(NSString *)profileId
@@ -47,10 +41,8 @@
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
                           cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-    ->getFriendService()
-    ->getSummaryDataForProfileId([profileId UTF8String],
-                                new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->getSummaryDataForProfileId(
+        [profileId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)readFriendEntity:(NSString *)entityId
@@ -116,10 +108,9 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-  BrainCloud::BrainCloudClient::getInstance()->getFriendService()->listFriends(
-      BrainCloud::FriendPlatform::fromString(
-          [[friendPlatform toString] UTF8String]),
-      includeSummaryData, new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->listFriends(
+        BrainCloud::FriendPlatform::fromString([[friendPlatform toString] UTF8String]), includeSummaryData,
+        new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)addFriends:(NSArray *)profileIds
@@ -127,19 +118,26 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-  BrainCloud::BrainCloudClient::getInstance()->getFriendService()->addFriends(
-      TypeHelpers::NSStringArrayToVector(profileIds),
-      new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->addFriends(
+        TypeHelpers::NSStringArrayToVector(profileIds), new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)removeFriends:(NSArray *)profileIds
-         completionBlock:(BCCompletionBlock)cb
-    errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                cbObject:(BCCallbackObject)cbObject
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject
 {
-  BrainCloud::BrainCloudClient::getInstance()->getFriendService()->removeFriends(
-      TypeHelpers::NSStringArrayToVector(profileIds),
-      new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->removeFriends(
+        TypeHelpers::NSStringArrayToVector(profileIds), new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getUsersOnlineStatus:(NSArray *)profileIds
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->getUsersOnlineStatus(
+        TypeHelpers::NSStringArrayToVector(profileIds), new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 @end

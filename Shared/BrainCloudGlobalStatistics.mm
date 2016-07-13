@@ -6,9 +6,9 @@
 //  Copyright (c) 2016 bitHeads. All rights reserved.
 //
 
-#include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 #import "TypeHelpers.hh"
+#include "braincloud/BrainCloudClient.h"
 
 #import "BrainCloudGlobalStatistics.hh"
 
@@ -27,10 +27,8 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getGlobalStatisticsService()
-    ->readGlobalStatsSubset(TypeHelpers::NSStringArrayToVector(globalStats),
-                                new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getGlobalStatisticsService()->readGlobalStatsSubset(
+        TypeHelpers::NSStringArrayToVector(globalStats), new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)readGlobalStatsForCategory:(NSString *)category
@@ -38,10 +36,8 @@
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
                           cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getGlobalStatisticsService()
-        ->readGlobalStatsForCategory([category UTF8String],
-                                   new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getGlobalStatisticsService()->readGlobalStatsForCategory(
+        [category UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)incrementGlobalStats:(NSString *)jsonData
@@ -49,10 +45,17 @@
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getGlobalStatisticsService()
-        ->incrementGlobalGameStat([jsonData UTF8String],
-                                  new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getGlobalStatisticsService()->incrementGlobalGameStat(
+        [jsonData UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)processStatistics:(NSString *)jsonData
+          completionBlock:(BCCompletionBlock)completionBlock
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getGlobalStatisticsService()->processStatistics(
+        [jsonData UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 @end

@@ -12,9 +12,9 @@
 
 @interface BrainCloudSaveDataHelper ()
 
-@property (copy, nonatomic) NSString *companyName;
-@property (copy, nonatomic) NSString *gameName;
-@property (copy, nonatomic) NSString *path;
+@property(copy, nonatomic) NSString *companyName;
+@property(copy, nonatomic) NSString *gameName;
+@property(copy, nonatomic) NSString *path;
 
 @end
 
@@ -34,25 +34,38 @@
 
 - (void)saveString:(NSString *)string forKey:(NSString *)key
 {
-    if (self.path.length == 0)
-        return;
-    
+    if (self.path.length == 0) return;
+
+    [SSKeychain deletePasswordForService:self.path account:key];
+
     if (string.length == 0)
     {
-        [SSKeychain deletePasswordForService:self.path account:key];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
     }
     else
     {
-        [SSKeychain setPassword:string forService:self.path account:key];
+        [[NSUserDefaults standardUserDefaults] setValue:string forKeyPath:key];
     }
 }
 
 - (NSString *)stringForKey:(NSString *)key
 {
-    if (self.path.length == 0)
-        return nil;
-    
-    return [SSKeychain passwordForService:self.path account:key];
+    if (self.path.length == 0) return nil;
+
+    return [self migrateLoadString:key];
+}
+
+- (NSString *)migrateLoadString:(NSString *)key
+{
+    NSString *value = [SSKeychain passwordForService:self.path account:key];
+
+    if (value != nil && value.length > 0)
+    {
+        [[NSUserDefaults standardUserDefaults] setValue:value forKeyPath:key];
+        [SSKeychain deletePasswordForService:self.path account:key];
+    }
+
+    return [[NSUserDefaults standardUserDefaults] stringForKey:key];
 }
 
 @end

@@ -89,4 +89,14 @@
     [self waitForResult];
 }
 
+- (void)testProcessStatistics
+{
+    NSString *data = @"{ \"highestScore\":\"RESET\" }";
+    [[m_client playerStatisticsService] processStatistics:data
+                                          completionBlock:successBlock
+                                     errorCompletionBlock:failureBlock
+                                                 cbObject:nil];
+    [self waitForResult];
+}
+
 @end

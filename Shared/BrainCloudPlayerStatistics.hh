@@ -154,4 +154,27 @@
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Apply statistics grammar to a partial set of statistics.
+ *
+ * Service Name - PlayerStatistics
+ * Service Operation - PROCESS_STATISTICS
+ *
+ * @param jsonData The JSON format is as follows:
+ * {
+ *     "DEAD_CATS": "RESET",
+ *     "LIVES_LEFT": "SET#9",
+ *     "MICE_KILLED": "INC#2",
+ *     "DOG_SCARE_BONUS_POINTS": "INC#10",
+ *     "TREES_CLIMBED": 1
+ * }
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)processStatistics:(NSString *)jsonData
+          completionBlock:(BCCompletionBlock)completionBlock
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject;
+
 @end
