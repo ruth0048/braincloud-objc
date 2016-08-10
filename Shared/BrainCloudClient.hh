@@ -8,34 +8,34 @@
 
 #pragma once
 
-#import <Foundation/Foundation.h>
-#import "BrainCloudAuthentication.hh"
-#import "BrainCloudScript.hh"
-#import "BrainCloudPushNotification.hh"
-#import "BrainCloudProduct.hh"
-#import "BrainCloudPlayerStatistics.hh"
-#import "BrainCloudPlayerState.hh"
-#import "BrainCloudGlobalStatistics.hh"
-#import "BrainCloudEntity.hh"
-#import "BrainCloudGlobalEntity.hh"
-#import "BrainCloudLeaderboard.hh"
-#import "BrainCloudGlobalApp.hh"
-#import "BrainCloudFriend.hh"
-#import "BrainCloudMatchmaking.hh"
 #import "BrainCloudAsyncMatch.hh"
+#import "BrainCloudAuthentication.hh"
+#import "BrainCloudDataStream.hh"
+#import "BrainCloudEntity.hh"
+#import "BrainCloudEvent.hh"
+#import "BrainCloudFile.hh"
+#import "BrainCloudFriend.hh"
+#import "BrainCloudGamification.hh"
+#import "BrainCloudGlobalApp.hh"
+#import "BrainCloudGlobalEntity.hh"
+#import "BrainCloudGlobalStatistics.hh"
+#import "BrainCloudGroup.hh"
+#import "BrainCloudIdentity.hh"
+#import "BrainCloudLeaderboard.hh"
+#import "BrainCloudMatchmaking.hh"
 #import "BrainCloudOneWayMatch.hh"
 #import "BrainCloudPlaybackStream.hh"
-#import "BrainCloudGamification.hh"
-#import "BrainCloudEvent.hh"
+#import "BrainCloudPlayerState.hh"
+#import "BrainCloudPlayerStatistics.hh"
 #import "BrainCloudPlayerStatisticsEvent.hh"
-#import "BrainCloudTime.hh"
-#import "BrainCloudS3Handling.hh"
-#import "BrainCloudIdentity.hh"
-#import "BrainCloudRedemptionCode.hh"
-#import "BrainCloudDataStream.hh"
+#import "BrainCloudProduct.hh"
 #import "BrainCloudProfanity.hh"
-#import "BrainCloudFile.hh"
-#import "BrainCloudGroup.hh"
+#import "BrainCloudPushNotification.hh"
+#import "BrainCloudRedemptionCode.hh"
+#import "BrainCloudS3Handling.hh"
+#import "BrainCloudScript.hh"
+#import "BrainCloudTime.hh"
+#import <Foundation/Foundation.h>
 
 /**
 * This class is responsible for accumulating client requests, bundling
@@ -51,7 +51,6 @@
 *
 */
 @interface BrainCloudClient : NSObject
-
 
 /**
  * BrainCloudClient is a singleton object. This method gives the caller access
@@ -112,7 +111,7 @@
 /**
  * Returns the list of packet timeouts.
  */
-- (NSArray *) getPacketTimeouts;
+- (NSArray *)getPacketTimeouts;
 
 /**
  * Sets the packet timeouts using a list of integers that
@@ -143,7 +142,7 @@
  *
  * @return The timeout in seconds
  */
-- (int) getAuthenticationPacketTimeout;
+- (int)getAuthenticationPacketTimeout;
 
 /**
  * Sets the authentication packet timeout which is tracked separately
@@ -154,8 +153,7 @@
  *
  * @param timeoutSecs The timeout in seconds
  */
-- (void) setAuthenticationPacketTimeout:(int)timeoutSecs;
-
+- (void)setAuthenticationPacketTimeout:(int)timeoutSecs;
 
 /**
  * Sets the error callback to return the status message instead of the
@@ -164,7 +162,7 @@
  *
  * @param enabled If set to true, enable
  */
-- (void) setOldStyleStatusMessageErrorCallback:(bool)enabled;
+- (void)setOldStyleStatusMessageErrorCallback:(bool)enabled;
 
 /**
  * Sets whether the error callback is triggered when a 202 status
@@ -173,7 +171,7 @@
  *
  * @param in_isError If set to true, 202 is treated as an error
  */
-- (void) setErrorCallbackOn202Status:(bool)isError;
+- (void)setErrorCallbackOn202Status:(bool)isError;
 
 /**
 * THIH METHOD IS FOR DEBUGGING USE ONLY
@@ -223,7 +221,7 @@
  * @param failedBlock A completion block run when a file fails to upload
  */
 - (void)registerFileUploadCallback:(BCFileUploadCompletedCompletionBlock)completedBlock
-failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
+                       failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
 
 /**
  * Deregisters the event callback
@@ -279,7 +277,7 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
  *
  * @returns The low transfer rate timeout in secs
  */
-- (int) getUploadLowTransferRateTimeout;
+- (int)getUploadLowTransferRateTimeout;
 
 /**
  * Sets the timeout in seconds of a low speed upload
@@ -289,14 +287,14 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
  *
  * @param in_timeoutSecs The timeout in secs
  */
-- (void) setUploadLowTransferRateTimeout:(int)in_timeoutSecs;
+- (void)setUploadLowTransferRateTimeout:(int)in_timeoutSecs;
 
 /**
  * Returns the low transfer rate threshold in bytes/sec
  *
  * @returns The low transfer rate threshold in bytes/sec
  */
-- (int) getUploadLowTransferRateThreshold;
+- (int)getUploadLowTransferRateThreshold;
 
 /**
  * Sets the low transfer rate threshold of an upload in bytes/sec.
@@ -308,8 +306,7 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
  *
  * @param in_bytesPerSec The low transfer rate threshold in bytes/sec
  */
-- (void) setUploadLowTransferRateThreshold:(int)in_bytesPerSec;
-
+- (void)setUploadLowTransferRateThreshold:(int)in_bytesPerSec;
 
 /**
  * Enables the message caching upon network error, which is disabled by default.
@@ -338,22 +335,22 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
  *
  * @param in_enabled True if message should be cached on timeout
  */
-- (void) enableNetworkErrorMessageCaching:(bool) in_enabled;
+- (void)enableNetworkErrorMessageCaching:(bool)in_enabled;
 
 /** Attempts to resend any cached messages. If no messages are in the cache,
  * this method does nothing.
  */
-- (void) retryCachedMessages;
+- (void)retryCachedMessages;
 
-/** 
+/**
  * Flushes the cached messages to resume api call processing. This will dump
  * all of the cached messages in the queue.
- * 
+ *
  * @param in_sendApiErrorCallbacks If set to true API error callbacks will
  * be called for every cached message with statusCode CLIENT_NETWORK_ERROR
  * and reasonCode CLIENT_NETWORK_ERROR_TIMEOUT.
  */
-- (void) flushCachedMessages:(bool) in_sendApiErrorCallbacks;
+- (void)flushCachedMessages:(bool)in_sendApiErrorCallbacks;
 
 /**
  * Inserts a marker which will tell the brainCloud comms layer
@@ -369,8 +366,22 @@ failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
  * InsertEndOfMessageBundleMarker()
  *
  */
-- (void) insertEndOfMessageBundleMarker;
+- (void)insertEndOfMessageBundleMarker;
 
+/**
+ * Sets the country code sent to brainCloud when a user authenticates.
+ * Will override any auto detected country.
+ * @param countryCode ISO 3166-1 two-letter country code
+ */
+- (void)overrideCountryCode:(NSString *)countryCode;
+
+/**
+ * Sets the language code sent to brainCloud when a user authenticates.
+ * If the language is set to a non-ISO 639-1 standard value the game default will be used instead.
+ * Will override any auto detected language.
+ * @param languageCode ISO 639-1 two-letter language code
+ */
+- (void)overrideLanguageCode:(NSString *)languageCode;
 
 @property(readonly) const char *sessionId;
 @property(readonly) BrainCloudAuthentication *authenticationService;
