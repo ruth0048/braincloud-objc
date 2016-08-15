@@ -11,25 +11,11 @@
 #import "BrainCloudCompletionBlocks.hh"
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, LeaderboardType) {
-    HIGH_VALUE,
-    CUMULATIVE,
-    LAST_VALUE,
-    LOW_VALUE
-};
+typedef NS_ENUM(NSUInteger, LeaderboardType) { HIGH_VALUE, CUMULATIVE, LAST_VALUE, LOW_VALUE };
 
-typedef NS_ENUM(NSUInteger, RotationType) {
-    NEVER,
-    DAILY,
-    WEEKLY,
-    MONTHLY,
-    YEARLY
-};
+typedef NS_ENUM(NSUInteger, RotationType) { NEVER, DAILY, WEEKLY, MONTHLY, YEARLY };
 
-typedef NS_ENUM(NSUInteger, SortOrder) {
-    HIGH_TO_LOW,
-    LOW_TO_HIGH
-};
+typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
 
 @interface BrainCloudLeaderboard : NSObject
 
@@ -396,5 +382,23 @@ typedef NS_ENUM(NSUInteger, SortOrder) {
                   completionBlock:(BCCompletionBlock)cb
              errorCompletionBlock:(BCErrorCompletionBlock)ecb
                          cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieve the social leaderboard for a list of players.
+ *
+ * Service Name - leaderboard
+ * Service Operation - GET_PLAYERS_SOCIAL_LEADERBOARD
+ *
+ * @param leaderboardId The leaderboard to retrieve
+ * @param profileIds The IDs of the players
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getPlayersSocialLeaderboard:(NSString *)leaderboardId
+                         profileIds:(NSArray *)profileIds
+                    completionBlock:(BCCompletionBlock)cb
+               errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                           cbObject:(BCCallbackObject)cbObject;
 
 @end
