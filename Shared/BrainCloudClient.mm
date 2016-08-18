@@ -75,7 +75,10 @@ class ObjCGlobalErrorCallback : public BrainCloud::IGlobalErrorCallback
 {
   public:
     BCErrorCompletionBlock _globalErrorCallback;
-    BCCallbackObject m_cbObject;
+    // due to the C++ architecture not supporting callback objects,
+    // there is no way to return the passed in ObjC callback object
+    // in the global error handler.
+    //BCCallbackObject m_cbObject;
 
     virtual void globalError(BrainCloud::ServiceName serviceName, BrainCloud::ServiceOperation serviceOperation,
                              int statusCode, int returnCode, const std::string &jsonError)
@@ -86,7 +89,8 @@ class ObjCGlobalErrorCallback : public BrainCloud::IGlobalErrorCallback
                 [NSString stringWithCString:serviceName.getValue().c_str() encoding:NSUTF8StringEncoding],
                 [NSString stringWithCString:serviceOperation.getValue().c_str() encoding:NSUTF8StringEncoding],
                 statusCode, returnCode, [NSString stringWithCString:jsonError.c_str() encoding:NSUTF8StringEncoding],
-                m_cbObject);
+                nil);
+                //m_cbObject);
         }
     }
 };
