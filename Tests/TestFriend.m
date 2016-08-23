@@ -29,6 +29,26 @@
     [self waitForResult];
 }
 
+- (void)testFindUsersByExactName
+{
+    [[m_client friendService] findUsersByExactName:@"name"
+                                    maxResults:10
+                               completionBlock:successBlock
+                          errorCompletionBlock:failureBlock
+                                      cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testFindUsersBySubstrName
+{
+    [[m_client friendService] findUsersBySubstrName:@"name"
+                                    maxResults:10
+                               completionBlock:successBlock
+                          errorCompletionBlock:failureBlock
+                                      cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testGetExternalIdForProfileId
 {
     [[m_client friendService] getExternalIdForProfileId:[TestFixtureBase getUser:@"UserA"].m_profileId

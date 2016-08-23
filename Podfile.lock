@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   BrainCloudCpp:
-    :commit: 1d7e8b1901935ae9ad5cb707409d273651f9c41b
+    :commit: f17fc5be95775aaa97fb8679ffa19caaab2ebad8
     :git: https://github.com/getbraincloud/braincloud-cpp
 
 SPEC CHECKSUMS:
