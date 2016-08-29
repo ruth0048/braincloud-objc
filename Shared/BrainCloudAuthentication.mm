@@ -42,16 +42,7 @@
         [profileID UTF8String], [anonymousID UTF8String]);
 }
 
-- (NSString *)generateAnonymousId { return [NSUUID UUID].UUIDString; }
-
-- (NSString *)generateGUID { return [NSUUID UUID].UUIDString; }
-
-- (void)generateNewAnonymousID
-{
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getAuthenticationService()
-        ->generateNewAnonymousId();
-}
+- (NSString *)generateAnonymousId { return [[NSUUID UUID].UUIDString lowercaseString]; }
 
 - (void)clearSavedProfile
 {

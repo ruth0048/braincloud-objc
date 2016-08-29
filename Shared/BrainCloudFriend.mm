@@ -92,6 +92,25 @@
         [searchText UTF8String], maxResults, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)findUsersByExactName:(NSString *)searchText
+                  maxResults:(int)maxResults
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->findUsersByExactName(
+        [searchText UTF8String], maxResults, new BrainCloudCallback(cb, ecb, cbObject));
+}
+- (void)findUsersBySubstrName:(NSString *)searchText
+                   maxResults:(int)maxResults
+              completionBlock:(BCCompletionBlock)cb
+         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                     cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->findUsersBySubstrName(
+        [searchText UTF8String], maxResults, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)findPlayerByUniversalId:(NSString *)searchText
                      maxResults:(int)maxResults
                 completionBlock:(BCCompletionBlock)cb

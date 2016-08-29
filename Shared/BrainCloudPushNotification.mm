@@ -136,4 +136,43 @@
         [groupId UTF8String], [alertContentJson UTF8String], custom, brainCloudCallback);
 }
 
+- (void)sendNormalizedPushNotification:(NSString *)playerId
+                      alertContentJson:(NSString *)alertContentJson
+                        customDataJson:(NSString *)customDataJson
+                       completionBlock:(BCCompletionBlock)cb
+                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                              cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    std::string custom;
+    if (customDataJson != nil) custom = [customDataJson UTF8String];
+
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendNormalizedPushNotification(
+        [playerId UTF8String], [alertContentJson UTF8String], custom, brainCloudCallback);
+}
+
+- (void)sendNormalizedPushNotificationBatch:(NSArray *)profileIds
+                           alertContentJson:(NSString *)alertContentJson
+                             customDataJson:(NSString *)customDataJson
+                            completionBlock:(BCCompletionBlock)cb
+                       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                   cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    std::string custom;
+    if (customDataJson != nil) custom = [customDataJson UTF8String];
+
+    std::vector<std::string> lbIds;
+    for (NSString *nsid in profileIds)
+    {
+        std::string lbId = [nsid UTF8String];
+        lbIds.push_back(lbId);
+    }
+
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendNormalizedPushNotificationBatch(
+        lbIds, [alertContentJson UTF8String], custom, brainCloudCallback);
+}
+
 @end
