@@ -268,6 +268,18 @@
                      cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Re-authenticates the user with brainCloud
+ *
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ */
+- (void)reconnect:(BCCompletionBlock)completionBlock
+errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+         cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Run callbacks, to be called once per frame from your main thread
  */
 - (void)runCallbacks;

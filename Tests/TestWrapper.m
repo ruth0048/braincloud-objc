@@ -81,6 +81,28 @@
     [self waitForResult];
 }
 
+- (void)testReconnect
+{
+    [[BrainCloudWrapper getInstance] initialize:m_serverUrl secretKey:m_secret gameId:m_appId gameVersion:m_version companyName:@"wrapper" gameName:@"unittest"];
+
+    [[BrainCloudWrapper getInstance] authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+                                                  password:[TestFixtureBase getUser:@"UserA"].m_password
+                                               forceCreate:YES
+                                           completionBlock:successBlock
+                                      errorCompletionBlock:failureBlock
+                                                  cbObject:nil];
+    [self waitForResult];
+
+    [[[BrainCloudWrapper getBC] playerStateService]logout:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    [self waitForResult];
+
+    [[BrainCloudWrapper getInstance] reconnect:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    [self waitForResult];
+
+    [[[BrainCloudWrapper getBC] timeService]readServerTime:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    [self waitForResult];
+}
+
 /*
 
 
