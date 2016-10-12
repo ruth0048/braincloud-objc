@@ -144,6 +144,7 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
         _client = BrainCloud::BrainCloudClient::getInstance();
         _timer = nil;
         _timerDisabled = false;
+        _client->getAuthenticationService()->setClientLib("objc");
     }
     return self;
 }
