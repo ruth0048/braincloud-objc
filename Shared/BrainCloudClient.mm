@@ -426,6 +426,13 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
     return _friendService;
 }
 
+- (BrainCloudMail *)mailService
+{
+    static BrainCloudMail *_mailService = nil;
+    if (!_mailService) _mailService = [[BrainCloudMail alloc] init];
+    return _mailService;
+}
+
 - (BrainCloudMatchMaking *)matchMakingService
 {
     static BrainCloudMatchMaking *_matchMakingService = nil;
