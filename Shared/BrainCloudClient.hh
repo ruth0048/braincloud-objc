@@ -22,6 +22,7 @@
 #import "BrainCloudGroup.hh"
 #import "BrainCloudIdentity.hh"
 #import "BrainCloudLeaderboard.hh"
+#import "BrainCloudMail.hh"
 #import "BrainCloudMatchmaking.hh"
 #import "BrainCloudOneWayMatch.hh"
 #import "BrainCloudPlaybackStream.hh"
@@ -396,6 +397,7 @@
 @property(readonly) BrainCloudLeaderboard *leaderboardService;
 @property(readonly) BrainCloudGlobalApp *globalAppService;
 @property(readonly) BrainCloudFriend *friendService;
+@property(readonly) BrainCloudMail *mailService;
 @property(readonly) BrainCloudMatchMaking *matchMakingService;
 @property(readonly) BrainCloudAsyncMatch *asyncMatchService;
 @property(readonly) BrainCloudOneWayMatch *oneWayMatchService;

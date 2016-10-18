@@ -218,4 +218,12 @@ NSString *eventId = @"tournamentRewardTest";
     [self waitForResult];
 }
 
+- (void)testListAllLeaderboards
+{
+    [[m_client leaderboardService] listAllLeaderboards:successBlock
+                                          errorCompletionBlock:failureBlock
+                                                      cbObject:nil];
+    [self waitForResult];
+}
+
 @end

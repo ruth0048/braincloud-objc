@@ -371,6 +371,13 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
                                                                          cbObject:aco];
 }
 
+- (void)reconnect:(BCCompletionBlock)completionBlock
+errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+            cbObject:(BCCallbackObject)cbObject
+{
+    [self authenticateAnonymous:completionBlock errorCompletionBlock:errorCompletionBlock cbObject:cbObject];
+}
+
 /*
 - (void)reauthenticateWithSuccess:(BrainCloudWrapperSuccessfulCompletion)success failure:(BrainCloudWrapperFailedCompletion)failure {
     [self initializeWithURL:self.lastURL

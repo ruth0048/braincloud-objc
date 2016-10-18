@@ -144,6 +144,7 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
         _client = BrainCloud::BrainCloudClient::getInstance();
         _timer = nil;
         _timerDisabled = false;
+        _client->getAuthenticationService()->setClientLib("objc");
     }
     return self;
 }
@@ -424,6 +425,13 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
     static BrainCloudFriend *_friendService = nil;
     if (!_friendService) _friendService = [[BrainCloudFriend alloc] init];
     return _friendService;
+}
+
+- (BrainCloudMail *)mailService
+{
+    static BrainCloudMail *_mailService = nil;
+    if (!_mailService) _mailService = [[BrainCloudMail alloc] init];
+    return _mailService;
 }
 
 - (BrainCloudMatchMaking *)matchMakingService

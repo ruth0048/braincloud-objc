@@ -1,5 +1,5 @@
 PODS:
-  - BrainCloudCpp (3.0.0):
+  - BrainCloudCpp (3.1.0):
     - BrainCloudJsonCpp
     - SSKeychain
   - BrainCloudJsonCpp (1.0.0)
@@ -15,11 +15,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   BrainCloudCpp:
-    :commit: f17fc5be95775aaa97fb8679ffa19caaab2ebad8
+    :commit: 11a5c064e740e57a9f35d5c248b59596de3f8c08
     :git: https://github.com/getbraincloud/braincloud-cpp
 
 SPEC CHECKSUMS:
-  BrainCloudCpp: 7485ffc0f3b19dfbd414232cdb96969c3544ab95
+  BrainCloudCpp: 120a352eac81bd5b420fb8f5a7308de5c5b0340d
   BrainCloudJsonCpp: 668a2cef2109fc8effbc473716d1f3d42f1fd346
   SSKeychain: 55cc80f66f5c73da827e3077f02e43528897db41
 

@@ -199,4 +199,12 @@
         [leaderboardId UTF8String], lbIds, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)listAllLeaderboards:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->listAllLeaderboards(
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end
