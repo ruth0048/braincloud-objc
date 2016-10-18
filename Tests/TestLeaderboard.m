@@ -27,10 +27,10 @@ NSString *eventId = @"tournamentRewardTest";
 - (void)testGetSocialLeaderboard
 {
     [[m_client leaderboardService] getSocialLeaderboard:globalLeaderboardId
-                                      replaceName:true
-                                  completionBlock:successBlock
-                             errorCompletionBlock:failureBlock
-                                         cbObject:nil];
+                                            replaceName:true
+                                        completionBlock:successBlock
+                                   errorCompletionBlock:failureBlock
+                                               cbObject:nil];
     [self waitForResult];
 }
 
@@ -38,7 +38,7 @@ NSString *eventId = @"tournamentRewardTest";
 {
     [self testPostScoreToLeaderboard];
     [self testPostScoreToDynamicLeaderboard];
-    NSArray * lbIds = [NSArray arrayWithObjects:globalLeaderboardId, dynamicLeaderboardId, nil];
+    NSArray *lbIds = [NSArray arrayWithObjects:globalLeaderboardId, dynamicLeaderboardId, nil];
     [[m_client leaderboardService] getMultiSocialLeaderboard:lbIds
                                       leaderboardResultCount:10
                                                  replaceName:true
@@ -158,8 +158,7 @@ NSString *eventId = @"tournamentRewardTest";
     dayComponent.day = 1;
 
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
-    NSDate *nextDate =
-        [theCalendar dateByAddingComponents:dayComponent toDate:[NSDate date] options:0];
+    NSDate *nextDate = [theCalendar dateByAddingComponents:dayComponent toDate:[NSDate date] options:0];
 
     [[m_client leaderboardService] postScoreToDynamicLeaderboard:dynamicLeaderboardId
                                                            score:100
@@ -190,18 +189,15 @@ NSString *eventId = @"tournamentRewardTest";
 
     NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsonObj =
-    [NSJSONSerialization JSONObjectWithData:data
-                                    options:NSJSONReadingMutableContainers
-                                      error:nil];
+        [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
 
-    NSString* groupId =
-    [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"groupId"];
+    NSString *groupId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"groupId"];
 
     [[m_client leaderboardService] getGroupSocialLeaderboard:socialLeaderboardId
-                                                                  groupId:groupId
-                                                            completionBlock:successBlock
-                                                       errorCompletionBlock:failureBlock
-                                                                   cbObject:nil];
+                                                     groupId:groupId
+                                             completionBlock:successBlock
+                                        errorCompletionBlock:failureBlock
+                                                    cbObject:nil];
     [self waitForResult];
 
     [[m_client groupService] deleteGroup:groupId
@@ -209,6 +205,24 @@ NSString *eventId = @"tournamentRewardTest";
                          completionBlock:successBlock
                     errorCompletionBlock:failureBlock
                                 cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testGetPlayersSocialLeaderboard
+{
+    [[m_client leaderboardService] getPlayersSocialLeaderboard:socialLeaderboardId
+                                                    profileIds:@[ [TestFixtureBase getUser:@"UserB"].m_profileId ]
+                                               completionBlock:successBlock
+                                          errorCompletionBlock:failureBlock
+                                                      cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testListAllLeaderboards
+{
+    [[m_client leaderboardService] listAllLeaderboards:successBlock
+                                          errorCompletionBlock:failureBlock
+                                                      cbObject:nil];
     [self waitForResult];
 }
 

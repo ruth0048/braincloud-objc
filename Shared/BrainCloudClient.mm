@@ -6,20 +6,20 @@
 //
 
 #import "BrainCloudClient.hh"
-#include "braincloud/BrainCloudClient.h"
 #include "TargetConditionals.h"
+#include "braincloud/BrainCloudClient.h"
 
 class ObjCEventCallback : public BrainCloud::IEventCallback
 {
-public:
+  public:
     BCEventCompletionBlock _eventCallback;
-    
-    virtual void eventCallback(std::string const & jsonData)
+
+    virtual void eventCallback(std::string const &jsonData)
     {
         if (_eventCallback != nil)
         {
-            const char * cstr = jsonData.c_str();
-            NSString * nsJsonData = [NSString stringWithCString:cstr encoding:NSUTF8StringEncoding];
+            const char *cstr = jsonData.c_str();
+            NSString *nsJsonData = [NSString stringWithCString:cstr encoding:NSUTF8StringEncoding];
             _eventCallback(nsJsonData);
         }
     }
@@ -27,15 +27,15 @@ public:
 
 class ObjCRewardCallback : public BrainCloud::IRewardCallback
 {
-public:
+  public:
     BCRewardCompletionBlock _rewardCallback;
-    
-    virtual void rewardCallback(std::string const & jsonData)
+
+    virtual void rewardCallback(std::string const &jsonData)
     {
         if (_rewardCallback != nil)
         {
-            const char * cstr = jsonData.c_str();
-            NSString * nsJsonData = [NSString stringWithCString:cstr encoding:NSUTF8StringEncoding];
+            const char *cstr = jsonData.c_str();
+            NSString *nsJsonData = [NSString stringWithCString:cstr encoding:NSUTF8StringEncoding];
             _rewardCallback(nsJsonData);
         }
     }
@@ -43,28 +43,29 @@ public:
 
 class ObjCFileUploadCallback : public BrainCloud::IFileUploadCallback
 {
-public:
+  public:
     BCFileUploadCompletedCompletionBlock _uploadCompletedCallback;
     BCFileUploadFailedCompletionBlock _uploadFailedCallback;
-    
-    virtual void fileUploadCompleted(const char * in_fileUploadId, const std::string & in_jsonResponse)
+
+    virtual void fileUploadCompleted(const char *in_fileUploadId, const std::string &in_jsonResponse)
     {
         if (_uploadCompletedCallback != nil)
         {
-            const char * cstr = in_jsonResponse.c_str();
-            NSString * nsJsonResponse = [NSString stringWithCString:cstr encoding:NSUTF8StringEncoding];
-            NSString * nsFileUploadId = [NSString stringWithCString:in_fileUploadId encoding:NSUTF8StringEncoding];
+            const char *cstr = in_jsonResponse.c_str();
+            NSString *nsJsonResponse = [NSString stringWithCString:cstr encoding:NSUTF8StringEncoding];
+            NSString *nsFileUploadId = [NSString stringWithCString:in_fileUploadId encoding:NSUTF8StringEncoding];
             _uploadCompletedCallback(nsFileUploadId, nsJsonResponse);
         }
     }
-    
-    virtual void fileUploadFailed(const char * in_fileUploadId, int in_statusCode, int in_reasonCode, const std::string & in_jsonResponse)
+
+    virtual void fileUploadFailed(const char *in_fileUploadId, int in_statusCode, int in_reasonCode,
+                                  const std::string &in_jsonResponse)
     {
         if (_uploadFailedCallback != nil)
         {
-            const char * cstr = in_jsonResponse.c_str();
-            NSString * nsJsonResponse = [NSString stringWithCString:cstr encoding:NSUTF8StringEncoding];
-            NSString * nsFileUploadId = [NSString stringWithCString:in_fileUploadId encoding:NSUTF8StringEncoding];
+            const char *cstr = in_jsonResponse.c_str();
+            NSString *nsJsonResponse = [NSString stringWithCString:cstr encoding:NSUTF8StringEncoding];
+            NSString *nsFileUploadId = [NSString stringWithCString:in_fileUploadId encoding:NSUTF8StringEncoding];
             _uploadFailedCallback(nsFileUploadId, in_statusCode, in_reasonCode, nsJsonResponse);
         }
     }
@@ -72,30 +73,34 @@ public:
 
 class ObjCGlobalErrorCallback : public BrainCloud::IGlobalErrorCallback
 {
-public:
+  public:
     BCErrorCompletionBlock _globalErrorCallback;
-    BCCallbackObject m_cbObject;
-    
-    virtual void globalError(BrainCloud::ServiceName serviceName,
-                             BrainCloud::ServiceOperation serviceOperation, int statusCode,
-                             int returnCode, const std::string &jsonError)
+    // due to the C++ architecture not supporting callback objects,
+    // there is no way to return the passed in ObjC callback object
+    // in the global error handler.
+    //BCCallbackObject m_cbObject;
+
+    virtual void globalError(BrainCloud::ServiceName serviceName, BrainCloud::ServiceOperation serviceOperation,
+                             int statusCode, int returnCode, const std::string &jsonError)
     {
         if (_globalErrorCallback)
         {
-            _globalErrorCallback([NSString stringWithCString:serviceName.getValue().c_str()
-                encoding:NSUTF8StringEncoding], [NSString stringWithCString:serviceOperation.getValue().c_str()
-                encoding:NSUTF8StringEncoding], statusCode, returnCode,
-                [NSString stringWithCString:jsonError.c_str() encoding:NSUTF8StringEncoding], m_cbObject);
+            _globalErrorCallback(
+                [NSString stringWithCString:serviceName.getValue().c_str() encoding:NSUTF8StringEncoding],
+                [NSString stringWithCString:serviceOperation.getValue().c_str() encoding:NSUTF8StringEncoding],
+                statusCode, returnCode, [NSString stringWithCString:jsonError.c_str() encoding:NSUTF8StringEncoding],
+                nil);
+                //m_cbObject);
         }
     }
 };
 
 class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
 {
-public:
+  public:
     BCNetworkErrorCompletionBlock _networkErrorCallback;
     BCCallbackObject m_cbObject;
-    
+
     virtual void networkError()
     {
         if (_networkErrorCallback)
@@ -139,6 +144,7 @@ public:
         _client = BrainCloud::BrainCloudClient::getInstance();
         _timer = nil;
         _timerDisabled = false;
+        _client->getAuthenticationService()->setClientLib("objc");
     }
     return self;
 }
@@ -156,8 +162,7 @@ public:
             gameId:(NSString *)gameId
        gameVersion:(NSString *)gameVersion
 {
-    _client->initialize([serverURL UTF8String], [secretKey UTF8String], [gameId UTF8String],
-                        [gameVersion UTF8String]);
+    _client->initialize([serverURL UTF8String], [secretKey UTF8String], [gameId UTF8String], [gameVersion UTF8String]);
 
     if (!_timerDisabled)
     {
@@ -167,27 +172,18 @@ public:
             _timer = nil;
         }
         _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 // every 100 ms
-                                                  target: self
+                                                  target:self
                                                 selector:@selector(runCallBacks)
                                                 userInfo:nil
                                                  repeats:TRUE];
     }
 }
 
-- (void)enableLogging:(bool)shouldEnable
-{
-    _client->enableLogging(shouldEnable);
-}
+- (void)enableLogging:(bool)shouldEnable { _client->enableLogging(shouldEnable); }
 
-- (bool)isInitialized
-{
-    return _client->isInitialized();
-}
+- (bool)isInitialized { return _client->isInitialized(); }
 
-- (bool)isAuthenticated
-{
-    return _client->isAuthenticated();
-}
+- (bool)isAuthenticated { return _client->isAuthenticated(); }
 
 - (void)dealloc
 {
@@ -203,8 +199,8 @@ public:
 
 - (void)initializeIdentity:(NSString *)profileId anonymousId:(NSString *)anonymousId
 {
-    const char * szProfileId = "";
-    const char * szAnonymousId = "";
+    const char *szProfileId = "";
+    const char *szAnonymousId = "";
     if (profileId != nil)
     {
         szProfileId = profileId.UTF8String;
@@ -216,15 +212,9 @@ public:
     _client->initializeIdentity(szProfileId, szAnonymousId);
 }
 
-- (void)runCallBacks
-{
-    _client->runCallbacks();
-}
+- (void)runCallBacks { _client->runCallbacks(); }
 
-- (void)resetCommunication
-{
-    _client->resetCommunication();
-}
+- (void)resetCommunication { _client->resetCommunication(); }
 
 - (void)registerEventCallback:(BCEventCompletionBlock)ecb
 {
@@ -238,9 +228,8 @@ public:
     _client->deregisterEventCallback();
 }
 
-
 - (void)registerFileUploadCallback:(BCFileUploadCompletedCompletionBlock)completedBlock
-                 failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
+                       failedBlock:(BCFileUploadFailedCompletionBlock)failedBlock;
 {
     _objcFileUploadCallback._uploadCompletedCallback = completedBlock;
     _objcFileUploadCallback._uploadFailedCallback = failedBlock;
@@ -290,18 +279,15 @@ public:
     _client->deregisterNetworkErrorCallback();
 }
 
-- (const char *)sessionId
-{
-    return _client->getSessionId();
-}
+- (const char *)sessionId { return _client->getSessionId(); }
 
-- (NSArray *) getPacketTimeouts
+- (NSArray *)getPacketTimeouts
 {
-    NSMutableArray * timeouts = [NSMutableArray array];
+    NSMutableArray *timeouts = [NSMutableArray array];
     std::vector<int> v = _client->getPacketTimeouts();
     for (size_t i = 0, isize = v.size(); i < isize; ++i)
     {
-        NSNumber * n = [NSNumber numberWithInt:v.at(i)];
+        NSNumber *n = [NSNumber numberWithInt:v.at(i)];
         [timeouts addObject:n];
     }
     return timeouts;
@@ -312,80 +298,48 @@ public:
     std::vector<int> v;
     for (unsigned int i = 0; i < [timeouts count]; ++i)
     {
-        v.push_back((int) [[timeouts objectAtIndex:i] integerValue]);
+        v.push_back((int)[[timeouts objectAtIndex:i] integerValue]);
     }
     _client->setPacketTimeouts(v);
 }
 
-- (void)setPacketTimeoutsToDefault
-{
-    _client->setPacketTimeoutsToDefault();
-}
+- (void)setPacketTimeoutsToDefault { _client->setPacketTimeoutsToDefault(); }
 
-- (int) getAuthenticationPacketTimeout
-{
-    return _client->getAuthenticationPacketTimeout();
-}
+- (int)getAuthenticationPacketTimeout { return _client->getAuthenticationPacketTimeout(); }
 
-- (void) setAuthenticationPacketTimeout:(int)timeoutSecs
-{
-    _client->setAuthenticationPacketTimeout(timeoutSecs);
-}
+- (void)setAuthenticationPacketTimeout:(int)timeoutSecs { _client->setAuthenticationPacketTimeout(timeoutSecs); }
 
-- (void) setOldStyleStatusMessageErrorCallback:(bool)enabled
-{
-    _client->setOldStyleStatusMessageErrorCallback(enabled);
-}
+- (void)setOldStyleStatusMessageErrorCallback:(bool)enabled { _client->setOldStyleStatusMessageErrorCallback(enabled); }
 
-- (void) setErrorCallbackOn202Status:(bool)isError
-{
-    _client->setErrorCallbackOn202Status(isError);
-}
+- (void)setErrorCallbackOn202Status:(bool)isError { _client->setErrorCallbackOn202Status(isError); }
 
-- (void)setHeartbeatInterval:(int)intervalInMilliseconds
-{
-    _client->setHeartbeatInterval(intervalInMilliseconds);
-}
+- (void)setHeartbeatInterval:(int)intervalInMilliseconds { _client->setHeartbeatInterval(intervalInMilliseconds); }
 
-- (int) getUploadLowTransferRateTimeout
-{
-    return _client->getUploadLowTransferRateTimeout();
-}
+- (int)getUploadLowTransferRateTimeout { return _client->getUploadLowTransferRateTimeout(); }
 
-- (void) setUploadLowTransferRateTimeout:(int)in_timeoutSecs
+- (void)setUploadLowTransferRateTimeout:(int)in_timeoutSecs
 {
     _client->setUploadLowTransferRateTimeout(in_timeoutSecs);
 }
 
-- (int) getUploadLowTransferRateThreshold
-{
-    return _client->getUploadLowTransferRateThreshold();
-}
+- (int)getUploadLowTransferRateThreshold { return _client->getUploadLowTransferRateThreshold(); }
 
-- (void) setUploadLowTransferRateThreshold:(int)in_bytesPerSec
+- (void)setUploadLowTransferRateThreshold:(int)in_bytesPerSec
 {
     _client->setUploadLowTransferRateThreshold(in_bytesPerSec);
 }
 
-- (void) enableNetworkErrorMessageCaching:(bool) in_enabled
-{
-    _client->enableNetworkErrorMessageCaching(in_enabled);
-}
+- (void)enableNetworkErrorMessageCaching:(bool)in_enabled { _client->enableNetworkErrorMessageCaching(in_enabled); }
 
-- (void) retryCachedMessages
-{
-    _client->retryCachedMessages();
-}
+- (void)retryCachedMessages { _client->retryCachedMessages(); }
 
-- (void) flushCachedMessages:(bool) in_sendApiErrorCallbacks
-{
-    _client->flushCachedMessages(in_sendApiErrorCallbacks);
-}
+- (void)flushCachedMessages:(bool)in_sendApiErrorCallbacks { _client->flushCachedMessages(in_sendApiErrorCallbacks); }
 
-- (void) insertEndOfMessageBundleMarker
-{
-    _client->insertEndOfMessageBundleMarker();
-}
+- (void)insertEndOfMessageBundleMarker { _client->insertEndOfMessageBundleMarker(); }
+
+- (void)overrideCountryCode:(NSString *)countryCode { _client->overrideCountryCode([countryCode UTF8String]); }
+
+- (void)overrideLanguageCode:(NSString *)languageCode { _client->overrideLanguageCode([languageCode UTF8String]); }
 
 #pragma mark - Properties
 
@@ -406,8 +360,7 @@ public:
 - (BrainCloudPushNotification *)pushNotificationService
 {
     static BrainCloudPushNotification *_pushNotificationService = nil;
-    if (!_pushNotificationService)
-        _pushNotificationService = [[BrainCloudPushNotification alloc] init];
+    if (!_pushNotificationService) _pushNotificationService = [[BrainCloudPushNotification alloc] init];
     return _pushNotificationService;
 }
 
@@ -428,16 +381,14 @@ public:
 - (BrainCloudPlayerStatistics *)playerStatisticsService
 {
     static BrainCloudPlayerStatistics *_playerStatisticsService = nil;
-    if (!_playerStatisticsService)
-        _playerStatisticsService = [[BrainCloudPlayerStatistics alloc] init];
+    if (!_playerStatisticsService) _playerStatisticsService = [[BrainCloudPlayerStatistics alloc] init];
     return _playerStatisticsService;
 }
 
 - (BrainCloudGlobalStatistics *)globalStatisticsService
 {
     static BrainCloudGlobalStatistics *_globalStatisticsService = nil;
-    if (!_globalStatisticsService)
-        _globalStatisticsService = [[BrainCloudGlobalStatistics alloc] init];
+    if (!_globalStatisticsService) _globalStatisticsService = [[BrainCloudGlobalStatistics alloc] init];
     return _globalStatisticsService;
 }
 
@@ -474,6 +425,13 @@ public:
     static BrainCloudFriend *_friendService = nil;
     if (!_friendService) _friendService = [[BrainCloudFriend alloc] init];
     return _friendService;
+}
+
+- (BrainCloudMail *)mailService
+{
+    static BrainCloudMail *_mailService = nil;
+    if (!_mailService) _mailService = [[BrainCloudMail alloc] init];
+    return _mailService;
 }
 
 - (BrainCloudMatchMaking *)matchMakingService
@@ -521,8 +479,7 @@ public:
 - (BrainCloudPlayerStatisticsEvent *)playerStatisticsEventService
 {
     static BrainCloudPlayerStatisticsEvent *_playerStatisticsEventService = nil;
-    if (!_playerStatisticsEventService)
-        _playerStatisticsEventService = [[BrainCloudPlayerStatisticsEvent alloc] init];
+    if (!_playerStatisticsEventService) _playerStatisticsEventService = [[BrainCloudPlayerStatisticsEvent alloc] init];
     return _playerStatisticsEventService;
 }
 
@@ -582,9 +539,6 @@ public:
     return _groupService;
 }
 
-+ (BrainCloudClient *)defaultClient
-{
-    return [BrainCloudClient getInstance];
-}
++ (BrainCloudClient *)defaultClient { return [BrainCloudClient getInstance]; }
 
 @end

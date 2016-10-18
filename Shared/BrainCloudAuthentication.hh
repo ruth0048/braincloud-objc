@@ -34,12 +34,6 @@ extern NSString *const AUTH_FACEBOOK;
  */
 - (NSString *)generateAnonymousId;
 
-/* DEPRECATED - Use generateAnonymousId instead - Removal after August 17 2016 */
-- (NSString *)generateGUID DEPRECATED_MSG_ATTRIBUTE("Use generateAnonymousId instead - Removal after August 17 2016");
-
-/* DEPRECATED - Use generateAnonymousId instead - Removal after August 17 2016 */
-- (void)generateNewAnonymousID DEPRECATED_MSG_ATTRIBUTE("Use generateAnonymousId instead - Removal after August 17 2016");
-
 /**
 * Used to clear the saved profile id - to use in cases when the user is
 * attempting to switch to a different game profile.

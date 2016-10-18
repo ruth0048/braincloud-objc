@@ -30,6 +30,7 @@
 #import "BrainCloudGroup.hh"
 #import "BrainCloudIdentity.hh"
 #import "BrainCloudLeaderboard.hh"
+#import "BrainCloudMail.hh"
 #import "BrainCloudMatchMaking.hh"
 #import "BrainCloudOneWayMatch.hh"
 #import "BrainCloudPlaybackStream.hh"

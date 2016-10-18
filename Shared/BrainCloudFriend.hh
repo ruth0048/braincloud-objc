@@ -112,26 +112,51 @@
                      cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Finds a list of players matching the search text by performing a substring
-* search of all player names.
-* If the number of results exceeds maxResults the message
-* "Too many results to return." is received and no players are returned
-*
-* Service Name - Friend
-* Service Operation - FindPlayerByName
-*
-* @param searchText The substring to search for. Minimum length of 3 characters.
-* @param maxResults  Maximum number of results to return. If there are more the message
-*                       "Too many results to return." is sent back instead of the players.
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
-*/
+ * @deprecated Use findUsersByExactName & findUsersBySubstrName instead - removal after Nov 22 2016
+ */
 - (void)findPlayerByName:(NSString *)searchText
               maxResults:(int)maxResults
          completionBlock:(BCCompletionBlock)cb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                cbObject:(BCCallbackObject)cbObject;
+                cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Use findUsersByExactName & findUsersBySubstrName instead - removal after Nov 22 2016");
+
+/**
+ * Finds a list of players matching the search text by performing an exact match search
+ *
+ * Service Name - friend
+ * Service Operation - FIND_USERS_BY_EXACT_NAME
+ *
+ * @param searchText The string to search for.
+ * @param maxResults  Maximum number of results to return.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)findUsersByExactName:(NSString *)searchText
+                  maxResults:(int)maxResults
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Finds a list of players matching the search text by performing a substring
+ * search of all player names.
+ *
+ * Service Name - friend
+ * Service Operation - FIND_USERS_BY_SUBSTR_NAME
+ *
+ * @param searchText The substring to search for. Minimum length of 3 characters.
+ * @param maxResults  Maximum number of results to return. If there are more the message
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)findUsersBySubstrName:(NSString *)searchText
+                   maxResults:(int)maxResults
+              completionBlock:(BCCompletionBlock)cb
+         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                     cbObject:(BCCallbackObject)cbObject;
 
 /**
  * Retrieves profile information for the partial matches of the specified text.

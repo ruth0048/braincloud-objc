@@ -304,7 +304,7 @@ NSMutableDictionary *m_users;
     TestUser *user = [[TestUser alloc] initWithIds:prefix suffix:suffix];
     user.m_profileId = [self authenticateUser:user.m_id password:user.m_password];
     
-    [[m_client playerStateService] updateContactEmail:user.m_email
+    [[m_client playerStateService] updateContactEmail:@"braincloudunittest@gmail.com"
                                           completionBlock:successBlock
                                      errorCompletionBlock:failureBlock
                                                  cbObject:nil];

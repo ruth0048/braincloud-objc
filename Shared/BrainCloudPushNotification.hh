@@ -33,12 +33,10 @@
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
- */- (void)deregisterPushNotificationDeviceToken:(PlatformObjc *) platform
-                                     deviceToken:(NSString *)deviceToken
-                                 completionBlock:(BCCompletionBlock)cb
-                            errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                                        cbObject:(BCCallbackObject)cbObject;
-
+ */ -(void)deregisterPushNotificationDeviceToken
+    : (PlatformObjc *)platform deviceToken : (NSString *)deviceToken completionBlock
+                                             : (BCCompletionBlock)cb errorCompletionBlock
+                                               : (BCErrorCompletionBlock)ecb cbObject : (BCCallbackObject)cbObject;
 
 /**
 * Registers the given device token with the server to enable this device
@@ -51,7 +49,7 @@
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)registerPushNotificationDeviceToken:(PlatformObjc *) platform
+- (void)registerPushNotificationDeviceToken:(PlatformObjc *)platform
                                 deviceToken:(NSString *)deviceToken
                             completionBlock:(BCCompletionBlock)cb
                        errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -68,7 +66,7 @@
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
  */
-- (void)registerPushNotificationDeviceTokenData:(PlatformObjc *) platform
+- (void)registerPushNotificationDeviceTokenData:(PlatformObjc *)platform
                                     deviceToken:(NSData *)deviceToken
                                 completionBlock:(BCCompletionBlock)cb
                            errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -121,7 +119,7 @@
 */
 - (void)sendRichPushNotificationWithParams:(NSString *)toPlayerId
                     notificationTemplateId:(int)notificationTemplateId
-                          substitutionJson:(NSString*)substitutionJson
+                          substitutionJson:(NSString *)substitutionJson
                            completionBlock:(BCCompletionBlock)cb
                       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                   cbObject:(BCCallbackObject)cbObject;
@@ -131,10 +129,12 @@
  * Includes JSON defining the substitution params to use with the template.
  * See the Portal documentation for more info.
  *
- * @param in_groupId Target group
- * @param in_notificationTemplateId Template to use
- * @param in_substitutionsJson Map of substitution positions to strings
- * @param in_callback The method to be invoked when the server response is received
+ * @param groupId Target group
+ * @param notificationTemplateId Template to use
+ * @param substitutionsJson Map of substitution positions to strings
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
  */
 - (void)sendTemplatedPushNotificationToGroup:(NSString *)groupId
                       notificationTemplateId:(int)notificationTemplateId
@@ -147,10 +147,12 @@
  * Sends a notification to a "group" of user consisting of alert content and custom data.
  * See the Portal documentation for more info.
  *
- * @param in_groupId Target group
- * @param in_alertContentJson Body and title of alert
- * @param in_customDataJson Optional custom data
- * @param in_callback The method to be invoked when the server response is received
+ * @param groupId Target group
+ * @param alertContentJson Body and title of alert
+ * @param customDataJson Optional custom data
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
  */
 - (void)sendNormalizedPushNotificationToGroup:(NSString *)groupId
                              alertContentJson:(NSString *)alertContentJson
@@ -158,5 +160,39 @@
                               completionBlock:(BCCompletionBlock)cb
                          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                      cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Sends a notification to a user consisting of alert content and custom data.
+ *
+ * @param toPlayerId The playerId of the user to receive the notification
+ * @param alertContent Body and title of alert
+ * @param customData Optional custom data
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)sendNormalizedPushNotification:(NSString *)playerId
+                      alertContentJson:(NSString *)alertContentJson
+                        customDataJson:(NSString *)customDataJson
+                       completionBlock:(BCCompletionBlock)cb
+                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                              cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Sends a notification to multiple users consisting of alert content and custom data.
+ *
+ * @param profileIds Collection of profile IDs to send the notification to
+ * @param alertContent Body and title of alert
+ * @param customData Optional custom data
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)sendNormalizedPushNotificationBatch:(NSArray *)profileIds
+                           alertContentJson:(NSString *)alertContentJson
+                             customDataJson:(NSString *)customDataJson
+                            completionBlock:(BCCompletionBlock)cb
+                       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                   cbObject:(BCCallbackObject)cbObject;
 
 @end
