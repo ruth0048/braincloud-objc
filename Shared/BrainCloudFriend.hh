@@ -112,16 +112,6 @@
                      cbObject:(BCCallbackObject)cbObject;
 
 /**
- * @deprecated Use findUsersByExactName & findUsersBySubstrName instead - removal after Nov 22 2016
- */
-- (void)findPlayerByName:(NSString *)searchText
-              maxResults:(int)maxResults
-         completionBlock:(BCCompletionBlock)cb
-    errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                cbObject:(BCCallbackObject)cbObject
-    __deprecated_msg("Use findUsersByExactName & findUsersBySubstrName instead - removal after Nov 22 2016");
-
-/**
  * Finds a list of players matching the search text by performing an exact match search
  *
  * Service Name - friend

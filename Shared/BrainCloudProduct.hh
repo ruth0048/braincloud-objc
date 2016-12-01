@@ -14,41 +14,24 @@
 @interface BrainCloudProduct : NSObject
 
 /**
-* Award player the passed-in amount of currency. Returns
-* JSON representing the new currency values.
-*
-* Service Name - Product
-* Service Operation - AwardVC
-*
-* @param currencyType The currency type to award
-* @param amount The amount of currency to award
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
-*/
+ * @deprecated Use findUsersByExactName & findUsersBySubstrName instead - removal after Nov 22 2016
+ */
 - (void)awardCurrency:(NSString *)currencyType
                amount:(int)amount
       completionBlock:(BCCompletionBlock)completionBlock
  errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
-             cbObject:(BCCallbackObject)cbObject;
+             cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Method is now available in Cloud Code only for security - removal after March 22 2016");
 
 /**
-* Consume the passed-in amount of currency from the player.
-*
-* Service Name - Product
-* Service Operation - ConsumePlayerVC
-*
-* @param currencyType The currency type to consume.
-* @param amount The amount of currency to consume.
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
-*/
+ * @deprecated Use findUsersByExactName & findUsersBySubstrName instead - removal after Nov 22 2016
+ */
 - (void)consumeCurrency:(NSString *)currencyType
                  amount:(int)amount
         completionBlock:(BCCompletionBlock)completionBlock
    errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
-               cbObject:(BCCallbackObject)cbObject;
+               cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Method is now available in Cloud Code only for security - removal after March 22 2016");
 
 /**
 * Gets the player's currency for the given currency type
@@ -70,18 +53,12 @@
                 cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Resets the player's currency back to zero.
-*
-* Service Name - Product
-* Service Operation - ResetPlayerVC
-*
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
-*/
+ * @deprecated Use findUsersByExactName & findUsersBySubstrName instead - removal after Nov 22 2016
+ */
 - (void)resetCurrency:(BCCompletionBlock)completionBlock
  errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
-             cbObject:(BCCallbackObject)cbObject;
+             cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Method is now available in Cloud Code only for security - removal after March 22 2016");
 
 /**
 * Get Eligible Promotions

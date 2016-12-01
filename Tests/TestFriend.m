@@ -19,16 +19,6 @@
 
 - (void)tearDown { [super tearDown]; }
 
-- (void)testFindPlayerByName
-{
-    [[m_client friendService] findPlayerByName:@"name"
-                                    maxResults:10
-                               completionBlock:successBlock
-                          errorCompletionBlock:failureBlock
-                                      cbObject:nil];
-    [self waitForResult];
-}
-
 - (void)testFindUsersByExactName
 {
     [[m_client friendService] findUsersByExactName:@"name"

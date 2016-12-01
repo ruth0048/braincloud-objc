@@ -82,16 +82,6 @@
         [jsonSummaryData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
-- (void)findPlayerByName:(NSString *)searchText
-              maxResults:(int)maxResults
-         completionBlock:(BCCompletionBlock)cb
-    errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                cbObject:(BCCallbackObject)cbObject
-{
-    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->findPlayerByName(
-        [searchText UTF8String], maxResults, new BrainCloudCallback(cb, ecb, cbObject));
-}
-
 - (void)findUsersByExactName:(NSString *)searchText
                   maxResults:(int)maxResults
              completionBlock:(BCCompletionBlock)cb
