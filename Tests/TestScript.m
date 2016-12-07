@@ -103,4 +103,34 @@ NSString *_parentLevelName = @"Master";
     [self waitForResult];
 }
 
+- (void)testRunPeerScript
+{
+    [self attachPeer:@"UserA"];
+
+    [[m_client scriptService] runPeerScript:scriptName
+                         jsonScriptData:@""
+                                       peer:m_peerName
+                        completionBlock:successBlock
+                   errorCompletionBlock:failureBlock
+                               cbObject:nil];
+    [self waitForResult];
+
+    [self detachPeer];
+}
+
+- (void)testRunPeerScriptAsync
+{
+    [self attachPeer:@"UserA"];
+
+    [[m_client scriptService] runPeerScript:scriptName
+                             jsonScriptData:@""
+                                       peer:m_peerName
+                            completionBlock:successBlock
+                       errorCompletionBlock:failureBlock
+                                   cbObject:nil];
+    [self waitForResult];
+
+    [self detachPeer];
+}
+
 @end

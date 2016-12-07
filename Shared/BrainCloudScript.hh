@@ -111,4 +111,45 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Runs a script from the context of a peer
+ *
+ * Service Name - Script
+ * Service Operation - RUN_PEER_SCRIPT
+ *
+ * @param scriptName The name of the script to be run
+ * @param jsonScriptData Data to be sent to the script in json format
+ * @param peer Peer the script belongs to
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)runPeerScript:(NSString *)scriptName
+          jsonScriptData:(NSString *)jsonScriptData
+                    peer:(NSString *)peer
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Runs a script asynchronously from the context of a peer
+ * This method does not wait for the script to complete before returning
+ *
+ * Service Name - Script
+ * Service Operation - RUN_PEER_SCRIPT_ASYNC
+ *
+ * @param scriptName The name of the script to be run
+ * @param jsonScriptData Data to be sent to the script in json format
+ * @param peer Peer the script belongs to
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)runPeerScriptAsync:(NSString *)scriptName
+            jsonScriptData:(NSString *)jsonScriptData
+                      peer:(NSString *)peer
+           completionBlock:(BCCompletionBlock)cb
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject;
+
 @end

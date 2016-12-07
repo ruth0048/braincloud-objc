@@ -63,4 +63,30 @@
         [jobId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)runPeerScript:(NSString *)scriptName
+          jsonScriptData:(NSString *)jsonScriptData
+                    peer:(NSString *)peer
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getScriptService()->runPeerScript(
+        [scriptName cStringUsingEncoding:NSUTF8StringEncoding],
+        [jsonScriptData cStringUsingEncoding:NSUTF8StringEncoding], [peer UTF8String],
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)runPeerScriptAsync:(NSString *)scriptName
+            jsonScriptData:(NSString *)jsonScriptData
+                      peer:(NSString *)peer
+           completionBlock:(BCCompletionBlock)cb
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getScriptService()->runPeerScriptAsync(
+        [scriptName cStringUsingEncoding:NSUTF8StringEncoding],
+        [jsonScriptData cStringUsingEncoding:NSUTF8StringEncoding], [peer UTF8String],
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end
