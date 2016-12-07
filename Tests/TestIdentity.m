@@ -47,17 +47,43 @@
 
 - (void)testSwitchToParentProfile
 {
-    [[m_client identityService] switchToSingletonChildProfile:m_childAppId
-                                         forceCreate:true
-                                     completionBlock:successBlock
-                                errorCompletionBlock:failureBlock
-                                            cbObject:nil];
-    [self waitForResult];
+    [self goToChildProfile];
     
     [[m_client identityService] switchToParentProfile:m_parentLevel
                                      completionBlock:successBlock
                                 errorCompletionBlock:failureBlock
                                             cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testAttachParentWithIdentity
+{
+    [self goToChildProfile];
+
+    [[m_client identityService] detachParent:successBlock
+                        errorCompletionBlock:failureBlock
+                                    cbObject:nil];
+    [self waitForResult];
+
+    TestUser* tUser = [TestFixtureBase getUser:@"UserA"];
+    [[m_client identityService] attachParentWithIdentity:tUser.m_id
+                              authenticationToken:tUser.m_password
+                               authenticationType:[AuthenticationTypeObjc Universal]
+                                      forceCreate:true
+                                 externalAuthName:nil
+                                  completionBlock:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testDetachParent
+{
+    [self goToChildProfile];
+
+    [[m_client identityService] detachParent:successBlock
+                        errorCompletionBlock:failureBlock
+                                    cbObject:nil];
     [self waitForResult];
 }
 
@@ -95,6 +121,40 @@
                                 errorCompletionBlock:failureBlock
                                             cbObject:nil];
     [self waitForFailedResult];
+}
+
+- (void)testAttachPeer
+{
+    TestUser* tUser = [TestFixtureBase getUser:@"UserA"];
+    [[m_client identityService] attachPeerProfile: tUser.m_id
+                              authenticationToken:tUser.m_password
+                               authenticationType:[AuthenticationTypeObjc Universal]
+                                      forceCreate:true
+                                 externalAuthName:nil
+                                             peer:m_peerName
+                                  completionBlock:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
+    [self waitForResult];
+    [self detachPeer];
+}
+
+- (void)testDetachPeer
+{
+    [self attachPeer:@"UserA"];
+    [[m_client identityService] detachPeer:m_peerName
+                           completionBlock:successBlock
+                      errorCompletionBlock:failureBlock
+                                  cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testGetPeerProfiles
+{
+    [[m_client identityService] getPeerProfiles:successBlock
+                                errorCompletionBlock:failureBlock
+                                            cbObject:nil];
+    [self waitForResult];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TestFixtureBase.h"
 #import "TestUser.h"
+#import "AuthenticationTypeObjC.hh"
 #include <stdlib.h>
 
 #define MAX_WAIT_SECS 120
@@ -231,6 +232,11 @@ NSMutableDictionary *m_users;
             NSRange range = [line rangeOfString:@"="];
             m_parentLevel = [line substringFromIndex:range.location + 1];
         }
+        else if ([line hasPrefix:@"peerName"])
+        {
+            NSRange range = [line rangeOfString:@"="];
+            m_peerName = [line substringFromIndex:range.location + 1];
+        }
     }
 }
 
@@ -350,6 +356,42 @@ NSMutableDictionary *m_users;
                                      completionBlock:successBlock
                                 errorCompletionBlock:failureBlock
                                             cbObject:nil];
+    [self waitForResult];
+    return self.result;
+}
+
+- (bool)goToParentProfile
+{
+    [[m_client identityService] switchToParentProfile:m_parentLevel
+                                              completionBlock:successBlock
+                                         errorCompletionBlock:failureBlock
+                                                     cbObject:nil];
+    [self waitForResult];
+    return self.result;
+}
+
+- (bool)attachPeer:(NSString*)user
+{
+    TestUser* tUser = [TestFixtureBase getUser:user];
+    [[m_client identityService] attachPeerProfile: tUser.m_id
+                              authenticationToken:tUser.m_password
+                               authenticationType:[AuthenticationTypeObjc Universal]
+                                      forceCreate:true
+                                 externalAuthName:nil
+                                             peer:m_peerName
+                                      completionBlock:successBlock
+                                 errorCompletionBlock:failureBlock
+                                             cbObject:nil];
+    [self waitForResult];
+    return self.result;
+}
+
+- (bool)detachPeer
+{
+    [[m_client identityService] detachPeer:m_peerName
+                                      completionBlock:successBlock
+                                 errorCompletionBlock:failureBlock
+                                             cbObject:nil];
     [self waitForResult];
     return self.result;
 }

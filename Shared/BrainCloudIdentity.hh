@@ -620,6 +620,44 @@
                 cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Detaches parent from this player's profile
+ *
+ * Service Name - identity
+ * Service Operation - DETACH_PARENT
+ *
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)detachParent:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Attach a new identity to a parent app
+ *
+ * Service Name - identity
+ * Service Operation - ATTACH_PARENT_WITH_IDENTITY
+ *
+ * @param externalId The users id for the new credentials
+ * @param authenticationToken The password/token
+ * @param authenticationType Type of identity
+ * @param forceCreate Should a new profile be created if it does not exist?
+ * @param externalAuthName Optional - if attaching an external identity
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)attachParentWithIdentity:(NSString *)externalId
+             authenticationToken:(NSString *)token
+              authenticationType:(AuthenticationTypeObjc *)type
+                     forceCreate:(bool)forceCreate
+                externalAuthName:(NSString *)externalAuthName
+                 completionBlock:(BCCompletionBlock)cb
+            errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                        cbObject:(BCCallbackObject)cbObject;
+
+/**
 * Retrieve list of identities
 *
 * Service Name - Identity
@@ -666,5 +704,61 @@
         completionBlock:(BCCompletionBlock)cb
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Attaches a peer identity to this player's profile
+ *
+ * Service Name - identity
+ * Service Operation - ATTACH_PEER_PROFILE
+ *
+ * @param externalId The users id for the new credentials
+ * @param authenticationToken The password/token
+ * @param authenticationType Type of identity
+ * @param forceCreate Should a new profile be created if it does not exist?
+ * @param externalAuthName Optional - if attaching an external identity
+ * @param peer Name of the peer to connect to
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)attachPeerProfile:(NSString *)externalId
+      authenticationToken:(NSString *)token
+       authenticationType:(AuthenticationTypeObjc *)type
+              forceCreate:(bool)forceCreate
+         externalAuthName:(NSString *)externalAuthName
+                     peer:(NSString *)peer
+          completionBlock:(BCCompletionBlock)cb
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Detaches a peer identity from this player's profile
+ *
+ * Service Name - identity
+ * Service Operation - DETACH_PEER
+ *
+ * @param peer Name of the peer to connect to
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)detachPeer:(NSString *)peer
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Returns a list of peer profiles attached to this user
+ *
+ * Service Name - identity
+ * Service Operation - GET_PEER_PROFILES
+ *
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getPeerProfiles:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 @end
