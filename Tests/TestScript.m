@@ -16,6 +16,7 @@
 @implementation TestScript
 
 NSString *scriptName = @"testScript";
+NSString *_peerScriptName = @"TestPeerScriptPublic";
 NSString *_childAppId = @"10326";
 NSString *_parentLevelName = @"Master";
 
@@ -107,7 +108,7 @@ NSString *_parentLevelName = @"Master";
 {
     [self attachPeer:@"UserA"];
 
-    [[m_client scriptService] runPeerScript:scriptName
+    [[m_client scriptService] runPeerScript:_peerScriptName
                          jsonScriptData:@""
                                        peer:m_peerName
                         completionBlock:successBlock
@@ -122,7 +123,7 @@ NSString *_parentLevelName = @"Master";
 {
     [self attachPeer:@"UserA"];
 
-    [[m_client scriptService] runPeerScript:scriptName
+    [[m_client scriptService] runPeerScript:_peerScriptName
                              jsonScriptData:@""
                                        peer:m_peerName
                             completionBlock:successBlock
