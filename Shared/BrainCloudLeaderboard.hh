@@ -139,7 +139,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
 * @param sort Sort key Sort order of page.
 * @param startIndex The index at which to start the page.
 * @param endIndex The index at which to end the page.
-* @param includeLeaderboardSize Whether to return the leaderboard size
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
@@ -148,10 +147,46 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                        sortOrder:(SortOrder)sortOrder
                       startIndex:(int)startIndex
                         endIndex:(int)endIndex
-          includeLeaderboardSize:(bool)includeLeaderboardSize
                  completionBlock:(BCCompletionBlock)cb
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Method returns a page of global leaderboard results.
+ * By using a non-current version id, the user can retrieve a historical leaderboard.
+ * See GetGlobalLeaderboardVersions method to retrieve the version id.
+ *
+ * Service Name - SocialLeaderboard
+ * Service Operation - GetGlobalLeaderboardPage
+ *
+ * @param leaderboardId The id of the leaderboard to retrieve.
+ * @param sort Sort key Sort order of page.
+ * @param startIndex The index at which to start the page.
+ * @param endIndex The index at which to end the page.
+ * @param versionId The historical version to retrieve.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getGlobalLeaderboardPageByVersion:(NSString *)leaderboardId
+                                sortOrder:(SortOrder)sortOrder
+                               startIndex:(int)startIndex
+                                 endIndex:(int)endIndex
+                                versionId:(int)versionId
+                          completionBlock:(BCCompletionBlock)cb
+                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                 cbObject:(BCCallbackObject)cbObject;
+
+
+- (void)getGlobalLeaderboardPage:(NSString *)leaderboardId
+                       sortOrder:(SortOrder)sortOrder
+                      startIndex:(int)startIndex
+                        endIndex:(int)endIndex
+          includeLeaderboardSize:(bool)includeLeaderboardSize
+                 completionBlock:(BCCompletionBlock)cb
+            errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                        cbObject:(BCCallbackObject)cbObject
+__deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
 
 - (void)getGlobalLeaderboardPageByVersion:(NSString *)leaderboardId
                                 sortOrder:(SortOrder)sortOrder
@@ -162,19 +197,7 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                           completionBlock:(BCCompletionBlock)cb
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject
-__deprecated_msg("Use method without in_includeLeaderboardSize param - removal after March 22 2016");
-
-
-- (void)getGlobalLeaderboardViewByVersion:(NSString *)leaderboardId
-                                sortOrder:(SortOrder)sortOrder
-                              beforeCount:(int)beforeCount
-                               afterCount:(int)afterCount
-                   includeLeaderboardSize:(bool)includeLeaderboardSize
-                                versionId:(int)versionId
-                          completionBlock:(BCCompletionBlock)cb
-                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                                 cbObject:(BCCallbackObject)cbObject
-__deprecated_msg("Use method without in_includeLeaderboardSize param - removal after March 22 2016");
+__deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
 
 /**
 * Method returns a view of global leaderboard results that centers on the current player.
@@ -226,6 +249,28 @@ __deprecated_msg("Use method without in_includeLeaderboardSize param - removal a
                           completionBlock:(BCCompletionBlock)cb
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject;
+
+- (void)getGlobalLeaderboardView:(NSString *)leaderboardId
+                       sortOrder:(SortOrder)sortOrder
+                     beforeCount:(int)beforeCount
+                      afterCount:(int)afterCount
+          includeLeaderboardSize:(bool)includeLeaderboardSize
+                 completionBlock:(BCCompletionBlock)cb
+            errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                        cbObject:(BCCallbackObject)cbObject
+__deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
+
+
+- (void)getGlobalLeaderboardViewByVersion:(NSString *)leaderboardId
+                                sortOrder:(SortOrder)sortOrder
+                              beforeCount:(int)beforeCount
+                               afterCount:(int)afterCount
+                   includeLeaderboardSize:(bool)includeLeaderboardSize
+                                versionId:(int)versionId
+                          completionBlock:(BCCompletionBlock)cb
+                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                 cbObject:(BCCallbackObject)cbObject
+__deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
 
 /**
  * Gets the number of entries in a global leaderboard
@@ -331,6 +376,38 @@ __deprecated_msg("Use method without in_includeLeaderboardSize param - removal a
                       completionBlock:(BCCompletionBlock)cb
                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
                              cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Post the players score to the given social leaderboard.
+* Pass leaderboard config data to dynamically create if necessary.
+* You can optionally send a user-defined json string of data
+* with the posted score. This string could include information
+* relevant to the posted score.
+*
+* Service Name - SocialLeaderboard
+* Service Operation - PostScoreDynamic
+*
+* @param leaderboardId The leaderboard to post to
+* @param score The score to post
+* @param data Optional user-defined data to post with the score
+* @param leaderboardType leaderboard type
+* @param rotationReset Date to start rotation calculations
+* @param retainedCount How many rotations to keep
+* @param numDaysToRotate How many days between each rotation
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*/
+- (void)postScoreToDynamicLeaderboardDays:(NSString *)leaderboardId
+                                    score:(int)score
+                                 jsonData:(NSString *)jsonData
+                          leaderboardType:(LeaderboardType)leaderboardType
+                           roatationReset:(NSDate *)rotationReset
+                            retainedCount:(int)retainedCount
+                          numDaysToRotate:(int)numDaysToRotate
+                          completionBlock:(BCCompletionBlock)cb
+                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                 cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Reset the player's score for the given social leaderboard id.

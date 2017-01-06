@@ -72,6 +72,33 @@
         versionId, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)getGlobalLeaderboardPage:(NSString *)leaderboardId
+                       sortOrder:(SortOrder)sortOrder
+                      startIndex:(int)startIndex
+                        endIndex:(int)endIndex
+                 completionBlock:(BCCompletionBlock)cb
+            errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                        cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getGlobalLeaderboardPage(
+        [leaderboardId UTF8String], (BrainCloud::SortOrder)sortOrder, startIndex, endIndex,
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getGlobalLeaderboardPageByVersion:(NSString *)leaderboardId
+                                sortOrder:(SortOrder)sortOrder
+                               startIndex:(int)startIndex
+                                 endIndex:(int)endIndex
+                                versionId:(int)versionId
+                          completionBlock:(BCCompletionBlock)cb
+                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                 cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getGlobalLeaderboardPageByVersion(
+        [leaderboardId UTF8String], (BrainCloud::SortOrder)sortOrder, startIndex, endIndex,
+        versionId, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)getGlobalLeaderboardView:(NSString *)leaderboardId
                        sortOrder:(SortOrder)sortOrder
                      beforeCount:(int)beforeCount
@@ -184,6 +211,25 @@
     BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->postScoreToDynamicLeaderboard(
         [leaderboardId UTF8String], score, [jsonData UTF8String], (BrainCloud::SocialLeaderboardType)leaderboardType,
         (BrainCloud::RotationType)rotationType, timeStruct, retainedCount, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)postScoreToDynamicLeaderboardDays:(NSString *)leaderboardId
+                                    score:(int)score
+                                 jsonData:(NSString *)jsonData
+                          leaderboardType:(LeaderboardType)leaderboardType
+                           roatationReset:(NSDate *)rotationReset
+                            retainedCount:(int)retainedCount
+                          numDaysToRotate:(int)numDaysToRotate
+                          completionBlock:(BCCompletionBlock)cb
+                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                 cbObject:(BCCallbackObject)cbObject
+{
+    time_t time = [rotationReset timeIntervalSince1970];
+    struct tm *timeStruct = localtime(&time);
+
+    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->postScoreToDynamicLeaderboardDays(
+        [leaderboardId UTF8String], score, [jsonData UTF8String], (BrainCloud::SocialLeaderboardType)leaderboardType,
+        timeStruct, retainedCount, numDaysToRotate, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)resetLeaderboardScore:(NSString *)leaderboardId

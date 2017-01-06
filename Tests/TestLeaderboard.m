@@ -74,7 +74,6 @@ NSString *eventId = @"tournamentRewardTest";
                                                   sortOrder:HIGH_TO_LOW
                                                  startIndex:0
                                                    endIndex:10
-                                     includeLeaderboardSize:true
                                             completionBlock:successBlock
                                        errorCompletionBlock:failureBlock
                                                    cbObject:nil];
@@ -87,7 +86,6 @@ NSString *eventId = @"tournamentRewardTest";
                                                            sortOrder:HIGH_TO_LOW
                                                           startIndex:0
                                                             endIndex:10
-                                              includeLeaderboardSize:true
                                                            versionId:1
                                                      completionBlock:successBlock
                                                 errorCompletionBlock:failureBlock
@@ -163,6 +161,28 @@ NSString *eventId = @"tournamentRewardTest";
                                                     rotationType:WEEKLY
                                                   roatationReset:nextDate
                                                    retainedCount:2
+                                                 completionBlock:successBlock
+                                            errorCompletionBlock:failureBlock
+                                                        cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testPostScoreToDynamicLeaderboardDays
+{
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = 1;
+
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDate *nextDate = [theCalendar dateByAddingComponents:dayComponent toDate:[NSDate date] options:0];
+    NSString* name = [NSString stringWithFormat:@"%@Days-%d", dynamicLeaderboardId, arc4random_uniform(1000000)];
+
+    [[m_client leaderboardService] postScoreToDynamicLeaderboardDays:name
+                                                           score:100
+                                                        jsonData:@""
+                                                 leaderboardType:LOW_VALUE
+                                                  roatationReset:nextDate
+                                                   retainedCount:2
+                                                     numDaysToRotate:3
                                                  completionBlock:successBlock
                                             errorCompletionBlock:failureBlock
                                                         cbObject:nil];
