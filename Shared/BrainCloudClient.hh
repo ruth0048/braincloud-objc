@@ -36,6 +36,7 @@
 #import "BrainCloudS3Handling.hh"
 #import "BrainCloudScript.hh"
 #import "BrainCloudTime.hh"
+#import "BrainCloudTournament.hh"
 #import <Foundation/Foundation.h>
 
 /**
@@ -406,6 +407,7 @@
 @property(readonly) BrainCloudEvent *eventService;
 @property(readonly) BrainCloudPlayerStatisticsEvent *playerStatisticsEventService;
 @property(readonly) BrainCloudTime *timeService;
+@property(readonly) BrainCloudTournament *tournamentService;
 @property(readonly) BrainCloudS3Handling *s3HandlingService;
 @property(readonly) BrainCloudIdentity *identityService;
 @property(readonly) BrainCloudRedemptionCode *redemptionCodeService;
