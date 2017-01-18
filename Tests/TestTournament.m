@@ -43,17 +43,14 @@ BOOL _didJoin = false;
     int version = [self joinTournament];
 
     [[m_client tournamentService] getTournamentStatus:_leaderboardId
-                                              versionId:version
-                                        completionBlock:successBlock
-                                   errorCompletionBlock:failureBlock
-                                               cbObject:nil];
+                                            versionId:version
+                                      completionBlock:successBlock
+                                 errorCompletionBlock:failureBlock
+                                             cbObject:nil];
     [self waitForResult];
 }
 
-- (void)testJoinTournament
-{
-    [self joinTournament];
-}
+- (void)testJoinTournament { [self joinTournament]; }
 
 - (void)testLeaveTournament
 {
@@ -66,7 +63,7 @@ BOOL _didJoin = false;
     [self joinTournament];
 
     [[m_client tournamentService] postTournamentScore:_leaderboardId
-                                            score:200
+                                                score:200
                                              jsonData:nil
                                      roundStartedTime:[NSDate date]
                                       completionBlock:successBlock
@@ -75,14 +72,32 @@ BOOL _didJoin = false;
     [self waitForResult];
 }
 
+- (void)testPostTournamentScoreWithResults
+{
+    [self joinTournament];
+
+    [[m_client tournamentService] postTournamentScoreWithResults:_leaderboardId
+                                                           score:200
+                                                        jsonData:nil
+                                                roundStartedTime:[NSDate date]
+                                                       sortOrder:HIGH_TO_LOW
+                                                     beforeCount:10
+                                                      afterCount:10
+                                                    initialScore:0
+                                                 completionBlock:successBlock
+                                            errorCompletionBlock:failureBlock
+                                                        cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testViewCurrentReward
 {
     [self joinTournament];
 
     [[m_client tournamentService] viewCurrentReward:_leaderboardId
-                                        completionBlock:successBlock
-                                   errorCompletionBlock:failureBlock
-                                               cbObject:nil];
+                                    completionBlock:successBlock
+                               errorCompletionBlock:failureBlock
+                                           cbObject:nil];
     [self waitForResult];
 }
 
@@ -91,10 +106,10 @@ BOOL _didJoin = false;
     [self joinTournament];
 
     [[m_client tournamentService] viewReward:_leaderboardId
-                                            versionId:-1
-                                      completionBlock:successBlock
-                                 errorCompletionBlock:failureBlock
-                                             cbObject:nil];
+                                   versionId:-1
+                             completionBlock:successBlock
+                        errorCompletionBlock:failureBlock
+                                    cbObject:nil];
     [self waitForFailedResult];
 }
 

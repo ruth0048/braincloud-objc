@@ -10,6 +10,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#import "BrainCloudLeaderboard.hh"
 
 @interface BrainCloudTournament : NSObject
 
@@ -107,6 +108,35 @@
             completionBlock:(BCCompletionBlock)cb
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Post the users score to the leaderboard
+ *
+ * Service Name - tournament
+ * Service Operation - POST_TOURNAMENT_SCORE_WITH_RESULTS
+ *
+ * @param leaderboardId The leaderboard for the tournament
+ * @param score The score to post
+ * @param jsonData Optional data attached to the leaderboard entry
+ * @param roundStartedTime Time the user started the match resulting in the score being posted in UTC.
+ * @param sort Sort key Sort order of page.
+ * @param beforeCount The count of number of players before the current player to include.
+ * @param afterCount The count of number of players after the current player to include.
+ * @param initialScore The initial score for players first joining a tournament
+ *						  Usually 0, unless leaderboard is LOW_VALUE
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)postTournamentScoreWithResults:(NSString *)leaderboardId
+                                 score:(int)score
+                              jsonData:(NSString *)jsonData
+                      roundStartedTime:(NSDate *)roundStartedTime
+                             sortOrder:(SortOrder)sortOrder
+                           beforeCount:(int)beforeCount
+                            afterCount:(int)afterCount
+                          initialScore:(int)initialScore
+                       completionBlock:(BCCompletionBlock)cb
+                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                              cbObject:(BCCallbackObject)cbObject;
 
 /**
  * Returns the user's expected reward based on the current scores

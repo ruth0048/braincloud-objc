@@ -1,3 +1,5 @@
+
+    
 //
 //  BrainCloudTournament.mm
 //  BrainCloud
@@ -63,10 +65,31 @@
                    cbObject:(BCCallbackObject)cbObject
 {
     time_t time = [roundStartedTime timeIntervalSince1970];
-    struct tm *timeStruct = localtime(&time);
+    struct tm *timeStruct = gmtime(&time);
 
     BrainCloud::BrainCloudClient::getInstance()->getTournamentService()->postTournamentScore(
         [leaderboardId UTF8String], score, jsonData == nil ? "" : [jsonData UTF8String], timeStruct,
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)postTournamentScoreWithResults:(NSString *)leaderboardId
+                                 score:(int)score
+                              jsonData:(NSString *)jsonData
+                      roundStartedTime:(NSDate *)roundStartedTime
+                             sortOrder:(SortOrder)sortOrder
+                           beforeCount:(int)beforeCount
+                            afterCount:(int)afterCount
+                          initialScore:(int)initialScore
+                       completionBlock:(BCCompletionBlock)cb
+                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                              cbObject:(BCCallbackObject)cbObject
+{
+    time_t time = [roundStartedTime timeIntervalSince1970];
+    struct tm *timeStruct = gmtime(&time);
+
+    BrainCloud::BrainCloudClient::getInstance()->getTournamentService()->postTournamentScoreWithResults(
+        [leaderboardId UTF8String], score, jsonData == nil ? "" : [jsonData UTF8String], timeStruct,
+        (BrainCloud::SortOrder)sortOrder, beforeCount, afterCount, initialScore,
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
