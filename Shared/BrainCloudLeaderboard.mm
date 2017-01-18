@@ -95,8 +95,8 @@
                                  cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getGlobalLeaderboardPageByVersion(
-        [leaderboardId UTF8String], (BrainCloud::SortOrder)sortOrder, startIndex, endIndex,
-        versionId, new BrainCloudCallback(cb, ecb, cbObject));
+        [leaderboardId UTF8String], (BrainCloud::SortOrder)sortOrder, startIndex, endIndex, versionId,
+        new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)getGlobalLeaderboardView:(NSString *)leaderboardId
@@ -151,8 +151,8 @@
                                  cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getGlobalLeaderboardViewByVersion(
-        [leaderboardId UTF8String], (BrainCloud::SortOrder)sortOrder, beforeCount, afterCount,
-        versionId, new BrainCloudCallback(cb, ecb, cbObject));
+        [leaderboardId UTF8String], (BrainCloud::SortOrder)sortOrder, beforeCount, afterCount, versionId,
+        new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)getGlobalLeaderboardEntryCount:(NSString *)leaderboardId
@@ -232,6 +232,16 @@
         timeStruct, retainedCount, numDaysToRotate, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)removePlayerScore:(NSString *)leaderboardId
+                versionId:(int)versionId
+          completionBlock:(BCCompletionBlock)cb
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->removePlayerScore(
+        [leaderboardId UTF8String], versionId, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)resetLeaderboardScore:(NSString *)leaderboardId
               completionBlock:(BCCompletionBlock)cb
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -274,6 +284,32 @@
 {
     BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->listAllLeaderboards(
         new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getPlayerScore:(NSString *)leaderboardId
+               versionId:(int)versionId
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getPlayerScore(
+        [leaderboardId UTF8String], versionId, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getPlayerScoresFromLeaderboards:(NSArray *)leaderboardIds
+                        completionBlock:(BCCompletionBlock)cb
+                   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                               cbObject:(BCCallbackObject)cbObject
+{
+    std::vector<std::string> lbIds;
+    for (NSString *nsid in leaderboardIds)
+    {
+        std::string lbId = [nsid UTF8String];
+        lbIds.push_back(lbId);
+    }
+
+    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getPlayerScoresFromLeaderboards(
+        lbIds, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 @end

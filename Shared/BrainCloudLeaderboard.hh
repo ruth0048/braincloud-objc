@@ -177,7 +177,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject;
 
-
 - (void)getGlobalLeaderboardPage:(NSString *)leaderboardId
                        sortOrder:(SortOrder)sortOrder
                       startIndex:(int)startIndex
@@ -186,7 +185,7 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                  completionBlock:(BCCompletionBlock)cb
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject
-__deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
+    __deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
 
 - (void)getGlobalLeaderboardPageByVersion:(NSString *)leaderboardId
                                 sortOrder:(SortOrder)sortOrder
@@ -197,7 +196,7 @@ __deprecated_msg("Use method without includeLeaderboardSize param - removal afte
                           completionBlock:(BCCompletionBlock)cb
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject
-__deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
+    __deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
 
 /**
 * Method returns a view of global leaderboard results that centers on the current player.
@@ -258,8 +257,7 @@ __deprecated_msg("Use method without includeLeaderboardSize param - removal afte
                  completionBlock:(BCCompletionBlock)cb
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject
-__deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
-
+    __deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
 
 - (void)getGlobalLeaderboardViewByVersion:(NSString *)leaderboardId
                                 sortOrder:(SortOrder)sortOrder
@@ -270,7 +268,7 @@ __deprecated_msg("Use method without includeLeaderboardSize param - removal afte
                           completionBlock:(BCCompletionBlock)cb
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject
-__deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
+    __deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
 
 /**
  * Gets the number of entries in a global leaderboard
@@ -410,6 +408,24 @@ __deprecated_msg("Use method without includeLeaderboardSize param - removal afte
                                  cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Removes a player's score from the leaderboard
+ *
+ * Service Name - leaderboard
+ * Service Operation - REMOVE_PLAYER_SCORE
+ *
+ * @param leaderboardId The leaderboard ID
+ * @param versionId The version of the leaderboard
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)removePlayerScore:(NSString *)leaderboardId
+                versionId:(int)versionId
+          completionBlock:(BCCompletionBlock)cb
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject;
+
+/**
 * Reset the player's score for the given social leaderboard id.
 *
 * @param leaderboardId The leaderboard to post to
@@ -468,5 +484,37 @@ __deprecated_msg("Use method without includeLeaderboardSize param - removal afte
 - (void)listAllLeaderboards:(BCCompletionBlock)cb
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Gets a player's score from a leaderboard
+ *
+ * Service Name - leaderboard
+ * Service Operation - GET_PLAYER_SCORE
+ *
+ * @param leaderboardId The leaderboard ID
+ * @param versionId The version of the leaderboard. Use -1 for current.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getPlayerScore:(NSString *)leaderboardId
+               versionId:(int)versionId
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Gets a player's score from multiple leaderboards
+ *
+ * Service Name - leaderboard
+ * Service Operation - GET_PLAYER_SCORES_FROM_LEADERBOARDS
+ *
+ * @param leaderboardIds A collection of leaderboardIds to retrieve scores from
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)getPlayerScoresFromLeaderboards:(NSArray *)leaderboardIds
+                        completionBlock:(BCCompletionBlock)cb
+                   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                               cbObject:(BCCallbackObject)cbObject;
 
 @end
