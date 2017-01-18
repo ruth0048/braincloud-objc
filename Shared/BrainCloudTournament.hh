@@ -59,7 +59,8 @@
  *
  * @param leaderboardId The leaderboard for the tournament
  * @param tournamentCode Tournament to join
- * @param initialScore Initial score for the user
+ * @param initialScore The initial score for players first joining a tournament
+ *						  Usually 0, unless leaderboard is LOW_VALUE
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
