@@ -23,7 +23,7 @@ NSString *eventData = @"{ \"globalTestName\":\"testValue\" }";
 
 - (void)testSendEvent
 {
-    [self sendEvent:false];
+    [self sendEvent];
     if (!_eventCallbackReceived)
     {
         __weak TestFixtureBase *weakSelf = self;
@@ -36,22 +36,10 @@ NSString *eventData = @"{ \"globalTestName\":\"testValue\" }";
     }
 }
 
-- (void)testDeleteSentEvent
-{
-    uint64_t eventId = [self sendEvent:true];
-    [[m_client eventService] deleteSentEvent:[TestFixtureBase getUser:@"UserA"].m_profileId
-                                     eventId:eventId
-                             completionBlock:successBlock
-                        errorCompletionBlock:failureBlock
-                                    cbObject:nil];
-    [self waitForResult];
-}
-
 - (void)testUpdateIncomingEventData
 {
-    uint64_t eventId = [self sendEvent:false];
-    [[m_client eventService] updateIncomingEventData:[TestFixtureBase getUser:@"UserA"].m_profileId
-                                             eventId:eventId
+    NSString* eventId = [self sendEvent];
+    [[m_client eventService] updateIncomingEventData:eventId
                                        jsonEventData:eventData
                                      completionBlock:successBlock
                                 errorCompletionBlock:failureBlock
@@ -61,9 +49,8 @@ NSString *eventData = @"{ \"globalTestName\":\"testValue\" }";
 
 - (void)testDeleteIncomingEvent
 {
-    uint64_t eventId = [self sendEvent:true];
-    [[m_client eventService] deleteIncomingEvent:[TestFixtureBase getUser:@"UserA"].m_profileId
-                                         eventId:eventId
+    NSString* eventId = [self sendEvent];
+    [[m_client eventService] deleteIncomingEvent:eventId
                                  completionBlock:successBlock
                             errorCompletionBlock:failureBlock
                                         cbObject:nil];
@@ -72,29 +59,26 @@ NSString *eventData = @"{ \"globalTestName\":\"testValue\" }";
 
 - (void)testGetEvents
 {
-    [self sendEvent:true];
-    [[m_client eventService] getEvents:true
-                 includeSentEvents:true
-                       completionBlock:successBlock
+    [self sendEvent];
+    [[m_client eventService] getEvents:successBlock
                   errorCompletionBlock:failureBlock
                               cbObject:nil];
     [self waitForResult];
 }
 
-- (uint64_t)sendEvent:(bool)recordLocal
+- (NSString*)sendEvent
 {
     [m_client registerEventCallback:eventBlock];
     [[m_client eventService] sendEvent:[TestFixtureBase getUser:@"UserA"].m_profileId
                              eventType:eventType
                          jsonEventData:eventData
-                         recordLocally:recordLocal
                        completionBlock:successBlock
                   errorCompletionBlock:failureBlock
                               cbObject:nil];
     [self waitForResult];
     [m_client deregisterEventCallback];
-    return [(NSNumber *)[[TestFixtureBase getDataFromResponse:self.jsonResponse]
-        valueForKey:@"eventId"] unsignedLongLongValue];
+    return (NSString *)[[TestFixtureBase getDataFromResponse:self.jsonResponse]
+        valueForKey:@"evId"];
 }
 
 @end
