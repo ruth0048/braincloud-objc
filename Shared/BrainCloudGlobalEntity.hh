@@ -28,12 +28,12 @@
 * @param cbObject User object sent to the completion blocks
 */
 - (void)createEntity:(NSString *)entityType
-          timeToLive:(int64_t)timeToLive
-       jsonEntityAcl:(NSString *)jsonEntityAcl
-      jsonEntityData:(NSString *)jsonEntityData
-     completionBlock:(BCCompletionBlock)completionBlock
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-            cbObject:(BCCallbackObject)cbObject;
+              timeToLive:(int64_t)timeToLive
+           jsonEntityAcl:(NSString *)jsonEntityAcl
+          jsonEntityData:(NSString *)jsonEntityData
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Method creates a new entity on the server with an indexed id.
@@ -73,11 +73,11 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param cbObject User object sent to the completion blocks
 */
 - (void)updateEntity:(NSString *)entityId
-             version:(int64_t)version
-      jsonEntityData:(NSString *)jsonEntityData
-     completionBlock:(BCCompletionBlock)completionBlock
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-            cbObject:(BCCallbackObject)cbObject;
+                 version:(int64_t)version
+          jsonEntityData:(NSString *)jsonEntityData
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Method updates an existing entity's Acl on the server.
@@ -93,11 +93,11 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param cbObject User object sent to the completion blocks
 */
 - (void)updateEntityAcl:(NSString *)entityId
-                version:(int64_t)version
-          jsonEntityAcl:(NSString *)jsonEntityAcl
-        completionBlock:(BCCompletionBlock)completionBlock
-   errorCompletionBlock:(BCErrorCompletionBlock)ecb
-               cbObject:(BCCallbackObject)cbObject;
+                 version:(int64_t)version
+           jsonEntityAcl:(NSString *)jsonEntityAcl
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Method updates an existing entity's time to live on the server.
@@ -132,10 +132,10 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param cbObject User object sent to the completion blocks
 */
 - (void)deleteEntity:(NSString *)entityId
-             version:(int64_t)version
-     completionBlock:(BCCompletionBlock)completionBlock
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-            cbObject:(BCCallbackObject)cbObject;
+                 version:(int64_t)version
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Method reads an existing entity from the server.
@@ -203,9 +203,9 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param cbObject User object sent to the completion blocks
 */
 - (void)getListCount:(NSString *)where
-     completionBlock:(BCCompletionBlock)completionBlock
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-            cbObject:(BCCallbackObject)cbObject;
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Method uses a paging system to iterate through Global Entities
@@ -241,10 +241,10 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param cbObject User object sent to the completion blocks
 */
 - (void)getPageOffset:(NSString *)context
-           pageOffset:(int)pageOffset
-      completionBlock:(BCCompletionBlock)completionBlock
- errorCompletionBlock:(BCErrorCompletionBlock)ecb
-             cbObject:(BCCallbackObject)cbObject;
+              pageOffset:(int)pageOffset
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 /**
  * Partial increment of entity data field items. Partial set of items incremented as specified.
@@ -259,9 +259,51 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param cbObject User object sent to the completion blocks
  */
 - (void)incrementGlobalEntityData:(NSString *)entityId
-                       jsonData:(NSString *)jsonData
+                         jsonData:(NSString *)jsonData
+                  completionBlock:(BCCompletionBlock)completionBlock
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Method updates an existing entity's Owner and ACL on the server.
+ *
+ * Service Name - globalEntity
+ * Service Operation - UPDATE_ENTITY_OWNER_AND_ACL
+ *
+ * @param entityId The entity ID
+ * @param version The version of the entity to update
+ * @param ownerId The owner ID
+ * @param jsonEntityAcl The entity's access control list as JSON.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)updateEntityOwnerAndAcl:(NSString *)entityId
+                        version:(int64_t)version
+                        ownerId:(NSString *)ownerId
+                  jsonEntityAcl:(NSString *)jsonEntityAcl
                 completionBlock:(BCCompletionBlock)completionBlock
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Method clears the owner id of an existing entity and sets the ACL on the server.
+ *
+ * Service Name - globalEntity
+ * Service Operation - MAKE_SYSTEM_ENTITY
+ *
+ * @param entityId The entity ID
+ * @param version The version of the entity to update
+ * @param jsonEntityAcl The entity's access control list as JSON.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)makeSystemEntity:(NSString *)entityId
+                 version:(int64_t)version
+           jsonEntityAcl:(NSString *)jsonEntityAcl
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 @end

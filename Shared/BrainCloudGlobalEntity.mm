@@ -16,12 +16,12 @@
 @implementation BrainCloudGlobalEntity
 
 - (void)createEntity:(NSString *)entityType
-          timeToLive:(int64_t)timeToLive
-       jsonEntityAcl:(NSString *)jsonEntityAcl
-      jsonEntityData:(NSString *)jsonEntityData
-     completionBlock:(BCCompletionBlock)completionBlock
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-            cbObject:(BCCallbackObject)cbObject
+              timeToLive:(int64_t)timeToLive
+           jsonEntityAcl:(NSString *)jsonEntityAcl
+          jsonEntityData:(NSString *)jsonEntityData
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
 {
     std::string type, acl, data;
 
@@ -49,18 +49,16 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     if (jsonEntityAcl != nil) acl = [jsonEntityAcl UTF8String];
     if (jsonEntityData != nil) data = [jsonEntityData UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getGlobalEntityService()
-        ->createEntityWithIndexedId(type, index, timeToLive, acl, data,
-                                    new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->createEntityWithIndexedId(
+        type, index, timeToLive, acl, data, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)updateEntity:(NSString *)entityId
-             version:(int64_t)version
-      jsonEntityData:(NSString *)jsonEntityData
-     completionBlock:(BCCompletionBlock)completionBlock
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-            cbObject:(BCCallbackObject)cbObject
+                 version:(int64_t)version
+          jsonEntityData:(NSString *)jsonEntityData
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
 {
     std::string eId, data;
 
@@ -72,11 +70,11 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 }
 
 - (void)updateEntityAcl:(NSString *)entityId
-                version:(int64_t)version
-          jsonEntityAcl:(NSString *)jsonEntityAcl
-        completionBlock:(BCCompletionBlock)completionBlock
-   errorCompletionBlock:(BCErrorCompletionBlock)ecb
-               cbObject:(BCCallbackObject)cbObject
+                 version:(int64_t)version
+           jsonEntityAcl:(NSString *)jsonEntityAcl
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
 {
     std::string eId, acl;
 
@@ -102,10 +100,10 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 }
 
 - (void)deleteEntity:(NSString *)entityId
-             version:(int64_t)version
-     completionBlock:(BCCompletionBlock)completionBlock
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-            cbObject:(BCCallbackObject)cbObject
+                 version:(int64_t)version
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
 {
     std::string eId;
     if (entityId != nil) eId = [entityId UTF8String];
@@ -156,9 +154,9 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 }
 
 - (void)getListCount:(NSString *)where
-     completionBlock:(BCCompletionBlock)completionBlock
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-            cbObject:(BCCallbackObject)cbObject
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
 {
     std::string wh;
     if (where != nil) wh = [where UTF8String];
@@ -177,10 +175,10 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 }
 
 - (void)getPageOffset:(NSString *)context
-           pageOffset:(int)pageOffset
-      completionBlock:(BCCompletionBlock)completionBlock
- errorCompletionBlock:(BCErrorCompletionBlock)ecb
-             cbObject:(BCCallbackObject)cbObject
+              pageOffset:(int)pageOffset
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->getPageOffset(
         [context UTF8String], pageOffset, new BrainCloudCallback(completionBlock, ecb, cbObject));
@@ -192,12 +190,36 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
              errorCompletionBlock:(BCErrorCompletionBlock)ecb
                          cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getGlobalEntityService()
-        ->incrementGlobalEntityData(
-            [entityId UTF8String],
-            TypeHelpers::NSStringToStdString(jsonData),
-            new BrainCloudCallback(completionBlock, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->incrementGlobalEntityData(
+        [entityId UTF8String], TypeHelpers::NSStringToStdString(jsonData),
+        new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)updateEntityOwnerAndAcl:(NSString *)entityId
+                        version:(int64_t)version
+                        ownerId:(NSString *)ownerId
+                  jsonEntityAcl:(NSString *)jsonEntityAcl
+                completionBlock:(BCCompletionBlock)completionBlock
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject
+{
+
+    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->updateEntityOwnerAndAcl(
+        [entityId UTF8String], version, [ownerId UTF8String], [jsonEntityAcl UTF8String],
+        new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)makeSystemEntity:(NSString *)entityId
+                 version:(int64_t)version
+           jsonEntityAcl:(NSString *)jsonEntityAcl
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
+{
+
+    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->makeSystemEntity(
+        [entityId UTF8String], version, [jsonEntityAcl UTF8String],
+        new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 @end
