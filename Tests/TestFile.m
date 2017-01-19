@@ -179,7 +179,7 @@ long createFile(const char * in_path, int64_t in_size)
 {
     NSString * cloudFilename = @"uploadsimplefile.txt";
     const char * localPath = [cloudFilename UTF8String];
-    createFile(localPath, 4*1024*1024);
+    createFile(localPath, 2*1024*1024);
     
     int numTransfers = 3;
     NSMutableArray * uploadIds = [[NSMutableArray alloc] init];
@@ -236,7 +236,7 @@ long createFile(const char * in_path, int64_t in_size)
 {
     NSString * filename = @"uploadsimplefile.txt";
     NSString * uploadId = nil;
-    if (![self simpleUpload:5 cloudPath:@"" cloudFilename:filename uploadId:&uploadId])
+    if (![self simpleUpload:2 cloudPath:@"" cloudFilename:filename uploadId:&uploadId])
     {
         return;
     }
@@ -264,7 +264,7 @@ long createFile(const char * in_path, int64_t in_size)
 {
     NSString * filename = @"uploadsimplefile.txt";
     NSString * uploadId = nil;
-    if (![self simpleUpload:5 cloudPath:@"" cloudFilename:filename uploadId:&uploadId])
+    if (![self simpleUpload:2 cloudPath:@"" cloudFilename:filename uploadId:&uploadId])
     {
         return;
     }
