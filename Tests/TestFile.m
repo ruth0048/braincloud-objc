@@ -22,7 +22,7 @@
 
 - (void)tearDown { [super tearDown]; }
 
-long createFile(const char * in_path, int in_size)
+long createFile(const char * in_path, int64_t in_size)
 {
     FILE* fp = NULL;
     fp = fopen(in_path, "w");
@@ -49,9 +49,8 @@ long createFile(const char * in_path, int in_size)
     *uploadId = nil;
     
     const char * localPath = [cloudFilename UTF8String];
-    createFile(localPath, mb*1024*1024);
-    
-    
+    createFile(localPath, mb*1024LL*1024LL);
+
     [[m_client fileService] uploadFile:cloudPath
                          cloudFilename:cloudFilename
                              shareable:true
@@ -84,7 +83,7 @@ long createFile(const char * in_path, int in_size)
 - (void)testUploadSimpleFile
 {
     NSString * uploadId = nil;
-    if (![self simpleUpload:5 cloudPath:@"" cloudFilename:@"uploadsimplefile.txt" uploadId:&uploadId])
+    if (![self simpleUpload:2 cloudPath:@"" cloudFilename:@"uploadsimplefile.txt" uploadId:&uploadId])
     {
         return;
     }
