@@ -426,17 +426,13 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                  cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Reset the player's score for the given social leaderboard id.
-*
-* @param leaderboardId The leaderboard to post to
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
+* @deprecated Use removePlayerScore - removal after March 22 2016
 */
 - (void)resetLeaderboardScore:(NSString *)leaderboardId
               completionBlock:(BCCompletionBlock)cb
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                     cbObject:(BCCallbackObject)cbObject;
+                     cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Use removePlayerScore - removal after March 22 2016");
 
 /**
  * Retrieve the social leaderboard for a group.

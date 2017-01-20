@@ -59,15 +59,6 @@ NSString *eventId = @"tournamentRewardTest";
     [self waitForResult];
 }
 
-- (void)testResetLeaderboardScore
-{
-    [[m_client leaderboardService] resetLeaderboardScore:globalLeaderboardId
-                                         completionBlock:successBlock
-                                    errorCompletionBlock:failureBlock
-                                                cbObject:nil];
-    [self waitForResult];
-}
-
 - (void)testGetGlobalLeaderboardPage
 {
     [[m_client leaderboardService] getGlobalLeaderboardPage:globalLeaderboardId
