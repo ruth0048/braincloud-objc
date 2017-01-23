@@ -581,10 +581,10 @@
 * @param cbObject User object sent to the completion blocks
 */
 - (void)switchToSingletonChildProfile:(NSString *)childAppId
-                 forceCreate:(bool)forceCreate
-             completionBlock:(BCCompletionBlock)cb
-        errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                    cbObject:(BCCallbackObject)cbObject;
+                          forceCreate:(bool)forceCreate
+                      completionBlock:(BCCompletionBlock)cb
+                 errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                             cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Switch to a Parent Profile
@@ -642,8 +642,8 @@
  * @param externalId The users id for the new credentials
  * @param authenticationToken The password/token
  * @param authenticationType Type of identity
- * @param forceCreate Should a new profile be created if it does not exist?
  * @param externalAuthName Optional - if attaching an external identity
+ * @param forceCreate Should a new profile be created if it does not exist?
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
@@ -651,8 +651,8 @@
 - (void)attachParentWithIdentity:(NSString *)externalId
              authenticationToken:(NSString *)token
               authenticationType:(AuthenticationTypeObjc *)type
-                     forceCreate:(bool)forceCreate
                 externalAuthName:(NSString *)externalAuthName
+                     forceCreate:(bool)forceCreate
                  completionBlock:(BCCompletionBlock)cb
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject;
@@ -668,8 +668,8 @@
 * @param cbObject User object sent to the completion blocks
 */
 - (void)getIdentities:(BCCompletionBlock)cb
- errorCompletionBlock:(BCErrorCompletionBlock)ecb
-             cbObject:(BCCallbackObject)cbObject;
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Retrieve list of expired identities
@@ -699,11 +699,11 @@
  * @param cbObject User object sent to the completion blocks
  */
 - (void)refreshIdentity:(NSString *)externalId
-    authenticationToken:(NSString *)token
-     authenticationType:(AuthenticationTypeObjc *)type
-        completionBlock:(BCCompletionBlock)cb
-   errorCompletionBlock:(BCErrorCompletionBlock)ecb
-               cbObject:(BCCallbackObject)cbObject;
+     authenticationToken:(NSString *)token
+      authenticationType:(AuthenticationTypeObjc *)type
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 /**
  * Attaches a peer identity to this player's profile
@@ -711,22 +711,22 @@
  * Service Name - identity
  * Service Operation - ATTACH_PEER_PROFILE
  *
+ * @param peer Name of the peer to connect to
  * @param externalId The users id for the new credentials
  * @param authenticationToken The password/token
  * @param authenticationType Type of identity
- * @param forceCreate Should a new profile be created if it does not exist?
  * @param externalAuthName Optional - if attaching an external identity
- * @param peer Name of the peer to connect to
+ * @param forceCreate Should a new profile be created if it does not exist?
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
  */
-- (void)attachPeerProfile:(NSString *)externalId
+- (void)attachPeerProfile:(NSString *)peer
+               externalId:(NSString *)externalId
       authenticationToken:(NSString *)token
        authenticationType:(AuthenticationTypeObjc *)type
-              forceCreate:(bool)forceCreate
          externalAuthName:(NSString *)externalAuthName
-                     peer:(NSString *)peer
+              forceCreate:(bool)forceCreate
           completionBlock:(BCCompletionBlock)cb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;

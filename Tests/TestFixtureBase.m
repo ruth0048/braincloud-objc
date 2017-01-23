@@ -373,12 +373,12 @@ NSMutableDictionary *m_users;
 - (bool)attachPeer:(NSString*)user
 {
     TestUser* tUser = [TestFixtureBase getUser:user];
-    [[m_client identityService] attachPeerProfile: tUser.m_id
+    [[m_client identityService] attachPeerProfile:m_peerName
+                                       externalId:tUser.m_id
                               authenticationToken:tUser.m_password
                                authenticationType:[AuthenticationTypeObjc Universal]
-                                      forceCreate:true
                                  externalAuthName:nil
-                                             peer:m_peerName
+                                      forceCreate:true
                                       completionBlock:successBlock
                                  errorCompletionBlock:failureBlock
                                              cbObject:nil];

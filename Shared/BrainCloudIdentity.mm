@@ -305,16 +305,16 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 - (void)attachParentWithIdentity:(NSString *)externalId
              authenticationToken:(NSString *)token
               authenticationType:(AuthenticationTypeObjc *)type
-                     forceCreate:(bool)forceCreate
                 externalAuthName:(NSString *)externalAuthName
+                     forceCreate:(bool)forceCreate
                  completionBlock:(BCCompletionBlock)cb
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->attachParentWithIdentity(
         [externalId UTF8String], [token UTF8String],
-        BrainCloud::AuthenticationType::fromString([[type toString] UTF8String]), forceCreate,
-        [externalAuthName UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+        BrainCloud::AuthenticationType::fromString([[type toString] UTF8String]),
+        [externalAuthName UTF8String], forceCreate, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)getIdentities:(BCCompletionBlock)cb
@@ -346,20 +346,20 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
-- (void)attachPeerProfile:(NSString *)externalId
+- (void)attachPeerProfile:(NSString *)peer
+               externalId:(NSString *)externalId
       authenticationToken:(NSString *)token
        authenticationType:(AuthenticationTypeObjc *)type
-              forceCreate:(bool)forceCreate
          externalAuthName:(NSString *)externalAuthName
-                     peer:(NSString *)peer
+              forceCreate:(bool)forceCreate
           completionBlock:(BCCompletionBlock)cb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->attachPeerProfile(
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->attachPeerProfile([peer UTF8String],
         [externalId UTF8String], [token UTF8String],
-        BrainCloud::AuthenticationType::fromString([[type toString] UTF8String]), forceCreate,
-        [externalAuthName UTF8String], [peer UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+        BrainCloud::AuthenticationType::fromString([[type toString] UTF8String]),
+        [externalAuthName UTF8String], forceCreate, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)detachPeer:(NSString *)peer
