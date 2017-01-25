@@ -8,11 +8,13 @@
 
 #import "BrainCloudFriend.hh"
 #import "FriendPlatformObjc.hh"
+#import "AuthenticationTypeObjc.hh"
 
 #include "BrainCloudCallback.hh"
 #include "TypeHelpers.hh"
 #include "braincloud/BrainCloudClient.h"
 #include "braincloud/FriendPlatform.h"
+#include "brainCloud/AuthenticationType.h"
 
 @implementation BrainCloudFriend
 
@@ -24,6 +26,26 @@
 {
     BrainCloud::BrainCloudClient::getInstance()->getFriendService()->getFriendProfileInfoForExternalId(
         [externalId UTF8String], [authenticationType UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getProfileInfoForCredential:(NSString *)externalId
+                 authenticationType:(AuthenticationTypeObjc *)authenticationType
+                    completionBlock:(BCCompletionBlock)cb
+               errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                           cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->getProfileInfoForCredential(
+        [externalId UTF8String], BrainCloud::AuthenticationType::fromString([[authenticationType toString] UTF8String]), new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getProfileInfoForExternalAuthId:(NSString *)externalId
+                      externalAuthType:(NSString *)externalAuthType
+                        completionBlock:(BCCompletionBlock)cb
+                   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                               cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->getProfileInfoForExternalAuthId(
+        [externalId UTF8String], [externalAuthType UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)getExternalIdForProfileId:(NSString *)profileId

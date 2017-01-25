@@ -1,3 +1,11 @@
+ 
+                                                 
+                                               
+                                             
+                                           
+                      
+                    
+    
 //
 //  BrainCloudEvent.h
 //  brainCloudClientObjc
@@ -52,7 +60,7 @@
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)updateIncomingEventData:(NSString *)eventId
+- (void)updateIncomingEventData:(NSString *)evId
                   jsonEventData:(NSString *)eventData
                 completionBlock:(BCCompletionBlock)cb
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -64,12 +72,12 @@
 * Service Name - event
 * Service Operation - DELETE_INCOMING
 *
-* @param eventId The event id
+* @param evId The event id
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)deleteIncomingEvent:(NSString *)eventId
+- (void)deleteIncomingEvent:(NSString *)evId
             completionBlock:(BCCompletionBlock)cb
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject;

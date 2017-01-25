@@ -10,25 +10,54 @@
 #import <Foundation/Foundation.h>
 
 @class FriendPlatformObjc;
+@class AuthenticationTypeObjc;
 @interface BrainCloudFriend : NSObject
 
 /**
-* Retrieves profile information for the specified user.
-*
-* Service Name - Friend
-* Service Operation - GetFriendProfileInfoForExternalId
-*
-* @param externalId The friend's external id e.g. Facebook id
-* @param authenticationType The authentication type of the friend id e.g. Facebook
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
-*/
+ * @deprecated  Use getProfileInfoForCredential instead - removal after March 22 2017
+ */
 - (void)getFriendProfileInfoForExternalId:(NSString *)externalId
                         authenicationType:(NSString *)authenticationType
                           completionBlock:(BCCompletionBlock)cb
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                                 cbObject:(BCCallbackObject)cbObject;
+                                 cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Use getProfileInfoForCredential instead - removal after March 22 2017");
+
+/**
+ * Retrieves profile information for the specified user.
+ *
+ * Service Name - friend
+ * Service Operation - GET_PROFILE_INFO_FOR_CREDENTIAL
+ *
+ * @param externalId The users's external ID
+ * @param authenticationType The authentication type of the user ID
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getProfileInfoForCredential:(NSString *)externalId
+                 authenticationType:(AuthenticationTypeObjc *)authenticationType
+                    completionBlock:(BCCompletionBlock)cb
+               errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                           cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieves profile information for the specified external auth user.
+ *
+ * Service Name - friend
+ * Service Operation - GET_PROFILE_INFO_FOR_EXTERNAL_AUTH_ID
+ *
+ * @param externalId External ID of the friend to find
+ * @param externalAuthType The external authentication type used for this friend's external ID
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getProfileInfoForExternalAuthId:(NSString *)externalId
+                       externalAuthType:(NSString *)externalAuthType
+                        completionBlock:(BCCompletionBlock)cb
+                   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                               cbObject:(BCCallbackObject)cbObject;
 
 /**
  * Returns player state of a particular user.
@@ -209,9 +238,9 @@
  * @param cbObject User object sent to the completion blocks
  */
 - (void)removeFriends:(NSArray *)profileIds
-      completionBlock:(BCCompletionBlock)cb
- errorCompletionBlock:(BCErrorCompletionBlock)ecb
-             cbObject:(BCCallbackObject)cbObject;
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 /**
  * Get users online status

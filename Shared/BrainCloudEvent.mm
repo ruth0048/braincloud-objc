@@ -25,23 +25,23 @@
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
-- (void)updateIncomingEventData:(NSString *)eventId
+- (void)updateIncomingEventData:(NSString *)evId
                   jsonEventData:(NSString *)eventData
                 completionBlock:(BCCompletionBlock)cb
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getEventService()->updateIncomingEventData(
-        [eventId UTF8String], [eventData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+        [evId UTF8String], [eventData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
-- (void)deleteIncomingEvent:(NSString *)eventId
+- (void)deleteIncomingEvent:(NSString *)evId
             completionBlock:(BCCompletionBlock)cb
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getEventService()->deleteIncomingEvent(
-        [eventId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+        [evId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)getEvents:(BCCompletionBlock)cb
@@ -52,6 +52,7 @@
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+//depreacted
 - (void)sendEvent:(NSString *)toPlayerId
                eventType:(NSString *)eventType
            jsonEventData:(NSString *)eventData
