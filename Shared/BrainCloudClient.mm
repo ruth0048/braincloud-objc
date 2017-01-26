@@ -490,6 +490,13 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
     return _timeService;
 }
 
+- (BrainCloudTournament *)tournamentService
+{
+    static BrainCloudTournament *_tournamentService = nil;
+    if (!_tournamentService) _tournamentService = [[BrainCloudTournament alloc] init];
+    return _tournamentService;
+}
+
 - (BrainCloudS3Handling *)s3HandlingService
 {
     static BrainCloudS3Handling *_s3HandlingService = nil;

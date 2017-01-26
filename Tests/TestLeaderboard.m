@@ -59,35 +59,15 @@ NSString *eventId = @"tournamentRewardTest";
     [self waitForResult];
 }
 
-- (void)testResetLeaderboardScore
-{
-    [[m_client leaderboardService] resetLeaderboardScore:globalLeaderboardId
-                                         completionBlock:successBlock
-                                    errorCompletionBlock:failureBlock
-                                                cbObject:nil];
-    [self waitForResult];
-}
-
 - (void)testGetGlobalLeaderboardPage
 {
     [[m_client leaderboardService] getGlobalLeaderboardPage:globalLeaderboardId
                                                   sortOrder:HIGH_TO_LOW
                                                  startIndex:0
                                                    endIndex:10
-                                     includeLeaderboardSize:true
                                             completionBlock:successBlock
                                        errorCompletionBlock:failureBlock
                                                    cbObject:nil];
-    [self waitForResult];
-}
-
-- (void)testGetCompletedLeaderboardTournament
-{
-    [[m_client leaderboardService] getCompletedLeaderboardTournament:socialLeaderboardId
-                                                         replaceName:true
-                                                     completionBlock:successBlock
-                                                errorCompletionBlock:failureBlock
-                                                            cbObject:nil];
     [self waitForResult];
 }
 
@@ -97,7 +77,6 @@ NSString *eventId = @"tournamentRewardTest";
                                                            sortOrder:HIGH_TO_LOW
                                                           startIndex:0
                                                             endIndex:10
-                                              includeLeaderboardSize:true
                                                            versionId:1
                                                      completionBlock:successBlock
                                                 errorCompletionBlock:failureBlock
@@ -120,7 +99,6 @@ NSString *eventId = @"tournamentRewardTest";
                                                   sortOrder:LOW_TO_HIGH
                                                 beforeCount:0
                                                  afterCount:10
-                                     includeLeaderboardSize:true
                                             completionBlock:successBlock
                                        errorCompletionBlock:failureBlock
                                                    cbObject:nil];
@@ -133,7 +111,6 @@ NSString *eventId = @"tournamentRewardTest";
                                                            sortOrder:LOW_TO_HIGH
                                                          beforeCount:0
                                                           afterCount:10
-                                              includeLeaderboardSize:true
                                                            versionId:1
                                                      completionBlock:successBlock
                                                 errorCompletionBlock:failureBlock
@@ -141,14 +118,22 @@ NSString *eventId = @"tournamentRewardTest";
     [self waitForResult];
 }
 
-- (void)testTriggerSocialLeaderboardTournamentReward
+- (void)getGlobalLeaderboardEntryCount
 {
-    [[m_client leaderboardService] triggerSocialLeaderboardTournamentReward:socialLeaderboardId
-                                                                  eventName:eventId
-                                                            eventMultiplier:100
-                                                            completionBlock:successBlock
-                                                       errorCompletionBlock:failureBlock
-                                                                   cbObject:nil];
+    [[m_client leaderboardService] getGlobalLeaderboardEntryCount:globalLeaderboardId
+                                                  completionBlock:successBlock
+                                             errorCompletionBlock:failureBlock
+                                                         cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)getGlobalLeaderboardEntryCountByVersion
+{
+    [[m_client leaderboardService] getGlobalLeaderboardEntryCountByVersion:globalLeaderboardId
+                                                                 versionId:1
+                                                           completionBlock:successBlock
+                                                      errorCompletionBlock:failureBlock
+                                                                  cbObject:nil];
     [self waitForResult];
 }
 
@@ -170,6 +155,28 @@ NSString *eventId = @"tournamentRewardTest";
                                                  completionBlock:successBlock
                                             errorCompletionBlock:failureBlock
                                                         cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testPostScoreToDynamicLeaderboardDays
+{
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = 1;
+
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDate *nextDate = [theCalendar dateByAddingComponents:dayComponent toDate:[NSDate date] options:0];
+    NSString *name = [NSString stringWithFormat:@"%@Days-%d", dynamicLeaderboardId, arc4random_uniform(1000000)];
+
+    [[m_client leaderboardService] postScoreToDynamicLeaderboardDays:name
+                                                               score:100
+                                                            jsonData:@""
+                                                     leaderboardType:LOW_VALUE
+                                                      roatationReset:nextDate
+                                                       retainedCount:2
+                                                     numDaysToRotate:3
+                                                     completionBlock:successBlock
+                                                errorCompletionBlock:failureBlock
+                                                            cbObject:nil];
     [self waitForResult];
 }
 
@@ -220,9 +227,44 @@ NSString *eventId = @"tournamentRewardTest";
 
 - (void)testListAllLeaderboards
 {
-    [[m_client leaderboardService] listAllLeaderboards:successBlock
-                                          errorCompletionBlock:failureBlock
-                                                      cbObject:nil];
+    [[m_client leaderboardService] listAllLeaderboards:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testRemovePlayerScore
+{
+    [[m_client leaderboardService] removePlayerScore:socialLeaderboardId
+                                           versionId:-1
+                                     completionBlock:successBlock
+                                errorCompletionBlock:failureBlock
+                                            cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testGetPlayerScore
+{
+    [[m_client leaderboardService] postScoreToLeaderboard:globalLeaderboardId
+                                                    score:1023
+                                            jsonOtherData:@""
+                                          completionBlock:successBlock
+                                     errorCompletionBlock:failureBlock
+                                                 cbObject:nil];
+    [self waitForResult];
+
+    [[m_client leaderboardService] getPlayerScore:globalLeaderboardId
+                                        versionId:-1
+                                  completionBlock:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testGetPlayerScoresFromLeaderboards
+{
+    [[m_client leaderboardService] getPlayerScoresFromLeaderboards:@[ socialLeaderboardId ]
+                                                   completionBlock:successBlock
+                                              errorCompletionBlock:failureBlock
+                                                          cbObject:nil];
     [self waitForResult];
 }
 

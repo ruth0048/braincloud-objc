@@ -36,6 +36,7 @@
     NSString *m_appId;
     NSString *m_secret;
     NSString *m_version;
+    NSString *m_peerName;
     Boolean m_initUsers;
 
     __block bool _result;
@@ -85,6 +86,9 @@
 - (void)reset;
 
 - (bool)goToChildProfile;
+- (bool)goToParentProfile;
+- (bool)attachPeer:(NSString*)user;
+- (bool)detachPeer;
 
 - (bool)authenticateOnSetup;
 

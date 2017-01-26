@@ -139,7 +139,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
 * @param sort Sort key Sort order of page.
 * @param startIndex The index at which to start the page.
 * @param endIndex The index at which to end the page.
-* @param includeLeaderboardSize Whether to return the leaderboard size
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
@@ -148,29 +147,46 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                        sortOrder:(SortOrder)sortOrder
                       startIndex:(int)startIndex
                         endIndex:(int)endIndex
-          includeLeaderboardSize:(bool)includeLeaderboardSize
                  completionBlock:(BCCompletionBlock)cb
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Method returns a page of global leaderboard results.
-* By using a non-current version id, the user can retrieve a historial leaderboard.
-* See GetGlobalLeaderboardVersions method to retrieve the version id.
-*
-* Service Name - SocialLeaderboard
-* Service Operation - GetGlobalLeaderboardPage
-*
-* @param leaderboardId The id of the leaderboard to retrieve.
-* @param sort Sort key Sort order of page.
-* @param startIndex The index at which to start the page.
-* @param endIndex The index at which to end the page.
-* @param includeLeaderboardSize Whether to return the leaderboard size
-* @param versionId The historical version to retrieve.
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
-*/
+ * Method returns a page of global leaderboard results.
+ * By using a non-current version id, the user can retrieve a historical leaderboard.
+ * See GetGlobalLeaderboardVersions method to retrieve the version id.
+ *
+ * Service Name - SocialLeaderboard
+ * Service Operation - GetGlobalLeaderboardPage
+ *
+ * @param leaderboardId The id of the leaderboard to retrieve.
+ * @param sort Sort key Sort order of page.
+ * @param startIndex The index at which to start the page.
+ * @param endIndex The index at which to end the page.
+ * @param versionId The historical version to retrieve.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getGlobalLeaderboardPageByVersion:(NSString *)leaderboardId
+                                sortOrder:(SortOrder)sortOrder
+                               startIndex:(int)startIndex
+                                 endIndex:(int)endIndex
+                                versionId:(int)versionId
+                          completionBlock:(BCCompletionBlock)cb
+                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                 cbObject:(BCCallbackObject)cbObject;
+
+- (void)getGlobalLeaderboardPage:(NSString *)leaderboardId
+                       sortOrder:(SortOrder)sortOrder
+                      startIndex:(int)startIndex
+                        endIndex:(int)endIndex
+          includeLeaderboardSize:(bool)includeLeaderboardSize
+                 completionBlock:(BCCompletionBlock)cb
+            errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                        cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
+
 - (void)getGlobalLeaderboardPageByVersion:(NSString *)leaderboardId
                                 sortOrder:(SortOrder)sortOrder
                                startIndex:(int)startIndex
@@ -179,7 +195,8 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                                 versionId:(int)versionId
                           completionBlock:(BCCompletionBlock)cb
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                                 cbObject:(BCCallbackObject)cbObject;
+                                 cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
 
 /**
 * Method returns a view of global leaderboard results that centers on the current player.
@@ -194,7 +211,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
 * @param sort Sort key Sort order of page.
 * @param beforeCount The count of number of players before the current player to include.
 * @param afterCount The count of number of players after the current player to include.
-* @param includeLeaderboardSize Whether to return the leaderboard size
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
@@ -203,7 +219,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                        sortOrder:(SortOrder)sortOrder
                      beforeCount:(int)beforeCount
                       afterCount:(int)afterCount
-          includeLeaderboardSize:(bool)includeLeaderboardSize
                  completionBlock:(BCCompletionBlock)cb
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject;
@@ -220,7 +235,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
 * @param sort Sort key Sort order of page.
 * @param beforeCount The count of number of players before the current player to include.
 * @param afterCount The count of number of players after the current player to include.
-* @param includeLeaderboardSize Whether to return the leaderboard size
 * @param versionId The historical version to retrieve.
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
@@ -230,11 +244,65 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                                 sortOrder:(SortOrder)sortOrder
                               beforeCount:(int)beforeCount
                                afterCount:(int)afterCount
-                   includeLeaderboardSize:(bool)includeLeaderboardSize
                                 versionId:(int)versionId
                           completionBlock:(BCCompletionBlock)cb
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject;
+
+- (void)getGlobalLeaderboardView:(NSString *)leaderboardId
+                       sortOrder:(SortOrder)sortOrder
+                     beforeCount:(int)beforeCount
+                      afterCount:(int)afterCount
+          includeLeaderboardSize:(bool)includeLeaderboardSize
+                 completionBlock:(BCCompletionBlock)cb
+            errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                        cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
+
+- (void)getGlobalLeaderboardViewByVersion:(NSString *)leaderboardId
+                                sortOrder:(SortOrder)sortOrder
+                              beforeCount:(int)beforeCount
+                               afterCount:(int)afterCount
+                   includeLeaderboardSize:(bool)includeLeaderboardSize
+                                versionId:(int)versionId
+                          completionBlock:(BCCompletionBlock)cb
+                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                 cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
+
+/**
+ * Gets the number of entries in a global leaderboard
+ *
+ * Service Name - leaderboard
+ * Service Operation - GET_GLOBAL_LEADERBOARD_ENTRY_COUNT
+ *
+ * @param leaderboardId The leaderboard ID
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getGlobalLeaderboardEntryCount:(NSString *)leaderboardId
+                       completionBlock:(BCCompletionBlock)cb
+                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                              cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Gets the number of entries in a global leaderboard
+ *
+ * Service Name - leaderboard
+ * Service Operation - GET_GLOBAL_LEADERBOARD_ENTRY_COUNT
+ *
+ * @param leaderboardId The leaderboard ID
+ * @param versionId The version of the leaderboard
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getGlobalLeaderboardEntryCountByVersion:(NSString *)leaderboardId
+                                      versionId:(int)versionId
+                                completionBlock:(BCCompletionBlock)cb
+                           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                       cbObject:(BCCallbackObject)cbObject;
 
 /** Gets the global leaderboard versions.
 *
@@ -308,65 +376,63 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                              cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Reset the player's score for the given social leaderboard id.
+* Post the players score to the given social leaderboard.
+* Pass leaderboard config data to dynamically create if necessary.
+* You can optionally send a user-defined json string of data
+* with the posted score. This string could include information
+* relevant to the posted score.
+*
+* Service Name - SocialLeaderboard
+* Service Operation - PostScoreDynamic
 *
 * @param leaderboardId The leaderboard to post to
+* @param score The score to post
+* @param data Optional user-defined data to post with the score
+* @param leaderboardType leaderboard type
+* @param rotationReset Date to start rotation calculations
+* @param retainedCount How many rotations to keep
+* @param numDaysToRotate How many days between each rotation
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)resetLeaderboardScore:(NSString *)leaderboardId
-              completionBlock:(BCCompletionBlock)cb
-         errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                     cbObject:(BCCallbackObject)cbObject;
-
-/**
-* If a social leaderboard has been configured to reset periodically, each period
-* can be considered to be a tournament. When the leaderboard resets, the tournament
-* has ended and participants can be ranked based on their final scores.
-*
-* This API method will return the sorted leaderboard including:
-* the player
-* the game's pacers
-* all friends who participated in the tournament
-*
-* This API method will return the leaderboard results for a particular
-* tournament only once. If the method is called twice, the second call
-* will yield an empty result.
-*
-* Note that if the leaderboard has not been configured to reset, the concept of a
-* tournament does not apply.
-*
-* @param leaderboardId The id of the leaderboard
-* @param replaceName True if the player's name should be replaced with "You"
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
-*/
-- (void)getCompletedLeaderboardTournament:(NSString *)leaderboardId
-                              replaceName:(bool)replaceName
+- (void)postScoreToDynamicLeaderboardDays:(NSString *)leaderboardId
+                                    score:(int)score
+                                 jsonData:(NSString *)jsonData
+                          leaderboardType:(LeaderboardType)leaderboardType
+                           roatationReset:(NSDate *)rotationReset
+                            retainedCount:(int)retainedCount
+                          numDaysToRotate:(int)numDaysToRotate
                           completionBlock:(BCCompletionBlock)cb
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject;
 
 /**
-* This method triggers a reward (via a player statistics event)
-* to the currently logged in player for ranking at the
-* completion of a tournament.
-*
-* @param leaderboardId The id of the leaderboard
-* @param eventName The player statistics event name to trigger
-* @param eventMultiplier The multiplier to associate with the event
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
+ * Removes a player's score from the leaderboard
+ *
+ * Service Name - leaderboard
+ * Service Operation - REMOVE_PLAYER_SCORE
+ *
+ * @param leaderboardId The leaderboard ID
+ * @param versionId The version of the leaderboard
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)removePlayerScore:(NSString *)leaderboardId
+                versionId:(int)versionId
+          completionBlock:(BCCompletionBlock)cb
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject;
+
+/**
+* @deprecated Use removePlayerScore - removal after March 22 2016
 */
-- (void)triggerSocialLeaderboardTournamentReward:(NSString *)leaderboardId
-                                       eventName:(NSString *)eventName
-                                 eventMultiplier:(uint64_t)eventMultiplier
-                                 completionBlock:(BCCompletionBlock)cb
-                            errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                                        cbObject:(BCCallbackObject)cbObject;
+- (void)resetLeaderboardScore:(NSString *)leaderboardId
+              completionBlock:(BCCompletionBlock)cb
+         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                     cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Use removePlayerScore - removal after March 22 2016");
 
 /**
  * Retrieve the social leaderboard for a group.
@@ -414,5 +480,37 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
 - (void)listAllLeaderboards:(BCCompletionBlock)cb
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Gets a player's score from a leaderboard
+ *
+ * Service Name - leaderboard
+ * Service Operation - GET_PLAYER_SCORE
+ *
+ * @param leaderboardId The leaderboard ID
+ * @param versionId The version of the leaderboard. Use -1 for current.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getPlayerScore:(NSString *)leaderboardId
+               versionId:(int)versionId
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Gets a player's score from multiple leaderboards
+ *
+ * Service Name - leaderboard
+ * Service Operation - GET_PLAYER_SCORES_FROM_LEADERBOARDS
+ *
+ * @param leaderboardIds A collection of leaderboardIds to retrieve scores from
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)getPlayerScoresFromLeaderboards:(NSArray *)leaderboardIds
+                        completionBlock:(BCCompletionBlock)cb
+                   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                               cbObject:(BCCallbackObject)cbObject;
 
 @end

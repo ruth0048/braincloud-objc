@@ -1,3 +1,5 @@
+
+    
 //
 //  BrainCloudIdentity.m
 //  brainCloudClientObjc
@@ -139,8 +141,7 @@
                    cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->attachSteamIdentity(
-        [steamId UTF8String], [sessionTicket UTF8String],
-        new BrainCloudCallback(cb, ecb, cbObject));
+        [steamId UTF8String], [sessionTicket UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)mergeSteamIdentity:(NSString *)steamId
@@ -150,8 +151,7 @@
                   cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->mergeSteamIdentity(
-        [steamId UTF8String], [sessionTicket UTF8String],
-        new BrainCloudCallback(cb, ecb, cbObject));
+        [steamId UTF8String], [sessionTicket UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)detachSteamIdentity:(NSString *)steamId
@@ -202,8 +202,7 @@
                      cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->attachTwitterIdentity(
-        [twitterId UTF8String], [token UTF8String], [secret UTF8String],
-        new BrainCloudCallback(cb, ecb, cbObject));
+        [twitterId UTF8String], [token UTF8String], [secret UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)mergeTwitterIdentity:(NSString *)twitterId
@@ -214,8 +213,7 @@
                     cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->mergeTwitterIdentity(
-        [twitterId UTF8String], [token UTF8String], [secret UTF8String],
-        new BrainCloudCallback(cb, ecb, cbObject));
+        [twitterId UTF8String], [token UTF8String], [secret UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)detachTwitterIdentity:(NSString *)twitterId
@@ -234,10 +232,8 @@
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
-  BrainCloud::BrainCloudClient::getInstance()
-      ->getIdentityService()
-      ->attachParseIdentity([parseId UTF8String], [token UTF8String],
-                            new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->attachParseIdentity(
+        [parseId UTF8String], [token UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)mergeParseIdentity:(NSString *)parseId
@@ -246,10 +242,8 @@
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject
 {
-  BrainCloud::BrainCloudClient::getInstance()
-      ->getIdentityService()
-      ->mergeParseIdentity([parseId UTF8String], [token UTF8String],
-                           new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->mergeParseIdentity(
+        [parseId UTF8String], [token UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)detachParseIdentity:(NSString *)parseId
@@ -258,10 +252,8 @@
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getIdentityService()
-        ->detachParseIdentity([parseId UTF8String],
-                            new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->detachParseIdentity(
+        [parseId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)switchToChildProfile:(NSString *)childProfileId
@@ -272,8 +264,7 @@
                     cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->switchToChildProfile(
-        [childProfileId UTF8String], [childAppId UTF8String], forceCreate,
-        new BrainCloudCallback(cb, ecb, cbObject));
+        [childProfileId UTF8String], [childAppId UTF8String], forceCreate, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)switchToSingletonChildProfile:(NSString *)childAppId
@@ -282,10 +273,8 @@
                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
                              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getIdentityService()
-        ->switchToSingletonChildProfile([childAppId UTF8String], forceCreate,
-                                        new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->switchToSingletonChildProfile(
+        [childAppId UTF8String], forceCreate, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)switchToParentProfile:(NSString *)parentLevelName
@@ -306,37 +295,90 @@
         includeSummaryData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
-- (void)getIdentities:(BCCompletionBlock)cb
- errorCompletionBlock:(BCErrorCompletionBlock)ecb
-             cbObject:(BCCallbackObject)cbObject
+- (void)detachParent:(BCCompletionBlock)cb
+errorCompletionBlock:(BCErrorCompletionBlock)ecb
+            cbObject:(BCCallbackObject)cbObject
 {
-  BrainCloud::BrainCloudClient::getInstance()
-      ->getIdentityService()
-      ->getIdentities(new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->detachParent(new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)attachParentWithIdentity:(NSString *)externalId
+             authenticationToken:(NSString *)token
+              authenticationType:(AuthenticationTypeObjc *)type
+                externalAuthName:(NSString *)externalAuthName
+                     forceCreate:(bool)forceCreate
+                 completionBlock:(BCCompletionBlock)cb
+            errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                        cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->attachParentWithIdentity(
+        [externalId UTF8String], [token UTF8String],
+        BrainCloud::AuthenticationType::fromString([[type toString] UTF8String]),
+        [externalAuthName UTF8String], forceCreate, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getIdentities:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->getIdentities(
+        new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)getExpiredIdentities:(BCCompletionBlock)cb
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject
 {
-  BrainCloud::BrainCloudClient::getInstance()
-      ->getIdentityService()
-      ->getExpiredIdentities(new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->getExpiredIdentities(
+        new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)refreshIdentity:(NSString *)externalId
-    authenticationToken:(NSString *)token
-     authenticationType:(AuthenticationTypeObjc *)type
-        completionBlock:(BCCompletionBlock)cb
-   errorCompletionBlock:(BCErrorCompletionBlock)ecb
-               cbObject:(BCCallbackObject)cbObject
+     authenticationToken:(NSString *)token
+      authenticationType:(AuthenticationTypeObjc *)type
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
 {
-  BrainCloud::BrainCloudClient::getInstance()
-      ->getIdentityService()
-      ->refreshIdentity([externalId UTF8String], [token UTF8String],
-                        BrainCloud::AuthenticationType::fromString(
-                            [[type toString] UTF8String]),
-                        new BrainCloudCallback(cb, ecb, cbObject));
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->refreshIdentity(
+        [externalId UTF8String], [token UTF8String],
+        BrainCloud::AuthenticationType::fromString([[type toString] UTF8String]),
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)attachPeerProfile:(NSString *)peer
+               externalId:(NSString *)externalId
+      authenticationToken:(NSString *)token
+       authenticationType:(AuthenticationTypeObjc *)type
+         externalAuthName:(NSString *)externalAuthName
+              forceCreate:(bool)forceCreate
+          completionBlock:(BCCompletionBlock)cb
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->attachPeerProfile([peer UTF8String],
+        [externalId UTF8String], [token UTF8String],
+        BrainCloud::AuthenticationType::fromString([[type toString] UTF8String]),
+        [externalAuthName UTF8String], forceCreate, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)detachPeer:(NSString *)peer
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->detachPeer(
+
+        [peer UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getPeerProfiles:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getIdentityService()->getPeerProfiles(
+        new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 @end
+

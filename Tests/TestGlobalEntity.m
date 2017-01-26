@@ -186,6 +186,33 @@ NSString *testIndexedId = @"testIndexedId";
     [self waitForResult];
 }
 
+- (void)testUpdateEntityOwnerAndAcl
+{
+    NSString *entityId = [self createDefultEntity:ReadWrite indexedId:nil];
+    [[m_client globalEntityService] updateEntityOwnerAndAcl:entityId
+                                                    version:-1
+                                                    ownerId:[TestFixtureBase getUser:@"UserB"].m_profileId
+                                              jsonEntityAcl:[ACL getAclJson:ReadWrite]
+                                            completionBlock:successBlock
+                                       errorCompletionBlock:failureBlock
+                                                   cbObject:nil];
+    [self waitForResult];
+    [self deleteEntity:entityId version:2];
+}
+
+- (void)testMakeSystemEntity
+{
+    NSString *entityId = [self createDefultEntity:ReadWrite indexedId:nil];
+    [[m_client globalEntityService] makeSystemEntity:entityId
+                                             version:-1
+                                       jsonEntityAcl:[ACL getAclJson:ReadWrite]
+                                     completionBlock:successBlock
+                                errorCompletionBlock:failureBlock
+                                            cbObject:nil];
+    [self waitForResult];
+    [self deleteEntity:entityId version:2];
+}
+
 /* Helper functions */
 - (NSString *)createDefultEntity:(Access)access indexedId:(NSString *)indexedId
 {
