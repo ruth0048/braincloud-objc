@@ -14,19 +14,9 @@
 #include "TypeHelpers.hh"
 #include "braincloud/BrainCloudClient.h"
 #include "braincloud/FriendPlatform.h"
-#include "brainCloud/AuthenticationType.h"
+#include "braincloud/AuthenticationType.h"
 
 @implementation BrainCloudFriend
-
-- (void)getFriendProfileInfoForExternalId:(NSString *)externalId
-                        authenicationType:(NSString *)authenticationType
-                          completionBlock:(BCCompletionBlock)cb
-                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                                 cbObject:(BCCallbackObject)cbObject
-{
-    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->getFriendProfileInfoForExternalId(
-        [externalId UTF8String], [authenticationType UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
-}
 
 - (void)getProfileInfoForCredential:(NSString *)externalId
                  authenticationType:(AuthenticationTypeObjc *)authenticationType

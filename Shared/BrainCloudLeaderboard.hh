@@ -177,27 +177,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject;
 
-- (void)getGlobalLeaderboardPage:(NSString *)leaderboardId
-                       sortOrder:(SortOrder)sortOrder
-                      startIndex:(int)startIndex
-                        endIndex:(int)endIndex
-          includeLeaderboardSize:(bool)includeLeaderboardSize
-                 completionBlock:(BCCompletionBlock)cb
-            errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                        cbObject:(BCCallbackObject)cbObject
-    __deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
-
-- (void)getGlobalLeaderboardPageByVersion:(NSString *)leaderboardId
-                                sortOrder:(SortOrder)sortOrder
-                               startIndex:(int)startIndex
-                                 endIndex:(int)endIndex
-                   includeLeaderboardSize:(bool)includeLeaderboardSize
-                                versionId:(int)versionId
-                          completionBlock:(BCCompletionBlock)cb
-                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                                 cbObject:(BCCallbackObject)cbObject
-    __deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
-
 /**
 * Method returns a view of global leaderboard results that centers on the current player.
 *
@@ -248,28 +227,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                           completionBlock:(BCCompletionBlock)cb
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject;
-
-- (void)getGlobalLeaderboardView:(NSString *)leaderboardId
-                       sortOrder:(SortOrder)sortOrder
-                     beforeCount:(int)beforeCount
-                      afterCount:(int)afterCount
-          includeLeaderboardSize:(bool)includeLeaderboardSize
-                 completionBlock:(BCCompletionBlock)cb
-            errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                        cbObject:(BCCallbackObject)cbObject
-    __deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
-
-- (void)getGlobalLeaderboardViewByVersion:(NSString *)leaderboardId
-                                sortOrder:(SortOrder)sortOrder
-                              beforeCount:(int)beforeCount
-                               afterCount:(int)afterCount
-                   includeLeaderboardSize:(bool)includeLeaderboardSize
-                                versionId:(int)versionId
-                          completionBlock:(BCCompletionBlock)cb
-                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                                 cbObject:(BCCallbackObject)cbObject
-    __deprecated_msg("Use method without includeLeaderboardSize param - removal after March 22 2016");
-
 /**
  * Gets the number of entries in a global leaderboard
  *
@@ -424,15 +381,6 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
           completionBlock:(BCCompletionBlock)cb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;
-
-/**
-* @deprecated Use removePlayerScore - removal after March 22 2016
-*/
-- (void)resetLeaderboardScore:(NSString *)leaderboardId
-              completionBlock:(BCCompletionBlock)cb
-         errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                     cbObject:(BCCallbackObject)cbObject
-    __deprecated_msg("Use removePlayerScore - removal after March 22 2016");
 
 /**
  * Retrieve the social leaderboard for a group.

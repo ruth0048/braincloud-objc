@@ -10,7 +10,7 @@
 
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
-#include "brainCloud/AuthenticationType.h"
+#include "braincloud/AuthenticationType.h"
 
 #import "BrainCloudIdentity.hh"
 

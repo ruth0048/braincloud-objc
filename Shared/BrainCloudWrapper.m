@@ -121,20 +121,20 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 
 - (void)initialize:(NSString *)serverUrl
          secretKey:(NSString *)secretKey
-            gameId:(NSString *)gameId
-       gameVersion:(NSString *)gameVersion
+            gameId:(NSString *)appId
+       gameVersion:(NSString *)version
        companyName:(NSString *)companyName
           gameName:(NSString *)gameName
 {
-    self.lastGameId      = gameId;
-    self.lastGameVersion = gameVersion;
+    self.lastGameId      = appId;
+    self.lastGameVersion = version;
     self.lastSecretKey   = secretKey;
     self.lastServerUrl   = serverUrl;
     
     [[BrainCloudClient getInstance] initialize:serverUrl
                                      secretKey:secretKey
-                                        gameId:gameId
-                                   gameVersion:gameVersion];
+                                        gameId:appId
+                                   gameVersion:version];
         
     self.helper = [[BrainCloudSaveDataHelper alloc] initWithCompanyName:companyName gameName:gameName];
 }

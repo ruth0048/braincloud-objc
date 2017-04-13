@@ -46,8 +46,8 @@
  *
  * @param serverUrl The url to the brainCloud server
  * @param secretKey The secret key for your game
- * @param gameId The game id
- * @param gameVersion The game version
+ * @param appId The app id
+ * @param version The version
  * @param companyName The company name used in the keychain for storing anonymous and profile ids.
  * You are free to pick anything you want.
  * @param gameName The game name used in teh keychain for storing anonymous and profile ids.
@@ -55,8 +55,8 @@
  */
 - (void)initialize:(NSString *)serverUrl
          secretKey:(NSString *)secretKey
-            gameId:(NSString *)gameId
-       gameVersion:(NSString *)gameVersion
+            gameId:(NSString *)appId
+       gameVersion:(NSString *)version
        companyName:(NSString *)companyName
           gameName:(NSString *)gameName;
 

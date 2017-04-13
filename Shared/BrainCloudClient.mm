@@ -159,10 +159,10 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
 
 - (void)initialize:(NSString *)serverURL
          secretKey:(NSString *)secretKey
-            gameId:(NSString *)gameId
-       gameVersion:(NSString *)gameVersion
+            gameId:(NSString *)appId
+       gameVersion:(NSString *)version
 {
-    _client->initialize([serverURL UTF8String], [secretKey UTF8String], [gameId UTF8String], [gameVersion UTF8String]);
+    _client->initialize([serverURL UTF8String], [secretKey UTF8String], [appId UTF8String], [version UTF8String]);
 
     if (!_timerDisabled)
     {

@@ -14,26 +14,6 @@
 @interface BrainCloudProduct : NSObject
 
 /**
- * @deprecated Use findUsersByExactName & findUsersBySubstrName instead - removal after Nov 22 2016
- */
-- (void)awardCurrency:(NSString *)currencyType
-               amount:(int)amount
-      completionBlock:(BCCompletionBlock)completionBlock
- errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
-             cbObject:(BCCallbackObject)cbObject
-    __deprecated_msg("Method is now available in Cloud Code only for security - removal after March 22 2016");
-
-/**
- * @deprecated Use findUsersByExactName & findUsersBySubstrName instead - removal after Nov 22 2016
- */
-- (void)consumeCurrency:(NSString *)currencyType
-                 amount:(int)amount
-        completionBlock:(BCCompletionBlock)completionBlock
-   errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
-               cbObject:(BCCallbackObject)cbObject
-    __deprecated_msg("Method is now available in Cloud Code only for security - removal after March 22 2016");
-
-/**
 * Gets the player's currency for the given currency type
 * or all currency types if null passed in.
 *
@@ -51,15 +31,6 @@
          completionBlock:(BCCompletionBlock)completionBlock
     errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                 cbObject:(BCCallbackObject)cbObject;
-
-/**
- * @deprecated Use findUsersByExactName & findUsersBySubstrName instead - removal after Nov 22 2016
- */
-- (void)resetCurrency:(BCCompletionBlock)completionBlock
- errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
-             cbObject:(BCCallbackObject)cbObject
-    __deprecated_msg("Method is now available in Cloud Code only for security - removal after March 22 2016");
-
 /**
 * Get Eligible Promotions
 *

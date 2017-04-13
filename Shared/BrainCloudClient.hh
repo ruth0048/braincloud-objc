@@ -23,7 +23,7 @@
 #import "BrainCloudIdentity.hh"
 #import "BrainCloudLeaderboard.hh"
 #import "BrainCloudMail.hh"
-#import "BrainCloudMatchmaking.hh"
+#import "BrainCloudMatchMaking.hh"
 #import "BrainCloudOneWayMatch.hh"
 #import "BrainCloudPlaybackStream.hh"
 #import "BrainCloudPlayerState.hh"
@@ -74,13 +74,13 @@
 *
 * @param serverURL The url to the brainCloud server
 * @param secretKey The secret key for your game
-* @param gameId The game id
-* @param gameVersion The game version
+* @param appId The app id
+* @param version The version
 */
 - (void)initialize:(NSString *)serverURL
          secretKey:(NSString *)secretKey
-            gameId:(NSString *)gameId
-       gameVersion:(NSString *)gameVersion;
+            gameId:(NSString *)appId
+       gameVersion:(NSString *)version;
 
 /**
 * Initialize - initializes the identity service with the saved

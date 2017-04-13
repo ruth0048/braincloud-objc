@@ -35,26 +35,6 @@ NSString *productCategory = @"Test";
     [super tearDown];
 }
 
-- (void)testAwardCurrency
-{
-    [[m_client productService] awardCurrency:currencyType
-                                      amount:100
-                             completionBlock:successBlock
-                        errorCompletionBlock:failureBlock
-                                    cbObject:nil];
-    [self waitForFailedResult];
-}
-
-- (void)testConsumeCurrency
-{
-    [[m_client productService] consumeCurrency:currencyType
-                                        amount:10
-                               completionBlock:successBlock
-                          errorCompletionBlock:failureBlock
-                                      cbObject:nil];
-    [self waitForFailedResult];
-}
-
 - (void)testGetCurrency
 {
     [[m_client productService] getCurrency:currencyType
@@ -91,14 +71,6 @@ NSString *productCategory = @"Test";
                                       errorCompletionBlock:failureBlock
                                                   cbObject:nil];
     [self waitForResult];
-}
-
-- (void)testResetCurrency
-{
-    [[m_client productService] resetCurrency:successBlock
-                        errorCompletionBlock:failureBlock
-                                    cbObject:nil];
-    [self waitForFailedResult];
 }
 
 @end

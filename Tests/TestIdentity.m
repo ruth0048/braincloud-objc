@@ -7,7 +7,7 @@
 //
 
 #import "TestFixtureBase.h"
-#import "AuthenticationTypeObjC.hh"
+#import "AuthenticationTypeObjc.hh"
 
 @interface TestIdentity : TestFixtureBase
 

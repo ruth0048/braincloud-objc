@@ -14,16 +14,6 @@
 @interface BrainCloudFriend : NSObject
 
 /**
- * @deprecated  Use getProfileInfoForCredential instead - removal after March 22 2017
- */
-- (void)getFriendProfileInfoForExternalId:(NSString *)externalId
-                        authenicationType:(NSString *)authenticationType
-                          completionBlock:(BCCompletionBlock)cb
-                     errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                                 cbObject:(BCCallbackObject)cbObject
-    __deprecated_msg("Use getProfileInfoForCredential instead - removal after March 22 2017");
-
-/**
  * Retrieves profile information for the specified user.
  *
  * Service Name - friend

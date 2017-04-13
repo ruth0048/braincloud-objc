@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TestFixtureBase.h"
 #import "TestUser.h"
-#import "AuthenticationTypeObjC.hh"
+#import "AuthenticationTypeObjc.hh"
 #include <stdlib.h>
 
 #define MAX_WAIT_SECS 120
