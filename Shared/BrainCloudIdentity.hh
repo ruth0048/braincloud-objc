@@ -554,7 +554,7 @@
 *
 * @param childProfileId The profileId of the child profile to switch to
 * If null and forceCreate is true a new profile will be created
-* @param childGameId The appId of the child game to switch to
+* @param childAppId The appId of the child app to switch to
 * @param forceCreate Should a new profile be created if it does not exist?
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
@@ -574,7 +574,7 @@
 * Service Name - Identity
 * Service Operation - SWITCH_TO_CHILD_PROFILE
 *
-* @param childGameId The App ID of the child game to switch to
+* @param childAppId The App ID of the child app to switch to
 * @param forceCreate Should a new profile be created if it does not exist?
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response

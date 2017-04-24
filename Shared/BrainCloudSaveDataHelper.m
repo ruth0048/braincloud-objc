@@ -20,13 +20,13 @@
 
 @implementation BrainCloudSaveDataHelper
 
-- (instancetype)initWithCompanyName:(NSString *)companyName gameName:(NSString *)gameName
+- (instancetype)initWithCompanyName:(NSString *)companyName gameName:(NSString *)appName
 {
     self = [self init];
 
     if (self != nil)
     {
-        self.path = [NSString stringWithFormat:@"%@.%@", companyName, gameName];
+        self.path = [NSString stringWithFormat:@"%@.%@", companyName, appName];
     }
 
     return self;

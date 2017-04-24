@@ -50,7 +50,7 @@
  * @param version The version
  * @param companyName The company name used in the keychain for storing anonymous and profile ids.
  * You are free to pick anything you want.
- * @param gameName The game name used in teh keychain for storing anonymous and profile ids.
+ * @param appName The game name used in teh keychain for storing anonymous and profile ids.
  * You are free to pick anything you want.
  */
 - (void)initialize:(NSString *)serverUrl
@@ -58,7 +58,7 @@
             gameId:(NSString *)appId
        gameVersion:(NSString *)version
        companyName:(NSString *)companyName
-          gameName:(NSString *)gameName;
+          gameName:(NSString *)appName;
 
 
 /**

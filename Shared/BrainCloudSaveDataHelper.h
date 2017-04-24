@@ -10,7 +10,7 @@
 
 @interface BrainCloudSaveDataHelper : NSObject
 
-- (instancetype)initWithCompanyName:(NSString *)companyName gameName:(NSString *)gameName;
+- (instancetype)initWithCompanyName:(NSString *)companyName gameName:(NSString *)appName;
 - (void)saveString:(NSString *)string forKey:(NSString *)key;
 - (NSString *)stringForKey:(NSString *)key;
 
