@@ -34,14 +34,14 @@
 * Service Name - event
 * Service Operation - SEND
 *
-* @param toPlayerId The id of the player who is being sent the event
+* @param toProfileId The id of the player who is being sent the event
 * @param eventType The user-defined type of the event.
 * @param jsonEventData The user-defined data for this event encoded in JSON.
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)sendEvent:(NSString *)toPlayerId
+- (void)sendEvent:(NSString *)toProfileId
                eventType:(NSString *)eventType
            jsonEventData:(NSString *)eventData
          completionBlock:(BCCompletionBlock)cb

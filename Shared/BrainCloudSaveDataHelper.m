@@ -13,20 +13,32 @@
 @interface BrainCloudSaveDataHelper ()
 
 @property(copy, nonatomic) NSString *companyName;
-@property(copy, nonatomic) NSString *gameName;
+@property(copy, nonatomic) NSString *appName;
 @property(copy, nonatomic) NSString *path;
 
 @end
 
 @implementation BrainCloudSaveDataHelper
 
-- (instancetype)initWithCompanyName:(NSString *)companyName gameName:(NSString *)gameName
+- (instancetype)initWithCompanyName:(NSString *)companyName gameName:(NSString *)appName
 {
     self = [self init];
 
     if (self != nil)
     {
-        self.path = [NSString stringWithFormat:@"%@.%@", companyName, gameName];
+        self.path = [NSString stringWithFormat:@"%@.%@", companyName, appName];
+    }
+
+    return self;
+}
+
+- (instancetype)initWithCompanyName:(NSString *)companyName appName:(NSString *)appName
+{
+    self = [self init];
+
+    if (self != nil)
+    {
+        self.path = [NSString stringWithFormat:@"%@.%@", companyName, appName];
     }
 
     return self;

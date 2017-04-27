@@ -70,7 +70,7 @@
                                      cbObject:cbObject];
 }
 
-- (void)sendSimplePushNotification:(NSString *)toPlayerId
+- (void)sendSimplePushNotification:(NSString *)toProfileId
                            message:(NSString *)message
                    completionBlock:(BCCompletionBlock)cb
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -79,10 +79,10 @@
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
     BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendSimplePushNotification(
-        [toPlayerId UTF8String], [message UTF8String], brainCloudCallback);
+        [toProfileId UTF8String], [message UTF8String], brainCloudCallback);
 }
 
-- (void)sendRichPushNotification:(NSString *)toPlayerId
+- (void)sendRichPushNotification:(NSString *)toProfileId
           notificationTemplateId:(int)notificationTemplateId
                  completionBlock:(BCCompletionBlock)cb
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -91,10 +91,10 @@
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
     BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendRichPushNotification(
-        [toPlayerId UTF8String], notificationTemplateId, brainCloudCallback);
+        [toProfileId UTF8String], notificationTemplateId, brainCloudCallback);
 }
 
-- (void)sendRichPushNotificationWithParams:(NSString *)toPlayerId
+- (void)sendRichPushNotificationWithParams:(NSString *)toProfileId
                     notificationTemplateId:(int)notificationTemplateId
                           substitutionJson:(NSString *)substitutionJson
                            completionBlock:(BCCompletionBlock)cb
@@ -104,7 +104,7 @@
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
     BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendRichPushNotificationWithParams(
-        [toPlayerId UTF8String], notificationTemplateId, [substitutionJson UTF8String], brainCloudCallback);
+        [toProfileId UTF8String], notificationTemplateId, [substitutionJson UTF8String], brainCloudCallback);
 }
 
 - (void)sendTemplatedPushNotificationToGroup:(NSString *)groupId
@@ -136,7 +136,7 @@
         [groupId UTF8String], [alertContentJson UTF8String], custom, brainCloudCallback);
 }
 
-- (void)sendNormalizedPushNotification:(NSString *)playerId
+- (void)sendNormalizedPushNotification:(NSString *)profileId
                       alertContentJson:(NSString *)alertContentJson
                         customDataJson:(NSString *)customDataJson
                        completionBlock:(BCCompletionBlock)cb
@@ -149,7 +149,7 @@
     if (customDataJson != nil) custom = [customDataJson UTF8String];
 
     BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendNormalizedPushNotification(
-        [playerId UTF8String], [alertContentJson UTF8String], custom, brainCloudCallback);
+        [profileId UTF8String], [alertContentJson UTF8String], custom, brainCloudCallback);
 }
 
 - (void)sendNormalizedPushNotificationBatch:(NSArray *)profileIds

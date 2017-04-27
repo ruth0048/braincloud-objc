@@ -162,8 +162,8 @@ NSMutableDictionary *m_users;
     m_client = [BrainCloudClient getInstance];
     [m_client initialize:m_serverUrl
                secretKey:m_secret
-                  gameId:m_appId
-             gameVersion:m_version];
+                   appId:m_appId
+                 version:m_version];
     [m_client enableLogging:TRUE];
     [self createUsers];
 

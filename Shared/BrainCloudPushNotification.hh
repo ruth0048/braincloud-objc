@@ -14,7 +14,7 @@
 @interface BrainCloudPushNotification : NSObject
 
 /**
- * Deregisters all device tokens currently registered to the player.
+ * Deregisters all device tokens currently registered to the profile.
  *
  * @param cb Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
@@ -76,13 +76,13 @@
 * Sends a simple push notification based on the passed in message.
 * NOTE: It is possible to send a push notification to oneself.
 *
-* @param toPlayerId The braincloud playerId of the user to receive the notification
+* @param toProfileId The braincloud profileId of the user to receive the notification
 * @param message Text of the push notification
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)sendSimplePushNotification:(NSString *)toPlayerId
+- (void)sendSimplePushNotification:(NSString *)toProfileId
                            message:(NSString *)message
                    completionBlock:(BCCompletionBlock)cb
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -92,13 +92,13 @@
 * Sends a notification to a user based on a brainCloud portal configured notification template.
 * NOTE: It is possible to send a push notification to oneself.
 *
-* @param toPlayerId The braincloud playerId of the user to receive the notification
+* @param toProfileId The braincloud profileId of the user to receive the notification
 * @param notificationTemplateId Id of the notification template
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)sendRichPushNotification:(NSString *)toPlayerId
+- (void)sendRichPushNotification:(NSString *)toProfileId
           notificationTemplateId:(int)notificationTemplateId
                  completionBlock:(BCCompletionBlock)cb
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -110,14 +110,14 @@
 * See the Portal documentation for more info.
 * NOTE: It is possible to send a push notification to oneself.
 *
-* @param toPlayerId The braincloud playerId of the user to receive the notification
+* @param toProfileId The braincloud profileId of the user to receive the notification
 * @param notificationTemplateId Id of the notification template
 * @param substitutionJson JSON defining the substitution params to use with the template
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)sendRichPushNotificationWithParams:(NSString *)toPlayerId
+- (void)sendRichPushNotificationWithParams:(NSString *)toProfileId
                     notificationTemplateId:(int)notificationTemplateId
                           substitutionJson:(NSString *)substitutionJson
                            completionBlock:(BCCompletionBlock)cb
@@ -164,14 +164,14 @@
 /**
  * Sends a notification to a user consisting of alert content and custom data.
  *
- * @param toPlayerId The playerId of the user to receive the notification
+ * @param toProfileId The profileId of the user to receive the notification
  * @param alertContent Body and title of alert
  * @param customData Optional custom data
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
  */
-- (void)sendNormalizedPushNotification:(NSString *)playerId
+- (void)sendNormalizedPushNotification:(NSString *)profileId
                       alertContentJson:(NSString *)alertContentJson
                         customDataJson:(NSString *)customDataJson
                        completionBlock:(BCCompletionBlock)cb

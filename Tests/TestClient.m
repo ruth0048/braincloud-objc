@@ -61,8 +61,8 @@ int _globalErrorCount = 0;
 {
     [[m_client playerStateService] logout:successBlock errorCompletionBlock:failureBlock cbObject:nil];
     [self waitForResult];
-    
-    [m_client initialize:@"https://internal.braincloudservers.com/unittest-fail" secretKey:@"1234" gameId:@"1123" gameVersion:@"123"];
+
+    [m_client initialize:@"https://internal.braincloudservers.com/unittest-fail" secretKey:@"1234" appId:@"1123" version:@"123"];
     [m_client registerNetworkErrorCallback:networkErrorBlock];
     [m_client enableNetworkErrorMessageCaching:true];
     

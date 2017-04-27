@@ -14,7 +14,7 @@
 @interface BrainCloudMail : NSObject
 
 /**
- * Sends a simple text email to the specified player
+ * Sends a simple text email to the specified user
  *
  * Service Name - mail
  * Service Operation - SEND_BASIC_EMAIL
@@ -35,7 +35,7 @@
               cbObject:(BCCallbackObject)cbObject;
 
 /**
- * Sends an advanced email to the specified player
+ * Sends an advanced email to the specified user
  *
  * Service Name - mail
  * Service Operation - SEND_ADVANCED_EMAIL

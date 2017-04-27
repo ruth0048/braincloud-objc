@@ -81,11 +81,11 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 {
     NSString *entityId = [self createDefaultEntity:ReadWrite];
     [[m_client entityService]
-     getSharedEntityForPlayerId:[TestFixtureBase getUser:@"UserA"].m_profileId
-     entityId:entityId
-     completionBlock:successBlock
-     errorCompletionBlock:failureBlock
-     cbObject:nil];
+            getSharedEntityForProfileId:[TestFixtureBase getUser:@"UserA"].m_profileId
+                               entityId:entityId
+                        completionBlock:successBlock
+                   errorCompletionBlock:failureBlock
+                               cbObject:nil];
     [self waitForResult];
     [self deleteEntity:entityId version:1];
 }
@@ -94,10 +94,10 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 {
     NSString *entityId = [self createDefaultEntity:ReadWrite];
     [[m_client entityService]
-        getSharedEntitiesForPlayerId:[TestFixtureBase getUser:@"UserA"].m_profileId
-                     completionBlock:successBlock
-                errorCompletionBlock:failureBlock
-                            cbObject:nil];
+            getSharedEntitiesForProfileId:[TestFixtureBase getUser:@"UserA"].m_profileId
+                          completionBlock:successBlock
+                     errorCompletionBlock:failureBlock
+                                 cbObject:nil];
     [self waitForResult];
     [self deleteEntity:entityId version:1];
 }
@@ -118,7 +118,7 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
     NSString *entityId = [self createDefaultEntity:ReadWrite];
 
     [[m_client entityService] updateSharedEntity:entityId
-                                  targetPlayerId:[TestFixtureBase getUser:@"UserA"].m_profileId
+                                 targetProfileId:[TestFixtureBase getUser:@"UserA"].m_profileId
                                       entityType:entityType
                                   jsonEntityData:entityData
                                          version:1
@@ -159,13 +159,13 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 {
     NSString *entityId = [self createDefaultEntity:ReadWrite];
 
-    [[m_client entityService] getSharedEntitiesListForPlayerId:[TestFixtureBase getUser:@"UserA"].m_profileId
-                      whereJson:@"{ \"entityType\":\"testEntity\" }"
-                              orderByJson:nil
-                            maxReturn:32
-                      completionBlock:successBlock
-                 errorCompletionBlock:failureBlock
-                             cbObject:nil];
+    [[m_client entityService] getSharedEntitiesListForProfileId:[TestFixtureBase getUser:@"UserA"].m_profileId
+                                                      whereJson:@"{ \"entityType\":\"testEntity\" }"
+                                                    orderByJson:nil
+                                                      maxReturn:32
+                                                completionBlock:successBlock
+                                           errorCompletionBlock:failureBlock
+                                                       cbObject:nil];
     [self waitForResult];
 
     [self deleteEntity:entityId version:1];
@@ -276,11 +276,11 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
     NSString *entityId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"entityId"];
 
     [[m_client entityService] incrementSharedUserEntityData:entityId
-                                       targetPlayerId:[TestFixtureBase getUser:@"UserA"].m_profileId
-                                             jsonData:@"{\"test\": 123}"
-                                      completionBlock:successBlock
-                                 errorCompletionBlock:failureBlock
-                                             cbObject:nil];
+                                            targetProfileId:[TestFixtureBase getUser:@"UserA"].m_profileId
+                                                   jsonData:@"{\"test\": 123}"
+                                            completionBlock:successBlock
+                                       errorCompletionBlock:failureBlock
+                                                   cbObject:nil];
     [self waitForResult];
 
 

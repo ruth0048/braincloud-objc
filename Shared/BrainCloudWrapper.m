@@ -6,8 +6,8 @@
 
 @property (strong, nonatomic) BrainCloudSaveDataHelper *helper;
 
-@property (copy, nonatomic) NSString *lastGameId;
-@property (copy, nonatomic) NSString *lastGameVersion;
+@property (copy, nonatomic) NSString *lastAppId;
+@property (copy, nonatomic) NSString *lastVersion;
 @property (copy, nonatomic) NSString *lastSecretKey;
 @property (strong, nonatomic) NSString *lastServerUrl;
 
@@ -118,25 +118,46 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 #pragma mark - C++ Initialization
 
 
-
 - (void)initialize:(NSString *)serverUrl
          secretKey:(NSString *)secretKey
             gameId:(NSString *)appId
        gameVersion:(NSString *)version
        companyName:(NSString *)companyName
-          gameName:(NSString *)gameName
+          gameName:(NSString *)appName
 {
-    self.lastGameId      = appId;
-    self.lastGameVersion = version;
+    self.lastAppId      = appId;
+    self.lastVersion = version;
     self.lastSecretKey   = secretKey;
     self.lastServerUrl   = serverUrl;
-    
+
     [[BrainCloudClient getInstance] initialize:serverUrl
                                      secretKey:secretKey
-                                        gameId:appId
-                                   gameVersion:version];
+                                         appId:appId
+                                       version:version];
+
+    self.helper = [[BrainCloudSaveDataHelper alloc] initWithCompanyName:companyName appName:appName];
+}
+
+
+
+- (void)initialize:(NSString *)serverUrl
+         secretKey:(NSString *)secretKey
+             appId:(NSString *)appId
+           version:(NSString *)version
+       companyName:(NSString *)companyName
+              name:(NSString *)appName
+{
+    self.lastAppId      = appId;
+    self.lastVersion = version;
+    self.lastSecretKey   = secretKey;
+    self.lastServerUrl   = serverUrl;
+
+    [[BrainCloudClient getInstance] initialize:serverUrl
+                                     secretKey:secretKey
+                                         appId:appId
+                                       version:version];
         
-    self.helper = [[BrainCloudSaveDataHelper alloc] initWithCompanyName:companyName gameName:gameName];
+    self.helper = [[BrainCloudSaveDataHelper alloc] initWithCompanyName:companyName appName:appName];
 }
 
 
@@ -384,8 +405,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                 companyName:nil
                   secretKey:self.lastSecretKey
                      gameID:self.lastGameID
-                   gameName:nil
-                gameVersion:self.lastGameVersion];
+                   appName:nil
+                gameVersion:self.lastVersion];
     
     if ([self.storedAuthenticationType isEqualToString:kAuthenticationAnonymous])
         [self authenticateAnonymousWithSuccess:success failure:failure];
