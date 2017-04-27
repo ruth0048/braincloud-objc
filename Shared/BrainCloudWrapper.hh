@@ -70,7 +70,7 @@
              appId:(NSString *)appId
            version:(NSString *)version
        companyName:(NSString *)companyName
-              name:(NSString *)appName;
+           appName:(NSString *)appName;
 
 
 /**

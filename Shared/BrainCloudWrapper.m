@@ -145,7 +145,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
              appId:(NSString *)appId
            version:(NSString *)version
        companyName:(NSString *)companyName
-              name:(NSString *)appName
+           appName:(NSString *)appName
 {
     self.lastAppId      = appId;
     self.lastVersion = version;
