@@ -136,6 +136,75 @@
         [groupId UTF8String], [alertContentJson UTF8String], custom, brainCloudCallback);
 }
 
+- (void)scheduleNormalizedPushNotificationUTC:(NSString *)toProfileId
+                             alertContentJson:(NSString *)alertContentJson
+                               customDataJson:(NSString *)customDataJson
+                                    startTime:(int)startTime
+                              completionBlock:(BCCompletionBlock)cb
+                         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                     cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    std::string custom;
+    if (customDataJson != nil) custom = [customDataJson UTF8String];
+
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleNormalizedPushNotificationUTC(
+            [toProfileId UTF8String], [alertContentJson UTF8String], [custom UTF8String], startTime, brainCloudCallback);
+}
+
+- (void)scheduleNormalizedPushNotificationMinutes:(NSString *)toProfileId
+                                 alertContentJson:(NSString *)alertContentJson
+                                   customDataJson:(NSString *)customDataJson
+                                   minutesFromNow:(int)minutesFromNow
+                                  completionBlock:(BCCompletionBlock)cb
+                             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                         cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    std::string custom;
+    if (customDataJson != nil) custom = [customDataJson UTF8String];
+
+
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleNormalizedPushNotificationMinutes(
+            [toProfileId UTF8String], [alertContentJson UTF8String], [custom UTF8String], minutesFromNow, brainCloudCallback);
+}
+
+- (void)scheduleRichPushNotificationUTC:(NSString *)toProfileId
+                 notificationTemplateId:(int)notificationTemplateId
+                       substitutionJson:(NSString *)substitutionJson
+                              startTime:(int)startTime
+                        completionBlock:(BCCompletionBlock)cb
+                   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                               cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    std::string substitutions;
+    if (substitutionJson != nil) substitutions = [substitutionJson UTF8String];
+
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleRichPushNotificationUTC(
+            [toProfileId UTF8String], notificationTemplateId, substitutions, startTime, brainCloudCallback);
+}
+
+- (void)scheduleRichPushNotificationMinutes:(NSString *)toProfileId
+                     notificationTemplateId:(int)notificationTemplateId
+                           substitutionJson:(NSString *)substitutionJson
+                             minutesFromNow:(int)minutesFromNow
+                            completionBlock:(BCCompletionBlock)cb
+                       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                   cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    std::string substitutions;
+    if (substitutionJson != nil) substitutions = [substitutionJson UTF8String];
+
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleRichPushNotificationMinutes(
+            [toProfileId UTF8String], notificationTemplateId, substitutions, minutesFromNow, brainCloudCallback);
+}
+
 - (void)sendNormalizedPushNotification:(NSString *)profileId
                       alertContentJson:(NSString *)alertContentJson
                         customDataJson:(NSString *)customDataJson

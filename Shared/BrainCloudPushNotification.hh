@@ -161,6 +161,83 @@
                          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                      cbObject:(BCCallbackObject)cbObject;
 
+
+/**
+ * Schedules a normalized push notification to a user
+ *
+ * @param profileId The profileId of the user to receive the notification
+ * @param alertContentJson Body and title of alert
+ * @param customDataJson Optional custom data
+ * @param startTime Start time of sending the push notification
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)scheduleNormalizedPushNotificationUTC:(NSString *)toProfileId
+                             alertContentJson:(NSString *)alertContentJson
+                               customDataJson:(NSString *)customDataJson
+                                    startTime:(int)startTime
+                              completionBlock:(BCCompletionBlock)cb
+                         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                     cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Schedules a normalized push notification to a user
+ *
+ * @param profileId The profileId of the user to receive the notification
+ * @param alertContentJson Body and title of alert
+ * @param customDataJson Optional custom data
+ * @param minutesFromNow Minutes from now to send the push notification
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)scheduleNormalizedPushNotificationMinutes:(NSString *)toProfileId
+                                 alertContentJson:(NSString *)alertContentJson
+                                   customDataJson:(NSString *)customDataJson
+                                   minutesFromNow:(int)minutesFromNow
+                                  completionBlock:(BCCompletionBlock)cb
+                             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                         cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Schedules a rich push notification to a user
+ *
+ * @param profileId The profileId of the user to receive the notification
+ * @param notificationTemplateId Body and title of alert
+ * @param substitutionJson Map of substitution positions to strings
+ * @param startTime Start time of sending the push notification
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)scheduleRichPushNotificationUTC:(NSString *)toProfileId
+                 notificationTemplateId:(int)notificationTemplateId
+                       substitutionJson:(NSString *)substitutionJson
+                              startTime:(int)startTime
+                        completionBlock:(BCCompletionBlock)cb
+                   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                               cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Schedules a rich push notification to a user
+ *
+ * @param profileId The profileId of the user to receive the notification
+ * @param notificationTemplateId Body and title of alert
+ * @param substitutionJson Map of substitution positions to strings
+ * @param minutesFromNow Minutes from now to send the push notification
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)scheduleRichPushNotificationMinutes:(NSString *)toProfileId
+                     notificationTemplateId:(NSString *)alertContentJson
+                           substitutionJson:(NSString *)customDataJson
+                             minutesFromNow:(int)minutesFromNow
+                            completionBlock:(BCCompletionBlock)cb
+                       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                   cbObject:(BCCallbackObject)cbObject;
+
 /**
  * Sends a notification to a user consisting of alert content and custom data.
  *
