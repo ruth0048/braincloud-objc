@@ -163,7 +163,7 @@ NSMutableDictionary *m_users;
     [m_client initialize:m_serverUrl
                secretKey:m_secret
                    appId:m_appId
-                 version:m_version];
+              appVersion:m_version];
     [m_client enableLogging:TRUE];
     [self createUsers];
 

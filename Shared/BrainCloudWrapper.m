@@ -7,7 +7,7 @@
 @property (strong, nonatomic) BrainCloudSaveDataHelper *helper;
 
 @property (copy, nonatomic) NSString *lastAppId;
-@property (copy, nonatomic) NSString *lastVersion;
+@property (copy, nonatomic) NSString *lastAppVersion;
 @property (copy, nonatomic) NSString *lastSecretKey;
 @property (strong, nonatomic) NSString *lastServerUrl;
 
@@ -121,19 +121,39 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 - (void)initialize:(NSString *)serverUrl
          secretKey:(NSString *)secretKey
             gameId:(NSString *)appId
-       gameVersion:(NSString *)version
+       gameVersion:(NSString *)appVersion
        companyName:(NSString *)companyName
           gameName:(NSString *)appName
 {
     self.lastAppId      = appId;
-    self.lastVersion = version;
+    self.lastAppVersion = appVersion;
     self.lastSecretKey   = secretKey;
     self.lastServerUrl   = serverUrl;
 
     [[BrainCloudClient getInstance] initialize:serverUrl
                                      secretKey:secretKey
                                          appId:appId
-                                       version:version];
+                                    appVersion:appVersion];
+
+    self.helper = [[BrainCloudSaveDataHelper alloc] initWithCompanyName:companyName appName:appName];
+}
+
+- (void)initialize:(NSString *)serverUrl
+         secretKey:(NSString *)secretKey
+            gameId:(NSString *)appId
+       version:(NSString *)appVersion
+       companyName:(NSString *)companyName
+          gameName:(NSString *)appName
+{
+    self.lastAppId      = appId;
+    self.lastAppVersion = appVersion;
+    self.lastSecretKey   = secretKey;
+    self.lastServerUrl   = serverUrl;
+
+    [[BrainCloudClient getInstance] initialize:serverUrl
+                                     secretKey:secretKey
+                                         appId:appId
+                                    appVersion:appVersion];
 
     self.helper = [[BrainCloudSaveDataHelper alloc] initWithCompanyName:companyName appName:appName];
 }
@@ -143,19 +163,19 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 - (void)initialize:(NSString *)serverUrl
          secretKey:(NSString *)secretKey
              appId:(NSString *)appId
-           version:(NSString *)version
+        appVersion:(NSString *)appVersion
        companyName:(NSString *)companyName
            appName:(NSString *)appName
 {
     self.lastAppId      = appId;
-    self.lastVersion = version;
+    self.lastAppVersion = appVersion;
     self.lastSecretKey   = secretKey;
     self.lastServerUrl   = serverUrl;
 
     [[BrainCloudClient getInstance] initialize:serverUrl
                                      secretKey:secretKey
                                          appId:appId
-                                       version:version];
+                                    appVersion:appVersion];
         
     self.helper = [[BrainCloudSaveDataHelper alloc] initWithCompanyName:companyName appName:appName];
 }
@@ -406,7 +426,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                   secretKey:self.lastSecretKey
                      gameID:self.lastGameID
                    appName:nil
-                gameVersion:self.lastVersion];
+                gameVersion:self.lastAppVersion];
     
     if ([self.storedAuthenticationType isEqualToString:kAuthenticationAnonymous])
         [self authenticateAnonymousWithSuccess:success failure:failure];

@@ -23,7 +23,7 @@
 
 - (void)testAuthenticateAnonymous
 {
-    [[BrainCloudWrapper getInstance] initialize:m_serverUrl secretKey:m_secret appId:m_appId version:m_version companyName:@"wrapper" appName:@"unittest"];
+    [[BrainCloudWrapper getInstance] initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];
 
     //reset ids
     [[BrainCloudWrapper getInstance] setStoredProfileId:@""];
@@ -58,7 +58,7 @@
 
 - (void)testAuthenticateUniversal
 {
-    [[BrainCloudWrapper getInstance] initialize:m_serverUrl secretKey:m_secret appId:m_appId version:m_version companyName:@"wrapper" appName:@"unittest"];
+    [[BrainCloudWrapper getInstance] initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];
     
     [[BrainCloudWrapper getInstance] authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
                                                   password:[TestFixtureBase getUser:@"UserA"].m_password
@@ -83,7 +83,7 @@
 
 - (void)testReconnect
 {
-    [[BrainCloudWrapper getInstance] initialize:m_serverUrl secretKey:m_secret appId:m_appId version:m_version companyName:@"wrapper" appName:@"unittest"];
+    [[BrainCloudWrapper getInstance] initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];
 
     [[BrainCloudWrapper getInstance] authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
                                                   password:[TestFixtureBase getUser:@"UserA"].m_password

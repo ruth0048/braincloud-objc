@@ -73,11 +73,19 @@
 /**
 * @deprecated Use new initialize method instead - removal after September 1 2017
 */
-
 - (void)initialize:(NSString *)serverURL
          secretKey:(NSString *)secretKey
             gameId:(NSString *)appId
        gameVersion:(NSString *)version;
+
+
+/**
+* @deprecated Use new initialize method instead - removal after September 1 2017
+*/
+- (void)initialize:(NSString *)serverURL
+         secretKey:(NSString *)secretKey
+             appId:(NSString *)appId
+           version:(NSString *)appVersion;
 
 /**
 * Method initializes the BrainCloudClient.
@@ -85,12 +93,14 @@
 * @param serverURL The url to the brainCloud server
 * @param secretKey The secret key for your app
 * @param appId The app id
-* @param version The version
+* @param appVersion The version
 */
+
 - (void)initialize:(NSString *)serverURL
          secretKey:(NSString *)secretKey
              appId:(NSString *)appId
-           version:(NSString *)version;
+        appVersion:(NSString *)appVersion;
+
 
 /**
 * Initialize - initializes the identity service with the saved
