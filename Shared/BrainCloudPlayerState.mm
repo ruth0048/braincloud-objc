@@ -15,14 +15,30 @@
 @implementation BrainCloudPlayerState
 
 - (void)readPlayerState:(BCCompletionBlock)completionBlock
-   errorCompletionBlock:(BCErrorCompletionBlock)ecb
-               cbObject:(BCCallbackObject)cbObject
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->readPlayerState(
+            new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)readUserState:(BCCompletionBlock)completionBlock
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->readPlayerState(
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
-- (void)deletePlayer:(BCCompletionBlock)completionBlock
+- (void)  deletePlayer:(BCCompletionBlock)completionBlock
+errorCompletionBlock:(BCErrorCompletionBlock)ecb
+            cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->deletePlayer(
+            new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)  deleteUser:(BCCompletionBlock)completionBlock
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
@@ -31,8 +47,16 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 }
 
 - (void)resetPlayerState:(BCCompletionBlock)completionBlock
-    errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                cbObject:(BCCallbackObject)cbObject
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+              cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->resetPlayerState(
+            new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)resetUserState:(BCCompletionBlock)completionBlock
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+              cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->resetPlayerState(
         new BrainCloudCallback(completionBlock, ecb, cbObject));
@@ -46,13 +70,22 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
-- (void)updatePlayerName:(NSString *)playerName
-         completionBlock:(BCCompletionBlock)completionBlock
-    errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                cbObject:(BCCallbackObject)cbObject
+- (void)updatePlayerName:(NSString *)userName
+       completionBlock:(BCCompletionBlock)completionBlock
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+              cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updatePlayerName(
-        [playerName UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+            [userName UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)updateUserName:(NSString *)userName
+       completionBlock:(BCCompletionBlock)completionBlock
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+              cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updatePlayerName(
+        [userName UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)getAttributes:(BCCompletionBlock)completionBlock
@@ -84,9 +117,18 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 }
 
 - (void)updatePlayerPictureUrl:(NSString *)pictureUrl
-               completionBlock:(BCCompletionBlock)completionBlock
-          errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                      cbObject:(BCCallbackObject)cbObject
+             completionBlock:(BCCompletionBlock)completionBlock
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updatePlayerPictureUrl(
+            [pictureUrl UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)updateUserPictureUrl:(NSString *)pictureUrl
+             completionBlock:(BCCompletionBlock)completionBlock
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updatePlayerPictureUrl(
         [pictureUrl UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));

@@ -20,41 +20,41 @@
 
 - (void)testTriggerPlayerStatisticsEvent
 {
-    [[m_client playerStatisticsEventService] triggerPlayerStatisticsEvent:@"testEvent01"
-                                                          eventMultiplier:10
-                                                          completionBlock:successBlock
-                                                     errorCompletionBlock:failureBlock
-                                                                 cbObject:nil];
+    [[m_client playerStatisticsEventService] triggerStatsEvent:@"testEvent01"
+                                               eventMultiplier:10
+                                               completionBlock:successBlock
+                                          errorCompletionBlock:failureBlock
+                                                      cbObject:nil];
     [self waitForResult];
 }
 
 - (void)testTriggerPlayerStatisticsEvents
 {
     [[m_client playerStatisticsEventService]
-        triggerPlayerStatisticsEvents:
-            @"[ {  \"eventName\": \"rewardCredits\", \"eventMultiplier\": 10 } ]"
-                      completionBlock:successBlock
-                 errorCompletionBlock:failureBlock
-                             cbObject:nil];
+            triggerStatsEvents:
+                    @"[ {  \"eventName\": \"rewardCredits\", \"eventMultiplier\": 10 } ]"
+               completionBlock:successBlock
+          errorCompletionBlock:failureBlock
+                      cbObject:nil];
     [self waitForResult];
 }
 
 - (void)testRewardHandlerTriggerStatisticsEvents
 {
     [m_client registerRewardCallback:rewardBlock];
-    
-    [[m_client playerStateService] resetPlayerState:successBlock
-                               errorCompletionBlock:failureBlock
-                                           cbObject:nil];
+
+    [[m_client playerStateService] resetUserState:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
     [self waitForResult];
     [self reset];
-    
+
     [[m_client playerStatisticsEventService]
-        triggerPlayerStatisticsEvents:
-        @"[ {  \"eventName\": \"incQuest1Stat\", \"eventMultiplier\": 1 }, {  \"eventName\": \"incQuest2Stat\", \"eventMultiplier\": 1 } ]"
-        completionBlock:successBlock
-        errorCompletionBlock:failureBlock
-        cbObject:nil];
+            triggerStatsEvents:
+                    @"[ {  \"eventName\": \"incQuest1Stat\", \"eventMultiplier\": 1 }, {  \"eventName\": \"incQuest2Stat\", \"eventMultiplier\": 1 } ]"
+               completionBlock:successBlock
+          errorCompletionBlock:failureBlock
+                      cbObject:nil];
     [self waitForResult];
     [m_client deregisterRewardCallback];
     
@@ -64,26 +64,26 @@
 - (void)testRewardHandlerMultipleApiCallsInBundle
 {
     [m_client registerRewardCallback:rewardBlock];
-    
-    [[m_client playerStateService] resetPlayerState:successBlock
-                               errorCompletionBlock:failureBlock
-                                           cbObject:nil];
+
+    [[m_client playerStateService] resetUserState:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
     [self waitForResult];
     [self reset];
-    
+
     [[m_client playerStatisticsEventService]
-     triggerPlayerStatisticsEvents:
-     @"[ {  \"eventName\": \"incQuest1Stat\", \"eventMultiplier\": 1 } ]"
-     completionBlock:successBlock
-     errorCompletionBlock:failureBlock
-     cbObject:nil];
-    
+            triggerStatsEvents:
+                    @"[ {  \"eventName\": \"incQuest1Stat\", \"eventMultiplier\": 1 } ]"
+               completionBlock:successBlock
+          errorCompletionBlock:failureBlock
+                      cbObject:nil];
+
     [[m_client playerStatisticsEventService]
-     triggerPlayerStatisticsEvents:
-     @"[ {  \"eventName\": \"incQuest2Stat\", \"eventMultiplier\": 1 } ]"
-     completionBlock:successBlock
-     errorCompletionBlock:failureBlock
-     cbObject:nil];
+            triggerStatsEvents:
+                    @"[ {  \"eventName\": \"incQuest2Stat\", \"eventMultiplier\": 1 } ]"
+               completionBlock:successBlock
+          errorCompletionBlock:failureBlock
+                      cbObject:nil];
     
     [self waitForResultExpectedCount:2];
     [m_client deregisterRewardCallback];
