@@ -231,8 +231,8 @@
  * @param cbObject User object sent to the completion blocks
  */
 - (void)scheduleRichPushNotificationMinutes:(NSString *)toProfileId
-                     notificationTemplateId:(NSString *)alertContentJson
-                           substitutionJson:(NSString *)customDataJson
+                     notificationTemplateId:(int)notificationTemplateId
+                           substitutionJson:(NSString *)substitutionJson
                              minutesFromNow:(int)minutesFromNow
                             completionBlock:(BCCompletionBlock)cb
                        errorCompletionBlock:(BCErrorCompletionBlock)ecb

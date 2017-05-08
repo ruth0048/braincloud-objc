@@ -140,10 +140,10 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 
 - (void)initialize:(NSString *)serverUrl
          secretKey:(NSString *)secretKey
-            gameId:(NSString *)appId
+            appId:(NSString *)appId
        version:(NSString *)appVersion
        companyName:(NSString *)companyName
-          gameName:(NSString *)appName
+          appName:(NSString *)appName
 {
     self.lastAppId      = appId;
     self.lastAppVersion = appVersion;

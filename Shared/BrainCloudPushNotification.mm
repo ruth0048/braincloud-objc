@@ -150,7 +150,7 @@
     if (customDataJson != nil) custom = [customDataJson UTF8String];
 
     BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleNormalizedPushNotificationUTC(
-            [toProfileId UTF8String], [alertContentJson UTF8String], [custom UTF8String], startTime, brainCloudCallback);
+            [toProfileId UTF8String], [alertContentJson UTF8String], custom, startTime, brainCloudCallback);
 }
 
 - (void)scheduleNormalizedPushNotificationMinutes:(NSString *)toProfileId
@@ -168,7 +168,7 @@
 
 
     BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleNormalizedPushNotificationMinutes(
-            [toProfileId UTF8String], [alertContentJson UTF8String], [custom UTF8String], minutesFromNow, brainCloudCallback);
+            [toProfileId UTF8String], [alertContentJson UTF8String], custom, minutesFromNow, brainCloudCallback);
 }
 
 - (void)scheduleRichPushNotificationUTC:(NSString *)toProfileId
