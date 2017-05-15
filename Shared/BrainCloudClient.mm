@@ -160,9 +160,53 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
 - (void)initialize:(NSString *)serverURL
          secretKey:(NSString *)secretKey
             gameId:(NSString *)appId
-       gameVersion:(NSString *)version
+       gameVersion:(NSString *)appVersion
 {
-    _client->initialize([serverURL UTF8String], [secretKey UTF8String], [appId UTF8String], [version UTF8String]);
+    _client->initialize([serverURL UTF8String], [secretKey UTF8String], [appId UTF8String], [appVersion UTF8String]);
+
+    if (!_timerDisabled)
+    {
+        if (_timer != nil)
+        {
+            [_timer invalidate];
+            _timer = nil;
+        }
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 // every 100 ms
+                                                  target:self
+                                                selector:@selector(runCallBacks)
+                                                userInfo:nil
+                                                 repeats:TRUE];
+    }
+}
+
+- (void)initialize:(NSString *)serverURL
+         secretKey:(NSString *)secretKey
+             appId:(NSString *)appId
+           version:(NSString *)appVersion
+{
+    _client->initialize([serverURL UTF8String], [secretKey UTF8String], [appId UTF8String], [appVersion UTF8String]);
+
+    if (!_timerDisabled)
+    {
+        if (_timer != nil)
+        {
+            [_timer invalidate];
+            _timer = nil;
+        }
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 // every 100 ms
+                                                  target:self
+                                                selector:@selector(runCallBacks)
+                                                userInfo:nil
+                                                 repeats:TRUE];
+    }
+}
+
+- (void)initialize:(NSString *)serverURL
+         secretKey:(NSString *)secretKey
+             appId:(NSString *)appId
+        appVersion:(NSString *)appVersion
+{
+    _client->initialize([serverURL UTF8String], [secretKey UTF8String], [appId UTF8String], [appVersion UTF8String]);
 
     if (!_timerDisabled)
     {

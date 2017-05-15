@@ -36,7 +36,7 @@ extern NSString *const AUTH_FACEBOOK;
 
 /**
 * Used to clear the saved profile id - to use in cases when the user is
-* attempting to switch to a different game profile.
+* attempting to switch to a different app profile.
 */
 - (void)clearSavedProfile;
 

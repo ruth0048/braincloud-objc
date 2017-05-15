@@ -14,7 +14,7 @@
 @interface BrainCloudProduct : NSObject
 
 /**
-* Gets the player's currency for the given currency type
+* Gets the user's currency for the given currency type
 * or all currency types if null passed in.
 *
 * Service Name - Product
@@ -120,7 +120,7 @@
                      cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Finalize Steam Transaction. On success, the player will be awarded the
+* Finalize Steam Transaction. On success, the user will be awarded the
 * associated currencies.
 *
 * Service Name - Product
@@ -137,7 +137,7 @@
                         cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Verify Microsoft Receipt. On success, the player will be awarded the
+* Verify Microsoft Receipt. On success, the user will be awarded the
 * associated currencies.
 *
 * Service Name - Product
@@ -170,7 +170,7 @@
                    cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Confirms a google play purchase. On success, the player will be awarded the
+* Confirms a google play purchase. On success, the user will be awarded the
 * associated currencies.
 *
 * Service Name - Product

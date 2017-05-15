@@ -20,9 +20,9 @@
 
 - (void)testDeletePlayer
 {
-    [[m_client playerStateService] deletePlayer:successBlock
-                           errorCompletionBlock:failureBlock
-                                       cbObject:nil];
+    [[m_client playerStateService] deleteUser:successBlock
+                         errorCompletionBlock:failureBlock
+                                     cbObject:nil];
     [self waitForResult];
     
     [[m_client authenticationService] authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
@@ -53,9 +53,9 @@
 
 - (void)testReadPlayerState
 {
-    [[m_client playerStateService] readPlayerState:successBlock
-                              errorCompletionBlock:failureBlock
-                                          cbObject:nil];
+    [[m_client playerStateService] readUserState:successBlock
+                            errorCompletionBlock:failureBlock
+                                        cbObject:nil];
     [self waitForResult];
 }
 
@@ -84,36 +84,36 @@
 
 - (void)testResetPlayerState
 {
-    [[m_client playerStateService] resetPlayerState:successBlock
-                               errorCompletionBlock:failureBlock
-                                           cbObject:nil];
+    [[m_client playerStateService] resetUserState:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
     [self waitForResult];
 }
 
 - (void)testUpdatePlayerName
 {
-    [[m_client playerStateService] updatePlayerName:@"TestName"
-                                    completionBlock:successBlock
-                               errorCompletionBlock:failureBlock
-                                           cbObject:nil];
+    [[m_client playerStateService] updateUserName:@"TestName"
+                                  completionBlock:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
     [self waitForResult];
 }
 
 - (void)testUpdatePlayerPictureUrl
 {
-    [[m_client playerStateService] updatePlayerPictureUrl:@"https://some.domain.com/mypicture.jpg"
-                                    completionBlock:successBlock
-                               errorCompletionBlock:failureBlock
-                                           cbObject:nil];
+    [[m_client playerStateService] updateUserPictureUrl:@"https://some.domain.com/mypicture.jpg"
+                                        completionBlock:successBlock
+                                   errorCompletionBlock:failureBlock
+                                               cbObject:nil];
     [self waitForResult];
 }
 
 - (void)testUpdateContactEmail
 {
-    [[m_client playerStateService] updatePlayerPictureUrl:@"something@testdomain.com"
-                                          completionBlock:successBlock
-                                     errorCompletionBlock:failureBlock
-                                                 cbObject:nil];
+    [[m_client playerStateService] updateUserPictureUrl:@"something@testdomain.com"
+                                        completionBlock:successBlock
+                                   errorCompletionBlock:failureBlock
+                                               cbObject:nil];
     [self waitForResult];
 }
 

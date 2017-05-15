@@ -41,24 +41,49 @@
  */
 + (BrainCloudClient *) getBC;
 
+
+/**
+* @deprecated Use new initialize method instead - removal after September 1 2017
+*/
+
+- (void)initialize:(NSString *)serverUrl
+         secretKey:(NSString *)secretKey
+            gameId:(NSString *)appId
+       gameVersion:(NSString *)appVersion
+       companyName:(NSString *)companyName
+          gameName:(NSString *)appName;
+
+
+/**
+* @deprecated Use new initialize method instead - removal after September 1 2017
+*/
+- (void)initialize:(NSString *)serverUrl
+         secretKey:(NSString *)secretKey
+             appId:(NSString *)appId
+           version:(NSString *)appVersion
+       companyName:(NSString *)companyName
+           appName:(NSString *)appName;
+
 /**
  * Method initializes the BrainCloudClient.
  *
  * @param serverUrl The url to the brainCloud server
- * @param secretKey The secret key for your game
+ * @param secretKey The secret key for your app
  * @param appId The app id
- * @param version The version
+ * @param appVersion The version
  * @param companyName The company name used in the keychain for storing anonymous and profile ids.
  * You are free to pick anything you want.
- * @param gameName The game name used in teh keychain for storing anonymous and profile ids.
+ * @param appName The app name used in teh keychain for storing anonymous and profile ids.
  * You are free to pick anything you want.
  */
 - (void)initialize:(NSString *)serverUrl
          secretKey:(NSString *)secretKey
-            gameId:(NSString *)appId
-       gameVersion:(NSString *)version
+             appId:(NSString *)appId
+        appVersion:(NSString *)appVersion
        companyName:(NSString *)companyName
-          gameName:(NSString *)gameName;
+           appName:(NSString *)appName;
+
+
 
 
 /**

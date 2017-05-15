@@ -162,6 +162,58 @@
     [self waitForResult];
 }
 
+- (void)testScheduleNormalizedPushNotificationUTC
+{
+    [[m_client pushNotificationService]
+            scheduleNormalizedPushNotificationUTC:[TestFixtureBase getUser:@"UserB"].m_profileId
+                                 alertContentJson:@"{ \"body\": \"content of message\", \"title\": \"message title\" }"
+                                   customDataJson:nil
+                                        startTime:0
+                                  completionBlock:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testScheduleNormalizedPushNotificationMinutes
+{
+    [[m_client pushNotificationService]
+            scheduleNormalizedPushNotificationMinutes:[TestFixtureBase getUser:@"UserB"].m_profileId
+                                     alertContentJson:@"{ \"body\": \"content of message\", \"title\": \"message title\" }"
+                                       customDataJson:nil
+                                       minutesFromNow:42
+                                      completionBlock:successBlock
+                                 errorCompletionBlock:failureBlock
+                                             cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testScheduleRichPushNotificationUTC
+{
+    [[m_client pushNotificationService]
+            scheduleRichPushNotificationUTC:[TestFixtureBase getUser:@"UserB"].m_profileId
+                     notificationTemplateId:1
+                           substitutionJson:@"{\"1\":\"test sub\"}"
+                                  startTime:0
+                            completionBlock:successBlock
+                       errorCompletionBlock:failureBlock
+                                   cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testScheduleRichPushNotificationMinutes
+{
+    [[m_client pushNotificationService]
+            scheduleRichPushNotificationMinutes:[TestFixtureBase getUser:@"UserB"].m_profileId
+                         notificationTemplateId:1
+                               substitutionJson:@"{\"1\":\"test sub\"}"
+                                 minutesFromNow:42
+                                completionBlock:successBlock
+                           errorCompletionBlock:failureBlock
+                                       cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testSendNormalizedPushNotification
 {
     [[m_client pushNotificationService]

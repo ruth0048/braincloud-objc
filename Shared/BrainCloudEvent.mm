@@ -13,7 +13,7 @@
 
 @implementation BrainCloudEvent
 
-- (void)sendEvent:(NSString *)toPlayerId
+- (void)sendEvent:(NSString *)toProfileId
                eventType:(NSString *)eventType
            jsonEventData:(NSString *)eventData
          completionBlock:(BCCompletionBlock)cb
@@ -21,7 +21,7 @@
                 cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getEventService()->sendEvent(
-        [toPlayerId UTF8String], [eventType UTF8String], [eventData UTF8String],
+        [toProfileId UTF8String], [eventType UTF8String], [eventData UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 

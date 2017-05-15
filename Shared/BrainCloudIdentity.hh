@@ -152,14 +152,14 @@
 * Service Name - Identity
 * Service Operation - Attach
 *
-* @param email The player's e-mail address
-* @param password The player's password
+* @param email The user's e-mail address
+* @param password The user's password
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 *
 * Errors to watch for:  SWITCHING_PROFILES - this means that the email address you provided
-* already points to a different profile.  You will likely want to offer the player the
+* already points to a different profile.  You will likely want to offer the user the
 * choice to *SWITCH* to that profile, or *MERGE* the profiles.
 *
 * To switch profiles, call ClearSavedProfileID() and then call AuthenticateEmailPassword().
@@ -176,8 +176,8 @@
 * Service Name - Identity
 * Service Operation - Merge
 *
-* @param email The player's e-mail address
-* @param password The player's password
+* @param email The user's e-mail address
+* @param password The user's password
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
@@ -195,7 +195,7 @@
 * Service Name - Identity
 * Service Operation - Detach
 *
-* @param email The player's e-mail address
+* @param email The user's e-mail address
 * @param continueAnon Proceed even if the profile will revert to anonymous?
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
@@ -217,14 +217,14 @@
 * Service Name - Identity
 * Service Operation - Attach
 *
-* @param userId The player's userId
-* @param password The player's password
+* @param userId The user's userId
+* @param password The user's password
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 *
 * Errors to watch for:  SWITCHING_PROFILES - this means that the email address you provided
-* already points to a different profile.  You will likely want to offer the player the
+* already points to a different profile.  You will likely want to offer the user the
 * choice to *SWITCH* to that profile, or *MERGE* the profiles.
 *
 * To switch profiles, call ClearSavedProfileID() and then call AuthenticateEmailPassword().
@@ -241,8 +241,8 @@
 * Service Name - Identity
 * Service Operation - Merge
 *
-* @param userId The player's userId
-* @param password The player's password
+* @param userId The user's userId
+* @param password The user's password
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
@@ -259,7 +259,7 @@
 * Service Name - Identity
 * Service Operation - Detach
 *
-* @param userId The player's userId
+* @param userId The user's userId
 * @param continueAnon Proceed even if the profile will revert to anonymous?
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
@@ -282,7 +282,7 @@
 * Service Operation - Attach
 *
 * @param steamId String representation of 64 bit steam id
-* @param sessionticket The player's session ticket (hex encoded)
+* @param sessionticket The user's session ticket (hex encoded)
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
@@ -354,7 +354,7 @@
 * @param cbObject User object sent to the completion blocks
 *
 * Errors to watch for:  SWITCHING_PROFILES - this means that the Google identity you provided
-* already points to a different profile.  You will likely want to offer the player the
+* already points to a different profile.  You will likely want to offer the user the
 * choice to *SWITCH* to that profile, or *MERGE* the profiles.
 *
 * To switch profiles, call ClearSavedProfileID() and call AuthenticateGoogle().
@@ -422,7 +422,7 @@
 * @param cbObject User object sent to the completion blocks
 *
 * Errors to watch for:  SWITCHING_PROFILES - this means that the Twitter identity you provided
-* already points to a different profile.  You will likely want to offer the player the
+* already points to a different profile.  You will likely want to offer the user the
 * choice to *SWITCH* to that profile, or *MERGE* the profiles.
 *
 * To switch profiles, call ClearSavedProfileID() and call AuthenticateTwitter().
@@ -492,7 +492,7 @@
 * @param cbObject User object sent to the completion blocks
 *
 * Errors to watch for:  SWITCHING_PROFILES - this means that the Google identity you provided
-* already points to a different profile.  You will likely want to offer the player the
+* already points to a different profile.  You will likely want to offer the user the
 * choice to *SWITCH* to that profile, or *MERGE* the profiles.
 *
 * To switch profiles, call clearSavedProfileID() and call authenticateParse().
@@ -620,7 +620,7 @@
                 cbObject:(BCCallbackObject)cbObject;
 
 /**
- * Detaches parent from this player's profile
+ * Detaches parent from this user's profile
  *
  * Service Name - identity
  * Service Operation - DETACH_PARENT
@@ -686,7 +686,7 @@
                     cbObject:(BCCallbackObject)cbObject;
 
 /**
- * Refreshes an identity for this player
+ * Refreshes an identity for this user
  *
  * Service Name - identity
  * Service Operation - REFRESH_IDENTITY
@@ -706,7 +706,7 @@
                 cbObject:(BCCallbackObject)cbObject;
 
 /**
- * Attaches a peer identity to this player's profile
+ * Attaches a peer identity to this user's profile
  *
  * Service Name - identity
  * Service Operation - ATTACH_PEER_PROFILE
@@ -732,7 +732,7 @@
                  cbObject:(BCCallbackObject)cbObject;
 
 /**
- * Detaches a peer identity from this player's profile
+ * Detaches a peer identity from this user's profile
  *
  * Service Name - identity
  * Service Operation - DETACH_PEER

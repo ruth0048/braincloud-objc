@@ -81,11 +81,11 @@
 
 - (void)testFindPlayerByUniversalId
 {
-    [[m_client friendService] findPlayerByUniversalId:@"name"
-                                           maxResults:10
-                                      completionBlock:successBlock
-                                 errorCompletionBlock:failureBlock
-                                             cbObject:nil];
+    [[m_client friendService] findUserByUniversalId:@"name"
+                                         maxResults:10
+                                    completionBlock:successBlock
+                               errorCompletionBlock:failureBlock
+                                           cbObject:nil];
     [self waitForResult];
 }
 
