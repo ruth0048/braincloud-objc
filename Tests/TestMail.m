@@ -47,4 +47,21 @@
     [self waitForResult];
 }
 
+- (void)testSendAdvancedEmailByAddress
+{
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"Test Subject - TestSendAdvancedEmailSendGrid" forKey:@"subject"];
+    [dict setObject:@"Test body" forKey:@"body"];
+    [dict setObject:[NSArray arrayWithObjects:@"unit-test", nil] forKey:@"categories"];
+
+    NSString * jsonData = [TestFixtureBase getJsonString:dict];
+
+    [[m_client mailService] sendAdvancedEmail:[TestFixtureBase getUser:@"UserB"].m_email
+                            jsonServiceParams:jsonData
+                              completionBlock:successBlock
+                         errorCompletionBlock:failureBlock
+                                     cbObject:nil];
+    [self waitForResult];
+}
+
 @end
