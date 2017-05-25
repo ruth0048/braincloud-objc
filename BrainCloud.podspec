@@ -2,7 +2,7 @@
 #  BrainCloud.podspec
 #  BrainCloud
 #
-#  Copyright (c) 2016 BitHeads Inc. All rights reserved.
+#  Copyright (c) 2017 BitHeads Inc. All rights reserved.
 #
 
 Pod::Spec.new do |s|
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   s.name     = "BrainCloud"
-  s.version  = "3.4.0"
+  s.version  = "3.4.1"
   s.summary  = "The Objective-C/Swift client library for brainCloud"
   s.homepage = "http://getbraincloud.com/"
 
@@ -51,6 +51,6 @@ Pod::Spec.new do |s|
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.dependency 'BrainCloudCpp', '3.4.0'
+  s.dependency 'BrainCloudCpp', '3.4.1'
 
 end
