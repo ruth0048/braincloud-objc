@@ -144,6 +144,8 @@ extern NSString const *const BrainCloudServiceOperationDeleteStream;
 extern NSString const *const BrainCloudServiceOperationAddEvent;
 extern NSString const *const BrainCloudServiceOperationGetStreamSummariesForInitiatingPlayer;
 extern NSString const *const BrainCloudServiceOperationGetStreamSummariesForTargetPlayer;
+extern NSString const *const BrainCloudServiceOperationGetRecentStreamsForInitiatingPlayer;
+extern NSString const *const BrainCloudServiceOperationGetRecentStreamsForTargetPlayer;
 extern NSString const *const BrainCloudServiceOperationGetUserInfo;
 extern NSString const *const BrainCloudServiceOperationStartSteamTransaction;
 extern NSString const *const BrainCloudServiceOperationFinalizeSteamTransaction;

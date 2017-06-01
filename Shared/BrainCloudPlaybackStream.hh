@@ -132,4 +132,39 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Gets stream summaries for target player
+ *
+ * Service Name - PlaybackStream
+ * Service Operation - GetStreamSummariesForTargetPlayer
+ *
+ * @param initiatingPlayerId The player that started the stream
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getRecentStreamsForInitiatingPlayer:(NSString *)initiatingPlayerId
+                              maxNumStreams:(int)maxStreams
+                            completionBlock:(BCCompletionBlock)cb
+                       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                   cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Gets stream summaries for target player
+ *
+ * Service Name - PlaybackStream
+ * Service Operation - GetStreamSummariesForTargetPlayer
+ *
+ * @param targetPlayerId The player that started the stream
+ * @param targetPlayerId The player that started the stream
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getRecentStreamsForTargetPlayer:(NSString *)targetPlayerId
+                          maxNumStreams:(int)maxStreams
+                        completionBlock:(BCCompletionBlock)cb
+                   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                               cbObject:(BCCallbackObject)cbObject;
+
 @end

@@ -143,6 +143,10 @@ NSString const *const BrainCloudServiceOperationDeleteStream = [NSString stringW
 NSString const *const BrainCloudServiceOperationAddEvent = [NSString stringWithCString:BrainCloud::ServiceOperation::AddEvent.getValue().c_str() encoding:NSASCIIStringEncoding];
 NSString const *const BrainCloudServiceOperationGetStreamSummariesForInitiatingPlayer = [NSString stringWithCString:BrainCloud::ServiceOperation::GetStreamSummariesForInitiatingPlayer.getValue().c_str() encoding:NSASCIIStringEncoding];
 NSString const *const BrainCloudServiceOperationGetStreamSummariesForTargetPlayer = [NSString stringWithCString:BrainCloud::ServiceOperation::GetStreamSummariesForTargetPlayer.getValue().c_str() encoding:NSASCIIStringEncoding];
+
+NSString const *const BrainCloudServiceOperationGetRecentStreamsForInitiatingPlayer = [NSString stringWithCString:BrainCloud::ServiceOperation::GetRecentStreamsForInitiatingPlayer.getValue().c_str() encoding:NSASCIIStringEncoding];
+NSString const *const BrainCloudServiceOperationGetRecentStreamsForTargetPlayer = [NSString stringWithCString:BrainCloud::ServiceOperation::GetRecentStreamsForTargetPlayer.getValue().c_str() encoding:NSASCIIStringEncoding];
+
 NSString const *const BrainCloudServiceOperationGetUserInfo = [NSString stringWithCString:BrainCloud::ServiceOperation::GetUserInfo.getValue().c_str() encoding:NSASCIIStringEncoding];
 NSString const *const BrainCloudServiceOperationStartSteamTransaction = [NSString stringWithCString:BrainCloud::ServiceOperation::StartSteamTransaction.getValue().c_str() encoding:NSASCIIStringEncoding];
 NSString const *const BrainCloudServiceOperationFinalizeSteamTransaction = [NSString stringWithCString:BrainCloud::ServiceOperation::FinalizeSteamTransaction.getValue().c_str() encoding:NSASCIIStringEncoding];
