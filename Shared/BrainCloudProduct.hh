@@ -41,7 +41,7 @@
       completionBlock:(BCCompletionBlock)completionBlock
  errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
              cbObject:(BCCallbackObject)cbObject
-    __deprecated_msg("Method is recommended to be used in Cloud Code only for security
+    __deprecated_msg("Method is recommended to be used in Cloud Code only for security \
                       If you need to use it client side, enable 'Allow Currency Calls from Client' on the dashboard");
 
 /**
@@ -53,7 +53,7 @@
         completionBlock:(BCCompletionBlock)completionBlock
    errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                cbObject:(BCCallbackObject)cbObject
-    __deprecated_msg("Method is recommended to be used in Cloud Code only for security
+    __deprecated_msg("Method is recommended to be used in Cloud Code only for security \
                       If you need to use it client side, enable 'Allow Currency Calls from Client' on the dashboard");
 	
 /**
@@ -63,7 +63,7 @@
  - (void)resetCurrency:(BCCompletionBlock)completionBlock
   errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
               cbObject:(BCCallbackObject)cbObject
-     __deprecated_msg("Method is recommended to be used in Cloud Code only for security
+     __deprecated_msg("Method is recommended to be used in Cloud Code only for security \
                        If you need to use it client side, enable 'Allow Currency Calls from Client' on the dashboard");
 
 /**
