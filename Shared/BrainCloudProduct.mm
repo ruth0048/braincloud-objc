@@ -25,6 +25,39 @@
         [currencyType UTF8String], bcCallback);
 }
 
+- (void)awardCurrency:(NSString *)currencyType
+               amount:(int)amount
+      completionBlock:(BCCompletionBlock)completionBlock
+ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+             cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *bcCallback =
+        new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
+    BrainCloud::BrainCloudClient::getInstance()->getProductService()->awardCurrency(
+        [currencyType UTF8String], amount, bcCallback);
+}
+
+- (void)consumeCurrency:(NSString *)currencyType
+                 amount:(int)amount
+        completionBlock:(BCCompletionBlock)completionBlock
+   errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+               cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *bcCallback =
+        new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
+    BrainCloud::BrainCloudClient::getInstance()->getProductService()->consumeCurrency(
+        [currencyType UTF8String], amount, bcCallback);
+}
+
+- (void)resetCurrency:(BCCompletionBlock)completionBlock
+ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+             cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *bcCallback =
+        new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
+    BrainCloud::BrainCloudClient::getInstance()->getProductService()->resetCurrency(bcCallback);
+}
+
 - (void)getEligiblePromotions:(BCCompletionBlock)completionBlock
          errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                      cbObject:(BCCallbackObject)cbObject

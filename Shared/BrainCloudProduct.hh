@@ -31,6 +31,41 @@
          completionBlock:(BCCompletionBlock)completionBlock
     errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                 cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * @deprecated Method is recommended to be used in Cloud Code only for security
+ * If you need to use it client side, enable 'Allow Currency Calls from Client' on the brainCloud dashboard
+ */
+- (void)awardCurrency:(NSString *)currencyType
+               amount:(int)amount
+      completionBlock:(BCCompletionBlock)completionBlock
+ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+             cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Method is recommended to be used in Cloud Code only for security
+                      If you need to use it client side, enable 'Allow Currency Calls from Client' on the dashboard");
+
+/**
+ * @deprecated Method is recommended to be used in Cloud Code only for security
+ * If you need to use it client side, enable 'Allow Currency Calls from Client' on the brainCloud dashboard
+ */
+- (void)consumeCurrency:(NSString *)currencyType
+                 amount:(int)amount
+        completionBlock:(BCCompletionBlock)completionBlock
+   errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+               cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Method is recommended to be used in Cloud Code only for security
+                      If you need to use it client side, enable 'Allow Currency Calls from Client' on the dashboard");
+	
+/**
+ * @deprecated Method is recommended to be used in Cloud Code only for security
+ * If you need to use it client side, enable 'Allow Currency Calls from Client' on the brainCloud dashboard
+ */
+ - (void)resetCurrency:(BCCompletionBlock)completionBlock
+  errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+              cbObject:(BCCallbackObject)cbObject
+     __deprecated_msg("Method is recommended to be used in Cloud Code only for security
+                       If you need to use it client side, enable 'Allow Currency Calls from Client' on the dashboard");
+
 /**
 * Get Eligible Promotions
 *

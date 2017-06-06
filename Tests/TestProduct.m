@@ -44,6 +44,34 @@ NSString *productCategory = @"Test";
     [self waitForResult];
 }
 
+- (void)testAwardCurrency
+{
+    [[m_client productService] awardCurrency:currencyType
+                                      amount:100
+                             completionBlock:successBlock
+                        errorCompletionBlock:failureBlock
+                                    cbObject:nil];
+    [self waitForFailedResult];
+}
+
+- (void)testConsumeCurrency
+{
+    [[m_client productService] consumeCurrency:currencyType
+                                        amount:10
+                               completionBlock:successBlock
+                          errorCompletionBlock:failureBlock
+                                      cbObject:nil];
+    [self waitForFailedResult];
+}
+
+- (void)testResetCurrency
+{
+    [[m_client productService] resetCurrency:successBlock
+                        errorCompletionBlock:failureBlock
+                                    cbObject:nil];
+    [self waitForFailedResult];
+}
+
 - (void)testGetEligiblePromotions
 {
     [[m_client productService] getEligiblePromotions:successBlock
