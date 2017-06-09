@@ -260,6 +260,17 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
 
 - (void)resetCommunication { _client->resetCommunication(); }
 
+- (void)restoreRecentSession:(NSString *) sessionId {
+    const char * szSessionId = "";
+    
+    if (sessionId != nil)
+    {
+        szSessionId = sessionId.UTF8String;
+    }
+    
+    _client->restoreRecentSession(szSessionId);
+}
+
 - (void)registerEventCallback:(BCEventCompletionBlock)ecb
 {
     _objcEventCallback._eventCallback = ecb;
