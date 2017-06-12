@@ -2,7 +2,7 @@
 #  BrainCloud.podspec
 #  BrainCloud
 #
-#  Copyright (c) 2016 BitHeads Inc. All rights reserved.
+#  Copyright (c) 2017 BitHeads Inc. All rights reserved.
 #
 
 Pod::Spec.new do |s|
