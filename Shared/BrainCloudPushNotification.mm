@@ -136,6 +136,130 @@
         [groupId UTF8String], [alertContentJson UTF8String], custom, brainCloudCallback);
 }
 
+- (void)scheduleRawPushNotificationUTC:(NSString *)profileId
+                            fcmContent:(NSString *)fcmContent
+                            iosContent:(NSString *)iosContent
+                       facebookContent:(NSString *)facebookContent
+                             startTime:(int)startTime
+                       completionBlock:(BCCompletionBlock)cb
+                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                              cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    std::string fcm;
+    if (fcmContent != nil) fcm = [fcmContent UTF8String];
+
+    std::string ios;
+    if (iosContent != nil) fcm = [iosContent UTF8String];
+
+    std::string facebook;
+    if (facebookContent != nil) facebook = [facebookContent UTF8String];
+
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleRawPushNotificationUTC(
+            [profileId UTF8String], fcm, ios, facebook, startTime, brainCloudCallback);
+}
+
+- (void)scheduleRawPushNotificationMinutes:(NSString *)profileId
+                                fcmContent:(NSString *)fcmContent
+                                iosContent:(NSString *)iosContent
+                           facebookContent:(NSString *)facebookContent
+                            minutesFromNow:(int)minutesFromNow
+                           completionBlock:(BCCompletionBlock)cb
+                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                  cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    std::string fcm;
+    if (fcmContent != nil) fcm = [fcmContent UTF8String];
+
+    std::string ios;
+    if (iosContent != nil) fcm = [iosContent UTF8String];
+
+    std::string facebook;
+    if (facebookContent != nil) facebook = [facebookContent UTF8String];
+
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleRawPushNotificationUTC(
+            [profileId UTF8String], fcm, ios, facebook, minutesFromNow, brainCloudCallback);
+}
+
+- (void)sendRawPushNotification:(NSString *)toProfileId
+                     fcmContent:(NSString *)fcmContent
+                     iosContent:(NSString *)iosContent
+                facebookContent:(NSString *)facebookContent
+                completionBlock:(BCCompletionBlock)cb
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    std::string fcm;
+    if (fcmContent != nil) fcm = [fcmContent UTF8String];
+
+    std::string ios;
+    if (iosContent != nil) fcm = [iosContent UTF8String];
+
+    std::string facebook;
+    if (facebookContent != nil) facebook = [facebookContent UTF8String];
+
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendRawPushNotification(
+            [toProfileId UTF8String], fcm, ios, facebook, brainCloudCallback);
+}
+
+- (void)sendRawPushNotificationBatch:(NSArray *)profileIds
+                          fcmContent:(NSString *)fcmContent
+                          iosContent:(NSString *)iosContent
+                     facebookContent:(NSString *)facebookContent
+                     completionBlock:(BCCompletionBlock)cb
+                errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                            cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    std::vector<std::string> lbIds;
+    for (NSString *nsid in profileIds)
+    {
+        std::string lbId = [nsid UTF8String];
+        lbIds.push_back(lbId);
+    }
+
+    std::string fcm;
+    if (fcmContent != nil) fcm = [fcmContent UTF8String];
+
+    std::string ios;
+    if (iosContent != nil) fcm = [iosContent UTF8String];
+
+    std::string facebook;
+    if (facebookContent != nil) facebook = [facebookContent UTF8String];
+
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendRawPushNotificationBatch(
+            lbIds, fcm, ios, facebook, brainCloudCallback);
+}
+
+- (void)sendRawPushNotificationToGroup:(NSString *)groupId
+                            fcmContent:(NSString *)fcmContent
+                            iosContent:(NSString *)iosContent
+                       facebookContent:(NSString *)facebookContent
+                       completionBlock:(BCCompletionBlock)cb
+                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                              cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
+
+    std::string fcm;
+    if (fcmContent != nil) fcm = [fcmContent UTF8String];
+
+    std::string ios;
+    if (iosContent != nil) fcm = [iosContent UTF8String];
+
+    std::string facebook;
+    if (facebookContent != nil) facebook = [facebookContent UTF8String];
+
+    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendRawPushNotificationToGroup(
+            [groupId UTF8String], fcm, ios, facebook, brainCloudCallback);
+}
+
 - (void)scheduleNormalizedPushNotificationUTC:(NSString *)toProfileId
                              alertContentJson:(NSString *)alertContentJson
                                customDataJson:(NSString *)customDataJson

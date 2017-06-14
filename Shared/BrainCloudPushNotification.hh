@@ -161,6 +161,94 @@
                          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                      cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Schedules raw notifications based on user local time.
+ *
+ * @param profileId The profileId of the user to receive the notification
+ * @param fcmContent Valid Fcm data content
+ * @param iosContent Valid ios data content
+ * @param facebookContent Facebook template string
+ * @param startTime Start time of sending the push notification
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)scheduleRawPushNotificationUTC:(NSString *)profileId
+                            fcmContent:(NSString *)fcmContent
+                            iosContent:(NSString *)iosContent
+                       facebookContent:(NSString *)facebookContent
+                             startTime:(int)startTime
+                       completionBlock:(BCCompletionBlock)cb
+                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                              cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Schedules raw notifications based on user local time.
+ *
+ * @param profileId The profileId of the user to receive the notification
+ * @param fcmContent Valid Fcm data content
+ * @param iosContent Valid ios data content
+ * @param facebookContent Facebook template string
+ * @param minutesFromNow Minutes from now to send the push notification
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)scheduleRawPushNotificationMinutes:(NSString *)profileId
+                                fcmContent:(NSString *)fcmContent
+                                iosContent:(NSString *)iosContent
+                           facebookContent:(NSString *)facebookContent
+                            minutesFromNow:(int)minutesFromNow
+                           completionBlock:(BCCompletionBlock)cb
+                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                  cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Sends a raw push notification to a target user.
+ *
+ * @param toProfileId The profileId of the user to receive the notification
+ * @param fcmContent Valid Fcm data content
+ * @param iosContent Valid ios data content
+ * @param facebookContent Facebook template string
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)sendRawPushNotification:(NSString *)toProfileId
+                     fcmContent:(NSString *)fcmContent
+                     iosContent:(NSString *)iosContent
+                facebookContent:(NSString *)facebookContent
+                completionBlock:(BCCompletionBlock)cb
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Sends a raw push notification to a target list of users.
+ *
+ * @param profileIds Collection of profile IDs to send the notification to
+ * @param fcmContent Valid Fcm data content
+ * @param iosContent Valid ios data content
+ * @param facebookContent Facebook template string
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)sendRawPushNotificationBatch:(NSArray *)profileIds
+                          fcmContent:(NSString *)fcmContent
+                          iosContent:(NSString *)iosContent
+                     facebookContent:(NSString *)facebookContent
+                     completionBlock:(BCCompletionBlock)cb
+                errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                            cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Sends a raw push notification to a target group.
+ *
+ * @param groupId Target group
+ * @param fcmContent Valid Fcm data content
+ * @param iosContent Valid ios data content
+ * @param facebookContent Facebook template string
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)sendRawPushNotificationToGroup:(NSString *)groupId
+                            fcmContent:(NSString *)fcmContent
+                            iosContent:(NSString *)iosContent
+                       facebookContent:(NSString *)facebookContent
+                       completionBlock:(BCCompletionBlock)cb
+                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                              cbObject:(BCCallbackObject)cbObject;
 
 /**
  * Schedules a normalized push notification to a user
