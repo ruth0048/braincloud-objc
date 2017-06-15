@@ -20,46 +20,46 @@
 
 - (void)testReadAllPlayerStats
 {
-    [[m_client playerStatisticsService] readAllPlayerStats:successBlock
-                                      errorCompletionBlock:failureBlock
-                                                  cbObject:nil];
+    [[m_client playerStatisticsService] readAllUserStats:successBlock
+                                    errorCompletionBlock:failureBlock
+                                                cbObject:nil];
     [self waitForResult];
 }
 
 - (void)testReadPlayerStatsSubset
 {
     NSArray * array = @[@"currency", @"highestScore"];
-    [[m_client playerStatisticsService] readPlayerStatsSubset:array
-                                              completionBlock:successBlock
-                                         errorCompletionBlock:failureBlock
-                                                     cbObject:nil];
+    [[m_client playerStatisticsService] readUserStatsSubset:array
+                                            completionBlock:successBlock
+                                       errorCompletionBlock:failureBlock
+                                                   cbObject:nil];
     [self waitForResult];
 }
 
 - (void)testReadPlayerStatsForCategory
 {
-    [[m_client playerStatisticsService] readPlayerStatsForCategory:@"Test"
-                                                   completionBlock:successBlock
-                                              errorCompletionBlock:failureBlock
-                                                          cbObject:nil];
+    [[m_client playerStatisticsService] readUserStatsForCategory:@"Test"
+                                                 completionBlock:successBlock
+                                            errorCompletionBlock:failureBlock
+                                                        cbObject:nil];
     [self waitForResult];
 }
 
 - (void)testIncrementPlayerStats
 {
     NSString *data = @"{ \"highestScore\":\"RESET\" }";
-    [[m_client playerStatisticsService] incrementPlayerStats:data
-                                             completionBlock:successBlock
-                                        errorCompletionBlock:failureBlock
-                                                    cbObject:nil];
+    [[m_client playerStatisticsService] incrementUserStats:data
+                                           completionBlock:successBlock
+                                      errorCompletionBlock:failureBlock
+                                                  cbObject:nil];
     [self waitForResult];
 }
 
 - (void)testResetAllPlayerStats
 {
-    [[m_client playerStatisticsService] resetAllPlayerStats:successBlock
-                                       errorCompletionBlock:failureBlock
-                                                   cbObject:nil];
+    [[m_client playerStatisticsService] resetAllUserStats:successBlock
+                                     errorCompletionBlock:failureBlock
+                                                 cbObject:nil];
     [self waitForResult];
 }
 

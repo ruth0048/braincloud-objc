@@ -20,6 +20,18 @@
                             cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()
+            ->getPlayerStatisticsEventService()
+            ->triggerPlayerStatisticsEvent([eventName UTF8String], multiplier,
+                    new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)triggerStatsEvent:(NSString *)eventName
+          eventMultiplier:(int)multiplier
+          completionBlock:(BCCompletionBlock)cb
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()
         ->getPlayerStatisticsEventService()
         ->triggerPlayerStatisticsEvent([eventName UTF8String], multiplier,
                                        new BrainCloudCallback(cb, ecb, cbObject));
@@ -29,6 +41,17 @@
                       completionBlock:(BCCompletionBlock)cb
                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
                              cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()
+            ->getPlayerStatisticsEventService()
+            ->triggerPlayerStatisticsEvents([jsonData UTF8String],
+                    new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)triggerStatsEvents:(NSString *)jsonData
+           completionBlock:(BCCompletionBlock)cb
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()
         ->getPlayerStatisticsEventService()

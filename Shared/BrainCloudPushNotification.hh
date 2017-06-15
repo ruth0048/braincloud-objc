@@ -14,7 +14,7 @@
 @interface BrainCloudPushNotification : NSObject
 
 /**
- * Deregisters all device tokens currently registered to the player.
+ * Deregisters all device tokens currently registered to the profile.
  *
  * @param cb Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
@@ -76,13 +76,13 @@
 * Sends a simple push notification based on the passed in message.
 * NOTE: It is possible to send a push notification to oneself.
 *
-* @param toPlayerId The braincloud playerId of the user to receive the notification
+* @param toProfileId The braincloud profileId of the user to receive the notification
 * @param message Text of the push notification
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)sendSimplePushNotification:(NSString *)toPlayerId
+- (void)sendSimplePushNotification:(NSString *)toProfileId
                            message:(NSString *)message
                    completionBlock:(BCCompletionBlock)cb
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -92,13 +92,13 @@
 * Sends a notification to a user based on a brainCloud portal configured notification template.
 * NOTE: It is possible to send a push notification to oneself.
 *
-* @param toPlayerId The braincloud playerId of the user to receive the notification
+* @param toProfileId The braincloud profileId of the user to receive the notification
 * @param notificationTemplateId Id of the notification template
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)sendRichPushNotification:(NSString *)toPlayerId
+- (void)sendRichPushNotification:(NSString *)toProfileId
           notificationTemplateId:(int)notificationTemplateId
                  completionBlock:(BCCompletionBlock)cb
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -110,14 +110,14 @@
 * See the Portal documentation for more info.
 * NOTE: It is possible to send a push notification to oneself.
 *
-* @param toPlayerId The braincloud playerId of the user to receive the notification
+* @param toProfileId The braincloud profileId of the user to receive the notification
 * @param notificationTemplateId Id of the notification template
 * @param substitutionJson JSON defining the substitution params to use with the template
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)sendRichPushNotificationWithParams:(NSString *)toPlayerId
+- (void)sendRichPushNotificationWithParams:(NSString *)toProfileId
                     notificationTemplateId:(int)notificationTemplateId
                           substitutionJson:(NSString *)substitutionJson
                            completionBlock:(BCCompletionBlock)cb
@@ -162,16 +162,181 @@
                                      cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Schedules raw notifications based on user local time.
+ *
+ * @param profileId The profileId of the user to receive the notification
+ * @param fcmContent Valid Fcm data content
+ * @param iosContent Valid ios data content
+ * @param facebookContent Facebook template string
+ * @param startTime Start time of sending the push notification
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)scheduleRawPushNotificationUTC:(NSString *)profileId
+                            fcmContent:(NSString *)fcmContent
+                            iosContent:(NSString *)iosContent
+                       facebookContent:(NSString *)facebookContent
+                             startTime:(int)startTime
+                       completionBlock:(BCCompletionBlock)cb
+                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                              cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Schedules raw notifications based on user local time.
+ *
+ * @param profileId The profileId of the user to receive the notification
+ * @param fcmContent Valid Fcm data content
+ * @param iosContent Valid ios data content
+ * @param facebookContent Facebook template string
+ * @param minutesFromNow Minutes from now to send the push notification
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)scheduleRawPushNotificationMinutes:(NSString *)profileId
+                                fcmContent:(NSString *)fcmContent
+                                iosContent:(NSString *)iosContent
+                           facebookContent:(NSString *)facebookContent
+                            minutesFromNow:(int)minutesFromNow
+                           completionBlock:(BCCompletionBlock)cb
+                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                  cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Sends a raw push notification to a target user.
+ *
+ * @param toProfileId The profileId of the user to receive the notification
+ * @param fcmContent Valid Fcm data content
+ * @param iosContent Valid ios data content
+ * @param facebookContent Facebook template string
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)sendRawPushNotification:(NSString *)toProfileId
+                     fcmContent:(NSString *)fcmContent
+                     iosContent:(NSString *)iosContent
+                facebookContent:(NSString *)facebookContent
+                completionBlock:(BCCompletionBlock)cb
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Sends a raw push notification to a target list of users.
+ *
+ * @param profileIds Collection of profile IDs to send the notification to
+ * @param fcmContent Valid Fcm data content
+ * @param iosContent Valid ios data content
+ * @param facebookContent Facebook template string
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)sendRawPushNotificationBatch:(NSArray *)profileIds
+                          fcmContent:(NSString *)fcmContent
+                          iosContent:(NSString *)iosContent
+                     facebookContent:(NSString *)facebookContent
+                     completionBlock:(BCCompletionBlock)cb
+                errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                            cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Sends a raw push notification to a target group.
+ *
+ * @param groupId Target group
+ * @param fcmContent Valid Fcm data content
+ * @param iosContent Valid ios data content
+ * @param facebookContent Facebook template string
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)sendRawPushNotificationToGroup:(NSString *)groupId
+                            fcmContent:(NSString *)fcmContent
+                            iosContent:(NSString *)iosContent
+                       facebookContent:(NSString *)facebookContent
+                       completionBlock:(BCCompletionBlock)cb
+                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                              cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Schedules a normalized push notification to a user
+ *
+ * @param profileId The profileId of the user to receive the notification
+ * @param alertContentJson Body and title of alert
+ * @param customDataJson Optional custom data
+ * @param startTime Start time of sending the push notification
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)scheduleNormalizedPushNotificationUTC:(NSString *)toProfileId
+                             alertContentJson:(NSString *)alertContentJson
+                               customDataJson:(NSString *)customDataJson
+                                    startTime:(int)startTime
+                              completionBlock:(BCCompletionBlock)cb
+                         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                     cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Schedules a normalized push notification to a user
+ *
+ * @param profileId The profileId of the user to receive the notification
+ * @param alertContentJson Body and title of alert
+ * @param customDataJson Optional custom data
+ * @param minutesFromNow Minutes from now to send the push notification
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)scheduleNormalizedPushNotificationMinutes:(NSString *)toProfileId
+                                 alertContentJson:(NSString *)alertContentJson
+                                   customDataJson:(NSString *)customDataJson
+                                   minutesFromNow:(int)minutesFromNow
+                                  completionBlock:(BCCompletionBlock)cb
+                             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                         cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Schedules a rich push notification to a user
+ *
+ * @param profileId The profileId of the user to receive the notification
+ * @param notificationTemplateId Body and title of alert
+ * @param substitutionJson Map of substitution positions to strings
+ * @param startTime Start time of sending the push notification
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)scheduleRichPushNotificationUTC:(NSString *)toProfileId
+                 notificationTemplateId:(int)notificationTemplateId
+                       substitutionJson:(NSString *)substitutionJson
+                              startTime:(int)startTime
+                        completionBlock:(BCCompletionBlock)cb
+                   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                               cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Schedules a rich push notification to a user
+ *
+ * @param profileId The profileId of the user to receive the notification
+ * @param notificationTemplateId Body and title of alert
+ * @param substitutionJson Map of substitution positions to strings
+ * @param minutesFromNow Minutes from now to send the push notification
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)scheduleRichPushNotificationMinutes:(NSString *)toProfileId
+                     notificationTemplateId:(int)notificationTemplateId
+                           substitutionJson:(NSString *)substitutionJson
+                             minutesFromNow:(int)minutesFromNow
+                            completionBlock:(BCCompletionBlock)cb
+                       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                   cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Sends a notification to a user consisting of alert content and custom data.
  *
- * @param toPlayerId The playerId of the user to receive the notification
+ * @param toProfileId The profileId of the user to receive the notification
  * @param alertContent Body and title of alert
  * @param customData Optional custom data
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
  */
-- (void)sendNormalizedPushNotification:(NSString *)playerId
+- (void)sendNormalizedPushNotification:(NSString *)profileId
                       alertContentJson:(NSString *)alertContentJson
                         customDataJson:(NSString *)customDataJson
                        completionBlock:(BCCompletionBlock)cb

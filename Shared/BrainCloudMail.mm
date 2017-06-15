@@ -28,4 +28,15 @@
         [jsonServiceParams cStringUsingEncoding:NSUTF8StringEncoding], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)sendAdvancedEmailByAddress:(NSString *)emailAddress
+                 jsonServiceParams:(NSString *)jsonServiceParams
+                   completionBlock:(BCCompletionBlock)cb
+              errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                          cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getMailService()->sendAdvancedEmailByAddress(
+            [emailAddress cStringUsingEncoding:NSUTF8StringEncoding],
+            [jsonServiceParams cStringUsingEncoding:NSUTF8StringEncoding], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end

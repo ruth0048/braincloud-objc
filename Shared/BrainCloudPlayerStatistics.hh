@@ -14,7 +14,14 @@
 @interface BrainCloudPlayerStatistics : NSObject
 
 /**
-* Read all available player statistics.
+* @deprecated Use readAllUserStats instead - removal after September 1 2017
+*/
+- (void)readAllPlayerStats:(BCCompletionBlock)completionBlock
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Read all available user statistics.
 *
 * Service Name - PlayerStatistics
 * Service Operation - Read
@@ -23,44 +30,67 @@
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)readAllPlayerStats:(BCCompletionBlock)completionBlock
-      errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                  cbObject:(BCCallbackObject)cbObject;
+- (void)readAllUserStats:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Reads a subset of player statistics.
-*
-* Service Name - PlayerStatistics
-* Service Operation - ReadSubset
-*
-* @param playerStats A NSString array containing the subset of statistics to read:
-* @param completionBlock Block to call on return of successful server response
-* @param errorCompletionBlock Block to call on return of unsuccessful server response
-* @param cbObject User object sent to the completion blocks
+* @deprecated Use readUserState instead - removal after September 1 2017
 */
-- (void)readPlayerStatsSubset:(NSArray *)playerStats
+- (void)readPlayerStatsSubset:(NSArray *)userStats
               completionBlock:(BCCompletionBlock)completionBlock
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject;
 
 /**
- * Method retrieves the player statistics for the given category.
- *
- * Service Name - PlayerStatistics
- * Service Operation - READ_FOR_CATEGORY
- *
- * @param category The player statistics category
- * @param completionBlock Block to call on return of successful server response
- * @param errorCompletionBlock Block to call on return of unsuccessful server response
- * @param cbObject User object sent to the completion blocks
- */
+* Reads a subset of user statistics.
+*
+* Service Name - PlayerStatistics
+* Service Operation - ReadSubset
+*
+* @param userStats A NSString array containing the subset of statistics to read:
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*/
+- (void)readUserStatsSubset:(NSArray *)userStats
+            completionBlock:(BCCompletionBlock)completionBlock
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject;
+
+/**
+* @deprecated Use readUserStatsForCategory instead - removal after September 1 2017
+*/
 - (void)readPlayerStatsForCategory:(NSString *)category
                    completionBlock:(BCCompletionBlock)cb
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
                           cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Reset all of the statistics for this player back to their initial value.
+ * Method retrieves the user statistics for the given category.
+ *
+ * Service Name - PlayerStatistics
+ * Service Operation - READ_FOR_CATEGORY
+ *
+ * @param category The user statistics category
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)readUserStatsForCategory:(NSString *)category
+                 completionBlock:(BCCompletionBlock)cb
+            errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                        cbObject:(BCCallbackObject)cbObject;
+
+/**
+* @deprecated Use resetAllUserStats instead - removal after September 1 2017
+*/
+- (void)resetAllPlayerStats:(BCCompletionBlock)completionBlock
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Reset all of the statistics for this user back to their initial value.
 *
 * Service Name - PlayerStatistics
 * Service Operation - Reset
@@ -69,16 +99,24 @@
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)resetAllPlayerStats:(BCCompletionBlock)completionBlock
-       errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                   cbObject:(BCCallbackObject)cbObject;
+- (void)resetAllUserStats:(BCCompletionBlock)completionBlock
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Atomically increment (or decrement) player statistics.
-* Any rewards that are triggered from player statistic increments
-* will be considered. Player statistics are defined through the brainCloud portal.
+* @deprecated Use readUserState instead - removal after September 1 2017
+*/
+- (void)incrementPlayerStats:(NSString *)jsonData
+             completionBlock:(BCCompletionBlock)completionBlock
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Atomically increment (or decrement) user statistics.
+* Any rewards that are triggered from user statistic increments
+* will be considered. Yser statistics are defined through the brainCloud portal.
 * Note also that the "xpCapped" property is returned (true/false depending on whether
-* the xp cap is turned on and whether the player has hit it).
+* the xp cap is turned on and whether the user has hit it).
 *
 * Service Name - PlayerStatistics
 * Service Operation - Update
@@ -100,13 +138,13 @@
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)incrementPlayerStats:(NSString *)jsonData
-             completionBlock:(BCCompletionBlock)completionBlock
-        errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                    cbObject:(BCCallbackObject)cbObject;
+- (void)incrementUserStats:(NSString *)jsonData
+           completionBlock:(BCCompletionBlock)completionBlock
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Returns JSON representing the next experience level for the player.
+* Returns JSON representing the next experience level for the user.
 *
 * Service Name - PlayerStatistics
 * Service Operation - ReadNextXpLevel
@@ -120,7 +158,7 @@
                       cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Increments the player's experience. If the player goes up a level,
+* Increments the user's experience. If the player goes up a level,
 * the new level details will be returned along with a list of rewards.
 *
 * Service Name - PlayerStatistics
@@ -137,7 +175,7 @@
                          cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Sets the player's experience to an absolute value. Note that this
+* Sets the user's experience to an absolute value. Note that this
 * is simply a set and will not reward the player if their level changes
 * as a result.
 *

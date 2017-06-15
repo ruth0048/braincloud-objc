@@ -14,8 +14,17 @@
 @interface BrainCloudPlayerStatisticsEvent : NSObject
 
 /**
-* Trigger an event server side that will increase the players statistics.
-* This may cause one or more awards to be sent back to the player -
+* @deprecated Use triggerStatsEvent instead - removal after September 1 2017
+*/
+- (void)triggerPlayerStatisticsEvent:(NSString *)eventName
+                     eventMultiplier:(int)multiplier
+                     completionBlock:(BCCompletionBlock)cb
+                errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                            cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Trigger an event server side that will increase the user's statistics.
+* This may cause one or more awards to be sent back to the user -
 * could be achievements, experience, etc. Achievements will be sent by this
 * client library to the appropriate awards service (Apple Game Center, etc).
 *
@@ -32,11 +41,20 @@
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)triggerPlayerStatisticsEvent:(NSString *)eventName
-                     eventMultiplier:(int)multiplier
-                     completionBlock:(BCCompletionBlock)cb
-                errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                            cbObject:(BCCallbackObject)cbObject;
+- (void)triggerStatsEvent:(NSString *)eventName
+          eventMultiplier:(int)multiplier
+          completionBlock:(BCCompletionBlock)cb
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject;
+
+
+/**
+* @deprecated Use triggerStatsEvents instead - removal after September 1 2017
+*/
+- (void)triggerPlayerStatisticsEvents:(NSString *)jsonData
+                      completionBlock:(BCCompletionBlock)cb
+                 errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                             cbObject:(BCCallbackObject)cbObject;
 
 /**
 * See documentation for TriggerPlayerStatisticsEvent for more
@@ -57,9 +75,9 @@
 *     }
 *   ]
 */
-- (void)triggerPlayerStatisticsEvents:(NSString *)jsonData
-                      completionBlock:(BCCompletionBlock)cb
-                 errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                             cbObject:(BCCallbackObject)cbObject;
+- (void)triggerStatsEvents:(NSString *)jsonData
+           completionBlock:(BCCompletionBlock)cb
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject;
 
 @end

@@ -14,7 +14,14 @@
 @interface BrainCloudPlayerState : NSObject
 
 /**
-* Read the state of the currently logged in player.
+* @deprecated Use readUserState instead - removal after September 1 2017
+*/
+- (void)readPlayerState:(BCCompletionBlock)completionBlock
+   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+               cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Read the state of the currently logged in user.
 * This method returns a JSON object describing most of the
 * player's data: entities, statistics, level, currency.
 * Apps will typically call this method after authenticating to get an
@@ -27,12 +34,19 @@
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)readPlayerState:(BCCompletionBlock)completionBlock
-   errorCompletionBlock:(BCErrorCompletionBlock)ecb
-               cbObject:(BCCallbackObject)cbObject;
+- (void)readUserState:(BCCompletionBlock)completionBlock
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Completely deletes the player record and all data fully owned
+* @deprecated Use deleteUser instead - removal after September 1 2017
+*/
+- (void)  deletePlayer:(BCCompletionBlock)completionBlock
+errorCompletionBlock:(BCErrorCompletionBlock)ecb
+            cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Completely deletes the user record and all data fully owned
 * by the player. After calling this method, the player will need
 * to re-authenticate and create a new profile.
 * This is mostly used for debugging/qa.
@@ -44,12 +58,19 @@
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)deletePlayer:(BCCompletionBlock)completionBlock
+- (void)  deleteUser:(BCCompletionBlock)completionBlock
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject;
 
 /**
-* This method will delete *most* data for the currently logged in player.
+* @deprecated Use resetUserState instead - removal after September 1 2017
+*/
+- (void)resetPlayerState:(BCCompletionBlock)completionBlock
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+              cbObject:(BCCallbackObject)cbObject;
+
+/**
+* This method will delete *most* data for the currently logged in user.
 * Data which is not deleted includes: currency, credentials, and
 * purchase transactions. ResetPlayer is different from DeletePlayer in that
 * the player record will continue to exist after the reset (so the user
@@ -62,12 +83,12 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)resetPlayerState:(BCCompletionBlock)completionBlock
-    errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                cbObject:(BCCallbackObject)cbObject;
+- (void)resetUserState:(BCCompletionBlock)completionBlock
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+              cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Logs player out of server.
+* Logs user out of server.
 *
 * Service Name - PlayerState
 * Service Operation - Logout
@@ -81,20 +102,28 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Sets the players name.
+* @deprecated Use updateUserName instead - removal after September 1 2017
+*/
+- (void)updatePlayerName:(NSString *)userName
+         completionBlock:(BCCompletionBlock)completionBlock
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Sets the user name.
 *
 * Service Name - playerState
 * Service Operation - UPDATE_NAME
 *
-* @param playerName The name of the player
+* @param userName The name of the user
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)updatePlayerName:(NSString *)playerName
-         completionBlock:(BCCompletionBlock)completionBlock
-    errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                cbObject:(BCCallbackObject)cbObject;
+- (void)updateUserName:(NSString *)userName
+       completionBlock:(BCCompletionBlock)completionBlock
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+              cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Retrieve the player attributes.
@@ -145,7 +174,15 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 
 /**
- * Remove player attributes.
+* @deprecated Use updateUserPictureUrl instead - removal after September 1 2017
+*/
+- (void)updatePlayerPictureUrl:(NSString *)pictureUrl
+               completionBlock:(BCCompletionBlock)completionBlock
+          errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                      cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Remove user attributes.
  *
  * Service Name - PlayerState
  * Service Operation - UPDATE_PICTURE_URL
@@ -155,13 +192,13 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
  */
-- (void)updatePlayerPictureUrl:(NSString *)pictureUrl
-               completionBlock:(BCCompletionBlock)completionBlock
-          errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                      cbObject:(BCCallbackObject)cbObject;
+- (void)updateUserPictureUrl:(NSString *)pictureUrl
+             completionBlock:(BCCompletionBlock)completionBlock
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject;
 
 /**
- * Update the player's contact email.
+ * Update the user's contact email.
  * Note this is unrelated to email authentication.
  *
  * Service Name - PlayerState
@@ -176,11 +213,11 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Updates the "friend summary data" associated with the logged in player.
+* Updates the "friend summary data" associated with the logged in user.
 * Some operations will return this summary data. For instance the social
 * leaderboards will return the player's score in the leaderboard along
 * with the friend summary data. Generally this data is used to provide
-* a quick overview of the player without requiring a separate API call
+* a quick overview of the user without requiring a separate API call
 * to read their public stats or entity data.
 *
 * Note this API call pre-dates the shared player data api (public entity/stats)

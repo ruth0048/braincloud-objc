@@ -53,23 +53,45 @@
     [self endStream:streamId];
 }
 
-- (void)testGetStreamSummariesForTargetPlayer
-{
-    [[m_client playbackStreamService]
-        getStreamSummariesForTargetPlayer:[TestFixtureBase getUser:@"UserB"].m_profileId
-                          completionBlock:successBlock
-                     errorCompletionBlock:failureBlock
-                                 cbObject:nil];
-    [self waitForResult];
-}
-
 - (void)testGetStreamSummariesForInitiatingPlayer
 {
     [[m_client playbackStreamService]
-        getStreamSummariesForInitiatingPlayer:[TestFixtureBase getUser:@"UserA"].m_profileId
+            getStreamSummariesForInitiatingPlayer:[TestFixtureBase getUser:@"UserA"].m_profileId
+                                  completionBlock:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testGetStreamSummariesForTargetPlayer
+{
+    [[m_client playbackStreamService]
+            getStreamSummariesForTargetPlayer:[TestFixtureBase getUser:@"UserB"].m_profileId
                               completionBlock:successBlock
                          errorCompletionBlock:failureBlock
                                      cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testGetRecentStreamsForInitiatingPlayer
+{
+    [[m_client playbackStreamService]
+            getRecentStreamsForInitiatingPlayer:[TestFixtureBase getUser:@"UserA"].m_profileId
+                                  maxNumStreams:10
+                                completionBlock:successBlock
+                           errorCompletionBlock:failureBlock
+                                       cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testGetRecentStreamsForTargetPlayer
+{
+    [[m_client playbackStreamService]
+            getRecentStreamsForTargetPlayer:[TestFixtureBase getUser:@"UserB"].m_profileId
+                                  maxNumStreams:10
+                                completionBlock:successBlock
+                           errorCompletionBlock:failureBlock
+                                       cbObject:nil];
     [self waitForResult];
 }
 

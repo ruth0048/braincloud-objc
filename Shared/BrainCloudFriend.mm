@@ -82,6 +82,16 @@
                      cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getFriendService()->readFriendPlayerState(
+            [friendId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+
+- (void)readFriendUserState:(NSString *)friendId
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->readFriendPlayerState(
         [friendId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -118,6 +128,16 @@
                 completionBlock:(BCCompletionBlock)cb
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloud::BrainCloudClient::getInstance()->getFriendService()->findPlayerByUniversalId(
+            [searchText UTF8String], maxResults, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)findUserByUniversalId:(NSString *)searchText
+                   maxResults:(int)maxResults
+              completionBlock:(BCCompletionBlock)cb
+         errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                     cbObject:(BCCallbackObject)cbObject
 {
     BrainCloud::BrainCloudClient::getInstance()->getFriendService()->findPlayerByUniversalId(
         [searchText UTF8String], maxResults, new BrainCloudCallback(cb, ecb, cbObject));

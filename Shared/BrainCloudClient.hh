@@ -47,7 +47,7 @@
 * Retrieve all outstanding calls, send them to the server, and callback
 * any registered callbacks.
 *
-* The BrainCloudClient will have only one HTTP connection to a game server at a
+* The BrainCloudClient will have only one HTTP connection to a app server at a
 * time (to make sure that data doesn't arrive out of order, and to make
 * recovery of communication problems more simple).
 *
@@ -69,18 +69,38 @@
  */
 - (void)disableInternalTimer;
 
+
 /**
-* Method initializes the BrainCloudClient.
-*
-* @param serverURL The url to the brainCloud server
-* @param secretKey The secret key for your game
-* @param appId The app id
-* @param version The version
+* @deprecated Use new initialize method instead - removal after September 1 2017
 */
 - (void)initialize:(NSString *)serverURL
          secretKey:(NSString *)secretKey
             gameId:(NSString *)appId
        gameVersion:(NSString *)version;
+
+
+/**
+* @deprecated Use new initialize method instead - removal after September 1 2017
+*/
+- (void)initialize:(NSString *)serverURL
+         secretKey:(NSString *)secretKey
+             appId:(NSString *)appId
+           version:(NSString *)appVersion;
+
+/**
+* Method initializes the BrainCloudClient.
+*
+* @param serverURL The url to the brainCloud server
+* @param secretKey The secret key for your app
+* @param appId The app id
+* @param appVersion The version
+*/
+
+- (void)initialize:(NSString *)serverURL
+         secretKey:(NSString *)secretKey
+             appId:(NSString *)appId
+        appVersion:(NSString *)appVersion;
+
 
 /**
 * Initialize - initializes the identity service with the saved
@@ -188,6 +208,19 @@
 * Clears any pending messages from communication library.
 */
 - (void)resetCommunication;
+
+/**
+* The brainCloud client considers itself reauthenticated
+* with the given session
+*
+* Warning: ensure the user is within your session expiry (set on the dashboard)
+* before using this call. This optional method exists to reduce
+* authentication calls, in event the user needs to restart the app
+* in rapid succession.
+*
+* @param sessionId A recently returned session Id
+*/
+- (void)restoreRecentSession:(NSString *) sessionId;
 
 /**
  * Sets a callback handler for any out of band event messages that come from
@@ -379,7 +412,7 @@
 
 /**
  * Sets the language code sent to brainCloud when a user authenticates.
- * If the language is set to a non-ISO 639-1 standard value the game default will be used instead.
+ * If the language is set to a non-ISO 639-1 standard value the app default will be used instead.
  * Will override any auto detected language.
  * @param languageCode ISO 639-1 two-letter language code
  */

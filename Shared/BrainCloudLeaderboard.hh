@@ -371,7 +371,7 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
  * Service Operation - REMOVE_PLAYER_SCORE
  *
  * @param leaderboardId The leaderboard ID
- * @param versionId The version of the leaderboard
+ * @param versionId The version of the leaderboard. Use -1 to specifiy the currently active leaderboard version
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks

@@ -29,7 +29,7 @@
                                             cbObject:nil];
     [self waitForResult];
 
-    [[m_client playerStateService] deletePlayer:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    [[m_client playerStateService] deleteUser:successBlock errorCompletionBlock:failureBlock cbObject:nil];
     [self waitForResult];
 }
 

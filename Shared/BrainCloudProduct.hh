@@ -14,7 +14,7 @@
 @interface BrainCloudProduct : NSObject
 
 /**
-* Gets the player's currency for the given currency type
+* Gets the user's currency for the given currency type
 * or all currency types if null passed in.
 *
 * Service Name - Product
@@ -31,6 +31,41 @@
          completionBlock:(BCCompletionBlock)completionBlock
     errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                 cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * @deprecated Method is recommended to be used in Cloud Code only for security
+ * If you need to use it client side, enable 'Allow Currency Calls from Client' on the brainCloud dashboard
+ */
+- (void)awardCurrency:(NSString *)currencyType
+               amount:(int)amount
+      completionBlock:(BCCompletionBlock)completionBlock
+ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+             cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Method is recommended to be used in Cloud Code only for security \
+                      If you need to use it client side, enable 'Allow Currency Calls from Client' on the dashboard");
+
+/**
+ * @deprecated Method is recommended to be used in Cloud Code only for security
+ * If you need to use it client side, enable 'Allow Currency Calls from Client' on the brainCloud dashboard
+ */
+- (void)consumeCurrency:(NSString *)currencyType
+                 amount:(int)amount
+        completionBlock:(BCCompletionBlock)completionBlock
+   errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+               cbObject:(BCCallbackObject)cbObject
+    __deprecated_msg("Method is recommended to be used in Cloud Code only for security \
+                      If you need to use it client side, enable 'Allow Currency Calls from Client' on the dashboard");
+	
+/**
+ * @deprecated Method is recommended to be used in Cloud Code only for security
+ * If you need to use it client side, enable 'Allow Currency Calls from Client' on the brainCloud dashboard
+ */
+ - (void)resetCurrency:(BCCompletionBlock)completionBlock
+  errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+              cbObject:(BCCallbackObject)cbObject
+     __deprecated_msg("Method is recommended to be used in Cloud Code only for security \
+                       If you need to use it client side, enable 'Allow Currency Calls from Client' on the dashboard");
+
 /**
 * Get Eligible Promotions
 *
@@ -120,7 +155,7 @@
                      cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Finalize Steam Transaction. On success, the player will be awarded the
+* Finalize Steam Transaction. On success, the user will be awarded the
 * associated currencies.
 *
 * Service Name - Product
@@ -137,7 +172,7 @@
                         cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Verify Microsoft Receipt. On success, the player will be awarded the
+* Verify Microsoft Receipt. On success, the user will be awarded the
 * associated currencies.
 *
 * Service Name - Product
@@ -170,7 +205,7 @@
                    cbObject:(BCCallbackObject)cbObject;
 
 /**
-* Confirms a google play purchase. On success, the player will be awarded the
+* Confirms a google play purchase. On success, the user will be awarded the
 * associated currencies.
 *
 * Service Name - Product
