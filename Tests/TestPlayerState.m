@@ -90,15 +90,6 @@
     [self waitForResult];
 }
 
-- (void)testUpdatePlayerNameWithEmoji
-{
-    [[m_client playerStateService] updateUserName:@"\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A"
-                                  completionBlock:successBlock
-                             errorCompletionBlock:failureBlock
-                                         cbObject:nil];
-    [self waitForResult];
-}
-
 - (void)testUpdatePlayerName
 {
     [[m_client playerStateService] updateUserName:@"TestName"
