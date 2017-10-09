@@ -186,6 +186,16 @@ NSString *testIndexedId = @"testIndexedId";
     [self waitForResult];
 }
 
+- (void)testGetRandomEntitiesMatching
+{
+    [[m_client globalEntityService] getRandomEntitiesMatching:@"{\"entityType\": \"address\"}"
+                                                    maxReturn: 2
+                                              completionBlock:successBlock
+                                         errorCompletionBlock:failureBlock
+                                                     cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testUpdateEntityOwnerAndAcl
 {
     NSString *entityId = [self createDefultEntity:ReadWrite indexedId:nil];

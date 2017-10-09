@@ -265,6 +265,25 @@
                          cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Gets a list of up to randomCount randomly selected entities from the server
+ *      based on the where condition and specified maximum return count. 
+ * 
+ * Service Name - globalEntity 
+ * Service Operation - GET_RANDOM_ENTITIES_MATCHING
+ *
+ * @param where Mongo style query string
+ * @param maxReturn The maximum number of entities to return
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getRandomEntitiesMatching:(NSString *)where
+                        maxReturn:(int64_t)maxReturn
+                  completionBlock:(BCCompletionBlock)completionBlock
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Method updates an existing entity's Owner and ACL on the server.
  *
  * Service Name - globalEntity

@@ -195,6 +195,22 @@
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
+- (void)getRandomEntitiesMatching:(NSString *)where
+                        maxReturn:(int64_t)maxReturn
+                  completionBlock:(BCCompletionBlock)completionBlock
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject
+{
+    std::string wh;
+    
+    if (where != nil) wh = [where UTF8String];
+    
+    BrainCloud::BrainCloudClient::getInstance()->
+    getGlobalEntityService()->getRandomEntitiesMatching(wh, maxReturn,
+                                                        new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+
 - (void)updateEntityOwnerAndAcl:(NSString *)entityId
                         version:(int64_t)version
                         ownerId:(NSString *)ownerId
