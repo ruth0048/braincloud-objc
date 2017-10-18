@@ -31,15 +31,30 @@
 
 /**
  * Method returns a singleton instance of the BrainCloudWrapper.
+ *
+ * Note: if using a local instance of the brainCloud client, refer to it instead of getInstance.
+ *
  * @return A singleton instance of the BrainCloudWrapper.
  */
 + (BrainCloudWrapper *) getInstance;
+
+/**
+ * Creates the brainCloud client
+ * @return An instance of the BrainCloudWrapper.
+ */
+- (BrainCloudWrapper*) init;
 
 /**
  * Method returns a singleton instance of the BrainCloudClient.
  * @return A singleton instance of the BrainCloudClient.
  */
 + (BrainCloudClient *) getBC;
+
+/**
+ * Method returns an instance of the BrainCloudClient.
+ * @return An instance of the BrainCloudClient.
+ */
+- (BrainCloudClient *) getBCClient;
 
 
 /**

@@ -14,6 +14,8 @@
 @property (copy) BCCompletionBlock authSuccessCompletionBlock;
 @property (copy) BCErrorCompletionBlock authErrorCompletionBlock;
 
+@property (strong, nonatomic) BrainCloudClient *bcClient;
+
 @end
 
 @interface AuthenticationCallbackObject : NSObject
@@ -35,9 +37,10 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
 
 #pragma mark - Getters & Setters
 
+static BrainCloudWrapper *sharedWrapper = nil;
+
 + (BrainCloudWrapper *) getInstance
 {
-    static BrainCloudWrapper *sharedWrapper = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedWrapper = [[self alloc] init];
@@ -74,14 +77,27 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     return sharedWrapper;
 }
 
-+ (BrainCloudClient *) getBC
+- (BrainCloudWrapper*) init
 {
-    return [BrainCloudClient getInstance];
+    _bcClient = [self getBCClient];
+    
+    return self;
 }
 
-- (BrainCloudClient *)client
++ (BrainCloudClient *) getBC
 {
-    return [BrainCloudClient getInstance];
+    return [[self getInstance] getBCClient];
+}
+
+- (BrainCloudClient *) getBCClient
+{
+    if(self == sharedWrapper) {
+        return [BrainCloudClient getInstance];
+    } else if(_bcClient == NULL) {
+        _bcClient = [[BrainCloudClient alloc] init];
+    }
+    
+    return _bcClient;
 }
 
 
@@ -130,7 +146,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     self.lastSecretKey   = secretKey;
     self.lastServerUrl   = serverUrl;
 
-    [[BrainCloudClient getInstance] initialize:serverUrl
+    [_bcClient initialize:serverUrl
                                      secretKey:secretKey
                                          appId:appId
                                     appVersion:appVersion];
@@ -150,7 +166,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     self.lastSecretKey   = secretKey;
     self.lastServerUrl   = serverUrl;
 
-    [[BrainCloudClient getInstance] initialize:serverUrl
+    [_bcClient initialize:serverUrl
                                      secretKey:secretKey
                                          appId:appId
                                     appVersion:appVersion];
@@ -172,7 +188,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     self.lastSecretKey   = secretKey;
     self.lastServerUrl   = serverUrl;
 
-    [[BrainCloudClient getInstance] initialize:serverUrl
+    [_bcClient initialize:serverUrl
                                      secretKey:secretKey
                                          appId:appId
                                     appVersion:appVersion];
@@ -196,7 +212,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     
     if (nil == self.storedAnonymousId || (nil != self.storedAnonymousId && nil == self.storedProfileId))
     {
-        anonymousId= [[[BrainCloudClient getInstance] authenticationService] generateAnonymousId];
+        anonymousId= [[_bcClient authenticationService] generateAnonymousId];
         profileId = @"";
         self.storedAnonymousId = anonymousId;
         self.storedProfileId = profileId;
@@ -210,7 +226,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     self.storedAuthenticationType = isAnonymousAuth ? kAuthenticationAnonymous : @"";
     
     // send our IDs to brainCloud
-    [[BrainCloudClient getInstance] initializeIdentity:profileIdToAuthenticateWith anonymousId:anonymousId];
+    [_bcClient initializeIdentity:profileIdToAuthenticateWith anonymousId:anonymousId];
 }
 
 - (void)authenticateAnonymous:(BCCompletionBlock)completionBlock
@@ -224,7 +240,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     aco.errorCompletionBlock = errorCompletionBlock;
     aco.cbObject = cbObject;
     
-    [[[BrainCloudClient getInstance] authenticationService] authenticateAnonymous:TRUE
+    [[_bcClient authenticationService] authenticateAnonymous:TRUE
                                                                   completionBlock:self.authSuccessCompletionBlock
                                                              errorCompletionBlock:self.authErrorCompletionBlock
                                                                          cbObject:aco];
@@ -244,7 +260,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     aco.errorCompletionBlock = errorCompletionBlock;
     aco.cbObject = cbObject;
     
-    [[[BrainCloudClient getInstance] authenticationService] authenticateEmailPassword:email
+    [[_bcClient authenticationService] authenticateEmailPassword:email
                                                                              password:password
                                                                           forceCreate:YES
                                                                       completionBlock:self.authSuccessCompletionBlock
@@ -267,7 +283,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     aco.errorCompletionBlock = errorCompletionBlock;
     aco.cbObject = cbObject;
     
-    [[[BrainCloudClient getInstance] authenticationService] authenticateExternal:userId
+    [[_bcClient authenticationService] authenticateExternal:userId
                                                              authenticationToken:authToken
                                                       externalAuthenticationName:externalAuthName
                                                                      forceCreate:YES
@@ -291,7 +307,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     aco.errorCompletionBlock = errorCompletionBlock;
     aco.cbObject = cbObject;
     
-    [[[BrainCloudClient getInstance] authenticationService] authenticateFacebook:fbUserId
+    [[_bcClient authenticationService] authenticateFacebook:fbUserId
                                                              authenticationToken:fbAuthToken
                                                                      forceCreate:YES
                                                                  completionBlock:self.authSuccessCompletionBlock
@@ -313,7 +329,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     aco.errorCompletionBlock = errorCompletionBlock;
     aco.cbObject = cbObject;
     
-    [[[BrainCloudClient getInstance] authenticationService] authenticateGameCenter:gameCenterId
+    [[_bcClient authenticationService] authenticateGameCenter:gameCenterId
                                                                      forceCreate:YES
                                                                  completionBlock:self.authSuccessCompletionBlock
                                                             errorCompletionBlock:self.authErrorCompletionBlock
@@ -335,7 +351,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     aco.errorCompletionBlock = errorCompletionBlock;
     aco.cbObject = cbObject;
     
-    [[[BrainCloudClient getInstance] authenticationService] authenticateGoogle:userID
+    [[_bcClient authenticationService] authenticateGoogle:userID
                                                                          token:token
                                                                      forceCreate:YES
                                                                  completionBlock:self.authSuccessCompletionBlock
@@ -358,7 +374,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     aco.errorCompletionBlock = errorCompletionBlock;
     aco.cbObject = cbObject;
     
-    [[[BrainCloudClient getInstance] authenticationService] authenticateSteam:userId
+    [[_bcClient authenticationService] authenticateSteam:userId
                                                                 sessionTicket:sessionticket
                                                                   forceCreate:YES
                                                               completionBlock:self.authSuccessCompletionBlock
@@ -381,7 +397,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     aco.errorCompletionBlock = errorCompletionBlock;
     aco.cbObject = cbObject;
     
-    [[[BrainCloudClient getInstance] authenticationService] authenticateTwitter:userId
+    [[_bcClient authenticationService] authenticateTwitter:userId
                                                                           token:token
                                                                          secret:secret
                                                                     forceCreate:YES
@@ -404,7 +420,7 @@ NSString * const kPersistenceKeyProfileId          = @"profileId";
     aco.errorCompletionBlock = errorCompletionBlock;
     aco.cbObject = cbObject;
     
-    [[[BrainCloudClient getInstance] authenticationService] authenticateUniversal:userId
+    [[_bcClient authenticationService] authenticateUniversal:userId
                                                                          password:password
                                                                       forceCreate:YES
                                                                   completionBlock:self.authSuccessCompletionBlock
@@ -438,7 +454,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
 
 - (void)runCallbacks
 {
-    [[BrainCloudClient getInstance] runCallBacks];
+    [_bcClient runCallBacks];
 }
 
 @end

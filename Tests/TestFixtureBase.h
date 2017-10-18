@@ -13,6 +13,7 @@
 #import "BrainCloudClient.hh"
 #import "BrainCloudCompletionBlocks.hh"
 #import "TestUser.h"
+#import "BrainCloudWrapper.hh"
 
 @interface FileUploadCompletedDetails : NSObject
 @property NSString *fileUploadId;
@@ -38,6 +39,7 @@
     NSString *m_version;
     NSString *m_peerName;
     Boolean m_initUsers;
+    BrainCloudWrapper *m_bcWrapper;
 
     __block bool _result;
     __block int _apiCountExpected;
