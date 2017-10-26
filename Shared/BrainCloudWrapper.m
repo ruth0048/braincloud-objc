@@ -457,4 +457,152 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
     [_bcClient runCallBacks];
 }
 
+#pragma mark - Properties
+
+- (BrainCloudAuthentication *)authenticationService
+{
+    return [_bcClient authenticationService];
+}
+
+- (BrainCloudScript *)scriptService
+{
+    return [_bcClient scriptService];
+}
+
+- (BrainCloudPushNotification *)pushNotificationService
+{
+    return [_bcClient pushNotificationService];
+}
+
+- (BrainCloudProduct *)productService
+{
+    return [_bcClient productService];
+}
+
+- (BrainCloudPlayerState *)playerStateService
+{
+    return [_bcClient playerStateService];
+}
+
+- (BrainCloudPlayerStatistics *)playerStatisticsService
+{
+    return [_bcClient playerStatisticsService];
+}
+
+- (BrainCloudGlobalStatistics *)globalStatisticsService
+{
+    return [_bcClient globalStatisticsService];
+}
+
+- (BrainCloudEntity *)entityService
+{
+    return [_bcClient entityService];
+}
+
+- (BrainCloudGlobalEntity *)globalEntityService
+{
+    return [_bcClient globalEntityService];
+}
+
+- (BrainCloudLeaderboard *)leaderboardService
+{
+    return [_bcClient leaderboardService];
+}
+
+- (BrainCloudGlobalApp *)globalAppService
+{
+    return [_bcClient globalAppService];
+}
+
+- (BrainCloudFriend *)friendService
+{
+    return [_bcClient friendService];
+}
+
+- (BrainCloudMail *)mailService
+{
+    return [_bcClient mailService];
+}
+
+- (BrainCloudMatchMaking *)matchMakingService
+{
+    return [_bcClient matchMakingService];
+}
+
+- (BrainCloudAsyncMatch *)asyncMatchService
+{
+    return [_bcClient asyncMatchService];
+}
+
+- (BrainCloudOneWayMatch *)oneWayMatchService
+{
+    return [_bcClient oneWayMatchService];
+}
+
+- (BrainCloudPlaybackStream *)playbackStreamService
+{
+    return [_bcClient playbackStreamService];
+}
+
+- (BrainCloudGamification *)gamificationService
+{
+    return [_bcClient gamificationService];
+}
+
+- (BrainCloudEvent *)eventService
+{
+    return [_bcClient eventService];
+}
+
+- (BrainCloudPlayerStatisticsEvent *)playerStatisticsEventService
+{
+    return [_bcClient playerStatisticsEventService];
+}
+
+- (BrainCloudTime *)timeService
+{
+    return [_bcClient timeService];
+}
+
+- (BrainCloudTournament *)tournamentService
+{
+    return [_bcClient tournamentService];
+}
+
+- (BrainCloudS3Handling *)s3HandlingService
+{
+    return [_bcClient s3HandlingService];
+}
+
+- (BrainCloudIdentity *)identityService
+{
+    return [_bcClient identityService];
+}
+
+- (BrainCloudRedemptionCode *)redemptionCodeService
+{
+    return [_bcClient redemptionCodeService];
+}
+
+- (BrainCloudDataStream *)dataStreamService
+{
+    return [_bcClient dataStreamService];
+}
+
+- (BrainCloudProfanity *)profanityService
+{
+    return [_bcClient profanityService];
+}
+
+- (BrainCloudFile *)fileService
+{
+    return [_bcClient fileService];
+}
+
+- (BrainCloudGroup *)groupService
+{
+    return [_bcClient groupService];
+}
+
+
 @end

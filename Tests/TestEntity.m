@@ -32,7 +32,7 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 - (void)testDeleteEntity
 {
     NSString *entityId = [self createDefaultEntity:ReadWrite];
-    [[m_client entityService] deleteEntity:entityId
+    [[m_bcWrapper entityService] deleteEntity:entityId
                                    version:1
                            completionBlock:successBlock
                       errorCompletionBlock:failureBlock
@@ -295,7 +295,7 @@ NSString *entityData = @"{ \"street\":\"testAddress\" }";
 /* Helper functions */
 - (NSString *)createDefaultEntity:(Access)access
 {
-    [[m_client entityService] createEntity:entityType
+    [[m_bcWrapper entityService] createEntity:entityType
                             jsonEntityData:entityData
                              jsonEntityAcl:[ACL getAclJson:access]
                            completionBlock:successBlock

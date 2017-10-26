@@ -324,4 +324,35 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
  */
 - (void)runCallbacks;
 
+@property(readonly) BrainCloudAuthentication *authenticationService;
+@property(readonly) BrainCloudScript *scriptService;
+@property(readonly) BrainCloudPushNotification *pushNotificationService;
+@property(readonly) BrainCloudProduct *productService;
+@property(readonly) BrainCloudPlayerState *playerStateService;
+@property(readonly) BrainCloudPlayerStatistics *playerStatisticsService;
+@property(readonly) BrainCloudGlobalStatistics *globalStatisticsService;
+@property(readonly) BrainCloudEntity *entityService;
+@property(readonly) BrainCloudGlobalEntity *globalEntityService;
+@property(readonly) BrainCloudLeaderboard *leaderboardService;
+@property(readonly) BrainCloudGlobalApp *globalAppService;
+@property(readonly) BrainCloudFriend *friendService;
+@property(readonly) BrainCloudMail *mailService;
+@property(readonly) BrainCloudMatchMaking *matchMakingService;
+@property(readonly) BrainCloudAsyncMatch *asyncMatchService;
+@property(readonly) BrainCloudOneWayMatch *oneWayMatchService;
+@property(readonly) BrainCloudPlaybackStream *playbackStreamService;
+@property(readonly) BrainCloudGamification *gamificationService;
+@property(readonly) BrainCloudEvent *eventService;
+@property(readonly) BrainCloudPlayerStatisticsEvent *playerStatisticsEventService;
+@property(readonly) BrainCloudTime *timeService;
+@property(readonly) BrainCloudTournament *tournamentService;
+@property(readonly) BrainCloudS3Handling *s3HandlingService;
+@property(readonly) BrainCloudIdentity *identityService;
+@property(readonly) BrainCloudRedemptionCode *redemptionCodeService;
+@property(readonly) BrainCloudDataStream *dataStreamService;
+@property(readonly) BrainCloudProfanity *profanityService;
+@property(readonly) BrainCloudFile *fileService;
+@property(readonly) BrainCloudGroup *groupService;
+
+
 @end
