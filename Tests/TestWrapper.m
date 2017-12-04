@@ -23,34 +23,34 @@
 
 - (void)testAuthenticateAnonymous
 {
-    [[BrainCloudWrapper getInstance] initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];
+    [m_bcWrapper initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];
 
     //reset ids
-    [[BrainCloudWrapper getInstance] setStoredProfileId:@""];
-    [[BrainCloudWrapper getInstance] setStoredAnonymousId:@""];
+    [m_bcWrapper setStoredProfileId:@""];
+    [m_bcWrapper setStoredAnonymousId:@""];
     
-    [[BrainCloudWrapper getInstance] authenticateAnonymous:successBlock
+    [m_bcWrapper authenticateAnonymous:successBlock
                                       errorCompletionBlock:failureBlock
                                                   cbObject:nil];
     [self waitForResult];
     [self reset];
     
-    NSString *anonId = [[BrainCloudWrapper getInstance] storedAnonymousId];
-    NSString *profileId = [[BrainCloudWrapper getInstance] storedProfileId];
+    NSString *anonId = [m_bcWrapper storedAnonymousId];
+    NSString *profileId = [m_bcWrapper storedProfileId];
     
     //[[[BrainCloudWrapper getBC]authenticationService]clearSavedProfile];
     
-    [[BrainCloudWrapper getInstance] authenticateAnonymous:successBlock
+    [m_bcWrapper authenticateAnonymous:successBlock
                                       errorCompletionBlock:failureBlock
                                                   cbObject:nil];
     [self waitForResult];
     
-    if (![anonId isEqualToString:[[BrainCloudWrapper getInstance] storedAnonymousId] ])
+    if (![anonId isEqualToString:[m_bcWrapper storedAnonymousId] ])
     {
         _XCTPrimitiveFail(self, @"Anonymous ids not equal");
     }
     
-    if (![profileId isEqualToString:[[BrainCloudWrapper getInstance] storedProfileId] ])
+    if (![profileId isEqualToString:[m_bcWrapper storedProfileId] ])
     {
         _XCTPrimitiveFail(self, @"Profile ids not equal");
     }
@@ -58,9 +58,9 @@
 
 - (void)testAuthenticateUniversal
 {
-    [[BrainCloudWrapper getInstance] initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];
+    [m_bcWrapper initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];
     
-    [[BrainCloudWrapper getInstance] authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+    [m_bcWrapper authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
                                                   password:[TestFixtureBase getUser:@"UserA"].m_password
                                                forceCreate:YES
                                            completionBlock:successBlock
@@ -69,9 +69,9 @@
     [self waitForResult];
     [self reset];
     
-    [BrainCloudWrapper getInstance].alwaysAllowProfileSwitch = YES;
+    m_bcWrapper.alwaysAllowProfileSwitch = YES;
 
-    [[BrainCloudWrapper getInstance]
+    [m_bcWrapper
       authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
                    password:[TestFixtureBase getUser:@"UserA"].m_password
                 forceCreate:true
@@ -83,9 +83,9 @@
 
 - (void)testReconnect
 {
-    [[BrainCloudWrapper getInstance] initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];
+    [m_bcWrapper initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];
 
-    [[BrainCloudWrapper getInstance] authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+    [m_bcWrapper authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
                                                   password:[TestFixtureBase getUser:@"UserA"].m_password
                                                forceCreate:YES
                                            completionBlock:successBlock
@@ -93,10 +93,11 @@
                                                   cbObject:nil];
     [self waitForResult];
 
-    [[[BrainCloudWrapper getBC] playerStateService]logout:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    [[[m_bcWrapper getBCClient] playerStateService]logout:successBlock errorCompletionBlock:failureBlock cbObject:nil];
     [self waitForResult];
 
-    [[BrainCloudWrapper getInstance] reconnect:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    
+    [m_bcWrapper reconnect:successBlock errorCompletionBlock:failureBlock cbObject:nil];
     [self waitForResult];
 
     [[[BrainCloudWrapper getBC] timeService]readServerTime:successBlock errorCompletionBlock:failureBlock cbObject:nil];

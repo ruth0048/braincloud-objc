@@ -157,9 +157,12 @@ NSMutableDictionary *m_users;
 
 - (void)setUp
 {
+    m_bcWrapper = [[BrainCloudWrapper getInstance] init];
+    
+    
     [super setUp];
     [self loadIds];
-    m_client = [BrainCloudClient getInstance];
+    m_client = [m_bcWrapper getBCClient];
     [m_client initialize:m_serverUrl
                secretKey:m_secret
                    appId:m_appId
