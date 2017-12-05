@@ -11,7 +11,24 @@
 
 #import "BrainCloudPlayerStatisticsEvent.hh"
 
+@interface BrainCloudPlayerStatisticsEvent ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudPlayerStatisticsEvent
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)triggerPlayerStatisticsEvent:(NSString *)eventName
                      eventMultiplier:(int)multiplier
@@ -19,9 +36,9 @@
                 errorCompletionBlock:(BCErrorCompletionBlock)ecb
                             cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
             ->getPlayerStatisticsEventService()
-            ->triggerPlayerStatisticsEvent([eventName UTF8String], multiplier,
+            ->triggerStatsEvent([eventName UTF8String], multiplier,
                     new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -31,9 +48,9 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
         ->getPlayerStatisticsEventService()
-        ->triggerPlayerStatisticsEvent([eventName UTF8String], multiplier,
+        ->triggerStatsEvent([eventName UTF8String], multiplier,
                                        new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -42,9 +59,9 @@
                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
                              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
             ->getPlayerStatisticsEventService()
-            ->triggerPlayerStatisticsEvents([jsonData UTF8String],
+            ->triggerStatsEvents([jsonData UTF8String],
                     new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -53,9 +70,9 @@
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
         ->getPlayerStatisticsEventService()
-        ->triggerPlayerStatisticsEvents([jsonData UTF8String],
+        ->triggerStatsEvents([jsonData UTF8String],
                                         new BrainCloudCallback(cb, ecb, cbObject));
 }
 

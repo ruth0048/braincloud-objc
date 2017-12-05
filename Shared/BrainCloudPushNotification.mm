@@ -12,7 +12,24 @@
 #include "braincloud/BrainCloudClient.h"
 #include "braincloud/Platform.h"
 
+@interface BrainCloudPushNotification ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudPushNotification
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)deregisterAllPushNotificationDeviceTokens:(BCCompletionBlock)cb
                              errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -20,7 +37,7 @@
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
         ->getPushNotificationService()
         ->deregisterAllPushNotificationDeviceTokens(brainCloudCallback);
 }
@@ -35,7 +52,7 @@
 
     std::string platformStr = [[platform toString] UTF8String];
     BrainCloud::Platform cppPlatform = BrainCloud::Platform::fromString(platformStr);
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->deregisterPushNotificationDeviceToken(
+    _client->getPushNotificationService()->deregisterPushNotificationDeviceToken(
         cppPlatform, [deviceToken cStringUsingEncoding:NSUTF8StringEncoding], brainCloudCallback);
 }
 
@@ -47,7 +64,7 @@
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->registerPushNotificationDeviceToken(
+    _client->getPushNotificationService()->registerPushNotificationDeviceToken(
         BrainCloud::Platform::fromString([[platform toString] UTF8String]),
         [deviceToken cStringUsingEncoding:NSUTF8StringEncoding], brainCloudCallback);
 }
@@ -78,7 +95,7 @@
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendSimplePushNotification(
+    _client->getPushNotificationService()->sendSimplePushNotification(
         [toProfileId UTF8String], [message UTF8String], brainCloudCallback);
 }
 
@@ -90,7 +107,7 @@
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendRichPushNotification(
+    _client->getPushNotificationService()->sendRichPushNotification(
         [toProfileId UTF8String], notificationTemplateId, brainCloudCallback);
 }
 
@@ -103,7 +120,7 @@
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendRichPushNotificationWithParams(
+    _client->getPushNotificationService()->sendRichPushNotificationWithParams(
         [toProfileId UTF8String], notificationTemplateId, [substitutionJson UTF8String], brainCloudCallback);
 }
 
@@ -116,7 +133,7 @@
 {
     BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(cb, ecb, cbObject);
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendTemplatedPushNotificationToGroup(
+    _client->getPushNotificationService()->sendTemplatedPushNotificationToGroup(
         [groupId UTF8String], notificationTemplateId, [substitutionsJson UTF8String], brainCloudCallback);
 }
 
@@ -132,7 +149,7 @@
     std::string custom;
     if (customDataJson != nil) custom = [customDataJson UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendNormalizedPushNotificationToGroup(
+    _client->getPushNotificationService()->sendNormalizedPushNotificationToGroup(
         [groupId UTF8String], [alertContentJson UTF8String], custom, brainCloudCallback);
 }
 
@@ -156,7 +173,7 @@
     std::string facebook;
     if (facebookContent != nil) facebook = [facebookContent UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleRawPushNotificationUTC(
+    _client->getPushNotificationService()->scheduleRawPushNotificationUTC(
             [profileId UTF8String], fcm, ios, facebook, startTime, brainCloudCallback);
 }
 
@@ -180,7 +197,7 @@
     std::string facebook;
     if (facebookContent != nil) facebook = [facebookContent UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleRawPushNotificationUTC(
+    _client->getPushNotificationService()->scheduleRawPushNotificationUTC(
             [profileId UTF8String], fcm, ios, facebook, minutesFromNow, brainCloudCallback);
 }
 
@@ -203,7 +220,7 @@
     std::string facebook;
     if (facebookContent != nil) facebook = [facebookContent UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendRawPushNotification(
+    _client->getPushNotificationService()->sendRawPushNotification(
             [toProfileId UTF8String], fcm, ios, facebook, brainCloudCallback);
 }
 
@@ -233,7 +250,7 @@
     std::string facebook;
     if (facebookContent != nil) facebook = [facebookContent UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendRawPushNotificationBatch(
+    _client->getPushNotificationService()->sendRawPushNotificationBatch(
             lbIds, fcm, ios, facebook, brainCloudCallback);
 }
 
@@ -256,7 +273,7 @@
     std::string facebook;
     if (facebookContent != nil) facebook = [facebookContent UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendRawPushNotificationToGroup(
+    _client->getPushNotificationService()->sendRawPushNotificationToGroup(
             [groupId UTF8String], fcm, ios, facebook, brainCloudCallback);
 }
 
@@ -273,7 +290,7 @@
     std::string custom;
     if (customDataJson != nil) custom = [customDataJson UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleNormalizedPushNotificationUTC(
+    _client->getPushNotificationService()->scheduleNormalizedPushNotificationUTC(
             [toProfileId UTF8String], [alertContentJson UTF8String], custom, startTime, brainCloudCallback);
 }
 
@@ -291,7 +308,7 @@
     if (customDataJson != nil) custom = [customDataJson UTF8String];
 
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleNormalizedPushNotificationMinutes(
+    _client->getPushNotificationService()->scheduleNormalizedPushNotificationMinutes(
             [toProfileId UTF8String], [alertContentJson UTF8String], custom, minutesFromNow, brainCloudCallback);
 }
 
@@ -308,7 +325,7 @@
     std::string substitutions;
     if (substitutionJson != nil) substitutions = [substitutionJson UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleRichPushNotificationUTC(
+    _client->getPushNotificationService()->scheduleRichPushNotificationUTC(
             [toProfileId UTF8String], notificationTemplateId, substitutions, startTime, brainCloudCallback);
 }
 
@@ -325,7 +342,7 @@
     std::string substitutions;
     if (substitutionJson != nil) substitutions = [substitutionJson UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->scheduleRichPushNotificationMinutes(
+    _client->getPushNotificationService()->scheduleRichPushNotificationMinutes(
             [toProfileId UTF8String], notificationTemplateId, substitutions, minutesFromNow, brainCloudCallback);
 }
 
@@ -341,7 +358,7 @@
     std::string custom;
     if (customDataJson != nil) custom = [customDataJson UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendNormalizedPushNotification(
+    _client->getPushNotificationService()->sendNormalizedPushNotification(
         [profileId UTF8String], [alertContentJson UTF8String], custom, brainCloudCallback);
 }
 
@@ -364,7 +381,7 @@
         lbIds.push_back(lbId);
     }
 
-    BrainCloud::BrainCloudClient::getInstance()->getPushNotificationService()->sendNormalizedPushNotificationBatch(
+    _client->getPushNotificationService()->sendNormalizedPushNotificationBatch(
         lbIds, [alertContentJson UTF8String], custom, brainCloudCallback);
 }
 

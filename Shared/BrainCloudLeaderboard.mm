@@ -14,7 +14,24 @@
 
 #import "BrainCloudLeaderboard.hh"
 
+@interface BrainCloudLeaderboard ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudLeaderboard
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)getSocialLeaderboard:(NSString *)leaderboardId
                  replaceName:(bool)replaceName
@@ -22,7 +39,7 @@
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getSocialLeaderboard(
+    _client->getSocialLeaderboardService()->getSocialLeaderboard(
         [leaderboardId UTF8String], replaceName, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -39,7 +56,7 @@
         std::string lbId = [nsid UTF8String];
         lbIds.push_back(lbId);
     }
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getMultiSocialLeaderboard(
+    _client->getSocialLeaderboardService()->getMultiSocialLeaderboard(
         lbIds, (int)leaderboardResultCount, replaceName, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -51,7 +68,7 @@
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getGlobalLeaderboardPage(
+    _client->getSocialLeaderboardService()->getGlobalLeaderboardPage(
         [leaderboardId UTF8String], (BrainCloud::SortOrder)sortOrder, startIndex, endIndex,
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -65,7 +82,7 @@
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getGlobalLeaderboardPageByVersion(
+    _client->getSocialLeaderboardService()->getGlobalLeaderboardPageByVersion(
         [leaderboardId UTF8String], (BrainCloud::SortOrder)sortOrder, startIndex, endIndex, versionId,
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -79,7 +96,7 @@
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getGlobalLeaderboardView(
+    _client->getSocialLeaderboardService()->getGlobalLeaderboardView(
         [leaderboardId UTF8String], (BrainCloud::SortOrder)sortOrder, beforeCount, afterCount,
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -93,7 +110,7 @@
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getGlobalLeaderboardViewByVersion(
+    _client->getSocialLeaderboardService()->getGlobalLeaderboardViewByVersion(
         [leaderboardId UTF8String], (BrainCloud::SortOrder)sortOrder, beforeCount, afterCount, versionId,
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -103,7 +120,7 @@
                   errorCompletionBlock:(BCErrorCompletionBlock)ecb
                               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getGlobalLeaderboardEntryCount(
+    _client->getSocialLeaderboardService()->getGlobalLeaderboardEntryCount(
         [leaderboardId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -113,7 +130,7 @@
                            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                        cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getGlobalLeaderboardEntryCountByVersion(
+    _client->getSocialLeaderboardService()->getGlobalLeaderboardEntryCountByVersion(
         [leaderboardId UTF8String], versionId, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -122,7 +139,7 @@
                 errorCompletionBlock:(BCErrorCompletionBlock)ecb
                             cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getGlobalLeaderboardVersions(
+    _client->getSocialLeaderboardService()->getGlobalLeaderboardVersions(
         [leaderboardId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -133,7 +150,7 @@
           errorCompletionBlock:(BCErrorCompletionBlock)ecb
                       cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->postScoreToLeaderboard(
+    _client->getSocialLeaderboardService()->postScoreToLeaderboard(
         [leaderboardId UTF8String], score, [jsonOtherData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -151,7 +168,7 @@
     time_t time = [rotationReset timeIntervalSince1970];
     struct tm *timeStruct = localtime(&time);
 
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->postScoreToDynamicLeaderboard(
+    _client->getSocialLeaderboardService()->postScoreToDynamicLeaderboard(
         [leaderboardId UTF8String], score, [jsonData UTF8String], (BrainCloud::SocialLeaderboardType)leaderboardType,
         (BrainCloud::RotationType)rotationType, timeStruct, retainedCount, new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -170,7 +187,7 @@
     time_t time = [rotationReset timeIntervalSince1970];
     struct tm *timeStruct = localtime(&time);
 
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->postScoreToDynamicLeaderboardDays(
+    _client->getSocialLeaderboardService()->postScoreToDynamicLeaderboardDays(
         [leaderboardId UTF8String], score, [jsonData UTF8String], (BrainCloud::SocialLeaderboardType)leaderboardType,
         timeStruct, retainedCount, numDaysToRotate, new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -181,7 +198,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->removePlayerScore(
+    _client->getSocialLeaderboardService()->removePlayerScore(
         [leaderboardId UTF8String], versionId, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -191,7 +208,7 @@
              errorCompletionBlock:(BCErrorCompletionBlock)ecb
                          cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getGroupSocialLeaderboard(
+    _client->getSocialLeaderboardService()->getGroupSocialLeaderboard(
         [leaderboardId UTF8String], [groupId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -208,7 +225,7 @@
         lbIds.push_back(lbId);
     }
 
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getPlayersSocialLeaderboard(
+    _client->getSocialLeaderboardService()->getPlayersSocialLeaderboard(
         [leaderboardId UTF8String], lbIds, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -216,7 +233,7 @@
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->listAllLeaderboards(
+    _client->getSocialLeaderboardService()->listAllLeaderboards(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -226,7 +243,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getPlayerScore(
+    _client->getSocialLeaderboardService()->getPlayerScore(
         [leaderboardId UTF8String], versionId, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -242,7 +259,7 @@
         lbIds.push_back(lbId);
     }
 
-    BrainCloud::BrainCloudClient::getInstance()->getSocialLeaderboardService()->getPlayerScoresFromLeaderboards(
+    _client->getSocialLeaderboardService()->getPlayerScoresFromLeaderboards(
         lbIds, new BrainCloudCallback(cb, ecb, cbObject));
 }
 

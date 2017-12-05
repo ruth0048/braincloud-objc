@@ -10,8 +10,14 @@
 
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#include "braincloud/BrainCloudClient.h"
 
 @interface BrainCloudAsyncMatch : NSObject
+
+/**
+ * Initializes the brainCloudService
+ */
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
 
 /**
 * Creates an instance of an asynchronous match.
@@ -25,7 +31,7 @@
 * BC - a brainCloud profile id
 * FB - a Facebook id
 *
-* An exmaple of this string would be:
+* An example of this string would be:
 * [
 *     {
 *         "platform": "BC",

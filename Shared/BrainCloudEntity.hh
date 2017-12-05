@@ -10,8 +10,14 @@
 
 #import "BrainCloudCompletionBlocks.hh"
 #import <Foundation/Foundation.h>
+#include "braincloud/BrainCloudClient.h"
 
 @interface BrainCloudEntity : NSObject
+
+/**
+ * Initializes the brainCloudService
+ */
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
 
 /**
 * Method creates a new entity on the server.

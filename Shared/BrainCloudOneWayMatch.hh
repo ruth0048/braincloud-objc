@@ -10,8 +10,14 @@
 
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#include "braincloud/BrainCloudClient.h"
 
 @interface BrainCloudOneWayMatch : NSObject
+
+/**
+ * Initializes the brainCloudService
+ */
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
 
 /**
 * Starts a match

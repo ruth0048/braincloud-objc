@@ -13,15 +13,31 @@
 
 #include "TypeHelpers.hh"
 
+@interface BrainCloudGamification ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudGamification
 
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)readAllGamification:(bool)includeMetaData
             completionBlock:(BCCompletionBlock)cb
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readAllGamification(
+    _client->getGamificationService()->readAllGamification(
         includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -30,7 +46,7 @@
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readMilestones(
+    _client->getGamificationService()->readMilestones(
         includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -39,7 +55,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readAchievements(
+    _client->getGamificationService()->readAchievements(
         includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -47,7 +63,7 @@
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readXpLevelsMetaData(
+    _client->getGamificationService()->readXpLevelsMetaData(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -56,7 +72,7 @@
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readAchievedAchievements(
+    _client->getGamificationService()->readAchievedAchievements(
         includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -65,7 +81,7 @@
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readCompletedMilestones(
+    _client->getGamificationService()->readCompletedMilestones(
         includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -74,7 +90,7 @@
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readInProgressMilestones(
+    _client->getGamificationService()->readInProgressMilestones(
         includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -84,7 +100,7 @@
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readMilestonesByCategory(
+    _client->getGamificationService()->readMilestonesByCategory(
         [category UTF8String], includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -93,7 +109,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->awardAchievements(
+    _client->getGamificationService()->awardAchievements(
         TypeHelpers::NSStringArrayToVector(achievementIds), new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -102,7 +118,7 @@
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->resetMilestones(
+    _client->getGamificationService()->resetMilestones(
         TypeHelpers::NSStringArrayToVector(milestoneIds), new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -111,7 +127,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readQuests(
+    _client->getGamificationService()->readQuests(
         includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -120,7 +136,7 @@
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readCompletedQuests(
+    _client->getGamificationService()->readCompletedQuests(
         includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -129,7 +145,7 @@
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readInProgressQuests(
+    _client->getGamificationService()->readInProgressQuests(
         includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -138,7 +154,7 @@
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readNotStartedQuests(
+    _client->getGamificationService()->readNotStartedQuests(
         includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -147,7 +163,7 @@
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readQuestsWithStatus(
+    _client->getGamificationService()->readQuestsWithStatus(
         includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -156,7 +172,7 @@
                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
                              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
         ->getGamificationService()
         ->readQuestsWithBasicPercentage(includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -166,7 +182,7 @@
                    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
         ->getGamificationService()
         ->readQuestsWithComplexPercentage(includeMetaData,
                                           new BrainCloudCallback(cb, ecb, cbObject));
@@ -178,7 +194,7 @@
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGamificationService()->readQuestsByCategory(
+    _client->getGamificationService()->readQuestsByCategory(
         [category UTF8String], includeMetaData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 

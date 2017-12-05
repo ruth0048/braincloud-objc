@@ -11,13 +11,30 @@
 
 #import "BrainCloudMatchMaking.hh"
 
+@interface BrainCloudMatchMaking ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudMatchMaking
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)read:(BCCompletionBlock)cb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->read(
+    _client->getMatchmakingService()->read(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -26,7 +43,7 @@
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->setPlayerRating(
+    _client->getMatchmakingService()->setPlayerRating(
         rating, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -34,7 +51,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->resetPlayerRating(
+    _client->getMatchmakingService()->resetPlayerRating(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -43,7 +60,7 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->incrementPlayerRating(
+    _client->getMatchmakingService()->incrementPlayerRating(
         increment, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -52,7 +69,7 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->decrementPlayerRating(
+    _client->getMatchmakingService()->decrementPlayerRating(
         decrement, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -60,7 +77,7 @@
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->turnShieldOn(
+    _client->getMatchmakingService()->turnShieldOn(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -69,7 +86,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->turnShieldOnFor(
+    _client->getMatchmakingService()->turnShieldOnFor(
         minutes, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -77,7 +94,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->turnShieldOff(
+    _client->getMatchmakingService()->turnShieldOff(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -86,7 +103,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->getShieldExpiry(
+    _client->getMatchmakingService()->getShieldExpiry(
         [playerId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -96,7 +113,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
            cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->findPlayers(
+    _client->getMatchmakingService()->findPlayers(
         rangeDelta, numMatches, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -107,7 +124,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
              errorCompletionBlock:(BCErrorCompletionBlock)ecb
                          cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->findPlayersWithAttributes(
+    _client->getMatchmakingService()->findPlayersWithAttributes(
         rangeDelta, numMatches, [jsonAttributes UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -118,8 +135,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
           errorCompletionBlock:(BCErrorCompletionBlock)ecb
                       cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getMatchmakingService()
+    _client->getMatchmakingService()
         ->findPlayersUsingFilter(rangeDelta, numMatches, [jsonExtraParams UTF8String],
                                      new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -132,7 +148,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                     cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->findPlayersWithAttributesUsingFilter(
+    _client->getMatchmakingService()->findPlayersWithAttributesUsingFilter(
         rangeDelta, numMatches, [jsonAttributes UTF8String], [jsonExtraParams UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -140,7 +156,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->enableMatchMaking(
+    _client->getMatchmakingService()->enableMatchMaking(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -148,7 +164,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMatchmakingService()->disableMatchMaking(
+    _client->getMatchmakingService()->disableMatchMaking(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 

@@ -11,7 +11,24 @@
 
 #import "BrainCloudS3Handling.hh"
 
+@interface BrainCloudS3Handling ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudS3Handling
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+    
+    if(self) {
+        _client = client;
+    }
+    
+    return self;
+}
 
 - (void)getUpdatedFiles:(NSString *)category
             fileDetails:(NSString *)details
@@ -19,7 +36,7 @@
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getS3HandlingService()->getUpdatedFiles(
+    _client->getS3HandlingService()->getUpdatedFiles(
         [category UTF8String], [details UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -28,7 +45,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getS3HandlingService()->getFileList(
+    _client->getS3HandlingService()->getFileList(
         [category UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -37,7 +54,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getS3HandlingService()->getCDNUrl(
+    _client->getS3HandlingService()->getCDNUrl(
         [fileId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 

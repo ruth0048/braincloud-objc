@@ -10,10 +10,16 @@
 
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#include "braincloud/BrainCloudClient.h"
 
 extern NSString *const AUTH_FACEBOOK;
 
 @interface BrainCloudAuthentication : NSObject
+
+/**
+ * Initializes the brainCloudService
+ */
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
 
 @property(strong, nonatomic) NSString *anonymousID;
 @property(strong, nonatomic) NSString *profileID;

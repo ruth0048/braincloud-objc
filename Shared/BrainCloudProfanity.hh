@@ -10,8 +10,14 @@
 
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#include "braincloud/BrainCloudClient.h"
 
 @interface BrainCloudProfanity : NSObject
+
+/**
+ * Initializes the brainCloudService
+ */
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
 
 /**
  * Checks supplied text for profanity.

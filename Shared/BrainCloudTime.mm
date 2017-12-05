@@ -11,13 +11,30 @@
 
 #import "BrainCloudTime.hh"
 
+@interface BrainCloudTime ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudTime
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)readServerTime:(BCCompletionBlock)cb
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getTimeService()->readServerTime(
+    _client->getTimeService()->readServerTime(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 

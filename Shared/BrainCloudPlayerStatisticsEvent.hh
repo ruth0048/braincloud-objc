@@ -10,8 +10,14 @@
 
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
+#include "braincloud/BrainCloudClient.h"
 
 @interface BrainCloudPlayerStatisticsEvent : NSObject
+
+/**
+ * Initializes the brainCloudService
+ */
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
 
 /**
 * @deprecated Use triggerStatsEvent instead - removal after September 1 2017

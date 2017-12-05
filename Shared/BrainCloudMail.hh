@@ -10,8 +10,14 @@
 
 #import "BrainCloudCompletionBlocks.hh"
 #import <Foundation/Foundation.h>
+#include "braincloud/BrainCloudClient.h"
 
 @interface BrainCloudMail : NSObject
+
+/**
+ * Initializes the brainCloudService
+ */
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
 
 /**
  * Sends a simple text email to the specified user

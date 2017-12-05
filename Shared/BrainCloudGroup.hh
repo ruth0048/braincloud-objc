@@ -10,11 +10,17 @@
 
 #import "BrainCloudCompletionBlocks.hh"
 #import <Foundation/Foundation.h>
+#include "braincloud/BrainCloudClient.h"
 
 typedef NS_ENUM(NSUInteger, GroupMemberRole) { UNKNOWN, MEMBER, ADMIN, OWNER, OTHER };
 typedef NS_ENUM(NSUInteger, AutoJoinStrategy) { JoinFirstGroup, JoinRandomGroup };
 
 @interface BrainCloudGroup : NSObject
+
+/**
+ * Initializes the brainCloudService
+ */
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
 
 /**
  * Accept an outstanding invitation to join the group.

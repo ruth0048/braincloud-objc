@@ -11,7 +11,24 @@
 
 #import "BrainCloudRedemptionCode.hh"
 
+@interface BrainCloudRedemptionCode ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudRedemptionCode
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)redeemCode:(NSString*)scanCode
               codeType:(NSString*)codeType
@@ -20,7 +37,7 @@
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getRedemptionCodeService()->redeemCode(
+    _client->getRedemptionCodeService()->redeemCode(
         [scanCode UTF8String], [codeType UTF8String], [jsonCustomRedemptionInfo UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -30,7 +47,7 @@
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getRedemptionCodeService()->getRedeemedCodes(
+    _client->getRedemptionCodeService()->getRedeemedCodes(
         [codeType UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));
 }

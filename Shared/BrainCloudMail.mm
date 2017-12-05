@@ -3,7 +3,24 @@
 
 #import "BrainCloudMail.hh"
 
+@interface BrainCloudMail ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudMail
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)sendBasicEmail:(NSString *)profileId
                subject:(NSString *)subject
@@ -12,7 +29,7 @@
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMailService()->sendBasicEmail(
+    _client->getMailService()->sendBasicEmail(
         [profileId cStringUsingEncoding:NSUTF8StringEncoding], [subject cStringUsingEncoding:NSUTF8StringEncoding],
         [body cStringUsingEncoding:NSUTF8StringEncoding], new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -23,7 +40,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMailService()->sendAdvancedEmail(
+    _client->getMailService()->sendAdvancedEmail(
         [profileId cStringUsingEncoding:NSUTF8StringEncoding],
         [jsonServiceParams cStringUsingEncoding:NSUTF8StringEncoding], new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -34,7 +51,7 @@
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
                           cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getMailService()->sendAdvancedEmailByAddress(
+    _client->getMailService()->sendAdvancedEmailByAddress(
             [emailAddress cStringUsingEncoding:NSUTF8StringEncoding],
             [jsonServiceParams cStringUsingEncoding:NSUTF8StringEncoding], new BrainCloudCallback(cb, ecb, cbObject));
 }

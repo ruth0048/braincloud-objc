@@ -11,8 +11,14 @@
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
 #import "AuthenticationTypeObjc.hh"
+#include "braincloud/BrainCloudClient.h"
 
 @interface BrainCloudIdentity : NSObject
+
+/**
+ * Initializes the brainCloudService
+ */
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
 
 /**
 * Attach the user's Facebook credentials to the current profile.

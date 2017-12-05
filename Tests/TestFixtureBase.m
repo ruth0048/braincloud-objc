@@ -157,7 +157,7 @@ NSMutableDictionary *m_users;
 
 - (void)setUp
 {
-    m_bcWrapper = [[BrainCloudWrapper getInstance] init];
+    m_bcWrapper = [[BrainCloudWrapper alloc] init];
     
     
     [super setUp];

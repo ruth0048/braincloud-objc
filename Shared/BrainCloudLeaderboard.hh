@@ -10,6 +10,7 @@
 
 #import "BrainCloudCompletionBlocks.hh"
 #import <Foundation/Foundation.h>
+#include "braincloud/BrainCloudClient.h"
 
 typedef NS_ENUM(NSUInteger, LeaderboardType) { HIGH_VALUE, CUMULATIVE, LAST_VALUE, LOW_VALUE };
 
@@ -18,6 +19,11 @@ typedef NS_ENUM(NSUInteger, RotationType) { NEVER, DAILY, WEEKLY, MONTHLY, YEARL
 typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
 
 @interface BrainCloudLeaderboard : NSObject
+
+/**
+ * Initializes the brainCloudService
+ */
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
 
 /**
 * Method returns the social leaderboard. A player's social leaderboard is

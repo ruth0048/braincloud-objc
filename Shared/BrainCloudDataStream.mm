@@ -11,7 +11,24 @@
 
 #import "BrainCloudDataStream.hh"
 
+@interface BrainCloudDataStream ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudDataStream
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)customPageEvent:(NSString *)eventName
     jsonEventProperties:(NSString *)jsonEventProperties
@@ -19,7 +36,7 @@
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
     ->getDataStreamService()->customPageEvent(
                                               [eventName UTF8String],
                                               [jsonEventProperties UTF8String],
@@ -32,7 +49,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
     ->getDataStreamService()->customScreenEvent(
                                                 [eventName UTF8String],
                                                 [jsonEventProperties UTF8String],
@@ -45,7 +62,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
     ->getDataStreamService()->customTrackEvent(
                                                [eventName UTF8String],
                                                [jsonEventProperties UTF8String],

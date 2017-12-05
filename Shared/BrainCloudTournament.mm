@@ -13,7 +13,24 @@
 
 #import "BrainCloudTournament.hh"
 
+@interface BrainCloudTournament ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudTournament
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)claimTournamentReward:(NSString *)leaderboardId
                     versionId:(int)versionId
@@ -21,7 +38,7 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getTournamentService()->claimTournamentReward(
+    _client->getTournamentService()->claimTournamentReward(
         [leaderboardId UTF8String], versionId, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -31,7 +48,7 @@
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getTournamentService()->getTournamentStatus(
+    _client->getTournamentService()->getTournamentStatus(
         [leaderboardId UTF8String], versionId, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -42,7 +59,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getTournamentService()->joinTournament(
+    _client->getTournamentService()->joinTournament(
         [leaderboardId UTF8String], [tournamentCode UTF8String], initialScore,
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -52,7 +69,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getTournamentService()->leaveTournament(
+    _client->getTournamentService()->leaveTournament(
         [leaderboardId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -67,7 +84,7 @@
     time_t time = [roundStartedTime timeIntervalSince1970];
     struct tm *timeStruct = gmtime(&time);
 
-    BrainCloud::BrainCloudClient::getInstance()->getTournamentService()->postTournamentScore(
+    _client->getTournamentService()->postTournamentScore(
         [leaderboardId UTF8String], score, jsonData == nil ? "" : [jsonData UTF8String], timeStruct,
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -87,7 +104,7 @@
     time_t time = [roundStartedTime timeIntervalSince1970];
     struct tm *timeStruct = gmtime(&time);
 
-    BrainCloud::BrainCloudClient::getInstance()->getTournamentService()->postTournamentScoreWithResults(
+    _client->getTournamentService()->postTournamentScoreWithResults(
         [leaderboardId UTF8String], score, jsonData == nil ? "" : [jsonData UTF8String], timeStruct,
         (BrainCloud::SortOrder)sortOrder, beforeCount, afterCount, initialScore,
         new BrainCloudCallback(cb, ecb, cbObject));
@@ -98,7 +115,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getTournamentService()->viewCurrentReward(
+    _client->getTournamentService()->viewCurrentReward(
         [leaderboardId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -108,7 +125,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getTournamentService()->viewReward(
+    _client->getTournamentService()->viewReward(
         [leaderboardId UTF8String], versionId, new BrainCloudCallback(cb, ecb, cbObject));
 }
 

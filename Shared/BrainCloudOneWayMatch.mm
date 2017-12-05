@@ -11,7 +11,24 @@
 
 #import "BrainCloudOneWayMatch.hh"
 
+@interface BrainCloudOneWayMatch ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudOneWayMatch
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)startMatch:(NSString *)otherPlayerId
               rangeDelta:(int32_t)range
@@ -19,7 +36,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getOneWayMatchService()->startMatch(
+    _client->getOneWayMatchService()->startMatch(
         [otherPlayerId UTF8String], range, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -28,7 +45,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getOneWayMatchService()->cancelMatch(
+    _client->getOneWayMatchService()->cancelMatch(
         [playbackStreamId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -37,7 +54,7 @@
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getOneWayMatchService()->completeMatch(
+    _client->getOneWayMatchService()->completeMatch(
         [playbackStreamId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 

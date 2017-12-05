@@ -11,6 +11,8 @@
 @property (copy, nonatomic) NSString *lastSecretKey;
 @property (strong, nonatomic) NSString *lastServerUrl;
 
+@property (copy, nonatomic) NSString *wrapperName;
+
 @property (copy) BCCompletionBlock authSuccessCompletionBlock;
 @property (copy) BCErrorCompletionBlock authErrorCompletionBlock;
 
@@ -41,46 +43,62 @@ static BrainCloudWrapper *sharedWrapper = nil;
 
 + (BrainCloudWrapper *) getInstance
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedWrapper = [[self alloc] init];
-        sharedWrapper.alwaysAllowProfileSwitch = YES;
-        
-        // the generic authentication completion blocks
-        
-        sharedWrapper.authSuccessCompletionBlock = ^(NSString *serviceName, NSString *serviceOperation, NSString *jsonData, BCCallbackObject cbObject)
-        {
-            NSData *data = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data
-                                                                    options:NSJSONReadingMutableContainers
-                                                                      error:nil];
-            
-            sharedWrapper.storedProfileId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"profileId"];
-            
-            AuthenticationCallbackObject *aco = (AuthenticationCallbackObject*) cbObject;
-            if (aco.completionBlock != nil)
+    @synchronized(self) {
+        if(sharedWrapper == nil) {
+            sharedWrapper = [[self alloc] init];
+            sharedWrapper.alwaysAllowProfileSwitch = YES;
+
+            // the generic authentication completion blocks
+
+            sharedWrapper.authSuccessCompletionBlock = ^(NSString *serviceName, NSString *serviceOperation, NSString *jsonData, BCCallbackObject cbObject)
             {
-                aco.completionBlock(serviceName, serviceOperation, jsonData, aco.cbObject);
-            }
-        };
-        
-        sharedWrapper.authErrorCompletionBlock = ^(NSString *serviceName, NSString *serviceOperation, NSInteger statusCode, NSInteger returnCode, NSString *jsonError, BCCallbackObject cbObject)
-        {
-            AuthenticationCallbackObject *aco = (AuthenticationCallbackObject*) cbObject;
-            if (aco.errorCompletionBlock != nil)
+                NSData *data = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:NSJSONReadingMutableContainers
+                                                                          error:nil];
+
+                sharedWrapper.storedProfileId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"profileId"];
+
+                AuthenticationCallbackObject *aco = (AuthenticationCallbackObject*) cbObject;
+                if (aco.completionBlock != nil)
+                {
+                    aco.completionBlock(serviceName, serviceOperation, jsonData, aco.cbObject);
+                }
+            };
+
+            sharedWrapper.authErrorCompletionBlock = ^(NSString *serviceName, NSString *serviceOperation, NSInteger statusCode, NSInteger returnCode, NSString *jsonError, BCCallbackObject cbObject)
             {
-                aco.errorCompletionBlock(serviceName, serviceOperation, statusCode, returnCode, jsonError, aco.cbObject);
-            }
-        };
-    });
-    
+                AuthenticationCallbackObject *aco = (AuthenticationCallbackObject*) cbObject;
+                if (aco.errorCompletionBlock != nil)
+                {
+                    aco.errorCompletionBlock(serviceName, serviceOperation, statusCode, returnCode, jsonError, aco.cbObject);
+                }
+            };
+
+            [BrainCloudClient setInstance:[sharedWrapper getBCClient]];
+        }
+    }
+
     return sharedWrapper;
 }
 
-- (BrainCloudWrapper*) init
+- (instancetype) init
 {
-    _bcClient = [self getBCClient];
-    
+    self = [super init];
+    if (self)
+    {
+        self.wrapperName = @"";
+        _bcClient = [[BrainCloudClient alloc] init];
+    }
+
+    return self;
+}
+
+- (BrainCloudWrapper*) init: (NSString*) wrapperName
+{
+    self.wrapperName = wrapperName;
+    _bcClient = [[BrainCloudClient alloc] init];
+
     return self;
 }
 
@@ -91,34 +109,32 @@ static BrainCloudWrapper *sharedWrapper = nil;
 
 - (BrainCloudClient *) getBCClient
 {
-    if(self == sharedWrapper) {
-        return [BrainCloudClient getInstance];
-    } else if(_bcClient == NULL) {
-        _bcClient = [[BrainCloudClient alloc] init];
-    }
-    
     return _bcClient;
 }
 
 
 - (void)setStoredAnonymousId:(NSString *)storedAnonymousId
 {
-    [self.helper saveString:storedAnonymousId forKey:kPersistenceKeyAnonymousId];
+    NSString * prefix = _wrapperName == nil || [_wrapperName isEqualToString:@""] ? @"" : [_wrapperName stringByAppendingString:@"."];
+    [self.helper saveString:[prefix stringByAppendingString:storedAnonymousId] forKey:kPersistenceKeyAnonymousId];
 }
 
 - (NSString *)storedAnonymousId
 {
-    return [self.helper stringForKey:kPersistenceKeyAnonymousId];
+    NSString * prefix = _wrapperName == nil || [_wrapperName isEqualToString:@""] ? @"" : [_wrapperName stringByAppendingString:@"."];
+    return [self.helper stringForKey:[prefix stringByAppendingString:kPersistenceKeyAnonymousId]];
 }
 
 - (void)setStoredAuthenticationType:(NSString *)storedAuthenticationType
 {
-    [self.helper saveString:storedAuthenticationType forKey:kPersistenceKeyAuthenticationType];
+    NSString * prefix = _wrapperName == nil || [_wrapperName isEqualToString:@""] ? @"" : [_wrapperName stringByAppendingString:@"."];
+    [self.helper saveString:[prefix stringByAppendingString:storedAuthenticationType]  forKey:kPersistenceKeyAuthenticationType];
 }
 
 - (NSString *)storedAuthenticationType
 {
-    return [self.helper stringForKey:kPersistenceKeyAuthenticationType];
+    NSString * prefix = _wrapperName == nil || [_wrapperName isEqualToString:@""] ? @"" : [_wrapperName stringByAppendingString:@"."];
+    return [self.helper stringForKey:[prefix stringByAppendingString:kPersistenceKeyAuthenticationType]];
 }
 
 - (void)setStoredProfileId:(NSString *)storedProfileId

@@ -11,13 +11,30 @@
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
+@interface BrainCloudGlobalApp ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudGlobalApp
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)readProperties:(BCCompletionBlock)completionBlock
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalAppService()->readProperties(
+    _client->getGlobalAppService()->readProperties(
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 

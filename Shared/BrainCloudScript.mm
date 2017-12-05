@@ -3,7 +3,24 @@
 
 #import "BrainCloudScript.hh"
 
+@interface BrainCloudScript ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudScript
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)runScript:(NSString *)scriptName
           jsonScriptData:(NSString *)jsonScriptData
@@ -11,7 +28,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getScriptService()->runScript(
+    _client->getScriptService()->runScript(
         [scriptName cStringUsingEncoding:NSUTF8StringEncoding],
         [jsonScriptData cStringUsingEncoding:NSUTF8StringEncoding], new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -26,7 +43,7 @@
     time_t time = [startDateInUTC timeIntervalSince1970];
     struct tm *timeStruct = localtime(&time);
 
-    BrainCloud::BrainCloudClient::getInstance()->getScriptService()->scheduleRunScriptUTC(
+    _client->getScriptService()->scheduleRunScriptUTC(
         [scriptName UTF8String], [jsonScriptData UTF8String], timeStruct, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -37,7 +54,7 @@
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getScriptService()->scheduleRunScriptMinutes(
+    _client->getScriptService()->scheduleRunScriptMinutes(
         [scriptName UTF8String], [jsonScriptData UTF8String], minutesFromNow,
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -49,7 +66,7 @@
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getScriptService()->runParentScript(
+    _client->getScriptService()->runParentScript(
         [scriptName UTF8String], [jsonScriptData UTF8String], [parentLevelName UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -59,7 +76,7 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getScriptService()->cancelScheduledScript(
+    _client->getScriptService()->cancelScheduledScript(
         [jobId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -70,7 +87,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getScriptService()->runPeerScript(
+    _client->getScriptService()->runPeerScript(
         [scriptName cStringUsingEncoding:NSUTF8StringEncoding],
         [jsonScriptData cStringUsingEncoding:NSUTF8StringEncoding], [peer UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));
@@ -83,7 +100,7 @@
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getScriptService()->runPeerScriptAsync(
+    _client->getScriptService()->runPeerScriptAsync(
         [scriptName cStringUsingEncoding:NSUTF8StringEncoding],
         [jsonScriptData cStringUsingEncoding:NSUTF8StringEncoding], [peer UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));

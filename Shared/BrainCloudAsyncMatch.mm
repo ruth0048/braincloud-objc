@@ -11,7 +11,24 @@
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
+@interface BrainCloudAsyncMatch ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudAsyncMatch
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)createMatch:(NSString *)jsonOpponentIds
     pushNotificationMessage:(NSString *)pushMessage
@@ -19,7 +36,7 @@
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->createMatch(
+    _client->getAsyncMatchService()->createMatch(
         [jsonOpponentIds UTF8String], [pushMessage UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -33,7 +50,7 @@
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
                           cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->createMatchWithInitialTurn(
+    _client->getAsyncMatchService()->createMatchWithInitialTurn(
         [jsonOpponentIds UTF8String], [matchState UTF8String], [pushMessage UTF8String],
         [nextPlayer UTF8String], [summary UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -50,7 +67,7 @@
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->submitTurn(
+    _client->getAsyncMatchService()->submitTurn(
         [ownerId UTF8String], [matchId UTF8String], version, [matchState UTF8String],
         [pushMessage UTF8String], [nextPlayer UTF8String], [summary UTF8String], [stats UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));
@@ -64,7 +81,7 @@
           errorCompletionBlock:(BCErrorCompletionBlock)ecb
                       cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->updateMatchSummaryData(
+    _client->getAsyncMatchService()->updateMatchSummaryData(
         [ownerId UTF8String], [matchId UTF8String], version, [summary UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -75,7 +92,7 @@
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->completeMatch(
+    _client->getAsyncMatchService()->completeMatch(
         [ownerId UTF8String], [matchId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -85,7 +102,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->readMatch(
+    _client->getAsyncMatchService()->readMatch(
         [ownerId UTF8String], [matchId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -95,7 +112,7 @@
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->abandonMatch(
+    _client->getAsyncMatchService()->abandonMatch(
         [ownerId UTF8String], [matchId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -105,7 +122,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->deleteMatch(
+    _client->getAsyncMatchService()->deleteMatch(
         [ownerId UTF8String], [matchId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -115,7 +132,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->readMatchHistory(
+    _client->getAsyncMatchService()->readMatchHistory(
         [ownerId UTF8String], [matchId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -123,7 +140,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->findMatches(
+    _client->getAsyncMatchService()->findMatches(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -131,7 +148,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAsyncMatchService()->findCompleteMatches(
+    _client->getAsyncMatchService()->findCompleteMatches(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 

@@ -63,6 +63,13 @@
 + (BrainCloudClient *)getInstance;
 
 /**
+ * Internal method used by the brainCloud client to set the instance.
+ *
+ * @param BrainCloudClient * - pointer to the singleton BrainCloudClient object
+ */
++ (void)setInstance: (BrainCloudClient *) instance;
+
+/**
  * Call this method before initialize to disable the internal timer.
  * Once the timer is disabled, the brainCloud runCallbacks method will need to
  * be invoked manually to read/write from/to the network.

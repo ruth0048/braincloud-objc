@@ -11,7 +11,24 @@
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
+@interface BrainCloudPlaybackStream ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudPlaybackStream
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)startStream:(NSString *)targetPlayerId
        includeSharedData:(bool)includeSharedData
@@ -19,7 +36,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlaybackStreamService()->startStream(
+    _client->getPlaybackStreamService()->startStream(
         [targetPlayerId UTF8String], includeSharedData, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -28,7 +45,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlaybackStreamService()->readStream(
+    _client->getPlaybackStreamService()->readStream(
         [streamId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -37,7 +54,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlaybackStreamService()->endStream(
+    _client->getPlaybackStreamService()->endStream(
         [streamId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -46,7 +63,7 @@
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlaybackStreamService()->deleteStream(
+    _client->getPlaybackStreamService()->deleteStream(
         [streamId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -57,7 +74,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlaybackStreamService()->addEvent(
+    _client->getPlaybackStreamService()->addEvent(
         [streamId UTF8String], [eventData UTF8String], [summary UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -67,8 +84,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                      cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getPlaybackStreamService()
+    _client->getPlaybackStreamService()
         ->getStreamSummariesForInitiatingPlayer([playerId UTF8String],
                                                 new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -78,8 +94,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()
-        ->getPlaybackStreamService()
+    _client->getPlaybackStreamService()
         ->getStreamSummariesForTargetPlayer([playerId UTF8String],
                                             new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -89,7 +104,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                             completionBlock:(BCCompletionBlock)cb
                        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                    cbObject:(BCCallbackObject)cbObject {
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
             ->getPlaybackStreamService()
             ->getRecentStreamsForInitiatingPlayer([initiatingPlayerId UTF8String], maxStreams,
                     new BrainCloudCallback(cb, ecb, cbObject));
@@ -101,7 +116,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         completionBlock:(BCCompletionBlock)cb
                    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                cbObject:(BCCallbackObject)cbObject {
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
             ->getPlaybackStreamService()
             ->getRecentStreamsForTargetPlayer([targetPlayerId UTF8String], maxStreams,
                     new BrainCloudCallback(cb, ecb, cbObject));

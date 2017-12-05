@@ -13,12 +13,28 @@
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
+@interface BrainCloudAuthentication ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
 
 @implementation BrainCloudAuthentication
 
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
+
 - (NSString *)profileID
 {
-    const char* str = BrainCloud::BrainCloudClient::getInstance()
+    const char* str = _client
     ->getAuthenticationService()
     ->getProfileId()
     .c_str();
@@ -28,7 +44,7 @@
 
 - (NSString *)anonymousID
 {
-    const char* str = BrainCloud::BrainCloudClient::getInstance()
+    const char* str = _client
     ->getAuthenticationService()
     ->getAnonymousId()
     .c_str();
@@ -38,7 +54,7 @@
 
 - (void)initialize:(NSString *)profileID anonymousID:(NSString *)anonymousID
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->initialize(
+    _client->getAuthenticationService()->initialize(
         [profileID UTF8String], [anonymousID UTF8String]);
 }
 
@@ -46,7 +62,7 @@
 
 - (void)clearSavedProfile
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->clearSavedProfileId();
+    _client->getAuthenticationService()->clearSavedProfileId();
 }
 
 - (void)authenticateAnonymous:(BOOL)forceCreate
@@ -54,7 +70,7 @@
          errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                      cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->authenticateAnonymous(
+    _client->getAuthenticationService()->authenticateAnonymous(
         forceCreate, new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject));
 }
 
@@ -67,7 +83,7 @@
 {
     BrainCloudCallback *brainCloudCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->authenticateFacebook(
+    _client->getAuthenticationService()->authenticateFacebook(
         [externalID cStringUsingEncoding:NSUTF8StringEncoding],
         [authToken cStringUsingEncoding:NSUTF8StringEncoding], forceCreate, brainCloudCallback);
 }
@@ -80,7 +96,7 @@
 {
     BrainCloudCallback *brainCloudCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->authenticateGameCenter(
+    _client->getAuthenticationService()->authenticateGameCenter(
         [gameCenterID cStringUsingEncoding:NSUTF8StringEncoding], forceCreate, brainCloudCallback);
 }
 
@@ -93,7 +109,7 @@
 {
     BrainCloudCallback *brainCloudCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()
+    _client
         ->getAuthenticationService()
         ->authenticateEmailPassword([email cStringUsingEncoding:NSUTF8StringEncoding],
                                     [password cStringUsingEncoding:NSUTF8StringEncoding],
@@ -109,7 +125,7 @@
 {
     BrainCloudCallback *brainCloudCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->authenticateUniversal(
+    _client->getAuthenticationService()->authenticateUniversal(
         [userid cStringUsingEncoding:NSUTF8StringEncoding],
         [password cStringUsingEncoding:NSUTF8StringEncoding], forceCreate, brainCloudCallback);
 }
@@ -123,7 +139,7 @@
 {
     BrainCloudCallback *brainCloudCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->authenticateSteam(
+    _client->getAuthenticationService()->authenticateSteam(
         [userID cStringUsingEncoding:NSUTF8StringEncoding],
         [sessionticket cStringUsingEncoding:NSUTF8StringEncoding], forceCreate, brainCloudCallback);
 }
@@ -137,7 +153,7 @@
 {
     BrainCloudCallback *brainCloudCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->authenticateGoogle(
+    _client->getAuthenticationService()->authenticateGoogle(
         [userID cStringUsingEncoding:NSUTF8StringEncoding],
         [token cStringUsingEncoding:NSUTF8StringEncoding], forceCreate, brainCloudCallback);
 }
@@ -150,7 +166,7 @@
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->authenticateTwitter(
+    _client->getAuthenticationService()->authenticateTwitter(
         [userID UTF8String], [token UTF8String], [secret UTF8String], forceCreate,
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -162,7 +178,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->authenticateParse(
+    _client->getAuthenticationService()->authenticateParse(
         [userID UTF8String], [token UTF8String], forceCreate,
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -174,7 +190,7 @@
 {
     BrainCloudCallback *brainCloudCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->resetEmailPassword(
+    _client->getAuthenticationService()->resetEmailPassword(
         [email cStringUsingEncoding:NSUTF8StringEncoding], brainCloudCallback);
 }
 
@@ -188,7 +204,7 @@
 {
     BrainCloudCallback *brainCloudCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getAuthenticationService()->authenticateExternal(
+    _client->getAuthenticationService()->authenticateExternal(
         [userID cStringUsingEncoding:NSUTF8StringEncoding],
         [authToken cStringUsingEncoding:NSUTF8StringEncoding],
         [externalAuthName cStringUsingEncoding:NSUTF8StringEncoding], forceCreate,

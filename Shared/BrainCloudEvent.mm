@@ -11,7 +11,24 @@
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
+@interface BrainCloudEvent ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudEvent
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)sendEvent:(NSString *)toProfileId
                eventType:(NSString *)eventType
@@ -20,7 +37,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getEventService()->sendEvent(
+    _client->getEventService()->sendEvent(
         [toProfileId UTF8String], [eventType UTF8String], [eventData UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -31,7 +48,7 @@
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getEventService()->updateIncomingEventData(
+    _client->getEventService()->updateIncomingEventData(
         [evId UTF8String], [eventData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -40,7 +57,7 @@
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getEventService()->deleteIncomingEvent(
+    _client->getEventService()->deleteIncomingEvent(
         [evId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -48,7 +65,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getEventService()->getEvents(
+    _client->getEventService()->getEvents(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 

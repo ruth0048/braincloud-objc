@@ -12,13 +12,30 @@
 
 #import "BrainCloudGlobalStatistics.hh"
 
+@interface BrainCloudGlobalStatistics ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudGlobalStatistics
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)readAllGlobalStats:(BCCompletionBlock)completionBlock
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalStatisticsService()->readAllGlobalStats(
+    _client->getGlobalStatisticsService()->readAllGlobalStats(
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -27,7 +44,7 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalStatisticsService()->readGlobalStatsSubset(
+    _client->getGlobalStatisticsService()->readGlobalStatsSubset(
         TypeHelpers::NSStringArrayToVector(globalStats), new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -36,7 +53,7 @@
               errorCompletionBlock:(BCErrorCompletionBlock)ecb
                           cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalStatisticsService()->readGlobalStatsForCategory(
+    _client->getGlobalStatisticsService()->readGlobalStatsForCategory(
         [category UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -45,7 +62,7 @@
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalStatisticsService()->incrementGlobalGameStat(
+    _client->getGlobalStatisticsService()->incrementGlobalGameStat(
         [jsonData UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -54,7 +71,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalStatisticsService()->processStatistics(
+    _client->getGlobalStatisticsService()->processStatistics(
         [jsonData UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 

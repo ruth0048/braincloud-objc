@@ -100,7 +100,7 @@
     [m_bcWrapper reconnect:successBlock errorCompletionBlock:failureBlock cbObject:nil];
     [self waitForResult];
 
-    [[[BrainCloudWrapper getBC] timeService]readServerTime:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    [[[m_bcWrapper getBCClient] timeService]readServerTime:successBlock errorCompletionBlock:failureBlock cbObject:nil];
     [self waitForResult];
 }
 

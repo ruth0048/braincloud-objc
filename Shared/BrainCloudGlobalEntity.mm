@@ -13,7 +13,24 @@
 
 #import "BrainCloudGlobalEntity.hh"
 
+@interface BrainCloudGlobalEntity ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudGlobalEntity
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)createEntity:(NSString *)entityType
               timeToLive:(int64_t)timeToLive
@@ -29,7 +46,7 @@
     if (jsonEntityAcl != nil) acl = [jsonEntityAcl UTF8String];
     if (jsonEntityData != nil) data = [jsonEntityData UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->createEntity(
+    _client->getGlobalEntityService()->createEntity(
         type, timeToLive, acl, data, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -49,7 +66,7 @@
     if (jsonEntityAcl != nil) acl = [jsonEntityAcl UTF8String];
     if (jsonEntityData != nil) data = [jsonEntityData UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->createEntityWithIndexedId(
+    _client->getGlobalEntityService()->createEntityWithIndexedId(
         type, index, timeToLive, acl, data, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -65,7 +82,7 @@
     if (entityId != nil) eId = [entityId UTF8String];
     if (jsonEntityData != nil) data = [jsonEntityData UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->updateEntity(
+    _client->getGlobalEntityService()->updateEntity(
         eId, version, data, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -81,7 +98,7 @@
     if (entityId != nil) eId = [entityId UTF8String];
     if (jsonEntityAcl != nil) acl = [jsonEntityAcl UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->updateEntityAcl(
+    _client->getGlobalEntityService()->updateEntityAcl(
         eId, version, acl, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -95,7 +112,7 @@
     std::string eId;
     if (entityId != nil) eId = [entityId UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->updateEntityTimeToLive(
+    _client->getGlobalEntityService()->updateEntityTimeToLive(
         eId, version, timeToLive, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -108,7 +125,7 @@
     std::string eId;
     if (entityId != nil) eId = [entityId UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->deleteEntity(
+    _client->getGlobalEntityService()->deleteEntity(
         eId, version, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -120,7 +137,7 @@
     std::string eId;
     if (entityId != nil) eId = [entityId UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->readEntity(
+    _client->getGlobalEntityService()->readEntity(
         eId, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -136,7 +153,7 @@
     if (where != nil) wh = [where UTF8String];
     if (orderBy != nil) order = [orderBy UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->getList(
+    _client->getGlobalEntityService()->getList(
         wh, order, maxReturn, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -149,7 +166,7 @@
     std::string index;
     if (entityIndexedId != nil) index = [entityIndexedId UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->getListByIndexedId(
+    _client->getGlobalEntityService()->getListByIndexedId(
         index, maxReturn, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -161,7 +178,7 @@
     std::string wh;
     if (where != nil) wh = [where UTF8String];
 
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->getListCount(
+    _client->getGlobalEntityService()->getListCount(
         wh, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -170,7 +187,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->getPage(
+    _client->getGlobalEntityService()->getPage(
         [context UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -180,7 +197,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->getPageOffset(
+    _client->getGlobalEntityService()->getPageOffset(
         [context UTF8String], pageOffset, new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -190,7 +207,7 @@
              errorCompletionBlock:(BCErrorCompletionBlock)ecb
                          cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->incrementGlobalEntityData(
+    _client->getGlobalEntityService()->incrementGlobalEntityData(
         [entityId UTF8String], TypeHelpers::NSStringToStdString(jsonData),
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
@@ -205,8 +222,7 @@
     
     if (where != nil) wh = [where UTF8String];
     
-    BrainCloud::BrainCloudClient::getInstance()->
-    getGlobalEntityService()->getRandomEntitiesMatching(wh, maxReturn,
+    _client->getGlobalEntityService()->getRandomEntitiesMatching(wh, maxReturn,
                                                         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -220,7 +236,7 @@
                        cbObject:(BCCallbackObject)cbObject
 {
 
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->updateEntityOwnerAndAcl(
+    _client->getGlobalEntityService()->updateEntityOwnerAndAcl(
         [entityId UTF8String], version, [ownerId UTF8String], [jsonEntityAcl UTF8String],
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
@@ -233,7 +249,7 @@
                 cbObject:(BCCallbackObject)cbObject
 {
 
-    BrainCloud::BrainCloudClient::getInstance()->getGlobalEntityService()->makeSystemEntity(
+    _client->getGlobalEntityService()->makeSystemEntity(
         [entityId UTF8String], version, [jsonEntityAcl UTF8String],
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }

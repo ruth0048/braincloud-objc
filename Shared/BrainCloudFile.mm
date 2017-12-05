@@ -11,7 +11,24 @@
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
+@interface BrainCloudFile ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudFile
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (bool)uploadFile:(NSString *)cloudPath
      cloudFilename:(NSString *)cloudFilename
@@ -23,7 +40,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
           cbObject:(BCCallbackObject)cbObject;
 {
     BrainCloudCallback * bcb = new BrainCloudCallback(cb, ecb, cbObject);
-    bool res = BrainCloud::BrainCloudClient::getInstance()->
+    bool res = _client->
     getFileService()->uploadFile(
                                  [cloudPath UTF8String],
                                  [cloudFilename UTF8String],
@@ -43,7 +60,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->
+    _client->
     getFileService()->listUserFiles(new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -53,7 +70,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->
+    _client->
     getFileService()->listUserFiles([cloudPath UTF8String], recurse, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -63,7 +80,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->
+    _client->
     getFileService()->deleteUserFile([cloudPath UTF8String], [cloudFilename UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -73,7 +90,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->
+    _client->
     getFileService()->deleteUserFiles([cloudPath UTF8String], recurse, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -83,33 +100,31 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
          cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->
+    _client->
     getFileService()->getCDNUrl([cloudPath UTF8String], [cloudFileName UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void) cancelUpload:(NSString *)uploadId
 {
-    BrainCloud::BrainCloudClient::getInstance()->
+    _client->
     getFileService()->cancelUpload([uploadId UTF8String]);
 }
 
 - (double) getUploadProgress:(NSString *)uploadId
 {
-    return BrainCloud::BrainCloudClient::getInstance()->
+    return _client->
     getFileService()->getUploadProgress([uploadId UTF8String]);
 }
 
 - (NSInteger) getUploadBytesTransferred:(NSString *)uploadId
 {
-    return BrainCloud::BrainCloudClient::getInstance()->
-    getFileService()->getUploadBytesTransferred([uploadId UTF8String]);
+    return _client->getFileService()->getUploadBytesTransferred([uploadId UTF8String]);
 }
 
 
 - (NSInteger) getUploadTotalBytesToTransfer:(NSString *)uploadId
 {
-    return BrainCloud::BrainCloudClient::getInstance()->
-    getFileService()->getUploadTotalBytesToTransfer([uploadId UTF8String]);
+    return _client->getFileService()->getUploadTotalBytesToTransfer([uploadId UTF8String]);
 }
 
 @end

@@ -12,7 +12,24 @@
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
+@interface BrainCloudProduct ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudProduct
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)getCurrency:(NSString *)currencyType
          completionBlock:(BCCompletionBlock)completionBlock
@@ -21,7 +38,7 @@
 {
     BrainCloudCallback *bcCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getProductService()->getCurrency(
+    _client->getProductService()->getCurrency(
         [currencyType UTF8String], bcCallback);
 }
 
@@ -33,7 +50,7 @@
 {
     BrainCloudCallback *bcCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getProductService()->awardCurrency(
+    _client->getProductService()->awardCurrency(
         [currencyType UTF8String], amount, bcCallback);
 }
 
@@ -45,7 +62,7 @@
 {
     BrainCloudCallback *bcCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getProductService()->consumeCurrency(
+    _client->getProductService()->consumeCurrency(
         [currencyType UTF8String], amount, bcCallback);
 }
 
@@ -55,7 +72,7 @@
 {
     BrainCloudCallback *bcCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getProductService()->resetCurrency(bcCallback);
+    _client->getProductService()->resetCurrency(bcCallback);
 }
 
 - (void)getEligiblePromotions:(BCCompletionBlock)completionBlock
@@ -64,7 +81,7 @@
 {
     BrainCloudCallback *bcCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getProductService()->getEligiblePromotions(
+    _client->getProductService()->getEligiblePromotions(
         bcCallback);
 }
 
@@ -76,7 +93,7 @@
 {
     BrainCloudCallback *bcCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getProductService()->getSalesInventory(
+    _client->getProductService()->getSalesInventory(
         [platform UTF8String], [userCurrency UTF8String], bcCallback);
 }
 
@@ -89,7 +106,7 @@
 {
     BrainCloudCallback *bcCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getProductService()->getSalesInventoryByCategory(
+    _client->getProductService()->getSalesInventoryByCategory(
         [platform UTF8String], [userCurrency UTF8String], [category UTF8String], bcCallback);
 }
 
@@ -101,7 +118,7 @@
 {
     BrainCloudCallback *bcCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getProductService()->startSteamTransaction(
+    _client->getProductService()->startSteamTransaction(
         [language UTF8String], [itemId UTF8String], bcCallback);
 }
 
@@ -112,7 +129,7 @@
 {
     BrainCloudCallback *bcCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getProductService()->finalizeSteamTransaction(
+    _client->getProductService()->finalizeSteamTransaction(
         [transId UTF8String], bcCallback);
 }
 
@@ -123,7 +140,7 @@
 {
     BrainCloudCallback *bcCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getProductService()->verifyMicrosoftReceipt(
+    _client->getProductService()->verifyMicrosoftReceipt(
         [receipt UTF8String], bcCallback);
 }
 
@@ -134,7 +151,7 @@
 {
     BrainCloudCallback *bcCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getProductService()->verifyItunesReceipt(
+    _client->getProductService()->verifyItunesReceipt(
         [base64EncReceiptData UTF8String], bcCallback);
 }
 
@@ -147,7 +164,7 @@
 {
     BrainCloudCallback *bcCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
-    BrainCloud::BrainCloudClient::getInstance()->getProductService()->confirmGooglePlayPurchase(
+    _client->getProductService()->confirmGooglePlayPurchase(
         [orderId UTF8String], [productId UTF8String], [token UTF8String], bcCallback);
 }
 

@@ -125,7 +125,9 @@ BOOL _didJoin = false;
     _didJoin = true;
 
     NSDictionary *jsonObj = [TestFixtureBase getDataFromResponse:self.jsonResponse];
-    int versionId = (int)[jsonObj objectForKey:@"versionId"];
+    
+    
+    int versionId = (int)[[jsonObj objectForKey:@"versionId"] intValue];
     return versionId;
 }
 

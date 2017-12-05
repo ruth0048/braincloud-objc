@@ -12,13 +12,30 @@
 
 #import "BrainCloudPlayerState.hh"
 
+@interface BrainCloudPlayerState ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudPlayerState
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)readPlayerState:(BCCompletionBlock)completionBlock
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->readPlayerState(
+    _client->getPlayerStateService()->readUserState(
             new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -26,7 +43,7 @@
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->readPlayerState(
+    _client->getPlayerStateService()->readUserState(
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -34,7 +51,7 @@
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->deletePlayer(
+    _client->getPlayerStateService()->deleteUser(
             new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -42,7 +59,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->deletePlayer(
+    _client->getPlayerStateService()->deleteUser(
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -50,7 +67,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->resetPlayerState(
+    _client->getPlayerStateService()->resetUserState(
             new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -58,7 +75,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->resetPlayerState(
+    _client->getPlayerStateService()->resetUserState(
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -66,7 +83,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->logout(
+    _client->getPlayerStateService()->logout(
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -75,7 +92,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updatePlayerName(
+    _client->getPlayerStateService()->updateUserName(
             [userName UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -84,7 +101,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updatePlayerName(
+    _client->getPlayerStateService()->updateUserName(
         [userName UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -92,7 +109,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->getAttributes(
+    _client->getPlayerStateService()->getAttributes(
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -102,7 +119,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updateAttributes(
+    _client->getPlayerStateService()->updateAttributes(
         [jsonAttributes UTF8String], wipeExisting,
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
@@ -112,7 +129,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->removeAttributes(
+    _client->getPlayerStateService()->removeAttributes(
         TypeHelpers::NSStringArrayToVector(attributeNames), new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -121,7 +138,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updatePlayerPictureUrl(
+    _client->getPlayerStateService()->updateUserPictureUrl(
             [pictureUrl UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -130,7 +147,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updatePlayerPictureUrl(
+    _client->getPlayerStateService()->updateUserPictureUrl(
         [pictureUrl UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -139,7 +156,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject
 {
-        BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updateContactEmail(
+        _client->getPlayerStateService()->updateContactEmail(
         [contactEmail UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
@@ -148,7 +165,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getPlayerStateService()->updateSummaryFriendData(
+    _client->getPlayerStateService()->updateSummaryFriendData(
         [jsonSummaryData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 

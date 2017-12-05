@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-
 #import "BrainCloudClient.hh"
 
 @interface BrainCloudWrapper : NSObject
@@ -39,10 +38,9 @@
 + (BrainCloudWrapper *) getInstance;
 
 /**
- * Creates the brainCloud client
- * @return An instance of the BrainCloudWrapper.
+ * Initializes the brainCloud Wrapper
  */
-- (BrainCloudWrapper*) init;
+- (instancetype) init;
 
 /**
  * Method returns a singleton instance of the BrainCloudClient.

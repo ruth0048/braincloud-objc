@@ -11,8 +11,14 @@
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
 #import "BrainCloudLeaderboard.hh"
+#include "braincloud/BrainCloudClient.h"
 
 @interface BrainCloudTournament : NSObject
+
+/**
+ * Initializes the brainCloudService
+ */
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
 
 /**
  * Processes any outstanding rewards for the given player

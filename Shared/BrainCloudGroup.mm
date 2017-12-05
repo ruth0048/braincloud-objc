@@ -12,14 +12,31 @@
 #import "BrainCloudGroup.hh"
 #import "TypeHelpers.hh"
 
+@interface BrainCloudGroup ()
+{
+    BrainCloud::BrainCloudClient *_client;
+}
+@end
+
 @implementation BrainCloudGroup
+
+- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+{
+    self = [super init];
+
+    if(self) {
+        _client = client;
+    }
+
+    return self;
+}
 
 - (void)acceptGroupInvitation:(NSString *)groupId
               completionBlock:(BCCompletionBlock)cb
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->acceptGroupInvitation(
+    _client->getGroupService()->acceptGroupInvitation(
         [groupId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -31,7 +48,7 @@
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->addGroupMember(
+    _client->getGroupService()->addGroupMember(
         [groupId UTF8String], [profileId UTF8String], (BrainCloud::eGroupMember::Role)role,
         TypeHelpers::NSStringToStdString(jsonAttrib), new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -44,7 +61,7 @@
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->approveGroupJoinRequest(
+    _client->getGroupService()->approveGroupJoinRequest(
         [groupId UTF8String], [profileId UTF8String], (BrainCloud::eGroupMember::Role)role,
         TypeHelpers::NSStringToStdString(jsonAttrib), new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -56,7 +73,7 @@
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->autoJoinGroup(
+    _client->getGroupService()->autoJoinGroup(
         [groupType UTF8String], (BrainCloud::eAutoJoinStrategy::Strategy)autoJoinStrategy,
         TypeHelpers::NSStringToStdString(dataQueryJson), new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -67,7 +84,7 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->cancelGroupInvitation(
+    _client->getGroupService()->cancelGroupInvitation(
         [groupId UTF8String], [profileId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -82,7 +99,7 @@
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->createGroup(
+    _client->getGroupService()->createGroup(
         [name UTF8String], [type UTF8String], isOpenGroup ? true : false, [acl UTF8String],
         TypeHelpers::NSStringToStdString(jsonOwnerAttributes),
         TypeHelpers::NSStringToStdString(jsonDefaultMemberAttributes), TypeHelpers::NSStringToStdString(jsonData),
@@ -98,7 +115,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->createGroupEntity(
+    _client->getGroupService()->createGroupEntity(
         [groupId UTF8String], [entityType UTF8String], isOwnedByGroupMember ? true : false, [acl UTF8String],
         [jsonData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -109,7 +126,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->deleteGroup(
+    _client->getGroupService()->deleteGroup(
         [groupId UTF8String], version, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -120,7 +137,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->deleteGroupEntity(
+    _client->getGroupService()->deleteGroupEntity(
         [groupId UTF8String], [entityId UTF8String], version, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -128,7 +145,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->getMyGroups(
+    _client->getGroupService()->getMyGroups(
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -138,7 +155,7 @@
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->incrementGroupData(
+    _client->getGroupService()->incrementGroupData(
         [groupId UTF8String], [jsonData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -149,7 +166,7 @@
             errorCompletionBlock:(BCErrorCompletionBlock)ecb
                         cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->incrementGroupEntityData(
+    _client->getGroupService()->incrementGroupEntityData(
         [groupId UTF8String], [entityId UTF8String], [jsonData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -161,7 +178,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->inviteGroupMember(
+    _client->getGroupService()->inviteGroupMember(
         [groupId UTF8String], [profileId UTF8String], (BrainCloud::eGroupMember::Role)role,
         TypeHelpers::NSStringToStdString(jsonAttrib), new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -171,7 +188,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->joinGroup(
+    _client->getGroupService()->joinGroup(
         [groupId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -180,7 +197,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->leaveGroup(
+    _client->getGroupService()->leaveGroup(
         [groupId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -189,7 +206,7 @@
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->listGroupsPage(
+    _client->getGroupService()->listGroupsPage(
         [jsonContext UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -199,7 +216,7 @@
           errorCompletionBlock:(BCErrorCompletionBlock)ecb
                       cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->listGroupsPageByOffset(
+    _client->getGroupService()->listGroupsPageByOffset(
         [encodedContext UTF8String], offset, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -208,7 +225,7 @@
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->listGroupsWithMember(
+    _client->getGroupService()->listGroupsWithMember(
         [profileId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -217,7 +234,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->readGroup(
+    _client->getGroupService()->readGroup(
         [groupId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -226,7 +243,7 @@
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->readGroupData(
+    _client->getGroupService()->readGroupData(
         [groupId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -235,7 +252,7 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->readGroupEntitiesPage(
+    _client->getGroupService()->readGroupEntitiesPage(
         [jsonContext UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -245,7 +262,7 @@
                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
                              cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->readGroupEntitiesPageByOffset(
+    _client->getGroupService()->readGroupEntitiesPageByOffset(
         [encodedContext UTF8String], offset, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -255,7 +272,7 @@
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->readGroupEntity(
+    _client->getGroupService()->readGroupEntity(
         [groupId UTF8String], [entityId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -264,7 +281,7 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->readGroupMembers(
+    _client->getGroupService()->readGroupMembers(
         [groupId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -273,7 +290,7 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->rejectGroupInvitation(
+    _client->getGroupService()->rejectGroupInvitation(
         [groupId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -283,7 +300,7 @@
           errorCompletionBlock:(BCErrorCompletionBlock)ecb
                       cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->rejectGroupJoinRequest(
+    _client->getGroupService()->rejectGroupJoinRequest(
         [groupId UTF8String], [profileId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -293,7 +310,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->removeGroupMember(
+    _client->getGroupService()->removeGroupMember(
         [groupId UTF8String], [profileId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -304,7 +321,7 @@
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->updateGroupData(
+    _client->getGroupService()->updateGroupData(
         [groupId UTF8String], version, [jsonData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
@@ -316,7 +333,7 @@
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->updateGroupEntityData(
+    _client->getGroupService()->updateGroupEntityData(
         [groupId UTF8String], [entityId UTF8String], version, [jsonData UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -329,7 +346,7 @@
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->updateGroupMember(
+    _client->getGroupService()->updateGroupMember(
         [groupId UTF8String], [profileId UTF8String], (BrainCloud::eGroupMember::Role)role,
         TypeHelpers::NSStringToStdString(jsonAttrib), new BrainCloudCallback(cb, ecb, cbObject));
 }
@@ -340,7 +357,7 @@
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject;
 {
-    BrainCloud::BrainCloudClient::getInstance()->getGroupService()->updateGroupName(
+    _client->getGroupService()->updateGroupName(
         [groupId UTF8String], [name UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
