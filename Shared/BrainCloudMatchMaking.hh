@@ -138,6 +138,23 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Increases the shield on time by specified number of minutes
+ *
+ * Service Name - MatchMaking
+ * Service Operation - ShieldOnFor
+ *
+ * @param minutes Number of minutes to increase the shield time for
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)incrementShieldOnFor:(int) minutes
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject;
+
+
+/**
 * Gets the shield expiry for the given player id. Passing in a null player id
 * will return the shield expiry for the current player. The value returned is
 * the time in UTC millis when the shield will expire.

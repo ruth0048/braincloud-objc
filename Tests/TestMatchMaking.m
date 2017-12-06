@@ -99,6 +99,15 @@
     [self waitForResult];
 }
 
+- (void)testIncrementShieldOnFor
+{
+    [[m_client matchMakingService] incrementShieldOnFor:10
+                                        completionBlock:successBlock
+                                   errorCompletionBlock:failureBlock
+                                               cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testGetShieldExpiry
 {
     [[m_client matchMakingService] getShieldExpiry:[TestFixtureBase getUser:@"UserA"].m_profileId

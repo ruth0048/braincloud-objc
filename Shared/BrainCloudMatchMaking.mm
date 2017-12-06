@@ -98,6 +98,15 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)incrementShieldOnFor:(int) minutes
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject
+{
+    _client->getMatchmakingService()->incrementShieldOnFor(minutes,
+            new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)getShieldExpiry:(NSString *)playerId
         completionBlock:(BCCompletionBlock)cb
    errorCompletionBlock:(BCErrorCompletionBlock)ecb

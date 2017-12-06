@@ -30,19 +30,19 @@
     [m_bcWrapper setStoredAnonymousId:@""];
     
     [m_bcWrapper authenticateAnonymous:successBlock
-                                      errorCompletionBlock:failureBlock
-                                                  cbObject:nil];
+                  errorCompletionBlock:failureBlock
+                              cbObject:nil];
     [self waitForResult];
     [self reset];
     
     NSString *anonId = [m_bcWrapper storedAnonymousId];
     NSString *profileId = [m_bcWrapper storedProfileId];
     
-    //[[[BrainCloudWrapper getBC]authenticationService]clearSavedProfile];
+    [[[m_bcWrapper getBCClient] authenticationService] clearSavedProfile];
     
     [m_bcWrapper authenticateAnonymous:successBlock
-                                      errorCompletionBlock:failureBlock
-                                                  cbObject:nil];
+                  errorCompletionBlock:failureBlock
+                              cbObject:nil];
     [self waitForResult];
     
     if (![anonId isEqualToString:[m_bcWrapper storedAnonymousId] ])
