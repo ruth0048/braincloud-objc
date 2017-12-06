@@ -160,6 +160,8 @@ static BrainCloudClient *s_instance = nil;
 
 + (BrainCloudClient *)getInstance
 {
+    NSAssert(BrainCloud::BrainCloudClient::EnableSingletonMode, [NSString stringWithUTF8String:BrainCloud::BrainCloudClient::SingletonUseErrorMessage]);
+    
     @synchronized(self) {
         if(s_instance == nil) {
             s_instance = [[BrainCloudClient alloc] init];
