@@ -81,6 +81,11 @@
 + (void) setEnableSingletonMode: (bool) state;
 
 /**
+ * Initializes the brainCloud Client
+ */
+- (instancetype) init;
+
+/**
  * Call this method before initialize to disable the internal timer.
  * Once the timer is disabled, the brainCloud runCallbacks method will need to
  * be invoked manually to read/write from/to the network.

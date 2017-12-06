@@ -48,40 +48,46 @@ static BrainCloudWrapper *sharedWrapper = nil;
     @synchronized(self) {
         if(sharedWrapper == nil) {
             sharedWrapper = [[self alloc] init];
-            sharedWrapper.alwaysAllowProfileSwitch = YES;
-
-            // the generic authentication completion blocks
-
-            sharedWrapper.authSuccessCompletionBlock = ^(NSString *serviceName, NSString *serviceOperation, NSString *jsonData, BCCallbackObject cbObject)
-            {
-                NSData *data = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
-                NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data
-                                                                        options:NSJSONReadingMutableContainers
-                                                                          error:nil];
-
-                sharedWrapper.storedProfileId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"profileId"];
-
-                AuthenticationCallbackObject *aco = (AuthenticationCallbackObject*) cbObject;
-                if (aco.completionBlock != nil)
-                {
-                    aco.completionBlock(serviceName, serviceOperation, jsonData, aco.cbObject);
-                }
-            };
-
-            sharedWrapper.authErrorCompletionBlock = ^(NSString *serviceName, NSString *serviceOperation, NSInteger statusCode, NSInteger returnCode, NSString *jsonError, BCCallbackObject cbObject)
-            {
-                AuthenticationCallbackObject *aco = (AuthenticationCallbackObject*) cbObject;
-                if (aco.errorCompletionBlock != nil)
-                {
-                    aco.errorCompletionBlock(serviceName, serviceOperation, statusCode, returnCode, jsonError, aco.cbObject);
-                }
-            };
-
+            
+            [sharedWrapper setupCallBacks];
+            
             [BrainCloudClient setInstance:[sharedWrapper getBCClient]];
         }
     }
 
     return sharedWrapper;
+}
+
+-(void) setupCallBacks
+{
+    self.alwaysAllowProfileSwitch = YES;
+    
+    // the generic authentication completion blocks
+    self.authSuccessCompletionBlock = ^(NSString *serviceName, NSString *serviceOperation, NSString *jsonData, BCCallbackObject cbObject)
+    {
+        NSData *data = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data
+                                                                options:NSJSONReadingMutableContainers
+                                                                  error:nil];
+        
+        self.storedProfileId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"profileId"];
+        
+        AuthenticationCallbackObject *aco = (AuthenticationCallbackObject*) cbObject;
+        if (aco.completionBlock != nil)
+        {
+            aco.completionBlock(serviceName, serviceOperation, jsonData, aco.cbObject);
+        }
+    };
+    
+    self.authErrorCompletionBlock = ^(NSString *serviceName, NSString *serviceOperation, NSInteger statusCode, NSInteger returnCode, NSString *jsonError, BCCallbackObject cbObject)
+    {
+        AuthenticationCallbackObject *aco = (AuthenticationCallbackObject*) cbObject;
+        if (aco.errorCompletionBlock != nil)
+        {
+            aco.errorCompletionBlock(serviceName, serviceOperation, statusCode, returnCode, jsonError, aco.cbObject);
+        }
+    };
+
 }
 
 - (instancetype) init
@@ -91,16 +97,25 @@ static BrainCloudWrapper *sharedWrapper = nil;
     {
         self.wrapperName = @"";
         _bcClient = [[BrainCloudClient alloc] init];
+        [self setupCallBacks];
     }
 
     return self;
 }
 
-- (BrainCloudWrapper*) init: (NSString*) wrapperName
-{
-    self.wrapperName = wrapperName;
-    _bcClient = [[BrainCloudClient alloc] init];
 
+
+- (instancetype) init: (NSString*) wrapperName
+{
+    self = [super init];
+    
+    if(self)
+    {
+        self.wrapperName = wrapperName;
+        _bcClient = [[BrainCloudClient alloc] init];
+        [self setupCallBacks];
+    }
+    
     return self;
 }
 
@@ -128,6 +143,11 @@ static BrainCloudWrapper *sharedWrapper = nil;
 
 - (NSString *)storedAnonymousId
 {
+    
+    NSString * got = [self makePrefixedName:kPersistenceKeyAnonymousId];
+    NSString * stored = [self.helper stringForKey:[self makePrefixedName:kPersistenceKeyAnonymousId]];
+    
+    
     return [self.helper stringForKey:[self makePrefixedName:kPersistenceKeyAnonymousId]];
 }
 
