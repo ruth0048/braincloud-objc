@@ -34,6 +34,8 @@
  * Note: if using a local instance of the brainCloud client, refer to it instead of getInstance.
  *
  * @return A singleton instance of the BrainCloudWrapper.
+ *
+ * @deprecated Use of the *singleton* has been deprecated. We recommend that you create your own *variable* to hold an instance of the brainCloudWrapper. Explanation here: http://getbraincloud.com/blog
  */
 + (BrainCloudWrapper *) getInstance;
 
@@ -45,6 +47,8 @@
 /**
  * Method returns a singleton instance of the BrainCloudClient.
  * @return A singleton instance of the BrainCloudClient.
+ *
+ * @deprecated Use of the *singleton* has been deprecated. We recommend that you create your own *variable* to hold an instance of the brainCloudWrapper. Explanation here: http://getbraincloud.com/blog
  */
 + (BrainCloudClient *) getBC;
 

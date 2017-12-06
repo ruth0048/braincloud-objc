@@ -173,6 +173,10 @@ static BrainCloudClient *s_instance = nil;
     s_instance = instance;
 }
 
++ (void) setEnableSingletonMode: (bool) state
+{
+    BrainCloud::BrainCloudClient::EnableSingletonMode = state;
+}
 
 - (instancetype)init
 {

@@ -112,39 +112,41 @@ static BrainCloudWrapper *sharedWrapper = nil;
     return _bcClient;
 }
 
+- (NSString *) makePrefixedName: (NSString*) name
+{
+    NSString *prefix = _wrapperName == nil || [_wrapperName isEqualToString:@""] ? @"" : [_wrapperName stringByAppendingString:@"."];
+    return [prefix stringByAppendingString:name];
+
+}
 
 - (void)setStoredAnonymousId:(NSString *)storedAnonymousId
 {
-    NSString * prefix = _wrapperName == nil || [_wrapperName isEqualToString:@""] ? @"" : [_wrapperName stringByAppendingString:@"."];
-    [self.helper saveString:[prefix stringByAppendingString:storedAnonymousId] forKey:kPersistenceKeyAnonymousId];
+    [self.helper saveString:storedAnonymousId forKey:[self makePrefixedName:kPersistenceKeyAnonymousId]];
 }
 
 - (NSString *)storedAnonymousId
 {
-    NSString * prefix = _wrapperName == nil || [_wrapperName isEqualToString:@""] ? @"" : [_wrapperName stringByAppendingString:@"."];
-    return [self.helper stringForKey:[prefix stringByAppendingString:kPersistenceKeyAnonymousId]];
+    return [self.helper stringForKey:[self makePrefixedName:kPersistenceKeyAnonymousId]];
 }
 
 - (void)setStoredAuthenticationType:(NSString *)storedAuthenticationType
 {
-    NSString * prefix = _wrapperName == nil || [_wrapperName isEqualToString:@""] ? @"" : [_wrapperName stringByAppendingString:@"."];
-    [self.helper saveString:[prefix stringByAppendingString:storedAuthenticationType]  forKey:kPersistenceKeyAuthenticationType];
+    [self.helper saveString:storedAuthenticationType forKey:[self makePrefixedName:kPersistenceKeyAuthenticationType]];
 }
 
 - (NSString *)storedAuthenticationType
 {
-    NSString * prefix = _wrapperName == nil || [_wrapperName isEqualToString:@""] ? @"" : [_wrapperName stringByAppendingString:@"."];
-    return [self.helper stringForKey:[prefix stringByAppendingString:kPersistenceKeyAuthenticationType]];
+    return [self.helper stringForKey:[self makePrefixedName:kPersistenceKeyAuthenticationType]];
 }
 
 - (void)setStoredProfileId:(NSString *)storedProfileId
 {
-    [self.helper saveString:storedProfileId forKey:kPersistenceKeyProfileId];
+    [self.helper saveString:storedProfileId forKey:[self makePrefixedName:kPersistenceKeyProfileId]];
 }
 
 - (NSString *)storedProfileId
 {
-    return [self.helper stringForKey:kPersistenceKeyProfileId];
+    return [self.helper stringForKey:[self makePrefixedName:kPersistenceKeyProfileId]];
 }
 
 #pragma mark - C++ Initialization
