@@ -499,11 +499,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
 
 #pragma mark - Properties
 
-- (BrainCloudAuthentication *)authenticationService
-{
-    return [_bcClient authenticationService];
-}
-
 - (BrainCloudScript *)scriptService
 {
     return [_bcClient scriptService];

@@ -326,7 +326,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
  */
 - (void)runCallbacks;
 
-@property(readonly) BrainCloudAuthentication *authenticationService;
 @property(readonly) BrainCloudScript *scriptService;
 @property(readonly) BrainCloudPushNotification *pushNotificationService;
 @property(readonly) BrainCloudProduct *productService;
