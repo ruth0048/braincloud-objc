@@ -45,6 +45,14 @@
 - (instancetype) init;
 
 /**
+ * Initializes the brainCloud Wrapper
+ *
+ * @param wrapperName value used to differentiate saved wrapper data
+ */
+- (instancetype) init: (NSString*) wrapperName;
+
+
+/**
  * Method returns a singleton instance of the BrainCloudClient.
  * @return A singleton instance of the BrainCloudClient.
  *
