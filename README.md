@@ -100,7 +100,7 @@ Attaching email authenticate would look like this.
 [[_bc identityService] attachEmailIdentity:_email
                        authenticationToken:_password
                            completionBlock:_successCallback
-                      errorCompletionBlock:_failureCallbackc
+                      errorCompletionBlock:_failureCallback
                                   cbObject:nil];
 ```
 There are many authentication types. You can also merge profiles and detach idenities. See the brainCloud documentation for more information:
