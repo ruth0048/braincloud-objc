@@ -81,7 +81,7 @@ The simplest form of authenticating with brainCloud Wrapper is an Anonymous Auth
 ```
 This method will create an account, and continue to use a locally saved anonymous id.
 
-Your _callback will inherit from IServerCallback and contain the functions needed to react to the brainCloud Server response.
+Your _successBlock and _failureBlock will contain the blocks needed to react to the brainCloud Server response.
 
 
 
