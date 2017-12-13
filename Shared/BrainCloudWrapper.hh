@@ -35,7 +35,7 @@
  *
  * @return A singleton instance of the BrainCloudWrapper.
  *
- * @deprecated Use of the *singleton* has been deprecated. We recommend that you create your own *variable* to hold an instance of the brainCloudWrapper. Explanation here: http://getbraincloud.com/apidocs/release-3-6-5/
+ * @deprecated Use of the *singleton* has been deprecated. We recommend that you create your own *variable* to hold an instance of the brainCloudWrapper. Explanation here: http://getbraincloud.com/apidocs/wrappers-clients-and-inconvenient-singletons/
  */
 + (BrainCloudWrapper *) getInstance;
 
@@ -56,7 +56,7 @@
  * Method returns a singleton instance of the BrainCloudClient.
  * @return A singleton instance of the BrainCloudClient.
  *
- * @deprecated Use of the *singleton* has been deprecated. We recommend that you create your own *variable* to hold an instance of the brainCloudWrapper. Explanation here: http://getbraincloud.com/apidocs/release-3-6-5/
+ * @deprecated Use of the *singleton* has been deprecated. We recommend that you create your own *variable* to hold an instance of the brainCloudWrapper. Explanation here: http://getbraincloud.com/apidocs/wrappers-clients-and-inconvenient-singletons/
  */
 + (BrainCloudClient *) getBC;
 
