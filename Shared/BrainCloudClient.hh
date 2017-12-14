@@ -81,6 +81,11 @@
 + (void) setEnableSingletonMode: (bool) state;
 
 /**
+ * @return state of singleton mode
+ */
++ (bool) getEnableSingletonMode;
+
+/**
  * Initializes the brainCloud Client
  */
 - (instancetype) init;

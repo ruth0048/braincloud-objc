@@ -42,7 +42,7 @@ static BrainCloudWrapper *sharedWrapper = nil;
 
 + (BrainCloudWrapper *) getInstance
 {
-    NSAssert(BrainCloud::BrainCloudClient::EnableSingletonMode, [NSString stringWithUTF8String:BrainCloud::BrainCloudClient::SingletonUseErrorMessage]);
+    NSAssert([BrainCloudClient getEnableSingletonMode], @"Singleton usage is disabled. If called by mistake, use your own variable that holds an instance of the bcWrapper/bcClient.");
     
     @synchronized(self) {
         if(sharedWrapper == nil) {
