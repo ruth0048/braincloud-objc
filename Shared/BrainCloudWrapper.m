@@ -142,11 +142,6 @@ static BrainCloudWrapper *sharedWrapper = nil;
 
 - (NSString *)storedAnonymousId
 {
-    
-    NSString * got = [self makePrefixedName:kPersistenceKeyAnonymousId];
-    NSString * stored = [self.helper stringForKey:[self makePrefixedName:kPersistenceKeyAnonymousId]];
-    
-    
     return [self.helper stringForKey:[self makePrefixedName:kPersistenceKeyAnonymousId]];
 }
 
