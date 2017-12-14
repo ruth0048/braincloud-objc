@@ -10,7 +10,8 @@
 
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
-#include "braincloud/BrainCloudClient.h"
+
+@class BrainCloudClient;
 
 extern NSString *const AUTH_FACEBOOK;
 
@@ -19,7 +20,7 @@ extern NSString *const AUTH_FACEBOOK;
 /**
  * Initializes the brainCloudService
  */
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
+- (instancetype) init: (BrainCloudClient*) client;
 
 @property(strong, nonatomic) NSString *anonymousID;
 @property(strong, nonatomic) NSString *profileID;

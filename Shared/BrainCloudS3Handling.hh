@@ -9,14 +9,15 @@
 #pragma once
 
 #import "BrainCloudCompletionBlocks.hh"
-#include "braincloud/BrainCloudClient.h"
+
+@class BrainCloudClient;
 
 @interface BrainCloudS3Handling : NSObject
 
 /**
  * Initializes the brainCloudService
  */
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
+- (instancetype) init: (BrainCloudClient*) client;
 
 /**
 * Sends an array of file details and returns

@@ -10,14 +10,15 @@
 
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
-#include "braincloud/BrainCloudClient.h"
+
+@class BrainCloudClient;
 
 @interface BrainCloudEvent : NSObject
 
 /**
  * Initializes the brainCloudService
  */
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
+- (instancetype) init: (BrainCloudClient*) client;
 
 /**
 * Sends an event to the designated player id with the attached json data.

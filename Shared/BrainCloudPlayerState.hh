@@ -10,14 +10,15 @@
 
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
-#include "braincloud/BrainCloudClient.h"
+
+@class BrainCloudClient;
 
 @interface BrainCloudPlayerState : NSObject
 
 /**
  * Initializes the brainCloudService
  */
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
+- (instancetype) init: (BrainCloudClient*) client;
 
 /**
 * @deprecated Use readUserState instead - removal after September 1 2017

@@ -86,6 +86,11 @@
 - (instancetype) init;
 
 /**
+ * Get a void pointer to the C++ brainCloud Client
+ */
+- (void *) getInternalClient;
+
+/**
  * Call this method before initialize to disable the internal timer.
  * Once the timer is disabled, the brainCloud runCallbacks method will need to
  * be invoked manually to read/write from/to the network.

@@ -10,14 +10,15 @@
 
 #import <Foundation/Foundation.h>
 #import "BrainCloudCompletionBlocks.hh"
-#include "braincloud/BrainCloudClient.h"
+
+@class BrainCloudClient;
 
 @interface BrainCloudPlayerStatistics : NSObject
 
 /**
  * Initializes the brainCloudService
  */
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
+- (instancetype) init: (BrainCloudClient*) client;
 
 /**
 * @deprecated Use readAllUserStats instead - removal after September 1 2017

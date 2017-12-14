@@ -10,14 +10,15 @@
 
 #import "BrainCloudCompletionBlocks.hh"
 #import <Foundation/Foundation.h>
-#include "braincloud/BrainCloudClient.h"
+
+@class BrainCloudClient;
 
 @interface BrainCloudGlobalStatistics : NSObject
 
 /**
  * Initializes the brainCloudService
  */
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
+- (instancetype) init: (BrainCloudClient*) client;
 
 /**
 * Method returns all of the global statistics.

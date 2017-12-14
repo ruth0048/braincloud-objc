@@ -1,5 +1,4 @@
 #import "BrainCloudWrapper.hh"
-
 #import "BrainCloudSaveDataHelper.h"
 
 @interface BrainCloudWrapper ()

@@ -11,7 +11,7 @@
 
 #include "BrainCloudCallback.hh"
 #include "braincloud/BrainCloudClient.h"
-
+#import "BrainCloudClient.hh"
 #import "BrainCloudLeaderboard.hh"
 
 @interface BrainCloudLeaderboard ()
@@ -22,12 +22,12 @@
 
 @implementation BrainCloudLeaderboard
 
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+- (instancetype) init: (BrainCloudClient*) client
 {
     self = [super init];
 
     if(self) {
-        _client = client;
+        _client = (BrainCloud::BrainCloudClient *)[client getInternalClient];
     }
 
     return self;

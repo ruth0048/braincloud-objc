@@ -10,14 +10,15 @@
 
 #import "BrainCloudCompletionBlocks.hh"
 #import <Foundation/Foundation.h>
-#include "braincloud/BrainCloudClient.h"
+
+@class BrainCloudClient;
 
 @interface BrainCloudFile : NSObject
 
 /**
  * Initializes the brainCloudService
  */
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
+- (instancetype) init: (BrainCloudClient*) client;
 
 /**
  * Prepares a user file upload. On success the file will begin uploading

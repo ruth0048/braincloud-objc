@@ -11,6 +11,8 @@
 #import "PlatformObjc.hh"
 #include "braincloud/BrainCloudClient.h"
 #include "braincloud/Platform.h"
+#import "BrainCloudClient.hh"
+
 
 @interface BrainCloudPushNotification ()
 {
@@ -20,12 +22,12 @@
 
 @implementation BrainCloudPushNotification
 
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+- (instancetype) init: (BrainCloudClient*) client
 {
     self = [super init];
 
     if(self) {
-        _client = client;
+        _client = (BrainCloud::BrainCloudClient *)[client getInternalClient];
     }
 
     return self;

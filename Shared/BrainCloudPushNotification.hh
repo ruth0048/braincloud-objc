@@ -9,7 +9,8 @@
 #pragma once
 
 #import "BrainCloudCompletionBlocks.hh"
-#include "braincloud/BrainCloudClient.h"
+
+@class BrainCloudClient;
 
 @class PlatformObjc;
 @interface BrainCloudPushNotification : NSObject
@@ -17,7 +18,7 @@
 /**
  * Initializes the brainCloudService
  */
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
+- (instancetype) init: (BrainCloudClient*) client;
 
 /**
  * Deregisters all device tokens currently registered to the profile.

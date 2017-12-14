@@ -195,6 +195,10 @@ static BrainCloudClient *s_instance = nil;
     return self;
 }
 
+- (void *) getInternalClient
+{
+    return _client;
+}
 
 - (void)disableInternalTimer
 {
@@ -324,6 +328,7 @@ static BrainCloudClient *s_instance = nil;
 {
     _objcFileUploadCallback._uploadCompletedCallback = completedBlock;
     _objcFileUploadCallback._uploadFailedCallback = failedBlock;
+   
     _client->registerFileUploadCallback(&_objcFileUploadCallback);
 }
 
@@ -436,175 +441,175 @@ static BrainCloudClient *s_instance = nil;
 
 - (BrainCloudAuthentication *)authenticationService
 {
-    if (!_authenticationService) _authenticationService = [[BrainCloudAuthentication alloc] init: _client];
+    if (!_authenticationService) _authenticationService = [[BrainCloudAuthentication alloc] init: self];
     return _authenticationService;
 }
 
 - (BrainCloudScript *)scriptService
 {
-    if (!_scriptService) _scriptService = [[BrainCloudScript alloc] init: _client];
+    if (!_scriptService) _scriptService = [[BrainCloudScript alloc] init: self];
     return _scriptService;
 }
 
 - (BrainCloudPushNotification *)pushNotificationService
 {
-    if (!_pushNotificationService) _pushNotificationService = [[BrainCloudPushNotification alloc] init: _client];
+    if (!_pushNotificationService) _pushNotificationService = [[BrainCloudPushNotification alloc] init: self];
     return _pushNotificationService;
 }
 
 - (BrainCloudProduct *)productService
 {
-    if (!_productService) _productService = [[BrainCloudProduct alloc] init: _client];
+    if (!_productService) _productService = [[BrainCloudProduct alloc] init: self];
     return _productService;
 }
 
 - (BrainCloudPlayerState *)playerStateService
 {
-    if (!_playerStateService) _playerStateService = [[BrainCloudPlayerState alloc] init: _client];
+    if (!_playerStateService) _playerStateService = [[BrainCloudPlayerState alloc] init: self];
     return _playerStateService;
 }
 
 - (BrainCloudPlayerStatistics *)playerStatisticsService
 {
-    if (!_playerStatisticsService) _playerStatisticsService = [[BrainCloudPlayerStatistics alloc] init: _client];
+    if (!_playerStatisticsService) _playerStatisticsService = [[BrainCloudPlayerStatistics alloc] init: self];
     return _playerStatisticsService;
 }
 
 - (BrainCloudGlobalStatistics *)globalStatisticsService
 {
-    if (!_globalStatisticsService) _globalStatisticsService = [[BrainCloudGlobalStatistics alloc] init: _client];
+    if (!_globalStatisticsService) _globalStatisticsService = [[BrainCloudGlobalStatistics alloc] init: self];
     return _globalStatisticsService;
 }
 
 - (BrainCloudEntity *)entityService
 {
-    if (!_entityService) _entityService = [[BrainCloudEntity alloc] init: _client];
+    if (!_entityService) _entityService = [[BrainCloudEntity alloc] init: self];
     return _entityService;
 }
 
 - (BrainCloudGlobalEntity *)globalEntityService
 {
-    if (!_globalEntityService) _globalEntityService = [[BrainCloudGlobalEntity alloc] init: _client];
+    if (!_globalEntityService) _globalEntityService = [[BrainCloudGlobalEntity alloc] init: self];
     return _globalEntityService;
 }
 
 - (BrainCloudLeaderboard *)leaderboardService
 {
-    if (!_leaderboardService) _leaderboardService = [[BrainCloudLeaderboard alloc] init: _client];
+    if (!_leaderboardService) _leaderboardService = [[BrainCloudLeaderboard alloc] init: self];
     return _leaderboardService;
 }
 
 - (BrainCloudGlobalApp *)globalAppService
 {
-    if (!_globalAppService) _globalAppService = [[BrainCloudGlobalApp alloc] init: _client];
+    if (!_globalAppService) _globalAppService = [[BrainCloudGlobalApp alloc] init: self];
     return _globalAppService;
 }
 
 - (BrainCloudFriend *)friendService
 {
-    if (!_friendService) _friendService = [[BrainCloudFriend alloc] init: _client];
+    if (!_friendService) _friendService = [[BrainCloudFriend alloc] init: self];
     return _friendService;
 }
 
 - (BrainCloudMail *)mailService
 {
-    if (!_mailService) _mailService = [[BrainCloudMail alloc] init: _client];
+    if (!_mailService) _mailService = [[BrainCloudMail alloc] init: self];
     return _mailService;
 }
 
 - (BrainCloudMatchMaking *)matchMakingService
 {
-    if (!_matchMakingService) _matchMakingService = [[BrainCloudMatchMaking alloc] init: _client];
+    if (!_matchMakingService) _matchMakingService = [[BrainCloudMatchMaking alloc] init: self];
     return _matchMakingService;
 }
 
 - (BrainCloudAsyncMatch *)asyncMatchService
 {
-    if (!_asyncMatchService) _asyncMatchService = [[BrainCloudAsyncMatch alloc] init: _client];
+    if (!_asyncMatchService) _asyncMatchService = [[BrainCloudAsyncMatch alloc] init: self];
     return _asyncMatchService;
 }
 
 - (BrainCloudOneWayMatch *)oneWayMatchService
 {
-    if (!_oneWayMatchService) _oneWayMatchService = [[BrainCloudOneWayMatch alloc] init: _client];
+    if (!_oneWayMatchService) _oneWayMatchService = [[BrainCloudOneWayMatch alloc] init: self];
     return _oneWayMatchService;
 }
 
 - (BrainCloudPlaybackStream *)playbackStreamService
 {
-    if (!_playbackStreamService) _playbackStreamService = [[BrainCloudPlaybackStream alloc] init: _client];
+    if (!_playbackStreamService) _playbackStreamService = [[BrainCloudPlaybackStream alloc] init: self];
     return _playbackStreamService;
 }
 
 - (BrainCloudGamification *)gamificationService
 {
-    if (!_gamificationService) _gamificationService = [[BrainCloudGamification alloc] init: _client];
+    if (!_gamificationService) _gamificationService = [[BrainCloudGamification alloc] init: self];
     return _gamificationService;
 }
 
 - (BrainCloudEvent *)eventService
 {
-    if (!_eventService) _eventService = [[BrainCloudEvent alloc] init: _client];
+    if (!_eventService) _eventService = [[BrainCloudEvent alloc] init: self];
     return _eventService;
 }
 
 - (BrainCloudPlayerStatisticsEvent *)playerStatisticsEventService
 {
-    if (!_playerStatisticsEventService) _playerStatisticsEventService = [[BrainCloudPlayerStatisticsEvent alloc] init: _client];
+    if (!_playerStatisticsEventService) _playerStatisticsEventService = [[BrainCloudPlayerStatisticsEvent alloc] init: self];
     return _playerStatisticsEventService;
 }
 
 - (BrainCloudTime *)timeService
 {
-    if (!_timeService) _timeService = [[BrainCloudTime alloc] init: _client];
+    if (!_timeService) _timeService = [[BrainCloudTime alloc] init: self];
     return _timeService;
 }
 
 - (BrainCloudTournament *)tournamentService
 {
-    if (!_tournamentService) _tournamentService = [[BrainCloudTournament alloc] init: _client];
+    if (!_tournamentService) _tournamentService = [[BrainCloudTournament alloc] init: self];
     return _tournamentService;
 }
 
 - (BrainCloudS3Handling *)s3HandlingService
 {
-    if (!_s3HandlingService) _s3HandlingService = [[BrainCloudS3Handling alloc] init: _client];
+    if (!_s3HandlingService) _s3HandlingService = [[BrainCloudS3Handling alloc] init: self];
     return _s3HandlingService;
 }
 
 - (BrainCloudIdentity *)identityService
 {
-    if (!_identityService) _identityService = [[BrainCloudIdentity alloc] init: _client];
+    if (!_identityService) _identityService = [[BrainCloudIdentity alloc] init: self];
     return _identityService;
 }
 
 - (BrainCloudRedemptionCode *)redemptionCodeService
 {
-    if (!_redemptionCodeService) _redemptionCodeService = [[BrainCloudRedemptionCode alloc] init: _client];
+    if (!_redemptionCodeService) _redemptionCodeService = [[BrainCloudRedemptionCode alloc] init: self];
     return _redemptionCodeService;
 }
 
 - (BrainCloudDataStream *)dataStreamService
 {
-    if (!_dataStreamService) _dataStreamService = [[BrainCloudDataStream alloc] init: _client];
+    if (!_dataStreamService) _dataStreamService = [[BrainCloudDataStream alloc] init: self];
     return _dataStreamService;
 }
 
 - (BrainCloudProfanity *)profanityService
 {
-    if (!_profanityService) _profanityService = [[BrainCloudProfanity alloc] init: _client];
+    if (!_profanityService) _profanityService = [[BrainCloudProfanity alloc] init: self];
     return _profanityService;
 }
 
 - (BrainCloudFile *)fileService
 {
-    if (!_fileService) _fileService = [[BrainCloudFile alloc] init: _client];
+    if (!_fileService) _fileService = [[BrainCloudFile alloc] init: self];
     return _fileService;
 }
 
 - (BrainCloudGroup *)groupService
 {
-    if (!_groupService) _groupService = [[BrainCloudGroup alloc] init: _client];
+    if (!_groupService) _groupService = [[BrainCloudGroup alloc] init: self];
     return _groupService;
 }
 

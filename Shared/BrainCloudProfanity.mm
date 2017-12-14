@@ -8,7 +8,7 @@
 //
 
 #import "BrainCloudProfanity.hh"
-
+#import "BrainCloudClient.hh"
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
@@ -20,12 +20,12 @@
 
 @implementation BrainCloudProfanity
 
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+- (instancetype) init: (BrainCloudClient*) client
 {
     self = [super init];
 
     if(self) {
-        _client = client;
+        _client = (BrainCloud::BrainCloudClient *)[client getInternalClient];
     }
 
     return self;

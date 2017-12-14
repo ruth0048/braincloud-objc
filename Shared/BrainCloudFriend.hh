@@ -7,9 +7,9 @@
 //
 
 #import "BrainCloudCompletionBlocks.hh"
-#include "braincloud/BrainCloudClient.h"
 #import <Foundation/Foundation.h>
 
+@class BrainCloudClient;
 @class FriendPlatformObjc;
 @class AuthenticationTypeObjc;
 @interface BrainCloudFriend : NSObject
@@ -17,7 +17,7 @@
 /**
  * Initializes the brainCloudService
  */
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client;
+- (instancetype) init: (BrainCloudClient*) client;
 
 /**
  * Retrieves profile information for the specified user.

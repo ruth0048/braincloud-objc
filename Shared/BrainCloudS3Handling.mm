@@ -8,8 +8,9 @@
 
 #include "BrainCloudCallback.hh"
 #include "braincloud/BrainCloudClient.h"
-
 #import "BrainCloudS3Handling.hh"
+#import "BrainCloudClient.hh"
+
 
 @interface BrainCloudS3Handling ()
 {
@@ -19,12 +20,12 @@
 
 @implementation BrainCloudS3Handling
 
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+- (instancetype) init: (BrainCloudClient*) client
 {
     self = [super init];
     
     if(self) {
-        _client = client;
+        _client = (BrainCloud::BrainCloudClient *)[client getInternalClient];
     }
     
     return self;

@@ -7,7 +7,7 @@
 //
 
 #import "BrainCloudAsyncMatch.hh"
-
+#import "BrainCloudClient.hh"
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 
@@ -19,12 +19,12 @@
 
 @implementation BrainCloudAsyncMatch
 
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+- (instancetype) init: (BrainCloudClient*) client
 {
     self = [super init];
 
     if(self) {
-        _client = client;
+        _client = (BrainCloud::BrainCloudClient *)[client getInternalClient];
     }
 
     return self;
@@ -36,6 +36,8 @@
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject
 {
+
+
     _client->getAsyncMatchService()->createMatch(
         [jsonOpponentIds UTF8String], [pushMessage UTF8String],
         new BrainCloudCallback(cb, ecb, cbObject));

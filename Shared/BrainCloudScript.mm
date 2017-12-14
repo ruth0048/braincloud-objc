@@ -1,7 +1,8 @@
 #include "BrainCloudCallback.hh"
 #include "braincloud/BrainCloudClient.h"
-
 #import "BrainCloudScript.hh"
+#import "BrainCloudClient.hh"
+
 
 @interface BrainCloudScript ()
 {
@@ -11,12 +12,12 @@
 
 @implementation BrainCloudScript
 
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+- (instancetype) init: (BrainCloudClient*) client
 {
     self = [super init];
 
     if(self) {
-        _client = client;
+        _client = (BrainCloud::BrainCloudClient *)[client getInternalClient];
     }
 
     return self;

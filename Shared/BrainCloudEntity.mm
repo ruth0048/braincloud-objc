@@ -9,7 +9,7 @@
 #include "BrainCloudCallback.hh"
 #import "TypeHelpers.hh"
 #include "braincloud/BrainCloudClient.h"
-
+#import "BrainCloudClient.hh"
 #import "BrainCloudEntity.hh"
 
 @interface BrainCloudEntity ()
@@ -20,12 +20,12 @@
 
 @implementation BrainCloudEntity
 
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+- (instancetype) init: (BrainCloudClient*) client
 {
     self = [super init];
 
     if(self) {
-        _client = client;
+        _client = (BrainCloud::BrainCloudClient *)[client getInternalClient];
     }
 
     return self;
@@ -153,6 +153,18 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         ->getSharedEntityForProfileId(
             [profileId UTF8String], [entityId UTF8String],
             new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)getSharedEntitiesForPlayerId:(NSString *)profileId
+                     completionBlock:(BCCompletionBlock)completionBlock
+                errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                            cbObject:(BCCallbackObject)cbObject;
+{
+    _client
+    ->getEntityService()
+    ->getSharedEntitiesForProfileId(
+                                    [profileId UTF8String],
+                                    new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)getSharedEntitiesForProfileId:(NSString *)profileId

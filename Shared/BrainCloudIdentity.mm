@@ -11,7 +11,7 @@
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 #include "braincloud/AuthenticationType.h"
-
+#import "BrainCloudClient.hh"
 #import "BrainCloudIdentity.hh"
 
 @interface BrainCloudIdentity ()
@@ -22,12 +22,12 @@
 
 @implementation BrainCloudIdentity
 
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+- (instancetype) init: (BrainCloudClient*) client
 {
     self = [super init];
 
     if(self) {
-        _client = client;
+        _client = (BrainCloud::BrainCloudClient *)[client getInternalClient];
     }
 
     return self;

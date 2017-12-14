@@ -9,7 +9,7 @@
 #import "BrainCloudFriend.hh"
 #import "FriendPlatformObjc.hh"
 #import "AuthenticationTypeObjc.hh"
-
+#import "BrainCloudClient.hh"
 #include "BrainCloudCallback.hh"
 #include "TypeHelpers.hh"
 #include "braincloud/BrainCloudClient.h"
@@ -25,12 +25,12 @@
 
 @implementation BrainCloudFriend
 
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+- (instancetype) init: (BrainCloudClient*) client
 {
     self = [super init];
 
     if(self) {
-        _client = client;
+        _client = (BrainCloud::BrainCloudClient *)[client getInternalClient];
     }
 
     return self;

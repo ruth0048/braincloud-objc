@@ -7,7 +7,7 @@
 //
 
 #import "BrainCloudAuthentication.hh"
-
+#import "BrainCloudClient.hh"
 #include "braincloud/ServiceName.h"
 #include "braincloud/ServiceOperation.h"
 #include "braincloud/BrainCloudClient.h"
@@ -21,12 +21,12 @@
 
 @implementation BrainCloudAuthentication
 
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+- (instancetype) init: (BrainCloudClient*) client
 {
     self = [super init];
 
     if(self) {
-        _client = client;
+        _client = (BrainCloud::BrainCloudClient *)[client getInternalClient];
     }
 
     return self;

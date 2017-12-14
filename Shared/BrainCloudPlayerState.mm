@@ -9,7 +9,7 @@
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
 #import "TypeHelpers.hh"
-
+#import "BrainCloudClient.hh"
 #import "BrainCloudPlayerState.hh"
 
 @interface BrainCloudPlayerState ()
@@ -20,12 +20,12 @@
 
 @implementation BrainCloudPlayerState
 
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+- (instancetype) init: (BrainCloudClient*) client
 {
     self = [super init];
 
     if(self) {
-        _client = client;
+        _client = (BrainCloud::BrainCloudClient *)[client getInternalClient];
     }
 
     return self;

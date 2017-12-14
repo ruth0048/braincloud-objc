@@ -8,7 +8,7 @@
 
 #include "braincloud/BrainCloudClient.h"
 #include "BrainCloudCallback.hh"
-
+#import "BrainCloudClient.hh"
 #import "BrainCloudPlayerStatisticsEvent.hh"
 
 @interface BrainCloudPlayerStatisticsEvent ()
@@ -19,12 +19,12 @@
 
 @implementation BrainCloudPlayerStatisticsEvent
 
-- (instancetype) init: (BrainCloud::BrainCloudClient*) client
+- (instancetype) init: (BrainCloudClient*) client
 {
     self = [super init];
 
     if(self) {
-        _client = client;
+        _client = (BrainCloud::BrainCloudClient *)[client getInternalClient];
     }
 
     return self;
