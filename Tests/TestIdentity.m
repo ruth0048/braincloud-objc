@@ -113,6 +113,19 @@
     [self waitForFailedResult];
 }
 
+- (void)testChangeEmail
+{
+    [[m_client identityService] changeEmailIdentity:[TestFixtureBase getUser:@"UserA"].m_email
+                                           password:[TestFixtureBase getUser:@"UserA"].m_password
+                                    newEmailAddress:[TestFixtureBase getUser:@"UserA"].m_email
+                                 updateContactEmail:true
+                                    completionBlock:successBlock
+                               errorCompletionBlock:failureBlock
+                                           cbObject:nil];
+
+    [self waitForFailedResult];
+}
+
 - (void)testAttachPeer
 {
     TestUser *tUser = [TestFixtureBase getUser:@"UserA"];

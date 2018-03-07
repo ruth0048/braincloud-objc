@@ -363,6 +363,22 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)changeEmailIdentity:(NSString *)oldEmailAddress
+                   password:(NSString *)password
+            newEmailAddress:(NSString *)newEmailAddress
+         updateContactEmail:(bool)updateContactEmail
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject
+{
+    _client->getIdentityService()->changeEmailIdentity(
+            [oldEmailAddress UTF8String],
+            [password UTF8String],
+            [newEmailAddress UTF8String],
+            updateContactEmail,
+            new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)attachPeerProfile:(NSString *)peer
                externalId:(NSString *)externalId
       authenticationToken:(NSString *)token

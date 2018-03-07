@@ -713,6 +713,28 @@
                 cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Allows email identity email address to be changed
+ *
+ * Service Name - identity
+ * Service Operation - CHANGE_EMAIL_IDENTITY
+ *
+ * @param oldEmailAddress Old email address
+ * @param password Password for identity
+ * @param newEmailAddress New email address
+ * @param updateContactEmail Whether to update contact email in profile
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)changeEmailIdentity:(NSString *)oldEmailAddress
+                   password:(NSString *)password
+            newEmailAddress:(NSString *)newEmailAddress
+         updateContactEmail:(bool)updateContactEmail
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Attaches a peer identity to this user's profile
  *
  * Service Name - identity
