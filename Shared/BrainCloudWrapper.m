@@ -725,6 +725,7 @@ static BrainCloudWrapper *sharedWrapper = nil;
          }
          errorCompletionBlock:^(NSString *serviceName, NSString *serviceOperation, NSInteger statusCode, NSInteger reasonCode, NSString *jsonError, BCCallbackObject cbObject) {
              
+                authCallback();
          }
          cbObject:NULL];
         
@@ -732,8 +733,6 @@ static BrainCloudWrapper *sharedWrapper = nil;
         authCallback();
     }
 }
-
-
 
 
 - (void)reconnect:(BCCompletionBlock)completionBlock
