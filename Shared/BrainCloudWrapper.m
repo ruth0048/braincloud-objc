@@ -275,9 +275,9 @@ static BrainCloudWrapper *sharedWrapper = nil;
     aco.cbObject = cbObject;
     
     [[_bcClient authenticationService] authenticateAnonymous:TRUE
-                                                                  completionBlock:self.authSuccessCompletionBlock
-                                                             errorCompletionBlock:self.authErrorCompletionBlock
-                                                                         cbObject:aco];
+                                             completionBlock:self.authSuccessCompletionBlock
+                                        errorCompletionBlock:self.authErrorCompletionBlock
+                                                    cbObject:aco];
 }
 
 - (void)authenticateEmailPassword:(NSString *)email
@@ -295,10 +295,10 @@ static BrainCloudWrapper *sharedWrapper = nil;
     aco.cbObject = cbObject;
     
     [[_bcClient authenticationService] authenticateEmailPassword:email
-                                                                             password:password
-                                                                          forceCreate:YES
-                                                                      completionBlock:self.authSuccessCompletionBlock
-                                                                 errorCompletionBlock:self.authErrorCompletionBlock
+                                                        password:password
+                                                     forceCreate:YES
+                                                 completionBlock:self.authSuccessCompletionBlock
+                                            errorCompletionBlock:self.authErrorCompletionBlock
                                                                              cbObject:aco];
 }
 
@@ -318,12 +318,12 @@ static BrainCloudWrapper *sharedWrapper = nil;
     aco.cbObject = cbObject;
     
     [[_bcClient authenticationService] authenticateExternal:userId
-                                                             authenticationToken:authToken
-                                                      externalAuthenticationName:externalAuthName
-                                                                     forceCreate:YES
-                                                                 completionBlock:self.authSuccessCompletionBlock
-                                                            errorCompletionBlock:self.authErrorCompletionBlock
-                                                                        cbObject:aco];
+                                        authenticationToken:authToken
+                                 externalAuthenticationName:externalAuthName
+                                                forceCreate:YES
+                                            completionBlock:self.authSuccessCompletionBlock
+                                       errorCompletionBlock:self.authErrorCompletionBlock
+                                                   cbObject:aco];
 
 }
 
@@ -342,11 +342,11 @@ static BrainCloudWrapper *sharedWrapper = nil;
     aco.cbObject = cbObject;
     
     [[_bcClient authenticationService] authenticateFacebook:fbUserId
-                                                             authenticationToken:fbAuthToken
-                                                                     forceCreate:YES
-                                                                 completionBlock:self.authSuccessCompletionBlock
-                                                            errorCompletionBlock:self.authErrorCompletionBlock
-                                                                        cbObject:aco];
+                                        authenticationToken:fbAuthToken
+                                                forceCreate:YES
+                                            completionBlock:self.authSuccessCompletionBlock
+                                       errorCompletionBlock:self.authErrorCompletionBlock
+                                                   cbObject:aco];
     
 }
 
@@ -364,10 +364,10 @@ static BrainCloudWrapper *sharedWrapper = nil;
     aco.cbObject = cbObject;
     
     [[_bcClient authenticationService] authenticateGameCenter:gameCenterId
-                                                                     forceCreate:YES
-                                                                 completionBlock:self.authSuccessCompletionBlock
-                                                            errorCompletionBlock:self.authErrorCompletionBlock
-                                                                        cbObject:aco];
+                                                  forceCreate:YES
+                                              completionBlock:self.authSuccessCompletionBlock
+                                         errorCompletionBlock:self.authErrorCompletionBlock
+                                                     cbObject:aco];
     
 }
 
@@ -386,11 +386,11 @@ static BrainCloudWrapper *sharedWrapper = nil;
     aco.cbObject = cbObject;
     
     [[_bcClient authenticationService] authenticateGoogle:userID
-                                                                         token:token
-                                                                     forceCreate:YES
-                                                                 completionBlock:self.authSuccessCompletionBlock
-                                                            errorCompletionBlock:self.authErrorCompletionBlock
-                                                                        cbObject:aco];
+                                                    token:token
+                                              forceCreate:YES
+                                          completionBlock:self.authSuccessCompletionBlock
+                                     errorCompletionBlock:self.authErrorCompletionBlock
+                                                 cbObject:aco];
 }
 
 
@@ -409,11 +409,11 @@ static BrainCloudWrapper *sharedWrapper = nil;
     aco.cbObject = cbObject;
     
     [[_bcClient authenticationService] authenticateSteam:userId
-                                                                sessionTicket:sessionticket
-                                                                  forceCreate:YES
-                                                              completionBlock:self.authSuccessCompletionBlock
-                                                         errorCompletionBlock:self.authErrorCompletionBlock
-                                                                     cbObject:aco];
+                                           sessionTicket:sessionticket
+                                             forceCreate:YES
+                                         completionBlock:self.authSuccessCompletionBlock
+                                    errorCompletionBlock:self.authErrorCompletionBlock
+                                                cbObject:aco];
 }
 
 - (void)authenticateTwitter:(NSString *)userId
@@ -432,12 +432,12 @@ static BrainCloudWrapper *sharedWrapper = nil;
     aco.cbObject = cbObject;
     
     [[_bcClient authenticationService] authenticateTwitter:userId
-                                                                          token:token
-                                                                         secret:secret
-                                                                    forceCreate:YES
-                                                                completionBlock:self.authSuccessCompletionBlock
-                                                           errorCompletionBlock:self.authErrorCompletionBlock
-                                                                       cbObject:aco];
+                                                     token:token
+                                                    secret:secret
+                                               forceCreate:YES
+                                           completionBlock:self.authSuccessCompletionBlock
+                                      errorCompletionBlock:self.authErrorCompletionBlock
+                                                  cbObject:aco];
 }
 
 - (void)authenticateUniversal:(NSString *)userId
@@ -455,12 +455,286 @@ static BrainCloudWrapper *sharedWrapper = nil;
     aco.cbObject = cbObject;
     
     [[_bcClient authenticationService] authenticateUniversal:userId
-                                                                         password:password
-                                                                      forceCreate:YES
-                                                                  completionBlock:self.authSuccessCompletionBlock
-                                                             errorCompletionBlock:self.authErrorCompletionBlock
-                                                                         cbObject:aco];
+                                                    password:password
+                                                 forceCreate:YES
+                                             completionBlock:self.authSuccessCompletionBlock
+                                        errorCompletionBlock:self.authErrorCompletionBlock
+                                                    cbObject:aco];
 }
+
+
+
+
+
+
+- (void)smartSwitchAuthenticateEmailPassword:(NSString *)email
+                                    password:(NSString *)password
+                                 forceCreate:(BOOL)forceCreate
+                             completionBlock:(BCCompletionBlock)completionBlock
+                        errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                                    cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
+    
+    BCSmartSwitchCompletionBlock authCallback = ^() {
+        
+        AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+        aco.completionBlock = completionBlock;
+        aco.errorCompletionBlock = errorCompletionBlock;
+        aco.cbObject = cbObject;
+        
+        [[_bcClient authenticationService] authenticateEmailPassword:email
+                                                            password:password
+                                                         forceCreate:YES
+                                                     completionBlock:self.authSuccessCompletionBlock
+                                                errorCompletionBlock:self.authErrorCompletionBlock
+                                                            cbObject:aco];
+    };
+    
+    [self smartSwitchAuthentication:authCallback];
+}
+
+
+- (void)smartSwitchAuthenticateExternal:(NSString *)userId
+         authenticationToken:(NSString *)authToken
+  externalAuthenticationName:(NSString *)externalAuthName
+                 forceCreate:(BOOL)forceCreate
+             completionBlock:(BCCompletionBlock)completionBlock
+        errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                    cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
+    
+    BCSmartSwitchCompletionBlock authCallback = ^() {
+
+    AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+    aco.completionBlock = completionBlock;
+    aco.errorCompletionBlock = errorCompletionBlock;
+    aco.cbObject = cbObject;
+
+    [[_bcClient authenticationService] authenticateExternal:userId
+                                        authenticationToken:authToken
+                                 externalAuthenticationName:externalAuthName
+                                                forceCreate:YES
+                                            completionBlock:self.authSuccessCompletionBlock
+                                       errorCompletionBlock:self.authErrorCompletionBlock
+                                                   cbObject:aco];
+    };
+    
+    [self smartSwitchAuthentication:authCallback];
+}
+
+- (void)smartSwitchAuthenticateFacebook:(NSString *)fbUserId
+         authenticationToken:(NSString *)fbAuthToken
+                 forceCreate:(BOOL)forceCreate
+             completionBlock:(BCCompletionBlock)completionBlock
+        errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                    cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
+
+    BCSmartSwitchCompletionBlock authCallback = ^() {
+    
+    AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+    aco.completionBlock = completionBlock;
+    aco.errorCompletionBlock = errorCompletionBlock;
+    aco.cbObject = cbObject;
+
+    [[_bcClient authenticationService] authenticateFacebook:fbUserId
+                                        authenticationToken:fbAuthToken
+                                                forceCreate:YES
+                                            completionBlock:self.authSuccessCompletionBlock
+                                       errorCompletionBlock:self.authErrorCompletionBlock
+                                                   cbObject:aco];
+    };
+    
+    [self smartSwitchAuthentication:authCallback];
+}
+
+- (void)smartSwitchAuthenticateGameCenter:(NSString *)gameCenterId
+                   forceCreate:(BOOL)forceCreate
+               completionBlock:(BCCompletionBlock)completionBlock
+          errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                      cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
+
+    BCSmartSwitchCompletionBlock authCallback = ^() {
+    
+    AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+    aco.completionBlock = completionBlock;
+    aco.errorCompletionBlock = errorCompletionBlock;
+    aco.cbObject = cbObject;
+
+    [[_bcClient authenticationService] authenticateGameCenter:gameCenterId
+                                                  forceCreate:YES
+                                              completionBlock:self.authSuccessCompletionBlock
+                                         errorCompletionBlock:self.authErrorCompletionBlock
+                                                     cbObject:aco];
+    };
+    
+    [self smartSwitchAuthentication:authCallback];
+}
+
+- (void)smartSwitchAuthenticateGoogle:(NSString *)userID
+                     token:(NSString *)token
+               forceCreate:(BOOL)forceCreate
+           completionBlock:(BCCompletionBlock)completionBlock
+      errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                  cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
+
+    BCSmartSwitchCompletionBlock authCallback = ^() {
+    
+    AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+    aco.completionBlock = completionBlock;
+    aco.errorCompletionBlock = errorCompletionBlock;
+    aco.cbObject = cbObject;
+
+    [[_bcClient authenticationService] authenticateGoogle:userID
+                                                    token:token
+                                              forceCreate:YES
+                                          completionBlock:self.authSuccessCompletionBlock
+                                     errorCompletionBlock:self.authErrorCompletionBlock
+                                                 cbObject:aco];
+    };
+    
+    [self smartSwitchAuthentication:authCallback];
+}
+
+
+- (void)smartSwitchAuthenticateSteam:(NSString *)userId
+            sessionTicket:(NSString *)sessionticket
+              forceCreate:(BOOL)forceCreate
+          completionBlock:(BCCompletionBlock)completionBlock
+     errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                 cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
+
+    BCSmartSwitchCompletionBlock authCallback = ^() {
+    
+    AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+    aco.completionBlock = completionBlock;
+    aco.errorCompletionBlock = errorCompletionBlock;
+    aco.cbObject = cbObject;
+
+    [[_bcClient authenticationService] authenticateSteam:userId
+                                           sessionTicket:sessionticket
+                                             forceCreate:YES
+                                         completionBlock:self.authSuccessCompletionBlock
+                                    errorCompletionBlock:self.authErrorCompletionBlock
+                                                cbObject:aco];
+        
+    };
+    
+    [self smartSwitchAuthentication:authCallback];
+}
+
+- (void)smartSwitchAuthenticateTwitter:(NSString *)userId
+                      token:(NSString *)token
+                     secret:(NSString *)secret
+                forceCreate:(BOOL)forceCreate
+            completionBlock:(BCCompletionBlock)completionBlock
+       errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                   cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
+
+    BCSmartSwitchCompletionBlock authCallback = ^() {
+    
+    AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+    aco.completionBlock = completionBlock;
+    aco.errorCompletionBlock = errorCompletionBlock;
+    aco.cbObject = cbObject;
+
+    [[_bcClient authenticationService] authenticateTwitter:userId
+                                                     token:token
+                                                    secret:secret
+                                               forceCreate:YES
+                                           completionBlock:self.authSuccessCompletionBlock
+                                      errorCompletionBlock:self.authErrorCompletionBlock
+                                                  cbObject:aco];
+    };
+    
+    [self smartSwitchAuthentication:authCallback];
+}
+
+
+- (void)smartSwitchAuthenticateUniversal:(NSString *)userId
+                     password:(NSString *)password
+                  forceCreate:(BOOL)forceCreate
+              completionBlock:(BCCompletionBlock)completionBlock
+         errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                     cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
+    
+    BCSmartSwitchCompletionBlock authCallback = ^() {
+        [self _initializeIdentity:TRUE];
+        
+        AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+        aco.completionBlock = completionBlock;
+        aco.errorCompletionBlock = errorCompletionBlock;
+        aco.cbObject = cbObject;
+        
+        [[_bcClient authenticationService] authenticateAnonymous:TRUE
+                                                 completionBlock:self.authSuccessCompletionBlock
+                                            errorCompletionBlock:self.authErrorCompletionBlock
+                                                        cbObject:aco];
+    };
+    
+    [self smartSwitchAuthentication:authCallback];
+}
+
+- (void)smartSwitchAuthentication:(BCSmartSwitchCompletionBlock)authCallback {
+    if([[self getBCClient] isAuthenticated]) {
+        
+        [[[self getBCClient] identityService]
+         getIdentities:^(NSString *serviceName, NSString *serviceOperation, NSString *jsonData, BCCallbackObject cbObject) {
+             
+             NSData *data = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
+             
+             NSError *jsonError;
+             NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+             NSDictionary *identities = jsonObject[@"data"][@"identities"];
+             NSInteger identityCount = [identities count];
+             
+             if(identityCount == 0) {
+                 [[[self getBCClient] playerStateService]
+                  deleteUser:^(NSString *serviceName, NSString *serviceOperation, NSString *jsonData, BCCallbackObject cbObject) {
+                      authCallback();
+                      
+                  }
+                  errorCompletionBlock:^(NSString *serviceName, NSString *serviceOperation, NSInteger statusCode, NSInteger reasonCode, NSString *jsonError, BCCallbackObject cbObject) {
+                      authCallback();
+                  }
+                  cbObject:NULL];
+             } else {
+                 [[[self getBCClient] playerStateService]
+                  logout:^(NSString *serviceName, NSString *serviceOperation, NSString *jsonData, BCCallbackObject cbObject) {
+                      authCallback();
+                  }
+                  errorCompletionBlock:^(NSString *serviceName, NSString *serviceOperation, NSInteger statusCode, NSInteger reasonCode, NSString *jsonError, BCCallbackObject cbObject) {
+                      authCallback();
+                      
+                  } cbObject:NULL];
+             }
+             
+         }
+         errorCompletionBlock:^(NSString *serviceName, NSString *serviceOperation, NSInteger statusCode, NSInteger reasonCode, NSString *jsonError, BCCallbackObject cbObject) {
+             
+         }
+         cbObject:NULL];
+        
+    } else {
+        authCallback();
+    }
+}
+
+
+
 
 - (void)reconnect:(BCCompletionBlock)completionBlock
 errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
