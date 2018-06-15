@@ -87,22 +87,31 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
-- (void)updatePlayerName:(NSString *)userName
+- (void)updatePlayerName:(NSString *)name
        completionBlock:(BCCompletionBlock)completionBlock
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    _client->getPlayerStateService()->updateUserName(
-            [userName UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+    _client->getPlayerStateService()->updateName(
+            [name UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
-- (void)updateUserName:(NSString *)userName
+- (void)updateUserName:(NSString *)name
        completionBlock:(BCCompletionBlock)completionBlock
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject
 {
-    _client->getPlayerStateService()->updateUserName(
-        [userName UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+    _client->getPlayerStateService()->updateName(
+            [name UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+- (void)updateName:(NSString *)name
+       completionBlock:(BCCompletionBlock)completionBlock
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+              cbObject:(BCCallbackObject)cbObject
+{
+    _client->getPlayerStateService()->updateName(
+            [name UTF8String], new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
 - (void)getAttributes:(BCCompletionBlock)completionBlock

@@ -90,9 +90,9 @@
     [self waitForResult];
 }
 
-- (void)testUpdatePlayerName
+- (void)testUpdateName
 {
-    [[m_client playerStateService] updateUserName:@"TestName"
+    [[m_client playerStateService] updateName:@"TestName"
                                   completionBlock:successBlock
                              errorCompletionBlock:failureBlock
                                          cbObject:nil];

@@ -109,12 +109,20 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 
 /**
-* @deprecated Use updateUserName instead - removal after September 1 2017
+* @deprecated Use updateName instead - removal after September 1 2017
 */
-- (void)updatePlayerName:(NSString *)userName
+- (void)updatePlayerName:(NSString *)name
          completionBlock:(BCCompletionBlock)completionBlock
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * @deprecated Use updateName instead
+ */
+- (void)updateUserName:(NSString *)name
+       completionBlock:(BCCompletionBlock)completionBlock
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+              cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Sets the user name.
@@ -122,12 +130,12 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 * Service Name - playerState
 * Service Operation - UPDATE_NAME
 *
-* @param userName The name of the user
+* @param name The name of the user
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)updateUserName:(NSString *)userName
+- (void)updateName:(NSString *)name
        completionBlock:(BCCompletionBlock)completionBlock
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject;
