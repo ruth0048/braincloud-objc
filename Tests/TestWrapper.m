@@ -81,6 +81,88 @@
     [self waitForResult];
 }
 
+- (void)testSwitchAnonToUniversal
+{
+    [m_bcWrapper initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];
+    
+    //reset ids
+    [m_bcWrapper setStoredProfileId:@""];
+    [m_bcWrapper setStoredAnonymousId:@""];
+    
+    [[[m_bcWrapper getBCClient] authenticationService] clearSavedProfile];
+    
+    [m_bcWrapper authenticateAnonymous:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    
+    [self waitForResult];
+    [self reset];
+    
+    
+    [m_bcWrapper smartSwitchAuthenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+                                         password:[TestFixtureBase getUser:@"UserA"].m_password
+                                      forceCreate:YES
+                                  completionBlock:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
+    [self waitForResult];
+    [self reset];
+    
+}
+
+- (void)testSwitchUniversalToEmail
+{
+    [m_bcWrapper initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];
+    
+    //reset ids
+    [m_bcWrapper setStoredProfileId:@""];
+    [m_bcWrapper setStoredAnonymousId:@""];
+    
+    [[[m_bcWrapper getBCClient] authenticationService] clearSavedProfile];
+    
+    [m_bcWrapper authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id password:[TestFixtureBase getUser:@"UserA"].m_password forceCreate:true completionBlock:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    
+    [self waitForResult];
+    [self reset];
+    
+    
+    
+    [m_bcWrapper smartSwitchAuthenticateEmailPassword:[TestFixtureBase getUser:@"UserA"].m_email
+                                         password:[TestFixtureBase getUser:@"UserA"].m_password
+                                      forceCreate:YES
+                                  completionBlock:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
+    [self waitForResult];
+    [self reset];
+    
+    
+}
+
+
+- (void)testSwitchNoAuth
+{
+    [m_bcWrapper initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];
+    
+    //reset ids
+    [m_bcWrapper setStoredProfileId:@""];
+    [m_bcWrapper setStoredAnonymousId:@""];
+    
+    [[[m_bcWrapper getBCClient] authenticationService] clearSavedProfile];
+    
+    
+    [m_bcWrapper smartSwitchAuthenticateEmailPassword:[TestFixtureBase getUser:@"UserA"].m_email
+                                             password:[TestFixtureBase getUser:@"UserA"].m_password
+                                          forceCreate:YES
+                                      completionBlock:successBlock
+                                 errorCompletionBlock:failureBlock
+                                             cbObject:nil];
+    [self waitForResult];
+    [self reset];
+    
+}
+
+
+
+
 - (void)testReconnect
 {
     [m_bcWrapper initialize:m_serverUrl secretKey:m_secret appId:m_appId appVersion:m_version companyName:@"wrapper" appName:@"unittest"];

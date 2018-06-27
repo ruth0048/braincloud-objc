@@ -317,6 +317,212 @@
          errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                      cbObject:(BCCallbackObject)cbObject;
 
+
+/*
+ * Smart Switch Authenticate will logout of the current profile, and switch to the new authentication type.
+ * In event the current session was previously an anonymous account, the smart switch will delete that profile.
+ * Use this function to keep a clean designflow from anonymous to signed profiles
+ *
+ * Authenticate the user with a custom Email and Password.  Note that the client app
+ * is responsible for collecting (and storing) the e-mail and potentially password
+ * (for convenience) in the client data.  For the greatest security,
+ * force the user to re-enter their * password at each login.
+ * (Or at least give them that option).
+ *
+ * Note that the password sent from the client to the server is protected via SSL.
+ *
+ * Service Name - Authenticate
+ * Service Operation - Authenticate
+ *
+ * @param in_email  The e-mail address of the user
+ * @param in_password  The password of the user
+ * @param forceCreate Should a new profile be created for this user if the account does not exist?
+ * @param in_callback The method to be invoked when the server response is received
+ *
+ */
+- (void)smartSwitchAuthenticateEmailPassword:(NSString *)email
+                                    password:(NSString *)password
+                                 forceCreate:(BOOL)forceCreate
+                             completionBlock:(BCCompletionBlock)completionBlock
+                        errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                                    cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Smart Switch Authenticate will logout of the current profile, and switch to the new authentication type.
+ * In event the current session was previously an anonymous account, the smart switch will delete that profile.
+ * Use this function to keep a clean designflow from anonymous to signed profiles
+ *
+ * Authenticate the user via cloud code (which in turn validates the supplied credentials against an external system).
+ * This allows the developer to extend brainCloud authentication to support other backend authentication systems.
+ *
+ * Service Name - Authenticate
+ * Server Operation - Authenticate
+ *
+ * @param in_userid The user id
+ * @param in_token The user token (password etc)
+ * @param in_externalAuthName The name of the cloud script to call for external authentication
+ * @param in_force Should a new profile be created for this user if the account does not exist?
+ *
+ * @returns   performs the in_success callback on success, in_failure callback on failure
+ */
+- (void)smartSwitchAuthenticateExternal:(NSString *)userId
+                    authenticationToken:(NSString *)authToken
+             externalAuthenticationName:(NSString *)externalAuthName
+                            forceCreate:(BOOL)forceCreate
+                        completionBlock:(BCCompletionBlock)completionBlock
+                   errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                               cbObject:(BCCallbackObject)cbObject;
+
+/*
+ * Smart Switch Authenticate will logout of the current profile, and switch to the new authentication type.
+ * In event the current session was previously an anonymous account, the smart switch will delete that profile.
+ * Use this function to keep a clean designflow from anonymous to signed profiles
+ *
+ * Authenticate the user with brainCloud using their Facebook Credentials
+ *
+ * Service Name - Authenticate
+ * Service Operation - Authenticate
+ *
+ * @param in_fbUserId The facebook id of the user
+ * @param in_fbAuthToken The validated token from the Facebook SDK
+ *   (that will be further validated when sent to the bC service)
+ * @param in_forceCreate Should a new profile be created for this user if the account does not exist?
+ * @param in_callback The method to be invoked when the server response is received
+ *
+ */
+- (void)smartSwitchAuthenticateFacebook:(NSString *)externalId
+                    authenticationToken:(NSString *)authToken
+                            forceCreate:(BOOL)forceCreate
+                        completionBlock:(BCCompletionBlock)completionBlock
+                   errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                               cbObject:(BCCallbackObject)cbObject;
+
+/*
+ * Smart Switch Authenticate will logout of the current profile, and switch to the new authentication type.
+ * In event the current session was previously an anonymous account, the smart switch will delete that profile.
+ * Use this function to keep a clean designflow from anonymous to signed profiles
+ *
+ * Authenticate the user using their Game Center id
+ *
+ * Service Name - Authenticate
+ * Service Operation - Authenticate
+ *
+ * @param in_gameCenterId The player's game center id  (use the playerID property from the local GKPlayer object)
+ * @param in_forceCreate Should a new profile be created for this user if the account does not exist?
+ * @param in_success The method to call in event of successful login
+ * @param in_failure The method to call in the event of an error during authentication
+ *
+ * @returns   performs the in_success callback on success, in_failure callback on failure
+ *
+ */
+- (void)smartSwitchAuthenticateGameCenter:(NSString *)gameCenterId
+                              forceCreate:(BOOL)forceCreate
+                          completionBlock:(BCCompletionBlock)completionBlock
+                     errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                                 cbObject:(BCCallbackObject)cbObject;
+
+/*
+ * Smart Switch Authenticate will logout of the current profile, and switch to the new authentication type.
+ * In event the current session was previously an anonymous account, the smart switch will delete that profile.
+ * Use this function to keep a clean designflow from anonymous to signed profiles
+ *
+ * Authenticate the user using a google userid(email address) and google authentication token.
+ *
+ * Service Name - Authenticate
+ * Service Operation - Authenticate
+ *
+ * @param in_userid  String representation of google+ userid (email)
+ * @param in_token  The authentication token derived via the google apis.
+ * @param in_forceCreate Should a new profile be created for this user if the account does not exist?
+ * @param in_callback The method to be invoked when the server response is received
+ *
+ * @returns   performs the in_success callback on success, in_failure callback on failure
+ *
+ */
+- (void)smartSwitchAuthenticateGoogle:(NSString *)userId
+                                token:(NSString *)token
+                          forceCreate:(BOOL)forceCreate
+                      completionBlock:(BCCompletionBlock)completionBlock
+                 errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                             cbObject:(BCCallbackObject)cbObject;
+
+/*
+ * Smart Switch Authenticate will logout of the current profile, and switch to the new authentication type.
+ * In event the current session was previously an anonymous account, the smart switch will delete that profile.
+ * Use this function to keep a clean designflow from anonymous to signed profiles
+ *
+ * Authenticate the user using a steam userid and session ticket (without any validation on the userid).
+ *
+ * Service Name - Authenticate
+ * Service Operation - Authenticate
+ *
+ * @param in_userid  String representation of 64 bit steam id
+ * @param in_sessionticket  The session ticket of the user (hex encoded)
+ * @param in_forceCreate Should a new profile be created for this user if the account does not exist?
+ * @param in_callback The method to be invoked when the server response is received
+ *
+ * @returns   performs the in_success callback on success, in_failure callback on failure
+ *
+ */
+- (void)smartSwitchAuthenticateSteam:(NSString *)userId
+                       sessionTicket:(NSString *)sessionticket
+                         forceCreate:(BOOL)forceCreate
+                     completionBlock:(BCCompletionBlock)completionBlock
+                errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                            cbObject:(BCCallbackObject)cbObject;
+
+/*
+ * Smart Switch Authenticate will logout of the current profile, and switch to the new authentication type.
+ * In event the current session was previously an anonymous account, the smart switch will delete that profile.
+ * Use this function to keep a clean designflow from anonymous to signed profiles
+ *
+ * Authenticate the user using a Twitter userid, authentication token, and secret from Twitter.
+ *
+ * Service Name - Authenticate
+ * Service Operation - Authenticate
+ *
+ * @param in_userid  String representation of Twitter userid
+ * @param in_token  The authentication token derived via the Twitter apis.
+ * @param in_secret  The secret given when attempting to link with Twitter
+ * @param in_forceCreate Should a new profile be created for this user if the account does not exist?
+ * @param in_callback The method to be invoked when the server response is received
+ *
+ * @returns   performs the in_success callback on success, in_failure callback on failure
+ *
+ */
+- (void)smartSwitchAuthenticateTwitter:(NSString *)userId
+                                 token:(NSString *)token
+                                secret:(NSString *)secret
+                           forceCreate:(BOOL)forceCreate
+                       completionBlock:(BCCompletionBlock)cb
+                  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                              cbObject:(BCCallbackObject)cbObject;
+
+/*
+ * Smart Switch Authenticate will logout of the current profile, and switch to the new authentication type.
+ * In event the current session was previously an anonymous account, the smart switch will delete that profile.
+ * Use this function to keep a clean designflow from anonymous to signed profiles
+ *
+ * Authenticate the user using a userid and password (without any validation on the userid).
+ * Similar to AuthenticateEmailPassword - except that that method has additional features to
+ * allow for e-mail validation, password resets, etc.
+ *
+ * Service Name - Authenticate
+ * Service Operation - Authenticate
+ *
+ * @param in_email  The e-mail address of the user
+ * @param in_password  The password of the user
+ * @param in_forceCreate Should a new profile be created for this user if the account does not exist?
+ * @param in_callback The method to be invoked when the server response is received
+ *
+ */
+- (void)smartSwitchAuthenticateUniversal:(NSString *)userid
+                                password:(NSString *)password
+                             forceCreate:(BOOL)forceCreate
+                         completionBlock:(BCCompletionBlock)completionBlock
+                    errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                                cbObject:(BCCallbackObject)cbObject;
+
 /**
  * Re-authenticates the user with brainCloud
  *
@@ -362,6 +568,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
 @property(readonly) BrainCloudProfanity *profanityService;
 @property(readonly) BrainCloudFile *fileService;
 @property(readonly) BrainCloudGroup *groupService;
+
+typedef void (^BCSmartSwitchCompletionBlock)();
 
 
 @end
