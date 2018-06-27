@@ -679,10 +679,12 @@ static BrainCloudWrapper *sharedWrapper = nil;
         aco.errorCompletionBlock = errorCompletionBlock;
         aco.cbObject = cbObject;
         
-        [[_bcClient authenticationService] authenticateAnonymous:TRUE
-                                                 completionBlock:self.authSuccessCompletionBlock
-                                            errorCompletionBlock:self.authErrorCompletionBlock
-                                                        cbObject:aco];
+        [[_bcClient authenticationService] authenticateUniversal:userId
+                                                        password:password
+                                                     forceCreate:forceCreate
+                                                 completionBlock:completionBlock
+                                            errorCompletionBlock:errorCompletionBlock
+                                                        cbObject:cbObject];
     };
     
     [self smartSwitchAuthentication:authCallback];
