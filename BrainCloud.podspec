@@ -39,6 +39,7 @@ Pod::Spec.new do |s|
   s.private_header_files   = 'Shared/**/{BrainCloudCallback,TypeHelpers}.hh'
   s.source_files           = 'Shared/**/*.{h,hh,m,mm}'
 
+
   # hack for use_frameworks!
   # hack for use_frameworks!
   s.xcconfig = {
@@ -51,6 +52,6 @@ Pod::Spec.new do |s|
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.dependency 'BrainCloudCpp', '3.7.5'
+  s.dependency 'BrainCloudCpp', '3.7.6'
 
 end
