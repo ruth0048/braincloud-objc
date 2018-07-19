@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.authors                = {"Jonathan McCaffrey" => "jonathanm@bitheads.com"}
+  s.authors                = {"brainCloud Team" => "support@getbraincloud.com"}
   s.social_media_url       = "https://twitter.com/braincloudbaas"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -38,7 +38,6 @@ Pod::Spec.new do |s|
   s.public_header_files    = 'Shared/**/*.{h,hh}'
   s.private_header_files   = 'Shared/**/{BrainCloudCallback,TypeHelpers}.hh'
   s.source_files           = 'Shared/**/*.{h,hh,m,mm}'
-  s.exclude_files           = "include/braincloud/internal/DefaultSaveDataHelper.cpp,include/braincloud/internal/DefaultGUID.cpp,include/braincloud/internal/DefaultFileUploader.cpp"
 
 
   # hack for use_frameworks!
@@ -53,6 +52,6 @@ Pod::Spec.new do |s|
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.dependency 'BrainCloudCpp', '3.7.5'
+  s.dependency 'BrainCloudCpp', '3.7.6'
 
 end
