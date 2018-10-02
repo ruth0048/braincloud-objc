@@ -16,6 +16,9 @@
 
 NSString *_tournamentCode = @"testTournament";
 NSString *_leaderboardId = @"testTournamentLeaderboard";
+NSString *_divSetId = @"testDivSetId";
+NSString *_invalidId = @"Invalid_Id";
+
 BOOL _didJoin = false;
 
 - (void)setUp { [super setUp]; }
@@ -48,6 +51,43 @@ BOOL _didJoin = false;
                                  errorCompletionBlock:failureBlock
                                              cbObject:nil];
     [self waitForResult];
+}
+
+- (void)testGetDivisionInfo
+{
+    [[m_client tournamentService] getDivisionInfo:_invalidId
+                                  completionBlock:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
+    [self waitForFailedResult];
+}
+
+- (void)testGetMyDivisions
+{
+    [[m_client tournamentService] getMyDivisions:successBlock
+                            errorCompletionBlock:failureBlock
+                                        cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testJoinDivision
+{
+    [[m_client tournamentService] joinDivision:_invalidId
+                                tournamentCode:_tournamentCode
+                                  initialScore:0
+                               completionBlock:successBlock
+                          errorCompletionBlock:failureBlock
+                                      cbObject:nil];
+    [self waitForFailedResult];
+}
+
+- (void)testLeaveDivisionInstance
+{
+    [[m_client tournamentService] getDivisionInfo:_invalidId
+                                  completionBlock:successBlock
+                             errorCompletionBlock:failureBlock
+                                         cbObject:nil];
+    [self waitForFailedResult];
 }
 
 - (void)testJoinTournament { [self joinTournament]; }

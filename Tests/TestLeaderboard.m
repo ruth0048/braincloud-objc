@@ -34,6 +34,17 @@ NSString *eventId = @"tournamentRewardTest";
     [self waitForResult];
 }
 
+- (void)testGetSocialLeaderboardByVersion
+{
+    [[m_client leaderboardService] getSocialLeaderboardByVersion:globalLeaderboardId
+                                                     replaceName:true
+                                                       versionId:0
+                                                 completionBlock:successBlock
+                                            errorCompletionBlock:failureBlock
+                                                        cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testGetMultiSocialLeaderboard
 {
     [self testPostScoreToLeaderboard];
@@ -215,6 +226,42 @@ NSString *eventId = @"tournamentRewardTest";
     [self waitForResult];
 }
 
+- (void)testGetGroupSocialLeaderboardByVersion
+{
+    [[m_client groupService] createGroup:@"testGroup"
+                               groupType:@"test"
+                             isOpenGroup:NO
+                                     acl:@""
+                                jsonData:@""
+                     jsonOwnerAttributes:@""
+             jsonDefaultMemberAttributes:@""
+                         completionBlock:successBlock
+                    errorCompletionBlock:failureBlock
+                                cbObject:nil];
+    [self waitForResult];
+    
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj =
+    [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    NSString *groupId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"groupId"];
+    
+    [[m_client leaderboardService] getGroupSocialLeaderboardByVersion:socialLeaderboardId
+                                                              groupId:groupId
+                                                            versionId:0
+                                                      completionBlock:successBlock
+                                                 errorCompletionBlock:failureBlock
+                                                             cbObject:nil];
+    [self waitForResult];
+    
+    [[m_client groupService] deleteGroup:groupId
+                                 version:-1
+                         completionBlock:successBlock
+                    errorCompletionBlock:failureBlock
+                                cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testGetPlayersSocialLeaderboard
 {
     [[m_client leaderboardService] getPlayersSocialLeaderboard:socialLeaderboardId
@@ -222,6 +269,17 @@ NSString *eventId = @"tournamentRewardTest";
                                                completionBlock:successBlock
                                           errorCompletionBlock:failureBlock
                                                       cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testGetPlayersSocialLeaderboardByVersion
+{
+    [[m_client leaderboardService] getPlayersSocialLeaderboardByVersion:socialLeaderboardId
+                                                             profileIds:@[ [TestFixtureBase getUser:@"UserB"].m_profileId ]
+                                                              versionId:0
+                                                        completionBlock:successBlock
+                                                   errorCompletionBlock:failureBlock
+                                                               cbObject:nil];
     [self waitForResult];
 }
 

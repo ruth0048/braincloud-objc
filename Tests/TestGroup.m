@@ -545,6 +545,17 @@ NSString *groupId = @"";
     [self deleteGroup];
 }
 
+- (void)testSetGroupOpen
+{
+    [[m_client groupService] setGroupOpen:@"invalidGroupID"
+                              isOpenGroup:true
+                          completionBlock:successBlock
+                     errorCompletionBlock:failureBlock
+                                 cbObject:nil];
+    //no group exists
+    [self waitForFailedResult];
+}
+
 /* Helper functions */
 
 - (void)createGroupAsUserA { [self createGroupAsUserA:NO]; }
