@@ -41,13 +41,3 @@ target 'BrainCloud-tvOSTests' do
   platform :tvos, '9.0'
   shared_pods
 end
-
-target 'BrainCloud-watchOS' do
-  platform :watchos, '2.0'
-  shared_pods
-end
-
-target 'BrainCloud-watchOSTests' do
-  platform :watchos, '2.0'
-  shared_pods
-end
