@@ -10,12 +10,6 @@ PODS:
 DEPENDENCIES:
   - BrainCloudCpp (from `https://github.com/getbraincloud/braincloud-cpp`, branch `develop`)
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - BrainCloudJsonCpp
-    - SocketRocket
-    - SSKeychain
-
 EXTERNAL SOURCES:
   BrainCloudCpp:
     :branch: develop
@@ -34,4 +28,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d1ca67e23f471f576369893aa3432ab7f4978257
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.2.0
