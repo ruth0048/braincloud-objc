@@ -23,3 +23,4 @@ Pods/
 
 ids.txt
 *.swp
+build/
