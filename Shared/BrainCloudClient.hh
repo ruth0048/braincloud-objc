@@ -137,6 +137,20 @@
              appId:(NSString *)appId
         appVersion:(NSString *)appVersion;
 
+/**
+* Method initializes the BrainCloudClient with a map of appid->secretkey
+*
+* @param serverURL The url to the brainCloud server
+* @param defaultAppId The default app id to start with
+* @param secretMap All app ids to secret keys used by this application
+* @param appVersion The version
+*/
+
+- (void)initializeWithApps:(NSString *)serverURL
+              defaultAppId:(NSString *)defaultAppId
+                 secretMap:(NSDictionary *)secretMap
+                appVersion:(NSString *)appVersion;
+
 
 /**
 * Initialize - initializes the identity service with the saved

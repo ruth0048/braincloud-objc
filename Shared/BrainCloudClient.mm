@@ -216,13 +216,8 @@ static BrainCloudClient *s_instance = nil;
     }
 }
 
-- (void)initialize:(NSString *)serverURL
-         secretKey:(NSString *)secretKey
-            gameId:(NSString *)appId
-       gameVersion:(NSString *)appVersion
+- (void)initializeTimer
 {
-    _client->initialize([serverURL UTF8String], [secretKey UTF8String], [appId UTF8String], [appVersion UTF8String]);
-
     if (!_timerDisabled)
     {
         if (_timer != nil)
@@ -236,6 +231,15 @@ static BrainCloudClient *s_instance = nil;
                                                 userInfo:nil
                                                  repeats:TRUE];
     }
+}
+
+- (void)initialize:(NSString *)serverURL
+         secretKey:(NSString *)secretKey
+            gameId:(NSString *)appId
+       gameVersion:(NSString *)appVersion
+{
+    _client->initialize([serverURL UTF8String], [secretKey UTF8String], [appId UTF8String], [appVersion UTF8String]);
+    [self initializeTimer];
 }
 
 - (void)initialize:(NSString *)serverURL
@@ -244,20 +248,7 @@ static BrainCloudClient *s_instance = nil;
            version:(NSString *)appVersion
 {
     _client->initialize([serverURL UTF8String], [secretKey UTF8String], [appId UTF8String], [appVersion UTF8String]);
-
-    if (!_timerDisabled)
-    {
-        if (_timer != nil)
-        {
-            [_timer invalidate];
-            _timer = nil;
-        }
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 // every 100 ms
-                                                  target:self
-                                                selector:@selector(runCallBacks)
-                                                userInfo:nil
-                                                 repeats:TRUE];
-    }
+    [self initializeTimer];
 }
 
 - (void)initialize:(NSString *)serverURL
@@ -266,20 +257,22 @@ static BrainCloudClient *s_instance = nil;
         appVersion:(NSString *)appVersion
 {
     _client->initialize([serverURL UTF8String], [secretKey UTF8String], [appId UTF8String], [appVersion UTF8String]);
+    [self initializeTimer];
+}
 
-    if (!_timerDisabled)
+- (void)initializeWithApps:(NSString *)serverURL
+              defaultAppId:(NSString *)defaultAppId
+                 secretMap:(NSDictionary *)secretMap
+                appVersion:(NSString *)appVersion
+{
+    std::map<std::string, std::string> stdSecretMap;
+    for (id key in secretMap)
     {
-        if (_timer != nil)
-        {
-            [_timer invalidate];
-            _timer = nil;
-        }
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 // every 100 ms
-                                                  target:self
-                                                selector:@selector(runCallBacks)
-                                                userInfo:nil
-                                                 repeats:TRUE];
+        stdSecretMap[[key UTF8String]] = [[secretMap objectForKey:key] UTF8String];
     }
+    
+    _client->initializeWithApps([serverURL UTF8String], [defaultAppId UTF8String], stdSecretMap, [appVersion UTF8String]);
+    [self initializeTimer];
 }
 
 - (void)enableLogging:(bool)shouldEnable { _client->enableLogging(shouldEnable); }

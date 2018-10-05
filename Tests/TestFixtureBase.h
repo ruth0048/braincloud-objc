@@ -33,6 +33,7 @@
     BrainCloudClient *m_client;
     NSString *m_parentLevel;
     NSString *m_childAppId;
+    NSString *m_childSecret;
     NSString *m_serverUrl;
     NSString *m_appId;
     NSString *m_secret;
