@@ -160,6 +160,7 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
 @implementation BrainCloudClient
 
 static BrainCloudClient *s_instance = nil;
+const NSString* BC_SERVER_URL = @"https://sharedprod.braincloudservers.com/dispatcherv2";
 
 + (BrainCloudClient *)getInstance
 {
@@ -260,6 +261,14 @@ static BrainCloudClient *s_instance = nil;
     [self initializeTimer];
 }
 
+- (void)initialize:(NSString *)secretKey
+             appId:(NSString *)appId
+        appVersion:(NSString *)appVersion
+{
+    _client->initialize([BC_SERVER_URL UTF8String], [secretKey UTF8String], [appId UTF8String], [appVersion UTF8String]);
+    [self initializeTimer];
+}
+
 - (void)initializeWithApps:(NSString *)serverURL
               defaultAppId:(NSString *)defaultAppId
                  secretMap:(NSDictionary *)secretMap
@@ -272,6 +281,20 @@ static BrainCloudClient *s_instance = nil;
     }
     
     _client->initializeWithApps([serverURL UTF8String], [defaultAppId UTF8String], stdSecretMap, [appVersion UTF8String]);
+    [self initializeTimer];
+}
+
+- (void)initializeWithApps:(NSString *)defaultAppId
+                 secretMap:(NSDictionary *)secretMap
+                appVersion:(NSString *)appVersion
+{
+    std::map<std::string, std::string> stdSecretMap;
+    for (id key in secretMap)
+    {
+        stdSecretMap[[key UTF8String]] = [[secretMap objectForKey:key] UTF8String];
+    }
+    
+    _client->initializeWithApps([BC_SERVER_URL UTF8String], [defaultAppId UTF8String], stdSecretMap, [appVersion UTF8String]);
     [self initializeTimer];
 }
 
