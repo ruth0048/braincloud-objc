@@ -163,10 +163,14 @@ NSMutableDictionary *m_users;
     [super setUp];
     [self loadIds];
     m_client = [m_bcWrapper getBCClient];
-    [m_client initialize:m_serverUrl
-               secretKey:m_secret
-                   appId:m_appId
-              appVersion:m_version];
+    NSDictionary* secretMap = @{
+        m_appId      : m_secret, 
+        m_childAppId : m_childSecret,
+    };
+    [m_client initializeWithApps:m_serverUrl
+                    defaultAppId:m_appId
+                       secretMap:secretMap
+                      appVersion:m_version];
     [m_client enableLogging:TRUE];
     [self createUsers];
 
@@ -229,6 +233,11 @@ NSMutableDictionary *m_users;
         {
             NSRange range = [line rangeOfString:@"="];
             m_childAppId = [line substringFromIndex:range.location + 1];
+        }
+        else if ([line hasPrefix:@"childSecret"])
+        {
+            NSRange range = [line rangeOfString:@"="];
+            m_childSecret = [line substringFromIndex:range.location + 1];
         }
         else if ([line hasPrefix:@"parentLevelName"])
         {
