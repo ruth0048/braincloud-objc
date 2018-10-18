@@ -30,7 +30,7 @@
     
     [m_client setPacketTimeoutsToDefault];
     readTimeouts = [m_client getPacketTimeouts];
-    XCTAssertEqual([[readTimeouts objectAtIndex:0] integerValue], 10);
+    XCTAssertEqual([[readTimeouts objectAtIndex:0] integerValue], 15);
     XCTAssertEqual([[readTimeouts objectAtIndex:1] integerValue], 10);
     XCTAssertEqual([[readTimeouts objectAtIndex:2] integerValue], 10);
 }
