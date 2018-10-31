@@ -847,6 +847,11 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
     return [_bcClient mailService];
 }
 
+- (BrainCloudMessaging*)messagingService
+{
+    return [_bcClient messagingService];
+}
+
 - (BrainCloudMatchMaking *)matchMakingService
 {
     return [_bcClient matchMakingService];

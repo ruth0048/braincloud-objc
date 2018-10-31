@@ -134,6 +134,7 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
     BrainCloudGlobalApp *_globalAppService;
     BrainCloudFriend *_friendService;
     BrainCloudMail *_mailService;
+    BrainCloudMessaging *_messagingService;
     BrainCloudMatchMaking *_matchMakingService;
     BrainCloudAsyncMatch *_asyncMatchService;
     BrainCloudOneWayMatch *_oneWayMatchService;
@@ -539,6 +540,12 @@ const NSString* BC_SERVER_URL = @"https://sharedprod.braincloudservers.com/dispa
 {
     if (!_mailService) _mailService = [[BrainCloudMail alloc] init: self];
     return _mailService;
+}
+
+- (BrainCloudMessaging *)messagingService
+{
+    if (!_messagingService) _messagingService = [[BrainCloudMessaging alloc] init: self];
+    return _messagingService;
 }
 
 - (BrainCloudMatchMaking *)matchMakingService

@@ -31,6 +31,7 @@
 #import "BrainCloudIdentity.hh"
 #import "BrainCloudLeaderboard.hh"
 #import "BrainCloudMail.hh"
+#import "BrainCloudMessaging.hh"
 #import "BrainCloudMatchMaking.hh"
 #import "BrainCloudOneWayMatch.hh"
 #import "BrainCloudPlaybackStream.hh"
