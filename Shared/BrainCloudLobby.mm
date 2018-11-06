@@ -63,7 +63,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
         cbObject:(BCCallbackObject)cbObject
 {
-    _client->getLobbyService()->createLobby([lobbyType UTF8String], rating, maxSteps, [algo UTF8String], [filterJson UTF8String], TypeHelpers::NSStringArrayToVector(otherUserCxIds),isReady, [extraJson UTF8String], [teamCode UTF8String], [settings UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+    _client->getLobbyService()->findLobby([lobbyType UTF8String], rating, maxSteps, [algo UTF8String], [filterJson UTF8String], TypeHelpers::NSStringArrayToVector(otherUserCxIds),isReady, [extraJson UTF8String], [teamCode UTF8String], [settings UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 -(void)findOrCreateLobby:(NSString *)lobbyType
@@ -80,7 +80,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
-        _client->getLobbyService()->createLobby([lobbyType UTF8String], rating, maxSteps, [algo UTF8String], [filterJson UTF8String], TypeHelpers::NSStringArrayToVector(otherUserCxIds),isReady, [extraJson UTF8String], [teamCode UTF8String], [settings UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+        _client->getLobbyService()->findOrCreateLobby([lobbyType UTF8String], rating, maxSteps, [algo UTF8String], [filterJson UTF8String], TypeHelpers::NSStringArrayToVector(otherUserCxIds),isReady, [extraJson UTF8String], [teamCode UTF8String], [settings UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)getLobbyData:(NSString *)lobbyId
@@ -88,7 +88,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
-    
+    _client->getLobbyService()->getLobbyData([lobbyId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)leaveLobby:(NSString *)lobbyId
@@ -96,7 +96,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
           cbObject:(BCCallbackObject)cbObject
 {
-    
+    _client->getLobbyService()->leaveLobby([lobbyId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)removeMember:(NSString *)lobbyId
@@ -105,7 +105,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject
 {
-    
+    _client->getLobbyService()->removeMember([lobbyId UTF8String], [cxId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)sendSignal:(NSString *)lobbyId
@@ -114,7 +114,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
           cbObject:(BCCallbackObject)cbObject
 {
-    
+    _client->getLobbyService()->removeMember([lobbyId UTF8String], [signalData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)switchTeam:(NSString *)lobbyId
@@ -123,7 +123,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
           cbObject:(BCCallbackObject)cbObject
 {
-    
+    _client->getLobbyService()->switchTeam([lobbyId UTF8String], [toTeamCode UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 - (void)updateReady:(NSString *)lobbyId
@@ -133,16 +133,16 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
            cbObject:(BCCallbackObject)cbObject
 {
-    
+    _client->getLobbyService()->updateReady([lobbyId UTF8String], isReady, [extraJson UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
-- (void)getSubscribedChannels:(NSString *)lobbyId
+- (void)updateSettings:(NSString *)lobbyId
                      settings:(NSString *)settings
               completionBlock:(BCCompletionBlock)cb
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject
 {
-    
+    _client->getLobbyService()->updateSettings([lobbyId UTF8String], [settings UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 @end
