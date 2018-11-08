@@ -213,7 +213,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * Service Name - CHAT
  * Service Operation - UPDATE_CHAT_MESSAGE
  *
- * @param channelType id of the channel to receive the info from
+ * @param channelId id of the channel to receive the info from
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
@@ -221,7 +221,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 - (void)updateChatMessage:(NSString *)channelId
                     msgId:(NSString *)msgId
                   version:(int)version
-                  content:(NSString *)jsonRich
+                  content:(NSString *)jsonContent
           completionBlock:(BCCompletionBlock)cb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;

@@ -76,7 +76,6 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
               isReady:(bool)isReady
             extraJson:(NSString *) extraJson
              teamCode:(NSString *)teamCode
-             settings:(NSString *)settings
       completionBlock:(BCCompletionBlock)cb
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject;
@@ -234,11 +233,11 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
  */
-- (void)getSubscribedChannels:(NSString *)lobbyId
-                     settings:(NSString *)settings
-              completionBlock:(BCCompletionBlock)cb
-         errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                     cbObject:(BCCallbackObject)cbObject;
+- (void)updateSettings:(NSString *)lobbyId
+              settings:(NSString *)settings
+       completionBlock:(BCCompletionBlock)cb
+  errorCompletionBlock:(BCErrorCompletionBlock)ecb
+              cbObject:(BCCallbackObject)cbObject;
 
 @end
 

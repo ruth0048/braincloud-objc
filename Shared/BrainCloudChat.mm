@@ -127,14 +127,12 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 - (void)updateChatMessage:(NSString *)channelId
                     msgId:(NSString *)msgId
                   version:(int)version
-                    plain:(NSString *)plain
-                     rich:(NSString *)rich
+              jsonContent:(NSString *)jsonContent
           completionBlock:(BCCompletionBlock)cb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject
 {
-    _client->getChatService()->updateChatMessage([channelId UTF8String], [msgId UTF8String], version, [rich UTF8String],
-        new BrainCloudCallback(cb, ecb, cbObject));
+    _client->getChatService()->updateChatMessage([channelId UTF8String], [msgId UTF8String], version, [jsonContent UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 @end
