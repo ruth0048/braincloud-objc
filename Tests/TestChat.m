@@ -237,15 +237,13 @@
      errorCompletionBlock:failureBlock
      cbObject:nil];
     
-    //Spent far too much time on this error. I believe there's a mismatch with the cpp lib but I've already looked deeply into it
-    //Somewhere there's an invalid argument
-    //[[m_client chatService] updateChatMessage:@"20001:gl:valid"
-    //                                    msgId:@"123456"
-    //                                  version:1
-    //                                 content:@"{\"text\":\"edited message\"}"
-    //                          completionBlock:successBlock
-    //                    errorCompletionBlock:failureBlock
-    //                                 cbObject:nil];
+    [[m_client chatService] updateChatMessage:@"20001:gl:valid"
+                                        msgId:@"123456"
+                                      version:1
+                                  jsonContent:@"{\"text\":\"edited message\"}"
+                              completionBlock:successBlock
+                        errorCompletionBlock:failureBlock
+                                     cbObject:nil];
     
     [self waitForResult];
 }

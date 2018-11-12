@@ -134,5 +134,4 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 {
     _client->getChatService()->updateChatMessage([channelId UTF8String], [msgId UTF8String], version, [jsonContent UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
-
 @end

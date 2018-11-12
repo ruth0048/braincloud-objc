@@ -221,7 +221,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 - (void)updateChatMessage:(NSString *)channelId
                     msgId:(NSString *)msgId
                   version:(int)version
-                  content:(NSString *)jsonContent
+              jsonContent:(NSString *)jsonContent
           completionBlock:(BCCompletionBlock)cb
      errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;
