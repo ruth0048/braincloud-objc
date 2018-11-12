@@ -296,7 +296,6 @@ const NSString* BC_SERVER_URL = @"https://sharedprod.braincloudservers.com/dispa
     {
         stdSecretMap[[key UTF8String]] = [[secretMap objectForKey:key] UTF8String];
     }
-    
     _client->initializeWithApps([BC_SERVER_URL UTF8String], [defaultAppId UTF8String], stdSecretMap, [appVersion UTF8String]);
     [self initializeTimer];
 }
