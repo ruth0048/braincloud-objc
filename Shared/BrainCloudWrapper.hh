@@ -569,6 +569,8 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
 @property(readonly) BrainCloudFriend *friendService;
 @property(readonly) BrainCloudMail *mailService;
 @property(readonly) BrainCloudMessaging *messagingService;
+@property(readonly) BrainCloudLobby *lobbyService;
+@property(readonly) BrainCloudChat *chatService;
 @property(readonly) BrainCloudMatchMaking *matchMakingService;
 @property(readonly) BrainCloudAsyncMatch *asyncMatchService;
 @property(readonly) BrainCloudOneWayMatch *oneWayMatchService;

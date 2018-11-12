@@ -852,6 +852,16 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
     return [_bcClient messagingService];
 }
 
+- (BrainCloudLobby*)lobbyService
+{
+    return [_bcClient lobbyService];
+}
+
+- (BrainCloudChat*)chatService
+{
+    return [_bcClient chatService];
+}
+
 - (BrainCloudMatchMaking *)matchMakingService
 {
     return [_bcClient matchMakingService];
