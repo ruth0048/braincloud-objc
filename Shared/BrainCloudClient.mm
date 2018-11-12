@@ -135,6 +135,8 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
     BrainCloudFriend *_friendService;
     BrainCloudMail *_mailService;
     BrainCloudMessaging *_messagingService;
+    BrainCloudChat *_chatService;
+    BrainCloudLobby *_lobbyService;
     BrainCloudMatchMaking *_matchMakingService;
     BrainCloudAsyncMatch *_asyncMatchService;
     BrainCloudOneWayMatch *_oneWayMatchService;
@@ -294,7 +296,6 @@ const NSString* BC_SERVER_URL = @"https://sharedprod.braincloudservers.com/dispa
     {
         stdSecretMap[[key UTF8String]] = [[secretMap objectForKey:key] UTF8String];
     }
-    
     _client->initializeWithApps([BC_SERVER_URL UTF8String], [defaultAppId UTF8String], stdSecretMap, [appVersion UTF8String]);
     [self initializeTimer];
 }
@@ -546,6 +547,18 @@ const NSString* BC_SERVER_URL = @"https://sharedprod.braincloudservers.com/dispa
 {
     if (!_messagingService) _messagingService = [[BrainCloudMessaging alloc] init: self];
     return _messagingService;
+}
+
+- (BrainCloudLobby *)lobbyService
+{
+    if (!_lobbyService) _lobbyService = [[BrainCloudLobby alloc] init: self];
+    return _lobbyService;
+}
+
+- (BrainCloudChat *)chatService
+{
+    if (!_chatService) _chatService = [[BrainCloudChat alloc] init: self];
+    return _chatService;
 }
 
 - (BrainCloudMatchMaking *)matchMakingService
