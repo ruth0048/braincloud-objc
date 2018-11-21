@@ -32,6 +32,16 @@
     [self waitForResult];
 }
 
+- (void)testAuthenticateHandoff
+{
+    [[m_client authenticationService] authenticateHandoff:@"invalid_handoffId"
+                                            securityToken:@"invalid_securityToken"
+                                          completionBlock:successBlock
+                                     errorCompletionBlock:failureBlock
+                                                 cbObject:nil];
+    [self waitForFailedResult];
+}
+
 - (void)testAuthenticateEmailPassword
 {
     [[m_client authenticationService]
