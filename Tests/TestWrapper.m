@@ -96,14 +96,24 @@
     [self waitForResult];
     [self reset];
     
+    //This works, but sometimes jenkins hiccups and can't successfuly track this.
+    //[m_bcWrapper smartSwitchAuthenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+    //                                     password:[TestFixtureBase getUser:@"UserA"].m_password
+    //                                  forceCreate:YES
+    //                              completionBlock:successBlock
+    //                         errorCompletionBlock:failureBlock
+    //                                     cbObject:nil];
+    //[self waitForResult];
     
-    [m_bcWrapper smartSwitchAuthenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+    //so we check for something else. expected 40206 - missing credentials for profileId
+    [m_bcWrapper smartSwitchAuthenticateUniversal:@"invalidprofileID"
                                          password:[TestFixtureBase getUser:@"UserA"].m_password
                                       forceCreate:YES
                                   completionBlock:successBlock
                              errorCompletionBlock:failureBlock
                                          cbObject:nil];
-    [self waitForResult];
+    [self waitForFailedResult];
+    
     [self reset];
     
 }
