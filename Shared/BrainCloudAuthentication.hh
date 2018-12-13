@@ -274,6 +274,29 @@ extern NSString *const AUTH_FACEBOOK;
                   cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Reset Email password with service parameters - Sends a password reset email to the specified address
+ *
+ * Service Name - Authenticate
+ * Operation - ResetEmailPasswordAdvanced
+ *
+ * @param appId the application Id
+ * @param externalId The email address to send the reset email to.
+ * @param serviceParams parameters to send to the email service. See the doc for
+ * a full list http:/getbraincloud.com/apidocs/apiref/#capi-mail
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * Note the follow error reason codes:
+ * SECURITY_ERROR (40209) - If the email address cannot be found.
+ */
+- (void)resetEmailPasswordAdvanced:(NSString *)email
+                     serviceParams:(NSString *)serviceParams
+               withCompletionBlock:(BCCompletionBlock)completionBlock
+              errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                          cbObject:(BCCallbackObject)cbObject;
+
+/**
 * Authenticate the user via cloud code (which in turn validates the supplied credentials against an external system).
 * This allows the developer to extend brainCloud authentication to support other backend authentication systems.
 *

@@ -111,6 +111,7 @@
     
     [[m_client messagingService] markMessagesRead:@"inbox"
                                            msgIds:msgId
+                                       markAsRead:false
                                   completionBlock:successBlock
                              errorCompletionBlock:failureBlock
                                          cbObject:nil];

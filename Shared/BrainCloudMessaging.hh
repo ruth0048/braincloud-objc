@@ -177,6 +177,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  */
 - (void)markMessagesRead:(NSString *)msgBox
                   msgIds:(NSArray *)msgIds
+              markAsRead:(bool)markAsRead
          completionBlock:(BCCompletionBlock)cb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
