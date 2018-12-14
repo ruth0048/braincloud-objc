@@ -61,12 +61,13 @@
 
 - (void)getMessages:(NSString *)msgBox
              msgIds:(NSArray*)msgIds
+         markAsRead:(bool)markAsRead
     completionBlock:(BCCompletionBlock)cb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
            cbObject:(BCCallbackObject)cbObject
 {
     _client->getMessagingService()->getMessages(
-        [msgBox UTF8String], TypeHelpers::NSStringArrayToVector(msgIds), new BrainCloudCallback(cb, ecb, cbObject));
+        [msgBox UTF8String], TypeHelpers::NSStringArrayToVector(msgIds), true, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 
@@ -113,13 +114,12 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 
 - (void)markMessagesRead:(NSString *)msgBox
                   msgIds:(NSArray *)msgIds
-              markAsRead:(bool)markAsRead
          completionBlock:(BCCompletionBlock)cb
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject
 {
     _client->getMessagingService()->markMessagesRead(
-        [msgBox UTF8String], TypeHelpers::NSStringArrayToVector(msgIds), markAsRead, new BrainCloudCallback(cb, ecb, cbObject));
+        [msgBox UTF8String], TypeHelpers::NSStringArrayToVector(msgIds), new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 @end
