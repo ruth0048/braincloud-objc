@@ -89,23 +89,9 @@
     [m_bcWrapper setStoredProfileId:@""];
     [m_bcWrapper setStoredAnonymousId:@""];
     
-    //[[[m_bcWrapper getBCClient] authenticationService] clearSavedProfile];
-    //[m_bcWrapper authenticateAnonymous:successBlock errorCompletionBlock:failureBlock cbObject:nil];
-    //[self waitForResult];
-    //[self reset];
-    
-    //This works, but sometimes jenkins hiccups and can't successfuly track this.
-    [m_bcWrapper smartSwitchAuthenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
-                                         password:[TestFixtureBase getUser:@"UserA"].m_password
-                                      forceCreate:YES
-                                  completionBlock:successBlock
-                             errorCompletionBlock:failureBlock
-                                         cbObject:nil];
-    [self waitForResult];
-    
     //so we check for something else. expected 40307 - token not matching user
-    [m_bcWrapper smartSwitchAuthenticateUniversal:@"invalidprofileID"
-                                         password:[TestFixtureBase getUser:@"UserA"].m_password
+    [m_bcWrapper smartSwitchAuthenticateUniversal:@"invalidProfileID"
+                                         password:@"invalidPassword"
                                       forceCreate:YES
                                   completionBlock:successBlock
                              errorCompletionBlock:failureBlock
