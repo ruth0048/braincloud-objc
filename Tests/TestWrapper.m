@@ -154,8 +154,30 @@
     
 }
 
+- (void)testResetEmailPassword
+{
+    NSString* email = @"braincloudunittest@gmail.com";
+    
+    [m_bcWrapper resetEmailPassword:email
+                 withCompletionBlock:successBlock
+                errorCompletionBlock:failureBlock
+                            cbObject:nil];
+    [self waitForResult];
+}
 
-
+- (void)testResetEmailPasswordAdvanced
+{
+    NSString* email = @"braincloudunittest@gmail.com";
+    NSString* content = @"{\"fromAddress\": \"fromAddress\",\"fromName\": \"fromName\",\"replyToAddress\": \"replyToAddress\",\"replyToName\": \"replyToName\", \"templateId\": \"8f14c77d-61f4-4966-ab6d-0bee8b13d090\",\"subject\": \"subject\",\"body\": \"Body goes here\", \"substitutions\": { \":name\": \"John Doe\",\":resetLink\": \"www.dummuyLink.io\"}, \"categories\": [\"category1\",\"category2\" ]}";
+    
+    [m_bcWrapper resetEmailPasswordAdvanced:email
+                               serviceParams:content
+                         withCompletionBlock:successBlock
+                        errorCompletionBlock:failureBlock
+                                    cbObject:nil];
+    //expect improper from address
+    [self waitForFailedResult];
+}
 
 - (void)testReconnect
 {

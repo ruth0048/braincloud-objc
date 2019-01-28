@@ -755,6 +755,29 @@ static BrainCloudWrapper *sharedWrapper = nil;
     }
 }
 
+- (void)resetEmailPassword:(NSString *)email
+       withCompletionBlock:(BCCompletionBlock)completionBlock
+      errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                  cbObject:(BCCallbackObject)cbObject
+{
+    [[_bcClient authenticationService]resetEmailPassword:email
+                                     withCompletionBlock:completionBlock
+                                    errorCompletionBlock:errorCompletionBlock
+                                                cbObject:cbObject];
+}
+
+- (void)resetEmailPasswordAdvanced:(NSString *)email
+                     serviceParams:(NSString *)serviceParams
+               withCompletionBlock:(BCCompletionBlock)completionBlock
+              errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                          cbObject:(BCCallbackObject)cbObject
+{
+    [[_bcClient authenticationService]resetEmailPasswordAdvanced:email
+                                                   serviceParams:serviceParams
+                                             withCompletionBlock:completionBlock
+                                            errorCompletionBlock:errorCompletionBlock
+                                                        cbObject:cbObject];
+}
 
 - (void)reconnect:(BCCompletionBlock)completionBlock
 errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
