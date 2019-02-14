@@ -61,12 +61,13 @@
 
 - (void)getMessages:(NSString *)msgBox
              msgIds:(NSArray*)msgIds
+         markAsRead:(bool)markAsRead
     completionBlock:(BCCompletionBlock)cb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
            cbObject:(BCCallbackObject)cbObject
 {
     _client->getMessagingService()->getMessages(
-        [msgBox UTF8String], TypeHelpers::NSStringArrayToVector(msgIds), new BrainCloudCallback(cb, ecb, cbObject));
+        [msgBox UTF8String], TypeHelpers::NSStringArrayToVector(msgIds), true, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 

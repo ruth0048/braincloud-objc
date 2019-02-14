@@ -84,6 +84,7 @@
  */
 - (void)getMessages:(NSString *)msgBox
                 msgIds:(NSArray*)msgIds
+            markAsRead:(bool)markAsRead
        completionBlock:(BCCompletionBlock)cb
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject;

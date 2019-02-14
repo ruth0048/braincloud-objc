@@ -192,19 +192,62 @@
                        cbObject:(BCCallbackObject)cbObject;
 
 /**
- * Retrieves profile information for the partial matches of the specified text.
- *
- * @param searchText Universal ID text on which to search.
- * @param maxResults Maximum number of results to return.
- * @param completionBlock Block to call on return of successful server response
- * @param errorCompletionBlock Block to call on return of unsuccessful server response
- * @param cbObject User object sent to the completion blocks
+ * @deprecated : use findUserByExactUniversalId
  */
 - (void)findUserByUniversalId:(NSString *)searchText
                    maxResults:(int)maxResults
               completionBlock:(BCCompletionBlock)cb
          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                      cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieves profile information for the specified Universal Id
+ *
+ * @param searchText Universal ID text on which to search.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)findUserByExactUniversalId:(NSString *)searchText
+                   completionBlock:(BCCompletionBlock)cb
+              errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                          cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieve profile info for the Universal Ids that match starting text
+ *
+ * Service Name - friend
+ * Service Operation - FIND_USERS_BY_UNIVERSAL_ID_STARTING_WITH
+ *
+ * @param searchText The substring to search for. Minimum length of 3 characters.
+ * @param maxResults  Maximum number of results to return. If there are more the message
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)findUsersByUniversalIdStartingWith:(NSString *)searchText
+                                maxResults:(int)maxResults
+                           completionBlock:(BCCompletionBlock)cb
+                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                  cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieve profile info for the names that match starting text
+ *
+ * Service Name - friend
+ * Service Operation - FIND_USERS_BY_NAME_STARTING_WITH
+ *
+ * @param searchText The substring to search for. Minimum length of 3 characters.
+ * @param maxResults  Maximum number of results to return. If there are more the message
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)findUsersByNameStartingWith:(NSString *)searchText
+                         maxResults:(int)maxResults
+                    completionBlock:(BCCompletionBlock)cb
+               errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                           cbObject:(BCCallbackObject)cbObject;
 
 /**
  * Retrieves a list of user and friend platform information for all friends of the current user.

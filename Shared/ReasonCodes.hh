@@ -298,3 +298,12 @@ extern const NSInteger CLIENT_UPLOAD_FILE_CANCELLED;
 extern const NSInteger CLIENT_UPLOAD_FILE_TIMED_OUT;
 extern const NSInteger CLIENT_UPLOAD_FILE_UNKNOWN;
 
+extern const NSInteger RTT_LEFT_BY_CHOICE;
+extern const NSInteger RTT_EVICTED;
+extern const NSInteger RTT_LOST_CONNECTION;
+extern const NSInteger RTT_TIMEOUT;
+extern const NSInteger RTT_ROOM_READY;
+extern const NSInteger RTT_ROOM_CANCELLED;
+extern const NSInteger RTT_ERROR_ASSIGNING_ROOM;
+extern const NSInteger RTT_ERROR_LAUNCHNG_ROOM;
+extern const NSInteger RTT_NO_LOBBIES_FOUND;

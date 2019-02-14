@@ -52,6 +52,7 @@
     
     [[m_client messagingService] getMessages:@"inbox"
                                       msgIds:msgIds
+                                  markAsRead:true
                              completionBlock:successBlock
                         errorCompletionBlock:failureBlock
                                     cbObject:nil];

@@ -89,6 +89,35 @@
     [self waitForResult];
 }
 
+- (void)testFindUserByExactUniversalId
+{
+    [[m_client friendService] findUserByExactUniversalId:@"test"
+                                         completionBlock:successBlock
+                                    errorCompletionBlock:failureBlock
+                                                cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testFindUsersByUniversalIdStartingWith
+{
+    [[m_client friendService] findUsersByUniversalIdStartingWith:@"test"
+                                                      maxResults:30
+                                                 completionBlock:successBlock
+                                            errorCompletionBlock:failureBlock
+                                                        cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testFindUsersByNameStartingWith
+{
+    [[m_client friendService] findUsersByNameStartingWith:@"test"
+                                               maxResults:30
+                                          completionBlock:successBlock
+                                     errorCompletionBlock:failureBlock
+                                                 cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testListFriends
 {
     [self addFriend];

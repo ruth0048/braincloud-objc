@@ -11,6 +11,7 @@ NSString const *const BrainCloudServiceOperationAttach = [NSString stringWithCSt
 NSString const *const BrainCloudServiceOperationMerge = [NSString stringWithCString:BrainCloud::ServiceOperation::Merge.getValue().c_str() encoding:NSASCIIStringEncoding];
 NSString const *const BrainCloudServiceOperationDetach = [NSString stringWithCString:BrainCloud::ServiceOperation::Detach.getValue().c_str() encoding:NSASCIIStringEncoding];
 NSString const *const BrainCloudServiceOperationResetEmailPassword = [NSString stringWithCString:BrainCloud::ServiceOperation::ResetEmailPassword.getValue().c_str() encoding:NSASCIIStringEncoding];
+NSString const *const BrainCloudServiceOperationResetEmailPasswordAdvanced = [NSString stringWithCString:BrainCloud::ServiceOperation::ResetEmailPasswordAdvanced.getValue().c_str() encoding:NSASCIIStringEncoding];
 NSString const *const BrainCloudServiceOperationSwitchToChildProfile = [NSString stringWithCString:BrainCloud::ServiceOperation::SwitchToChildProfile.getValue().c_str() encoding:NSASCIIStringEncoding];
 NSString const *const BrainCloudServiceOperationSwitchToParentProfile = [NSString stringWithCString:BrainCloud::ServiceOperation::SwitchToParentProfile.getValue().c_str() encoding:NSASCIIStringEncoding];
 NSString const *const BrainCloudServiceOperationGetChildProfiles = [NSString stringWithCString:BrainCloud::ServiceOperation::GetChildProfiles.getValue().c_str() encoding:NSASCIIStringEncoding];
