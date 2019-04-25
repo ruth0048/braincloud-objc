@@ -73,4 +73,12 @@
     [self waitForResult];
 }
 
+- (void)testResetCurrency
+{
+    [[m_client virtualCurrencyService] resetCurrency:successBlock
+                                  errorCompletionBlock:failureBlock
+                                              cbObject:nil];
+    [self waitForResult];
+}
+
 @end
