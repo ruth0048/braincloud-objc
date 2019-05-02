@@ -297,6 +297,46 @@ extern NSString *const AUTH_FACEBOOK;
                           cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Reset UniversalId password
+ *
+ * Service Name - Authenticate
+ * Operation - ResetUniversalIdPassword
+ *
+ * @param universalId The email address to send the reset email to.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ */
+- (void)resetUniversalIdPassword:(NSString *)universalId
+             withCompletionBlock:(BCCompletionBlock)completionBlock
+            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                        cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Reset UniversalId password with template options
+ *
+ * Service Name - Authenticate
+ * Operation - ResetUniversalIdPasswordAdvanced
+ *
+ * @param appId the application Id
+ * @param universalId The universalId who's password you want to change.
+ * @param serviceParams parameters to send to the email service. See the doc for
+ * a full list http:/getbraincloud.com/apidocs/apiref/#capi-mail
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * Note the follow error reason codes:
+ * SECURITY_ERROR (40209) - If the email address cannot be found.
+ */
+- (void)resetUniversalIdPasswordAdvanced:(NSString *)universalId
+                           serviceParams:(NSString *)serviceParams
+                     withCompletionBlock:(BCCompletionBlock)completionBlock
+                    errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                                cbObject:(BCCallbackObject)cbObject;
+
+/**
 * Authenticate the user via cloud code (which in turn validates the supplied credentials against an external system).
 * This allows the developer to extend brainCloud authentication to support other backend authentication systems.
 *
