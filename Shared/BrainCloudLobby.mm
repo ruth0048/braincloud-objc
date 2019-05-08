@@ -155,5 +155,15 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     _client->getLobbyService()->updateSettings([lobbyId UTF8String], [settings UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+//available when rtt is supported.
+//- (void)cancelFindRequest:(NSString *)lobbyId
+//                     cxId:(NSString *)cxId
+//          completionBlock:(BCCompletionBlock)cb
+//     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+//                 cbObject:(BCCallbackObject)cbObject
+//{
+//    _client->getLobbyService()->resetFindRequest([lobbyId UTF8String], [cxId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+//}
+
 @end
 
