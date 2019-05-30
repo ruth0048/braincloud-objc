@@ -146,6 +146,30 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                  cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Causes caller to join the specified lobby.
+ *
+ * Service Name - Lobby
+ * Service Operation - JOIN_LOBBY
+ *
+ * @param lobbyId is the id of chosen lobby
+ * @param isReady ready status of user
+ * @param extreJson extra data about user
+ * @param teamCode
+ * @param otherUserCxIds array of other users
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)joinLobby:(NSString *)lobbyId
+             isReady:(bool)isReady
+           extraJson:(NSString *)extraJson
+            teamCode:(NSString *)teamCode
+      otherUserCxIds:(NSArray *)otherUserCxIds
+     completionBlock:(BCCompletionBlock)cb
+errorCompletionBlock:(BCErrorCompletionBlock)ecb
+            cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Gets the channel Id for the given <channelType> and <channelSubId> Channel type must be one of "gl" or "gr"
  *
  * Service Name - Lobby
@@ -238,6 +262,15 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
        completionBlock:(BCCompletionBlock)cb
   errorCompletionBlock:(BCErrorCompletionBlock)ecb
               cbObject:(BCCallbackObject)cbObject;
+
+
+//Cancels this members find, join and search for lobbies
+//available when rtt is supported.
+//- (void)cancelFindRequest:(NSString *)lobbyId
+//                     cxId:(NSString *)cxId
+//          completionBlock:(BCCompletionBlock)cb
+//     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+//                 cbObject:(BCCallbackObject)cbObject;
 
 @end
 

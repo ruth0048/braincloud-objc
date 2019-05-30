@@ -88,6 +88,19 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
     _client->getLobbyService()->getLobbyData([lobbyId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)joinLobby:(NSString *)lobbyId
+             isReady:(bool)isReady
+           extraJson:(NSString *)extraJson
+            teamCode:(NSString *)teamCode
+      otherUserCxIds:(NSArray *)otherUserCxIds
+     completionBlock:(BCCompletionBlock)cb
+errorCompletionBlock:(BCErrorCompletionBlock)ecb
+            cbObject:(BCCallbackObject)cbObject
+{
+    _client->getLobbyService()->joinLobby([lobbyId UTF8String], isReady, [extraJson UTF8String],[teamCode UTF8String],
+            TypeHelpers::NSStringArrayToVector(otherUserCxIds), new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)leaveLobby:(NSString *)lobbyId
      completionBlock:(BCCompletionBlock)cb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
@@ -141,6 +154,16 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 {
     _client->getLobbyService()->updateSettings([lobbyId UTF8String], [settings UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
+
+//available when rtt is supported.
+//- (void)cancelFindRequest:(NSString *)lobbyId
+//                     cxId:(NSString *)cxId
+//          completionBlock:(BCCompletionBlock)cb
+//     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+//                 cbObject:(BCCallbackObject)cbObject
+//{
+//    _client->getLobbyService()->resetFindRequest([lobbyId UTF8String], [cxId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+//}
 
 @end
 

@@ -158,4 +158,18 @@
     [self waitForResult];
 }
 
+- (void)testAttachNonLoginUniversalId
+{
+    //will make duplicate problem
+    [[m_client identityService] attachNonLoginUniversalId:@"braincloudtest@gmail.com" completionBlock:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    [self waitForFailedResult];
+}
+
+- (void)testUpdateUniversalIdLogin
+{
+    //will have an already exist problem
+    [[m_client identityService] updateUniversalIdLogin:@"braincloudtest@gmail.com" completionBlock:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    [self waitForFailedResult];
+}
+
 @end

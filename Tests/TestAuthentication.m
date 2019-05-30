@@ -55,7 +55,7 @@
 }
 - (void)testResetEmailPassword
 {
-    NSString* email = @"braincloudunittest@gmail.com";
+    NSString* email = @"ryanr@bitheads.com";
     
     [[m_client authenticationService] resetEmailPassword:email
                                      withCompletionBlock:successBlock
@@ -66,8 +66,8 @@
 
 - (void)testResetEmailPasswordAdvanced
 {
-    NSString* email = @"braincloudunittest@gmail.com";
-    NSString* content = @"{\"fromAddress\": \"fromAddress\",\"fromName\": \"fromName\",\"replyToAddress\": \"replyToAddress\",\"replyToName\": \"replyToName\", \"templateId\": \"8f14c77d-61f4-4966-ab6d-0bee8b13d090\",\"subject\": \"subject\",\"body\": \"Body goes here\", \"substitutions\": { \":name\": \"John Doe\",\":resetLink\": \"www.dummuyLink.io\"}, \"categories\": [\"category1\",\"category2\" ]}";
+    NSString* email = @"ryanr@bitheads.com";
+    NSString* content = @"{\"fromAddress\": \"ryanr@bitheads.com\",\"fromName\": \"ryan\",\"replyToAddress\": \"ryanr@bitheads.com\",\"replyToName\": \"replyToName\", \"templateId\": \"8f14c77d-61f4-4966-ab6d-0bee8b13d090\", \"substitutions\": { \":name\": \"John Doe\",\":resetLink\": \"www.dummuyLink.io\"}, \"categories\": [\"category1\",\"category2\" ]}";
     
     [[m_client authenticationService] resetEmailPasswordAdvanced:email
                                                    serviceParams:content
@@ -75,7 +75,45 @@
                                             errorCompletionBlock:failureBlock
                                                         cbObject:nil];
     //expect improper from address
-    [self waitForFailedResult];
+    [self waitForResult];
+}
+
+- (void)testResetUniversalIdPassword
+{
+    [[m_client authenticationService]
+     authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+     password:[TestFixtureBase getUser:@"UserA"].m_password
+     forceCreate:true
+     completionBlock:successBlock
+     errorCompletionBlock:failureBlock
+     cbObject:nil];
+    
+    [[m_client authenticationService] resetUniversalIdPassword:[TestFixtureBase getUser:@"UserA"].m_id
+                                     withCompletionBlock:successBlock
+                                    errorCompletionBlock:failureBlock
+                                                cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testResetUniversalIdPasswordAdvanced
+{
+    [[m_client authenticationService]
+     authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+     password:[TestFixtureBase getUser:@"UserA"].m_password
+     forceCreate:true
+     completionBlock:successBlock
+     errorCompletionBlock:failureBlock
+     cbObject:nil];
+
+    NSString* content = @"{\"fromAddress\": \"ryanr@bitheads.com\",\"fromName\": \"ryan\",\"replyToAddress\": \"ryanr@bitheads.com\",\"replyToName\": \"replyToName\", \"templateId\": \"8f14c77d-61f4-4966-ab6d-0bee8b13d090\", \"substitutions\": { \":name\": \"John Doe\",\":resetLink\": \"www.dummuyLink.io\"}, \"categories\": [\"category1\",\"category2\" ]}";
+    
+    [[m_client authenticationService] resetUniversalIdPasswordAdvanced:[TestFixtureBase getUser:@"UserA"].m_id
+                                                   serviceParams:content
+                                             withCompletionBlock:successBlock
+                                            errorCompletionBlock:failureBlock
+                                                        cbObject:nil];
+    //expect improper from address
+    [self waitForResult];
 }
 
 @end

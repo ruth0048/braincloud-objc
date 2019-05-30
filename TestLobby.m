@@ -251,4 +251,20 @@
     [self waitForFailedResult];
 }
 
+- (void)testJoinLobby
+{
+    NSString* id = @"Id";
+    NSArray* ids = [NSArray arrayWithObjects:id, nil];
+    //expect bad lobby
+    [[m_client lobbyService]joinLobby:@"badLobbyId"
+                              isReady:true
+                            extraJson:@"{}"
+                             teamCode:@"red"
+                       otherUserCxIds:ids
+                           completionBlock:successBlock
+                      errorCompletionBlock:failureBlock
+                                  cbObject:nil];
+    [self waitForFailedResult];
+}
+
 @end

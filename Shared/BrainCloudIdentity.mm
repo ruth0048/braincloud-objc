@@ -413,5 +413,23 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)attachNonLoginUniversalId:(NSString *)externalId
+                  completionBlock:(BCCompletionBlock)cb
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject
+{
+    _client->getIdentityService()->attachNonLoginUniversalId(
+        [externalId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)updateUniversalIdLogin:(NSString*)externalId
+               completionBlock:(BCCompletionBlock)cb
+          errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                      cbObject:(BCCallbackObject)cbObject
+{
+    _client->getIdentityService()->updateUniversalIdLogin(
+        [externalId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end
 

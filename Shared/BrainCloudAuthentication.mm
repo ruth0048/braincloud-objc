@@ -216,6 +216,25 @@
     [email cStringUsingEncoding:NSUTF8StringEncoding],[serviceParams UTF8String], brainCloudCallback);
 }
 
+- (void)resetUniversalIdPassword:(NSString *)universalId
+             withCompletionBlock:(BCCompletionBlock)completionBlock
+            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                        cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
+    _client->getAuthenticationService()->resetEmailPassword([universalId cStringUsingEncoding:NSUTF8StringEncoding], brainCloudCallback);
+}
+
+- (void)resetUniversalIdPasswordAdvanced:(NSString *)universalId
+                           serviceParams:(NSString *)serviceParams
+                     withCompletionBlock:(BCCompletionBlock)completionBlock
+                    errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                                cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback = new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
+    _client->getAuthenticationService()->resetEmailPasswordAdvanced([universalId cStringUsingEncoding:NSUTF8StringEncoding],[serviceParams UTF8String], brainCloudCallback);
+}
+
 - (void)authenticateExternal:(NSString *)userID
          authenticationToken:(NSString *)authToken
   externalAuthenticationName:(NSString *)externalAuthName

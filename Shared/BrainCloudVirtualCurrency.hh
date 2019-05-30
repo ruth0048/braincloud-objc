@@ -108,6 +108,20 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Resets player's currency to 0
+ *
+ * Service Name - virtual currency
+ * Service Operation - RESET_PLAYER_VC
+ *
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)resetCurrency:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject;
+
 @end
 
 

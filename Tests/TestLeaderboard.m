@@ -176,7 +176,7 @@ NSString *eventId = @"tournamentRewardTest";
 
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
     NSDate *nextDate = [theCalendar dateByAddingComponents:dayComponent toDate:[NSDate date] options:0];
-    NSString *name = [NSString stringWithFormat:@"%@Days-%d", dynamicLeaderboardId, arc4random_uniform(1000000)];
+    NSString *name = [NSString stringWithFormat:@"%@Days_%d", dynamicLeaderboardId, arc4random_uniform(1000000)];
 
     [[m_client leaderboardService] postScoreToDynamicLeaderboardDays:name
                                                                score:100

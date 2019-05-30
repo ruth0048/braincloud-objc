@@ -790,4 +790,36 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Updates the users universal id
+ *
+ * Service Name - identity
+ * Service Operation - ATTACH_NONLOGIN_UNIVERSAL
+ *
+ * @param externalId users id
+ * @param successCallback The success callback
+ * @param errorCallback The failure callback.
+ * @param cbObject The user object sent to the callback
+ */
+- (void)attachNonLoginUniversalId:(NSString *)externalId
+                  completionBlock:(BCCompletionBlock)cb
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Attaches a universal id that doesn't need to login
+ *
+ * Service Name - identity
+ * Service Operation - UPDATE_UNIVERSAL_LOGIN
+ *
+ * @param externalId users id
+ * @param successCallback The success callback
+ * @param errorCallback The failure callback.
+ * @param cbObject The user object sent to the callback
+ */
+- (void)updateUniversalIdLogin:(NSString*)externalId
+                  completionBlock:(BCCompletionBlock)cb
+             errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                         cbObject:(BCCallbackObject)cbObject;
+
 @end
