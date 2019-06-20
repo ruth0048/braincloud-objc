@@ -106,6 +106,25 @@
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)createGroup:(NSString *)name
+          groupType:(NSString *)type
+        isOpenGroup:(BOOL)isOpenGroup
+                acl:(NSString *)acl
+           jsonData:(NSString *)jsonData
+jsonOwnerAttributes:(NSString *)jsonOwnerAttributes
+jsonDefaultMemberAttributes:(NSString *)jsonDefaultMemberAttributes
+    jsonSummaryData:(NSString *)jsonSummaryData
+    completionBlock:(BCCompletionBlock)cb
+errorCompletionBlock:(BCErrorCompletionBlock)ecb
+           cbObject:(BCCallbackObject)cbObject
+{
+    _client->getGroupService()->createGroup(
+        [name UTF8String], [type UTF8String], isOpenGroup ? true : false, [acl UTF8String],
+        TypeHelpers::NSStringToStdString(jsonOwnerAttributes),
+        TypeHelpers::NSStringToStdString(jsonDefaultMemberAttributes), TypeHelpers::NSStringToStdString(jsonData),TypeHelpers::NSStringToStdString(jsonSummaryData),
+        new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)createGroupEntity:(NSString *)groupId
                entityType:(NSString *)entityType
      isOwnedByGroupMember:(BOOL)isOwnedByGroupMember
@@ -369,6 +388,27 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 {
     _client->getGroupService()->setGroupOpen(
          [groupId UTF8String], isOpenGroup, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)updateGroupSummaryData:(NSString *)groupId
+                       version:(int)version
+                   summaryData:(NSString *)summaryData
+               completionBlock:(BCCompletionBlock)cb
+          errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                      cbObject:(BCCallbackObject)cbObject
+{
+    _client->getGroupService()->updateGroupSummaryData(
+        [groupId UTF8String], version, TypeHelpers::NSStringToStdString(summaryData), new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getRandomGroupsMatching:(NSString *)jsonWhere
+                      maxReturn:(int)maxReturn
+                completionBlock:(BCCompletionBlock)cb
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject
+{
+    _client->getGroupService()->getRandomGroupsMatching(
+        TypeHelpers::NSStringToStdString(jsonWhere), maxReturn, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
 @end
