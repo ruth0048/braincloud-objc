@@ -660,17 +660,17 @@ NSString *groupId = @"";
 
 - (void)createGroupWithSummaryData:(BOOL)isOpen
 {
-    [[m_client groupService] createGroup:@"testGroup"
-                               groupType:groupType
-                             isOpenGroup:isOpen
-                                     acl:testAcl
-                                jsonData:testJsonPair
-                     jsonOwnerAttributes:testJsonPair
-             jsonDefaultMemberAttributes:testJsonPair
-                         jsonSummaryData:testJsonPair
-                         completionBlock:successBlock
-                    errorCompletionBlock:failureBlock
-                                cbObject:nil];
+    [[m_client groupService] createGroupWithSummaryData:@"testGroup"
+                                              groupType:groupType
+                                            isOpenGroup:isOpen
+                                                    acl:testAcl
+                                               jsonData:testJsonPair
+                                    jsonOwnerAttributes:testJsonPair
+                            jsonDefaultMemberAttributes:testJsonPair
+                                        jsonSummaryData:testJsonPair
+                                        completionBlock:successBlock
+                                   errorCompletionBlock:failureBlock
+                                               cbObject:nil];
     [self waitForResult];
     
     NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];

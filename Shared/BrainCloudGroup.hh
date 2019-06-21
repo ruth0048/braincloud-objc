@@ -174,17 +174,17 @@ typedef NS_ENUM(NSUInteger, AutoJoinStrategy) { JoinFirstGroup, JoinRandomGroup 
  * response
  * @param cbObject User object sent to the completion blocks
  */
-- (void)createGroup:(NSString *)name
-                  groupType:(NSString *)type
-                isOpenGroup:(BOOL)isOpenGroup
-                        acl:(NSString *)acl
-                   jsonData:(NSString *)jsonData
-        jsonOwnerAttributes:(NSString *)jsonOwnerAttributes
-jsonDefaultMemberAttributes:(NSString *)jsonDefaultMemberAttributes
-            jsonSummaryData:(NSString *)jsonSummaryData
-            completionBlock:(BCCompletionBlock)cb
-       errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                   cbObject:(BCCallbackObject)cbObject;
+- (void)createGroupWithSummaryData:(NSString *)name
+                         groupType:(NSString *)type
+                       isOpenGroup:(BOOL)isOpenGroup
+                               acl:(NSString *)acl
+                          jsonData:(NSString *)jsonData
+               jsonOwnerAttributes:(NSString *)jsonOwnerAttributes
+       jsonDefaultMemberAttributes:(NSString *)jsonDefaultMemberAttributes
+                   jsonSummaryData:(NSString *)jsonSummaryData
+                   completionBlock:(BCCompletionBlock)cb
+              errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                          cbObject:(BCCallbackObject)cbObject;
 
 /**
  * Create a group entity.

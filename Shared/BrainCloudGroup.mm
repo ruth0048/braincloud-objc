@@ -106,19 +106,19 @@
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
-- (void)createGroup:(NSString *)name
-          groupType:(NSString *)type
-        isOpenGroup:(BOOL)isOpenGroup
-                acl:(NSString *)acl
-           jsonData:(NSString *)jsonData
-jsonOwnerAttributes:(NSString *)jsonOwnerAttributes
-jsonDefaultMemberAttributes:(NSString *)jsonDefaultMemberAttributes
-    jsonSummaryData:(NSString *)jsonSummaryData
-    completionBlock:(BCCompletionBlock)cb
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-           cbObject:(BCCallbackObject)cbObject
+- (void)createGroupWithSummaryData:(NSString *)name
+                         groupType:(NSString *)type
+                       isOpenGroup:(BOOL)isOpenGroup
+                               acl:(NSString *)acl
+                          jsonData:(NSString *)jsonData
+               jsonOwnerAttributes:(NSString *)jsonOwnerAttributes
+       jsonDefaultMemberAttributes:(NSString *)jsonDefaultMemberAttributes
+                   jsonSummaryData:(NSString *)jsonSummaryData
+                   completionBlock:(BCCompletionBlock)cb
+              errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                          cbObject:(BCCallbackObject)cbObject
 {
-    _client->getGroupService()->createGroup(
+    _client->getGroupService()->createGroupWithSummaryData(
         [name UTF8String], [type UTF8String], isOpenGroup ? true : false, [acl UTF8String],
         TypeHelpers::NSStringToStdString(jsonOwnerAttributes),
         TypeHelpers::NSStringToStdString(jsonDefaultMemberAttributes), TypeHelpers::NSStringToStdString(jsonData),TypeHelpers::NSStringToStdString(jsonSummaryData),
