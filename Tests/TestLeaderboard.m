@@ -18,6 +18,7 @@
 NSString *globalLeaderboardId = @"testLeaderboard";
 NSString *socialLeaderboardId = @"testSocialLeaderboard";
 NSString *dynamicLeaderboardId = @"testDynamicLeaderboard";
+NSString *groupLeaderboardId = @"groupLeaderboardConfig";
 NSString *eventId = @"tournamentRewardTest";
 
 - (void)setUp { [super setUp]; }
@@ -323,6 +324,129 @@ NSString *eventId = @"tournamentRewardTest";
                                                    completionBlock:successBlock
                                               errorCompletionBlock:failureBlock
                                                           cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testPostScoreToGroupLeaderboard
+{
+    [[m_client groupService] createGroup:@"testGroup"
+                               groupType:@"test"
+                             isOpenGroup:NO
+                                     acl:@""
+                                jsonData:@""
+                     jsonOwnerAttributes:@""
+             jsonDefaultMemberAttributes:@""
+                         completionBlock:successBlock
+                    errorCompletionBlock:failureBlock
+                                cbObject:nil];
+    [self waitForResult];
+    
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj =
+    [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    NSString *groupId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"groupId"];
+    
+    [[m_client leaderboardService] postScoreToGroupLeaderboard:groupLeaderboardId
+                                                       groupId:groupId
+                                                         score:100
+                                                      jsonData:@""
+                                                   completionBlock:successBlock
+                                              errorCompletionBlock:failureBlock
+                                                          cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testRemoveGroupScore
+{
+    
+    [[m_client groupService] createGroup:@"testGroup"
+                               groupType:@"test"
+                             isOpenGroup:NO
+                                     acl:@""
+                                jsonData:@""
+                     jsonOwnerAttributes:@""
+             jsonDefaultMemberAttributes:@""
+                         completionBlock:successBlock
+                    errorCompletionBlock:failureBlock
+                                cbObject:nil];
+    [self waitForResult];
+    
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj =
+    [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    NSString *groupId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"groupId"];
+    
+    [[m_client leaderboardService] removeGroupScore:groupLeaderboardId
+                                            groupId:groupId
+                                          versionId:-1
+                                    completionBlock:successBlock
+                               errorCompletionBlock:failureBlock
+                                           cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testGetGroupLeaderboardView
+{
+    [[m_client groupService] createGroup:@"testGroup"
+                               groupType:@"test"
+                             isOpenGroup:NO
+                                     acl:@""
+                                jsonData:@""
+                     jsonOwnerAttributes:@""
+             jsonDefaultMemberAttributes:@""
+                         completionBlock:successBlock
+                    errorCompletionBlock:failureBlock
+                                cbObject:nil];
+    [self waitForResult];
+    
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj =
+    [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    NSString *groupId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"groupId"];
+    
+    [[m_client leaderboardService] getGroupLeaderboardView:groupLeaderboardId
+                                                   groupId:groupId
+                                                      sort:HIGH_TO_LOW
+                                               beforeCount:5
+                                                afterCount:5
+                                           completionBlock:successBlock
+                                      errorCompletionBlock:failureBlock
+                                              cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testGetGroupLeaderboardViewByVersion
+{
+    [[m_client groupService] createGroup:@"testGroup"
+                               groupType:@"test"
+                             isOpenGroup:NO
+                                     acl:@""
+                                jsonData:@""
+                     jsonOwnerAttributes:@""
+             jsonDefaultMemberAttributes:@""
+                         completionBlock:successBlock
+                    errorCompletionBlock:failureBlock
+                                cbObject:nil];
+    [self waitForResult];
+    
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj =
+    [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    NSString *groupId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"groupId"];
+    
+    [[m_client leaderboardService] getGroupLeaderboardViewByVersion:groupLeaderboardId
+                                                            groupId:groupId
+                                                          versionId:-1
+                                                               sort:HIGH_TO_LOW
+                                                        beforeCount:5
+                                                         afterCount:5
+                                                    completionBlock:successBlock
+                                               errorCompletionBlock:failureBlock
+                                                           cbObject:nil];
     [self waitForResult];
 }
 
