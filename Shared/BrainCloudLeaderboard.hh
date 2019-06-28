@@ -536,4 +536,88 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Post score to Group Leaderboard - Note the user must be a member of the group
+ *
+ * Service Name - leaderboard
+ * Service Operation - POST_GROUP_SCORE
+ *
+ * @param leaderboardId
+ * @param groupId
+ * @param score
+ * @param jsonData custom data
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)postScoreToGroupLeaderboard:(NSString *)leaderboardId
+                            groupId:(NSString *)groupId
+                              score:(int)score
+                           jsonData:(NSString *)jsonData
+                    completionBlock:(BCCompletionBlock)cb
+               errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                           cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Removes group score
+ *
+ * Service Name - leaderboard
+ * Service Operation - REMOVE_GROUP_SCORE
+ *
+ * @param leaderboardId
+ * @param groupId
+ * @param versionId
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)removeGroupScore:(NSString *)leaderboardId
+                 groupId:(NSString *)groupId
+               versionId:(int)versionId
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieve a view of the group leaderboard surrounding the current group
+ *
+ * Service Name - leaderboard
+ * Service Operation - GET_GROUP_LEADERBOARD_VIEW
+ *
+ * @param leaderboardId
+ * @param groupId
+ * @param sort the sort type
+ * @param beforeCount count before current player
+ * @param afterCount count after current player
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)getGroupLeaderboardView:(NSString *)leaderboardId
+                        groupId:(NSString *)groupId
+                           sort:(SortOrder)sort
+                    beforeCount:(int)beforeCount
+                     afterCount:(int)afterCount
+                completionBlock:(BCCompletionBlock)cb
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieve a view of the group leaderboard surrounding the current group by version
+ *
+ * Service Name - leaderboard
+ * Service Operation - GET_GROUP_LEADERBOARD_VIEW
+ *
+ * @param leaderboardId
+ * @param groupId
+ * @param versionId
+ * @param sort the sort type
+ * @param beforeCount count before current player
+ * @param afterCount count after current player
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)getGroupLeaderboardViewByVersion:(NSString *)leaderboardId
+                                 groupId:(NSString *)groupId
+                               versionId:(int)versionId
+                                    sort:(SortOrder)sort
+                             beforeCount:(int)beforeCount
+                              afterCount:(int)afterCount
+                         completionBlock:(BCCompletionBlock)cb
+                    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                cbObject:(BCCallbackObject)cbObject;
+
 @end

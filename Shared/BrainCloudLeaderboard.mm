@@ -303,4 +303,54 @@
         lbIds, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)postScoreToGroupLeaderboard:(NSString *)leaderboardId
+                            groupId:(NSString *)groupId
+                              score:(int)score
+                           jsonData:(NSString *)jsonData
+                    completionBlock:(BCCompletionBlock)cb
+               errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                           cbObject:(BCCallbackObject)cbObject
+{
+    _client->getSocialLeaderboardService()->postScoreToGroupLeaderboard(
+        [leaderboardId UTF8String], [groupId UTF8String], score, [jsonData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)removeGroupScore:(NSString *)leaderboardId
+                 groupId:(NSString *)groupId
+               versionId:(int)versionId
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
+{
+    _client->getSocialLeaderboardService()->removeGroupScore(
+        [leaderboardId UTF8String], [groupId UTF8String], versionId, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getGroupLeaderboardView:(NSString *)leaderboardId
+                        groupId:(NSString *)groupId
+                           sort:(SortOrder)sort
+                    beforeCount:(int)beforeCount
+                     afterCount:(int)afterCount
+                completionBlock:(BCCompletionBlock)cb
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject
+{
+    _client->getSocialLeaderboardService()->getGroupLeaderboardView(
+        [leaderboardId UTF8String], [groupId UTF8String], (BrainCloud::SortOrder)sort, beforeCount, afterCount, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getGroupLeaderboardViewByVersion:(NSString *)leaderboardId
+                                 groupId:(NSString *)groupId
+                               versionId:(int)versionId
+                                    sort:(SortOrder)sort
+                             beforeCount:(int)beforeCount
+                              afterCount:(int)afterCount
+                         completionBlock:(BCCompletionBlock)cb
+                    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                cbObject:(BCCallbackObject)cbObject
+{
+    _client->getSocialLeaderboardService()->getGroupLeaderboardViewByVersion(
+        [leaderboardId UTF8String], [groupId UTF8String], versionId, (BrainCloud::SortOrder)sort, beforeCount, afterCount, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end

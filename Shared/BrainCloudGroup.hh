@@ -156,6 +156,37 @@ typedef NS_ENUM(NSUInteger, AutoJoinStrategy) { JoinFirstGroup, JoinRandomGroup 
                        cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Create a group with summary data.
+ *
+ * Service Name - group
+ * Service Operation - CREATE_GROUP
+ *
+ * @param name Name of the group.
+ * @param groupType Name of the type of group.
+ * @param isOpenGroup true if group is open; false if closed.
+ * @param acl The group's access control list. A null ACL implies default.
+ * @param jsonOwnerAttributes Attributes for the group owner (current player).
+ * @param jsonDefaultMemberAttributes Default attributes for group members.
+ * @param jsonData Custom application data.
+ * @param jsonSummaryData Custom application data.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server
+ * response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)createGroupWithSummaryData:(NSString *)name
+                         groupType:(NSString *)type
+                       isOpenGroup:(BOOL)isOpenGroup
+                               acl:(NSString *)acl
+                          jsonData:(NSString *)jsonData
+               jsonOwnerAttributes:(NSString *)jsonOwnerAttributes
+       jsonDefaultMemberAttributes:(NSString *)jsonDefaultMemberAttributes
+                   jsonSummaryData:(NSString *)jsonSummaryData
+                   completionBlock:(BCCompletionBlock)cb
+              errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                          cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Create a group entity.
  *
  * Service Name - group
@@ -656,6 +687,46 @@ typedef NS_ENUM(NSUInteger, AutoJoinStrategy) { JoinFirstGroup, JoinRandomGroup 
      completionBlock:(BCCompletionBlock)cb
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Update a group's summary data
+ *
+ * Service Name - group
+ * Service Operation - UPDATE_GROUP_SUMMARY_DATA
+ *
+ * @param groupId ID of the group.
+ * @param version is the version.
+ * @param summaryData custom app data
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server
+ * response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)updateGroupSummaryData:(NSString *)groupId
+                       version:(int)version
+                   summaryData:(NSString *)summaryData
+               completionBlock:(BCCompletionBlock)cb
+          errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                      cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Gets a list of up to maxReturn randomly selected gorups form the server based on the where condition
+ *
+ * Service Name - group
+ * Service Operation - GET_RANDOM_GROUPS_MATCHING
+ *
+ * @param jsonWhere where to search
+ * @param maxReturn max num groups wanted
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server
+ * response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getRandomGroupsMatching:(NSString *)groupId
+                      maxReturn:(int)maxReturn
+                completionBlock:(BCCompletionBlock)cb
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject;
 
 @end
 

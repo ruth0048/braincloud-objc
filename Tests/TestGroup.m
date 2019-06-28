@@ -147,6 +147,14 @@ NSString *groupId = @"";
     [self logout];
 }
 
+- (void)testCreateGroupWithSummaryData
+{
+    [self authenticate:@"UserA"];
+    [self createGroupWithSummaryData:true];
+    [self deleteGroup];
+    [self logout];
+}
+
 - (void)testDeleteGroup
 {
     [self authenticate:@"UserA"];
@@ -556,6 +564,48 @@ NSString *groupId = @"";
     [self waitForFailedResult];
 }
 
+- (void)testPost
+{
+    [[m_client groupService] setGroupOpen:@"invalidGroupID"
+                              isOpenGroup:true
+                          completionBlock:successBlock
+                     errorCompletionBlock:failureBlock
+                                 cbObject:nil];
+    //no group exists
+    [self waitForFailedResult];
+}
+
+- (void)testUpdateGroupSummary
+{
+    [self authenticate:@"UserA"];
+    [self createGroup];
+
+    [[m_client groupService] updateGroupSummaryData:@"invalidgroupId"
+                                            version:-1
+                                        summaryData:@""
+                                    completionBlock:successBlock
+                              errorCompletionBlock:failureBlock
+                                           cbObject:nil];
+    [self waitForFailedResult];
+
+    [self deleteGroup];
+}
+
+- (void)testGetRandomGroupsMatching
+{
+    [self authenticate:@"UserA"];
+    [self createGroup];
+
+    [[m_client groupService] getRandomGroupsMatching:@"{\"groupType\": \"BLUE\"}"
+                                           maxReturn:1
+                                     completionBlock:successBlock
+                                errorCompletionBlock:failureBlock
+                                            cbObject:nil];
+    [self waitForResult];
+
+    [self deleteGroup];
+}
+
 /* Helper functions */
 
 - (void)createGroupAsUserA { [self createGroupAsUserA:NO]; }
@@ -605,6 +655,28 @@ NSString *groupId = @"";
     NSDictionary *jsonObj =
         [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
 
+    groupId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"groupId"];
+}
+
+- (void)createGroupWithSummaryData:(BOOL)isOpen
+{
+    [[m_client groupService] createGroupWithSummaryData:@"testGroup"
+                                              groupType:groupType
+                                            isOpenGroup:isOpen
+                                                    acl:testAcl
+                                               jsonData:testJsonPair
+                                    jsonOwnerAttributes:testJsonPair
+                            jsonDefaultMemberAttributes:testJsonPair
+                                        jsonSummaryData:testJsonPair
+                                        completionBlock:successBlock
+                                   errorCompletionBlock:failureBlock
+                                               cbObject:nil];
+    [self waitForResult];
+    
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj =
+    [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
     groupId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"groupId"];
 }
 
