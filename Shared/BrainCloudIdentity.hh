@@ -822,20 +822,39 @@
              errorCompletionBlock:(BCErrorCompletionBlock)ecb
                          cbObject:(BCCallbackObject)cbObject;
 
+//Commented until RTT confirmed supported
 /**
- * Attaches a universal id that doesn't need to login
+ * Attaches the given block chain public key identity to the current profile.
  *
  * Service Name - identity
- * Service Operation - UPDATE_UNIVERSAL_LOGIN
+ * Service Operation - ATTACH_BLOCKCHAIN_IDENTITY
  *
- * @param externalId users id
- * @param successCallback The success callback
- * @param errorCallback The failure callback.
- * @param cbObject The user object sent to the callback
+ * @param blockchainConfig
+ * @param publicKey
+ * @param callback The method to be invoked when the server response is received
  */
-- (void)updateUniversalIdLogin:(NSString*)externalId
-completionBlock:(BCCompletionBlock)cb
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-cbObject:(BCCallbackObject)cbObject;
+/**
+- (void)attachBlockchainIdentity:(NSString*)blockchainConfig
+                       publicKey:(NSString*)publicKey
+                 completionBlock:(BCCompletionBlock)cb
+            errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                        cbObject:(BCCallbackObject)cbObject;
+ */
+
+/**
+ * Detaches the blockchain identity to the current profile.
+ * Service Name - identity
+ * Service Operation - DETACH_BLOCKCHAIN_IDENTITY
+ *
+ * @param blockchainConfig
+ * @param publicKey
+ * @param callback The method to be invoked when the server response is received
+ */
+/**
+- (void)detachBlockchainIdentity:(NSString*)blockchainConfig
+                 completionBlock:(BCCompletionBlock)cb
+            errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                        cbObject:(BCCallbackObject)cbObject;
+*/
 
 @end
