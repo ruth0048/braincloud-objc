@@ -56,5 +56,31 @@
     errorCompletionBlock:(BCErrorCompletionBlock)ecb
                 cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * SendCrashReport
+ *
+ * @param crashType
+ * @param errorMsg
+ * @param crashJson
+ * @param crashLog
+ * @param userName
+ * @param userEmail
+ * @param userNotes
+ * @param userSubmitted
+ */
+- (void)submitCrashReport:(NSString *)crashType
+                 errorMsg:(NSString *)errorMsg
+                crashJson:(NSString *)crashJson
+                 crashLog:(NSString *)crashLog
+                 userName:(NSString *)userName
+                userEmail:(NSString *)userEmail
+                userNotes:(NSString *)userNotes
+            userSubmitted:(bool)userSubmitted
+          completionBlock:(BCCompletionBlock)completionBlock
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject;
+
+
 @end
+
 
