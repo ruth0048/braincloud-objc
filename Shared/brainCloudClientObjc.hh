@@ -43,6 +43,7 @@
 #import "BrainCloudPresence.hh"
 #import "BrainCloudTournament.hh"
 #import "BrainCloudCustomEntity.hh"
+#import "BrainCloudUserItems.hh"
 #import "BrainCloudProduct.hh"
 #import "BrainCloudProfanity.hh"
 #import "BrainCloudPushNotification.hh"

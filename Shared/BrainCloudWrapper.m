@@ -935,6 +935,11 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
     return [_bcClient customEntityService];
 }
 
+- (BrainCloudUserItems*)userItemsService
+{
+    return [_bcClient userItemsService];
+}
+
 - (BrainCloudPresence *)presenceService
 {
     return [_bcClient presenceService];

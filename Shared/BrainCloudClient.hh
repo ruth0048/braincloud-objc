@@ -41,6 +41,7 @@
 #import "BrainCloudTime.hh"
 #import "BrainCloudTournament.hh"
 #import "BrainCloudCustomEntity.hh"
+#import "BrainCloudUserItems.hh"
 #import "BrainCloudPresence.hh"
 #import "BrainCloudVirtualCurrency.hh"
 #import "BrainCloudAppStore.hh"
@@ -511,6 +512,7 @@
 @property(readonly) BrainCloudTime *timeService;
 @property(readonly) BrainCloudTournament *tournamentService;
 @property(readonly) BrainCloudCustomEntity *customEntityService;
+@property(readonly) BrainCloudUserItems *userItemsService;
 @property(readonly) BrainCloudPresence *presenceService;
 @property(readonly) BrainCloudVirtualCurrency *virtualCurrencyService;
 @property(readonly) BrainCloudAppStore *appStoreService;

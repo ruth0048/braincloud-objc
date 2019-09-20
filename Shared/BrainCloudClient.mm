@@ -147,6 +147,7 @@ class ObjCNetworkErrorCallback : public BrainCloud::INetworkErrorCallback
     BrainCloudTime *_timeService;
     BrainCloudTournament *_tournamentService;
     BrainCloudCustomEntity *_customEntityService;
+    BrainCloudUserItems *_userItemsService;
     BrainCloudPresence *_presenceService;
     BrainCloudS3Handling *_s3HandlingService;
     BrainCloudIdentity *_identityService;
@@ -620,6 +621,12 @@ const NSString* BC_SERVER_URL = @"https://sharedprod.braincloudservers.com/dispa
 {
     if (!_customEntityService) _customEntityService = [[BrainCloudCustomEntity alloc] init: self];
     return _customEntityService;
+}
+
+- (BrainCloudUserItems*)userItemsService
+{
+    if (!_userItemsService) _userItemsService = [[BrainCloudUserItems alloc] init: self];
+    return _userItemsService;
 }
 
 - (BrainCloudPresence *)presenceService
