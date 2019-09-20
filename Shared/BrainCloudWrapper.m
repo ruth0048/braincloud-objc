@@ -940,6 +940,11 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
     return [_bcClient userItemsService];
 }
 
+- (BrainCloudItemCatalog*)itemCatalogService
+{
+    return [_bcClient itemCatalogService];
+}
+
 - (BrainCloudPresence *)presenceService
 {
     return [_bcClient presenceService];
