@@ -71,11 +71,11 @@
  * @param pageOffset
  */
 
--(void)getCatalogItemsPage:(NSString *)context
-                pageOffset:(int)pageOffset
-           completionBlock:(BCCompletionBlock)cb
-      errorCompletionBlock:(BCErrorCompletionBlock)ecb
-                  cbObject:(BCCallbackObject)cbObject
+-(void)getCatalogItemsPageOffset:(NSString *)context
+                      pageOffset:(int)pageOffset
+                 completionBlock:(BCCompletionBlock)cb
+            errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                        cbObject:(BCCallbackObject)cbObject
 {
     _client->getItemCatalogService()->getCatalogItemsPageOffset(
                                                           [context UTF8String],
