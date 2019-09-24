@@ -258,4 +258,77 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
            errorCompletionBlock:(BCErrorCompletionBlock)ecb
                        cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Delete's the specified status
+ *
+ * Service Name - PlayerState
+ * Service Operation - ClearUserStatus
+ *
+ * @param statusName
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)clearUserStatus:(NSString *)statusName
+                completionBlock:(BCCompletionBlock)cb
+           errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                       cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Stack user's status
+ *
+ * Service Name - PlayerState
+ * Service Operation - ExtendUserStatus
+ *
+ * @param statusName
+ * @param additionalSecs
+ * @param details
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)extendUserStatus:(NSString *)statusName
+          additionalSecs:(int)additionalSecs
+                 details:(NSString *)details
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Get user status
+ *
+ * Service Name - PlayerState
+ * Service Operation - GetUserStatus
+ *
+ * @param statusName
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getUserStatus:(NSString *)statusName
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Set timed status for a user
+ *
+ * Service Name - PlayerState
+ * Service Operation - SetUserStatus
+ *
+ * @param statusName
+ * @param additionalSecs
+ * @param details
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)setUserStatus:(NSString *)statusName
+       additionalSecs:(int)additionalSecs
+              details:(NSString *)details
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject;
+
+
 @end

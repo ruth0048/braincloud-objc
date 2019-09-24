@@ -69,4 +69,30 @@
                                                new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
+- (void)submitCrashReport:(NSString *)crashType
+                 errorMsg:(NSString *)errorMsg
+                crashJson:(NSString *)crashJson
+                 crashLog:(NSString *)crashLog
+                 userName:(NSString *)userName
+                userEmail:(NSString *)userEmail
+                userNotes:(NSString *)userNotes
+            userSubmitted:(bool)userSubmitted
+          completionBlock:(BCCompletionBlock)completionBlock
+     errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                 cbObject:(BCCallbackObject)cbObject
+{
+    _client
+    ->getDataStreamService()->submitCrashReport(
+                                               [crashType UTF8String],
+                                               [errorMsg UTF8String],
+                                               [crashJson UTF8String],
+                                               [crashLog UTF8String],
+                                               [userName UTF8String],
+                                               [userEmail UTF8String],
+                                               [userNotes UTF8String],
+                                               userSubmitted,
+                                               new BrainCloudCallback(completionBlock, ecb, cbObject));
+}
+
+
 @end

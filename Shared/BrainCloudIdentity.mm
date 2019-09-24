@@ -431,5 +431,52 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         [externalId UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+//Commented until RTT confirmed supported
+/**
+ * Attaches the given block chain public key identity to the current profile.
+ *
+ * Service Name - identity
+ * Service Operation - ATTACH_BLOCKCHAIN_IDENTITY
+ *
+ * @param blockchainConfig
+ * @param publicKey
+ * @param callback The method to be invoked when the server response is received
+ */
+/**
+ - (void)attachBlockchainIdentity:(NSString*)blockchainConfig
+ publicKey:(NSString*)publicKey
+ completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+ cbObject:(BCCallbackObject)cbObject
+{
+    _client->getIdentityService()->attachBlockchainIdentity(
+                                                          [blockchainConfig UTF8String],
+                                                          [publicKey UTF8String],
+                                                          new BrainCloudCallback(cb, ecb, cbObject));
+}
+ */
+
+/**
+ * Detaches the blockchain identity to the current profile.
+ * Service Name - identity
+ * Service Operation - DETACH_BLOCKCHAIN_IDENTITY
+ *
+ * @param blockchainConfig
+ * @param publicKey
+ * @param callback The method to be invoked when the server response is received
+ */
+/**
+ - (void)detachBlockchainIdentity:(NSString*)blockchainConfig
+ completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+ cbObject:(BCCallbackObject)cbObject
+{
+    _client->getIdentityService()->detachBlockchainIdentity(
+                                                            [blockchainConfig UTF8String],
+                                                            new BrainCloudCallback(cb, ecb, cbObject));
+}
+ */
+
+
 @end
 

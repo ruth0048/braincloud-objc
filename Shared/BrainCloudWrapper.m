@@ -930,6 +930,21 @@ errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
     return [_bcClient tournamentService];
 }
 
+- (BrainCloudCustomEntity *)customEntityService
+{
+    return [_bcClient customEntityService];
+}
+
+- (BrainCloudUserItems*)userItemsService
+{
+    return [_bcClient userItemsService];
+}
+
+- (BrainCloudItemCatalog*)itemCatalogService
+{
+    return [_bcClient itemCatalogService];
+}
+
 - (BrainCloudPresence *)presenceService
 {
     return [_bcClient presenceService];

@@ -178,4 +178,52 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         [jsonSummaryData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)clearUserStatus:(NSString *)statusName
+        completionBlock:(BCCompletionBlock)cb
+   errorCompletionBlock:(BCErrorCompletionBlock)ecb
+               cbObject:(BCCallbackObject)cbObject
+{
+    _client->getPlayerStateService()->clearUserStatus(
+                                                              [statusName UTF8String],
+                                                              new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)extendUserStatus:(NSString *)statusName
+          additionalSecs:(int)additionalSecs
+                 details:(NSString *)details
+         completionBlock:(BCCompletionBlock)cb
+    errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                cbObject:(BCCallbackObject)cbObject
+{
+    _client->getPlayerStateService()->extendUserStatus(
+                                                              [statusName UTF8String],
+                                                              additionalSecs,
+                                                              [details UTF8String],
+                                                              new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)getUserStatus:(NSString *)statusName
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject
+{
+    _client->getPlayerStateService()->getUserStatus(
+                                                              [statusName UTF8String],
+                                                              new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)setUserStatus:(NSString *)statusName
+       additionalSecs:(int)additionalSecs
+              details:(NSString *)details
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject
+{
+    _client->getPlayerStateService()->setUserStatus(
+                                                              [statusName UTF8String],
+                                                              additionalSecs,
+                                                              [details UTF8String],
+                                                              new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end

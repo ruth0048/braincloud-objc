@@ -270,4 +270,48 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
        errorCompletionBlock:(BCErrorCompletionBlock)ecb
                    cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Marks the given match as complete.
+ *
+ * Service Name - AsyncMatch
+ * Service Operation - CompleteMatchWithSummaryData
+ *
+ * @param ownerId   Match owner identifier
+ * @param matchId   Match identifier
+ * @param pushContent
+ * @param summary
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)compelteMatchWithSummaryData:(NSString *)ownerId
+                             matchId:(NSString *)matchId
+                         pushContent:(NSString *)pushContent
+                             summary:(NSString *)summary
+                                  cb:(BCCompletionBlock)cb
+                errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                            cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Marks the given match as abandoned.
+ *
+ * Service Name - AsyncMatch
+ * Service Operation - AbandonMatchWithSummaryData
+ *
+ * @param ownerId   Match owner identifier
+ * @param matchId   Match identifier
+ * @param pushContent
+ * @param summary
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)abandonMatchWithSummaryData:(NSString *)ownerId
+                             matchId:(NSString *)matchId
+                         pushContent:(NSString *)pushContent
+                             summary:(NSString *)summary
+                                  cb:(BCCompletionBlock)cb
+                errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                            cbObject:(BCCallbackObject)cbObject;
+
 @end
