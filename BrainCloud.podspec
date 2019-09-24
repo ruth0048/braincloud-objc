@@ -53,6 +53,6 @@ Pod::Spec.new do |s|
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.dependency 'BrainCloudCpp', '4.1.0'
+  s.dependency 'BrainCloudCpp', '4.2.0'
 
 end
