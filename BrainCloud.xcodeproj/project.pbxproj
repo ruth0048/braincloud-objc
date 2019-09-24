@@ -156,6 +156,10 @@
 		85EA9470233950DC00E7938F /* TestItemCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EA946A23394E6300E7938F /* TestItemCatalog.m */; };
 		85EA9471233950E300E7938F /* TestItemCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EA946A23394E6300E7938F /* TestItemCatalog.m */; };
 		85EA9472233950E400E7938F /* TestItemCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EA946A23394E6300E7938F /* TestItemCatalog.m */; };
+		85EA94742339665500E7938F /* TestUserItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EA94732339665400E7938F /* TestUserItems.m */; };
+		85EA94752339665500E7938F /* TestUserItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EA94732339665400E7938F /* TestUserItems.m */; };
+		85EA94762339665500E7938F /* TestUserItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EA94732339665400E7938F /* TestUserItems.m */; };
+		85EA94772339665500E7938F /* TestUserItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EA94732339665400E7938F /* TestUserItems.m */; };
 		9CC848B9B724A99539E20346 /* libPods-BrainCloud-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 382372F5F7CA886F73A234A1 /* libPods-BrainCloud-OSX.a */; };
 		D809D9A21C84B5C5004AAD42 /* BrainCloudWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.m */; };
 		D809D9A31C84B5C5004AAD42 /* BrainCloudWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D809D99E1C84B5C5004AAD42 /* BrainCloudWrapper.m */; };
@@ -679,6 +683,7 @@
 		85EA94562335513700E7938F /* BrainCloudItemCatalog.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BrainCloudItemCatalog.hh; sourceTree = "<group>"; };
 		85EA945B2335514300E7938F /* BrainCloudItemCatalog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BrainCloudItemCatalog.mm; sourceTree = "<group>"; };
 		85EA946A23394E6300E7938F /* TestItemCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestItemCatalog.m; path = Tests/TestItemCatalog.m; sourceTree = "<group>"; };
+		85EA94732339665400E7938F /* TestUserItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestUserItems.m; path = Tests/TestUserItems.m; sourceTree = "<group>"; };
 		872CA57BBDF3A2A91E96AE3C /* Pods-BrainCloud-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrainCloud-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrainCloud-iOSTests/Pods-BrainCloud-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		90F2A09592A2EF69F55F3E8F /* libPods-BrainCloud-watchOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BrainCloud-watchOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7B9A12864EEF4C12E26860 /* Pods-BrainCloud-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrainCloud-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrainCloud-iOSTests/Pods-BrainCloud-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1321,6 +1326,7 @@
 				DFF5CC691C9356A1002E62F8 /* TestScript.m */,
 				DFF5CC6A1C9356A1002E62F8 /* TestTime.m */,
 				24AC16D81E203012007D00EE /* TestTournament.m */,
+				85EA94732339665400E7938F /* TestUserItems.m */,
 				85C05CC42162C11D0003E92B /* TestVirtualCurrency.m */,
 				DFF5CC6C1C9356A1002E62F8 /* TestUser.m */,
 				DF99CBF01C936749000B2418 /* TestWrapper.m */,
@@ -2165,6 +2171,7 @@
 				DFF5CCA91C9356DB002E62F8 /* TestGamification.m in Sources */,
 				85C05CC72162C11D0003E92B /* TestVirtualCurrency.m in Sources */,
 				DFF5CCD61C93571C002E62F8 /* TestRedemptionCode.m in Sources */,
+				85EA94762339665500E7938F /* TestUserItems.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2270,6 +2277,7 @@
 				DFF5CCA71C9356DA002E62F8 /* TestGamification.m in Sources */,
 				85C05CC52162C11D0003E92B /* TestVirtualCurrency.m in Sources */,
 				DFF5CCD41C93571B002E62F8 /* TestRedemptionCode.m in Sources */,
+				85EA94742339665500E7938F /* TestUserItems.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2375,6 +2383,7 @@
 				DFF5CCA81C9356DB002E62F8 /* TestGamification.m in Sources */,
 				85C05CC62162C11D0003E92B /* TestVirtualCurrency.m in Sources */,
 				DFF5CCD51C93571B002E62F8 /* TestRedemptionCode.m in Sources */,
+				85EA94752339665500E7938F /* TestUserItems.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2480,6 +2489,7 @@
 				DF22314F1CE39E15003A7D8D /* TestGamification.m in Sources */,
 				85C05CC82162C11D0003E92B /* TestVirtualCurrency.m in Sources */,
 				DF2231501CE39E15003A7D8D /* TestRedemptionCode.m in Sources */,
+				85EA94772339665500E7938F /* TestUserItems.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

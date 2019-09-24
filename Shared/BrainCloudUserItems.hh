@@ -213,9 +213,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
 
 - (void)updateUserItemData:(NSString *)itemId
                    version:(int)version
-                  quantity:(int)quantity
-                    shopId:(NSString *)shopId
-                includeDef:(bool)includeDef
+               newItemData:(NSString*)newItemData
            completionBlock:(BCCompletionBlock)completionBlock
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject;
