@@ -154,4 +154,38 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
         new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)compelteMatchWithSummaryData:(NSString *)ownerId
+                             matchId:(NSString *)matchId
+                         pushContent:(NSString *)pushContent
+                             summary:(NSString *)summary
+                         summaryData:(NSString *)summaryData
+                                  cb:(BCCompletionBlock)cb
+                errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                            cbObject:(BCCallbackObject)cbObject
+{
+    _client->getAsyncMatchService()->completeMatchWithSummaryData(
+                                                      [ownerId UTF8String],
+                                                      [matchId UTF8String],
+                                                      [pushContent UTF8String],
+                                                      [summary UTF8String],
+                                                      new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)abandonMatchWithSummaryData:(NSString *)ownerId
+                            matchId:(NSString *)matchId
+                        pushContent:(NSString *)pushContent
+                            summary:(NSString *)summary
+                        summaryData:(NSString *)summaryData
+                                 cb:(BCCompletionBlock)cb
+               errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                           cbObject:(BCCallbackObject)cbObject
+{
+    _client->getAsyncMatchService()->abandonMatchWithSummaryData(
+                                                                  [ownerId UTF8String],
+                                                                  [matchId UTF8String],
+                                                                  [pushContent UTF8String],
+                                                                  [summary UTF8String],
+                                                                  new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end
