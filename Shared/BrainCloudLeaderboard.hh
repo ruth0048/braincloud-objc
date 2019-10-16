@@ -557,6 +557,34 @@ typedef NS_ENUM(NSUInteger, SortOrder) { HIGH_TO_LOW, LOW_TO_HIGH };
                            cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Post score to Group Leaderboard - Note the user must be a member of the group
+ *
+ * Service Name - leaderboard
+ * Service Operation - POST_GROUP_SCORE
+ *
+ * @param leaderboardId
+ * @param groupId
+ * @param score
+ * @param jsonData custom data
+ * @param leaderboardType
+ * @param rotationType
+ * @param rotationResetTime
+ * @param retainedCount
+ * @param callback The method to be invoked when the server response is received
+ */
+- (void)postScoreToDynamicGroupLeaderboard:(NSString *)leaderboardId
+                                   groupId:(NSString *)groupId
+                                     score:(int)score
+                                  jsonData:(NSString *)jsonData
+                           leaderboardType:(NSString *)leaderboardType
+                              rotationType:(NSString *)rotationType
+                         rotationResetTime:(int64_t)rotationResetTime
+                             retainedCount:(int32_t)retainedCount
+                           completionBlock:(BCCompletionBlock)cb
+                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                  cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Removes group score
  *
  * Service Name - leaderboard

@@ -30,16 +30,45 @@
          errorCompletionBlock:failureBlock
                      cbObject:nil];
     [self waitForResult];
-}
-
-- (void)testAuthenticateHandoff
-{
-    [[m_client authenticationService] authenticateHandoff:@"invalid_handoffId"
-                                            securityToken:@"invalid_securityToken"
+    
+    //test handoff
+    [[m_client scriptService]runScript:@"createHandoffId" jsonScriptData:@"{}" completionBlock:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    [self waitForResult];
+    
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:nil];
+    NSDictionary *response = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"response"];
+    
+    NSString *handoffId = [response objectForKey:@"handoffId"];
+    NSString *handoffToken = [response objectForKey:@"securityToken"];
+    
+    [[m_client authenticationService] authenticateHandoff:handoffId
+                                            securityToken:handoffToken
                                           completionBlock:successBlock
                                      errorCompletionBlock:failureBlock
                                                  cbObject:nil];
-    [self waitForFailedResult];
+    [self waitForResult];
+    
+    //test handoff
+    //[[m_client scriptService]runScript:@"CreateSettopHandoffCode" jsonScriptData:@"{}" completionBlock:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    //[self waitForResult];
+    
+    //NSData *ddata = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    //NSDictionary *jjsonObj = [NSJSONSerialization JSONObjectWithData:ddata
+    //                                                        options:NSJSONReadingMutableContainers
+    //                                                          error:nil];
+    //NSDictionary *rresponse = [(NSDictionary *)[jjsonObj objectForKey:@"data"] objectForKey:@"response"];
+    //
+    //NSString *handoffCode = [rresponse objectForKey:@"handoffCode"];
+    //
+    //[[m_client authenticationService] authenticateSettopHandoff:handoffCode
+    //                                            completionBlock:successBlock
+    //                                       errorCompletionBlock:failureBlock
+    //                                                   cbObject:nil];
+    //[self waitForResult];
+    
 }
 
 - (void)testAuthenticateEmailPassword
