@@ -161,6 +161,7 @@
                  cbObject:(BCCallbackObject)cbObject;
 
 /**
+* @deprecated As of November 1, 2019
 * Resets the specified milestones' statuses to LOCKED.
 *
 * Service Name - Gamification

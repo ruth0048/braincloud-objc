@@ -52,22 +52,22 @@
     [self waitForResult];
     
     //test handoff
-    //[[m_client scriptService]runScript:@"CreateSettopHandoffCode" jsonScriptData:@"{}" completionBlock:successBlock errorCompletionBlock:failureBlock cbObject:nil];
-    //[self waitForResult];
+    [[m_client scriptService]runScript:@"CreateSettopHandoffCode" jsonScriptData:@"{}" completionBlock:successBlock errorCompletionBlock:failureBlock cbObject:nil];
+    [self waitForResult];
     
-    //NSData *ddata = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
-    //NSDictionary *jjsonObj = [NSJSONSerialization JSONObjectWithData:ddata
-    //                                                        options:NSJSONReadingMutableContainers
-    //                                                          error:nil];
-    //NSDictionary *rresponse = [(NSDictionary *)[jjsonObj objectForKey:@"data"] objectForKey:@"response"];
-    //
-    //NSString *handoffCode = [rresponse objectForKey:@"handoffCode"];
-    //
-    //[[m_client authenticationService] authenticateSettopHandoff:handoffCode
-    //                                            completionBlock:successBlock
-    //                                       errorCompletionBlock:failureBlock
-    //                                                   cbObject:nil];
-    //[self waitForResult];
+    NSData *ddata = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jjsonObj = [NSJSONSerialization JSONObjectWithData:ddata
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:nil];
+    NSDictionary *rresponse = [(NSDictionary *)[jjsonObj objectForKey:@"data"] objectForKey:@"response"];
+    
+    NSString *handoffCode = [rresponse objectForKey:@"handoffCode"];
+    
+    [[m_client authenticationService] authenticateSettopHandoff:handoffCode
+                                                completionBlock:successBlock
+                                           errorCompletionBlock:failureBlock
+                                                       cbObject:nil];
+    [self waitForResult];
     
 }
 

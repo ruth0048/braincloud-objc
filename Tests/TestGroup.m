@@ -72,6 +72,26 @@ NSString *groupId = @"";
     [self deleteGroupAsUserA];
 }
 
+- (void)testAutoJoinGroupMulti
+{
+    [self createGroupAsUserA:YES];
+    [self authenticate:@"UserB"];
+    
+    NSArray *groupTypes = @[groupType];
+    
+    [[m_client groupService] autoJoinGroupMulti:groupTypes
+                          autoJoinStrategy:JoinFirstGroup
+                                     where:nil
+                           completionBlock:successBlock
+                      errorCompletionBlock:failureBlock
+                                  cbObject:nil];
+    [self waitForResult];
+    
+    [self logout];
+    [self deleteGroupAsUserA];
+}
+
+
 - (void)testAddGroupMember
 {
     [self authenticate:@"UserA"];
