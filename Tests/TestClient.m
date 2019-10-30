@@ -20,7 +20,7 @@
 
 - (void)testPacketTimeouts
 {
-    NSArray * timeouts = @[@15, @15, @10];
+    NSArray * timeouts = @[@15, @20, @35, @50];
     [m_client setPacketTimeouts:timeouts];
     
     NSArray * readTimeouts = [m_client getPacketTimeouts];
@@ -31,8 +31,9 @@
     [m_client setPacketTimeoutsToDefault];
     readTimeouts = [m_client getPacketTimeouts];
     XCTAssertEqual([[readTimeouts objectAtIndex:0] integerValue], 15);
-    XCTAssertEqual([[readTimeouts objectAtIndex:1] integerValue], 10);
-    XCTAssertEqual([[readTimeouts objectAtIndex:2] integerValue], 10);
+    XCTAssertEqual([[readTimeouts objectAtIndex:1] integerValue], 20);
+    XCTAssertEqual([[readTimeouts objectAtIndex:2] integerValue], 35);
+    XCTAssertEqual([[readTimeouts objectAtIndex:3] integerValue], 50);
 }
 
 int _globalErrorCount = 0;

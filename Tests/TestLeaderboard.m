@@ -367,7 +367,7 @@ NSString *eventId = @"tournamentRewardTest";
                      jsonOwnerAttributes:@""
              jsonDefaultMemberAttributes:@""
                          completionBlock:successBlock
-                    errorCompletionBlock:failureBlock
+                    errorCompletionBlock:failureBlock 
                                 cbObject:nil];
     [self waitForResult];
     
