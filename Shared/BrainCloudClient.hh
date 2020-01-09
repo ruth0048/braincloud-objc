@@ -36,6 +36,7 @@
 #import "BrainCloudProfanity.hh"
 #import "BrainCloudPushNotification.hh"
 #import "BrainCloudRedemptionCode.hh"
+#import "BrainCloudRTT.hh"
 #import "BrainCloudS3Handling.hh"
 #import "BrainCloudScript.hh"
 #import "BrainCloudTime.hh"
@@ -502,6 +503,7 @@
 @property(readonly) BrainCloudMail *mailService;
 @property(readonly) BrainCloudMessaging *messagingService;
 @property(readonly) BrainCloudLobby *lobbyService;
+@property(readonly) BrainCloudRTT *rttService;
 @property(readonly) BrainCloudChat *chatService;
 @property(readonly) BrainCloudMatchMaking *matchMakingService;
 @property(readonly) BrainCloudAsyncMatch *asyncMatchService;

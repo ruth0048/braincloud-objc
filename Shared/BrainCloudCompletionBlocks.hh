@@ -121,4 +121,29 @@ typedef void (^BCFileUploadFailedCompletionBlock)(NSString *fileUploadId, NSInte
  */
 typedef void (^BCNetworkErrorCompletionBlock)();
 
+/**
+ * Completion block called when RTT connected successfully.
+ *
+ * @param cbObject The passed in callback object. If nil is passed in to the api, nil will
+ * be returned in the completion block.
+ */
+typedef void (^BCRTTConnectSuccessCompletionBlock)(BCCallbackObject cbObject);
+
+/**
+ * Completion block called when RTT disconnected or failed to connect.
+ *
+ * @param cbObject The passed in callback object. If nil is passed in to the api, nil will
+ * be returned in the completion block.
+ */
+typedef void (^BCRTTConnectFailureCompletionBlock)(NSString* errorMessage, BCCallbackObject cbObject);
+
+/**
+ * Event block called when receiving an RTT event.
+ *
+ * @param jsonData The returned JSON data from the RTT event.
+ * @param cbObject The passed in callback object. If nil is passed in to the api, nil will
+ * be returned in the completion block.
+ */
+typedef void (^BCRTTEventBlock)(NSString *jsonData, BCCallbackObject cbObject);
+
 #endif
