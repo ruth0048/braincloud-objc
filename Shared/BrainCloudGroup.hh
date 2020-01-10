@@ -108,6 +108,27 @@ typedef NS_ENUM(NSUInteger, AutoJoinStrategy) { JoinFirstGroup, JoinRandomGroup 
              cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Find and join an open group in the pool of groups in multiple group types provided as input arguments.
+ *
+ * Service Name - group
+ * Service Operation - AUTO_JOIN_GROUP_MULTI
+ *
+ * @param groupType Name of the associated group type.
+ * @param autoJoinStrategy Selection strategy to employ when there are multiple matches
+ * @param where Query parameters (optional)
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server
+ * response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)autoJoinGroupMulti:(NSArray *)groupTypes
+     autoJoinStrategy:(AutoJoinStrategy)autoJoinStrategy
+                where:(NSString *)where
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Cancel an outstanding invitation to the group.
  *
  * Service Name - group

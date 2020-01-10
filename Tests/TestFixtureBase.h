@@ -67,6 +67,9 @@
     BCNetworkErrorCompletionBlock networkErrorBlock;
     BCFileUploadCompletedCompletionBlock fileUploadCompletedBlock;
     BCFileUploadFailedCompletionBlock fileUploadFailedBlock;
+    BCRTTConnectSuccessCompletionBlock rttConnectSuccessBlock;
+    BCRTTConnectFailureCompletionBlock rttConnectFailureBlock;
+    BCRTTEventBlock rttEventBlock;
 }
 
 @property bool result;

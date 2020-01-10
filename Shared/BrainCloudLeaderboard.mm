@@ -315,6 +315,23 @@
         [leaderboardId UTF8String], [groupId UTF8String], score, [jsonData UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)postScoreToDynamicGroupLeaderboard:(NSString *)leaderboardId
+                                   groupId:(NSString *)groupId
+                                     score:(int)score
+                                  jsonData:(NSString *)jsonData
+                           leaderboardType:(NSString *)leaderboardType
+                              rotationType:(NSString *)rotationType
+                         rotationResetTime:(int64_t)rotationResetTime
+                             retainedCount:(int32_t)retainedCount
+                           completionBlock:(BCCompletionBlock)cb
+                      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                                  cbObject:(BCCallbackObject)cbObject
+{
+    _client->getSocialLeaderboardService()->postScoreToDynamicGroupLeaderboard(
+            [leaderboardId UTF8String], [groupId UTF8String], score, [jsonData UTF8String],[leaderboardType UTF8String],
+                [rotationType UTF8String], rotationResetTime, retainedCount, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)removeGroupScore:(NSString *)leaderboardId
                  groupId:(NSString *)groupId
                versionId:(int)versionId

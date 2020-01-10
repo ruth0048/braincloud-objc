@@ -30,6 +30,7 @@
      completionBlock:successBlock
      errorCompletionBlock:failureBlock
      cbObject:nil];
+    [self waitForResult];
     
     NSString* _channelId =@"20001:gl:valid";
     
@@ -50,6 +51,7 @@
      completionBlock:successBlock
      errorCompletionBlock:failureBlock
      cbObject:nil];
+    [self waitForResult];
     
     NSString* _channelId =@"20001:gl:valid";
     
@@ -61,7 +63,7 @@
     [self waitForResult];
 }
 
-- (void)testdeleteChatMessage
+- (void)testDeleteChatMessage
 {
     [[m_client authenticationService]
      authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
@@ -70,6 +72,7 @@
      completionBlock:successBlock
      errorCompletionBlock:failureBlock
      cbObject:nil];
+    [self waitForResult];
     
     NSString* _channelId = @"20001:gl:valid";
     NSString* _msgId = @"123456";
@@ -92,6 +95,7 @@
      completionBlock:successBlock
      errorCompletionBlock:failureBlock
      cbObject:nil];
+    [self waitForResult];
     
     NSString* _channelType =@"gl";
     NSString* _channelSubId =@"valid";
@@ -113,6 +117,7 @@
      completionBlock:successBlock
      errorCompletionBlock:failureBlock
      cbObject:nil];
+    [self waitForResult];
     
     NSString* _channelId = @"20001:gl:valid";
     
@@ -125,6 +130,7 @@
 
 - (void)testGetChatMessage
 {
+    // Auth
     [[m_client authenticationService]
      authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
      password:[TestFixtureBase getUser:@"UserA"].m_password
@@ -132,10 +138,26 @@
      completionBlock:successBlock
      errorCompletionBlock:failureBlock
      cbObject:nil];
+    [self waitForResult];
     
+    // Send msg
     NSString* _channelId = @"20001:gl:valid";
-    NSString* _msgId = @"789217398211996";
+    NSString* _jsonRich = @"{\"content\":\"test\"}";
+    [[m_client chatService] postChatMessage:_channelId
+                                    content:_jsonRich
+                            recordInHistory:true
+                            completionBlock:successBlock
+                       errorCompletionBlock:failureBlock
+                                   cbObject:nil];
+    [self waitForResult];
     
+    // Get message
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:nil];
+
+    NSString* _msgId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"msgId"];
     [[m_client chatService] getChatMessage:_channelId
                                      msgId:_msgId
                            completionBlock:successBlock
@@ -153,6 +175,7 @@
      completionBlock:successBlock
      errorCompletionBlock:failureBlock
      cbObject:nil];
+    [self waitForResult];
     
     NSString* _channelId = @"20001:gl:valid";
 
@@ -173,6 +196,7 @@
      completionBlock:successBlock
      errorCompletionBlock:failureBlock
      cbObject:nil];
+    [self waitForResult];
     
     NSString* _channelType =@"gl";
     
@@ -192,6 +216,7 @@
      completionBlock:successBlock
      errorCompletionBlock:failureBlock
      cbObject:nil];
+    [self waitForResult];
     
     NSString* _channelId = @"20001:gl:valid";
     NSString* _text =@"testPost";
@@ -214,6 +239,7 @@
      completionBlock:successBlock
      errorCompletionBlock:failureBlock
      cbObject:nil];
+    [self waitForResult];
     
     NSString* _channelId = @"20001:gl:valid";
     NSString* _jsonRich = @"{\"content\":\"test\"}";
@@ -229,6 +255,7 @@
 
 - (void)testUpdateChatMessage
 {
+    // Auth
     [[m_client authenticationService]
      authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
      password:[TestFixtureBase getUser:@"UserA"].m_password
@@ -236,9 +263,29 @@
      completionBlock:successBlock
      errorCompletionBlock:failureBlock
      cbObject:nil];
+    [self waitForResult];
+    
+    // Send msg
+    NSString* _channelId = @"20001:gl:valid";
+    NSString* _jsonRich = @"{\"content\":\"test update\"}";
+    [[m_client chatService] postChatMessage:_channelId
+                                    content:_jsonRich
+                            recordInHistory:true
+                            completionBlock:successBlock
+                       errorCompletionBlock:failureBlock
+                                   cbObject:nil];
+    [self waitForResult];
+    
+    // Update msg
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:nil];
+
+    NSString* _msgId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"msgId"];
     
     [[m_client chatService] updateChatMessage:@"20001:gl:valid"
-                                        msgId:@"123456"
+                                        msgId:_msgId
                                       version:1
                                   jsonContent:@"{\"text\":\"edited message\"}"
                               completionBlock:successBlock
