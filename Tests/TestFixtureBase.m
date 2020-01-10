@@ -149,8 +149,49 @@ NSMutableDictionary *m_users;
             _rewardCallbackJson = eventsJson;
         };
         
-        
+        rttConnectSuccessBlock = ^(BCCallbackObject cbObject)
+        {
+            if(_expectFail >= 1)
+            {
+                _XCTPrimitiveFail(weakSelf, @"");
+            }
+            
+            _apiCountExpected -= 1;
+            if (_apiCountExpected <= 0)
+            {
+               _result = true;
+            }
+        };
 
+        rttConnectFailureBlock = ^(NSString *errorMessage, BCCallbackObject cbObject)
+        {
+            if(_expectFail == 0)
+            {
+                _XCTPrimitiveFail(weakSelf, @"%@", errorMessage);
+            }
+            
+            _apiCountExpected -= 1;
+            if (_apiCountExpected <= 0)
+            {
+                _result = true;
+            }
+            _statusMessage = errorMessage;
+        };
+
+        rttEventBlock = ^(NSString *jsonData, BCCallbackObject cbObject)
+        {
+            if(_expectFail >= 1)
+            {
+                _XCTPrimitiveFail(weakSelf, @"");
+            }
+            
+            _apiCountExpected -= 1;
+            if (_apiCountExpected <= 0)
+            {
+               _result = true;
+            }
+            _jsonResponse = jsonData;
+        };
     }
     return self;
 }
@@ -278,9 +319,14 @@ NSMutableDictionary *m_users;
 
     while (!_result && maxWait > 0)
     {
-        [NSThread sleepForTimeInterval:0.01f];
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
         maxWait -= 10;
         [m_client runCallBacks];
+    }
+    
+    if (!_result)
+    {
+        _XCTPrimitiveFail(self, @"Timed out");
     }
 }
 

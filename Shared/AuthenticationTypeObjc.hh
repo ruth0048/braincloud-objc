@@ -22,6 +22,7 @@
 + (AuthenticationTypeObjc *) Twitter;
 + (AuthenticationTypeObjc *) Parse;
 + (AuthenticationTypeObjc *) Handoff;
++ (AuthenticationTypeObjc *) SettopHandoff;
 + (AuthenticationTypeObjc *) External;
 + (AuthenticationTypeObjc *) Unknown;
 

@@ -18,6 +18,9 @@ DerivedData
 *.xccheckout
 *.xcworkspace/
 
+#vscode
+.vscode/
+
 # CocoaPods
 Pods/
 

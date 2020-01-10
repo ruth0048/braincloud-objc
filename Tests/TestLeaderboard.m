@@ -357,6 +357,40 @@ NSString *eventId = @"tournamentRewardTest";
     [self waitForResult];
 }
 
+- (void)testPostScoreToDynamicGroupLeaderboard
+{
+    [[m_client groupService] createGroup:@"testGroup"
+                               groupType:@"test"
+                             isOpenGroup:NO
+                                     acl:@""
+                                jsonData:@""
+                     jsonOwnerAttributes:@""
+             jsonDefaultMemberAttributes:@""
+                         completionBlock:successBlock
+                    errorCompletionBlock:failureBlock 
+                                cbObject:nil];
+    [self waitForResult];
+    
+    NSData *data = [self.jsonResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonObj =
+    [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    NSString *groupId = [(NSDictionary *)[jsonObj objectForKey:@"data"] objectForKey:@"groupId"];
+    
+    [[m_client leaderboardService] postScoreToDynamicGroupLeaderboard:groupLeaderboardId
+                                                              groupId:groupId
+                                                                score:100
+                                                             jsonData:@""
+                                                      leaderboardType:@"HIGH_VALUE"
+                                                         rotationType:@"WEEKLY"
+                                                    rotationResetTime:15708182
+                                                        retainedCount:2
+                                               completionBlock:successBlock
+                                          errorCompletionBlock:failureBlock
+                                                      cbObject:nil];
+    [self waitForResult];
+}
+
 - (void)testRemoveGroupScore
 {
     

@@ -78,6 +78,18 @@
         TypeHelpers::NSStringToStdString(dataQueryJson), new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)autoJoinGroupMulti:(NSArray *)groupTypes
+     autoJoinStrategy:(AutoJoinStrategy)autoJoinStrategy
+                where:(NSString *)where
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject
+{
+    _client->getGroupService()->autoJoinGroupMulti(
+        TypeHelpers::NSStringArrayToVector(groupTypes), (BrainCloud::eAutoJoinStrategy::Strategy)autoJoinStrategy,
+        TypeHelpers::NSStringToStdString(where), new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 - (void)cancelGroupInvitation:(NSString *)groupId
                     profileId:(NSString *)profileId
               completionBlock:(BCCompletionBlock)cb
