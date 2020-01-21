@@ -180,19 +180,40 @@ extern NSString *const AUTH_FACEBOOK;
 * Service Name - Authenticate
 * Service Operation - Authenticate
 *
-* @param userid  String representation of google+ userid (email)
-* @param token  The authentication token derived via the google apis.
+* @param googleUserId  String representation of google userId. Gotten with calls like requestUserId
+* @param serverAuthCode  The server suth code derived via the google apis. Calls like RequestServerAuthCode
 * @param forceCreate Should a new profile be created for this user if the account does not exist?
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
 */
-- (void)authenticateGoogle:(NSString *)userID
-                     token:(NSString *)token
+- (void)authenticateGoogle:(NSString *)googleUserId
+            serverAuthCode:(NSString *)serverAuthCode
                forceCreate:(BOOL)forceCreate
            completionBlock:(BCCompletionBlock)completionBlock
       errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                   cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Authenticate the user using a google openId
+ *
+ * Service Name - Authenticate
+ * Service Operation - Authenticate
+ *
+ * @param googleUserAccountEmail  The email associated with the google user
+ * @param idToken  The account idToken. Gotten with calls like requestIdToken
+ * @param forceCreate Should a new profile be created for this user if the account does not exist?
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)authenticateGoogleOpenId:(NSString *)googleUserAccountEmail
+                         idToken:(NSString *)idToken
+                     forceCreate:(BOOL)forceCreate
+                 completionBlock:(BCCompletionBlock)completionBlock
+            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                        cbObject:(BCCallbackObject)cbObject;
+
 
 /**
 * Authenticate the user using a Twitter userid, authentication token, and secret from Twitter.

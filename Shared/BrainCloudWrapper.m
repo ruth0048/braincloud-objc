@@ -390,8 +390,8 @@ static BrainCloudWrapper *sharedWrapper = nil;
     
 }
 
-- (void)authenticateGoogle:(NSString *)userID
-                     token:(NSString *)token
+- (void)authenticateGoogle:(NSString *)googleUserId
+                     token:(NSString *)serverAuthCode
                forceCreate:(BOOL)forceCreate
            completionBlock:(BCCompletionBlock)completionBlock
       errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
@@ -404,12 +404,34 @@ static BrainCloudWrapper *sharedWrapper = nil;
     aco.errorCompletionBlock = errorCompletionBlock;
     aco.cbObject = cbObject;
     
-    [[_bcClient authenticationService] authenticateGoogle:userID
-                                                    token:token
+    [[_bcClient authenticationService] authenticateGoogle:googleUserId
+                                           serverAuthCode:serverAuthCode
                                               forceCreate:forceCreate
                                           completionBlock:self.authSuccessCompletionBlock
                                      errorCompletionBlock:self.authErrorCompletionBlock
                                                  cbObject:aco];
+}
+
+- (void)authenticateGoogleOpenId:(NSString *)googleUserAccountEmail
+                         idToken:(NSString *)idToken
+                     forceCreate:(BOOL)forceCreate
+                 completionBlock:(BCCompletionBlock)completionBlock
+            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                        cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
+    
+    AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+    aco.completionBlock = completionBlock;
+    aco.errorCompletionBlock = errorCompletionBlock;
+    aco.cbObject = cbObject;
+    
+    [[_bcClient authenticationService] authenticateGoogleOpenId:googleUserAccountEmail
+                                                        idToken:idToken
+                                                    forceCreate:forceCreate
+                                                completionBlock:self.authSuccessCompletionBlock
+                                           errorCompletionBlock:self.authErrorCompletionBlock
+                                                       cbObject:aco];
 }
 
 
@@ -596,7 +618,7 @@ static BrainCloudWrapper *sharedWrapper = nil;
 }
 
 - (void)smartSwitchAuthenticateGoogle:(NSString *)userID
-                     token:(NSString *)token
+            token:(NSString *)token
                forceCreate:(BOOL)forceCreate
            completionBlock:(BCCompletionBlock)completionBlock
       errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
@@ -612,7 +634,7 @@ static BrainCloudWrapper *sharedWrapper = nil;
     aco.cbObject = cbObject;
 
     [[_bcClient authenticationService] authenticateGoogle:userID
-                                                    token:token
+                                           serverAuthCode:token
                                               forceCreate:forceCreate
                                           completionBlock:self.authSuccessCompletionBlock
                                      errorCompletionBlock:self.authErrorCompletionBlock

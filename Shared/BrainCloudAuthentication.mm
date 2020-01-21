@@ -144,8 +144,8 @@
         [sessionticket cStringUsingEncoding:NSUTF8StringEncoding], forceCreate, brainCloudCallback);
 }
 
-- (void)authenticateGoogle:(NSString *)userID
-                     token:(NSString *)token
+- (void)authenticateGoogle:(NSString *)googleUserId
+            serverAuthCode:(NSString *)serverAuthCode
                forceCreate:(BOOL)forceCreate
            completionBlock:(BCCompletionBlock)completionBlock
       errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
@@ -154,8 +154,20 @@
     BrainCloudCallback *brainCloudCallback =
         new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
     _client->getAuthenticationService()->authenticateGoogle(
-        [userID cStringUsingEncoding:NSUTF8StringEncoding],
-        [token cStringUsingEncoding:NSUTF8StringEncoding], forceCreate, brainCloudCallback);
+        [googleUserId cStringUsingEncoding:NSUTF8StringEncoding],
+        [serverAuthCode cStringUsingEncoding:NSUTF8StringEncoding], forceCreate, brainCloudCallback);
+}
+
+- (void)authenticateGoogleOpenId:(NSString *)googleUserAccountEmail
+                         idToken:(NSString *)idToken
+                     forceCreate:(BOOL)forceCreate
+                 completionBlock:(BCCompletionBlock)completionBlock
+            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                        cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback =
+    new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
+    _client->getAuthenticationService()->authenticateGoogleOpenId([googleUserAccountEmail UTF8String], [idToken UTF8String], forceCreate, brainCloudCallback);
 }
 
 - (void)authenticateTwitter:(NSString *)userID
