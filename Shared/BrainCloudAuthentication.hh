@@ -175,6 +175,26 @@ extern NSString *const AUTH_FACEBOOK;
                  cbObject:(BCCallbackObject)cbObject;
 
 /**
+ * Authenticate the user using a google userid(email address) and google authentication token.
+ *
+ * Service Name - Authenticate
+ * Service Operation - Authenticate
+ *
+ * @param appleUserId  this can be the userId or the email for the user of this account.
+ * @param identityToken  the token confirming the users identity
+ * @param forceCreate Should a new profile be created for this user if the account does not exist?
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)authenticateApple:(NSString *)appleUserId
+            identityToken:(NSString *)identityToken
+               forceCreate:(BOOL)forceCreate
+           completionBlock:(BCCompletionBlock)completionBlock
+      errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                  cbObject:(BCCallbackObject)cbObject;
+
+/**
 * Authenticate the user using a google userid(email address) and google authentication token.
 *
 * Service Name - Authenticate

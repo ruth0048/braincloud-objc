@@ -144,6 +144,20 @@
         [sessionticket cStringUsingEncoding:NSUTF8StringEncoding], forceCreate, brainCloudCallback);
 }
 
+- (void)authenticateApple:(NSString *)appleUserId
+            identityToken:(NSString *)identityToken
+               forceCreate:(BOOL)forceCreate
+           completionBlock:(BCCompletionBlock)completionBlock
+      errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                  cbObject:(BCCallbackObject)cbObject
+{
+    BrainCloudCallback *brainCloudCallback =
+    new BrainCloudCallback(completionBlock, errorCompletionBlock, cbObject);
+    _client->getAuthenticationService()->authenticateApple(
+                                                            [appleUserId cStringUsingEncoding:NSUTF8StringEncoding],
+                                                            [identityToken cStringUsingEncoding:NSUTF8StringEncoding], forceCreate, brainCloudCallback);
+}
+
 - (void)authenticateGoogle:(NSString *)googleUserId
             serverAuthCode:(NSString *)serverAuthCode
                forceCreate:(BOOL)forceCreate
