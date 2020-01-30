@@ -261,6 +261,13 @@
       errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                   cbObject:(BCCallbackObject)cbObject;
 
+//- (void)authenticateGoogleOpenId:(NSString *)googleUserAccountEmail
+//                         idToken:(NSString *)idToken
+//                     forceCreate:(BOOL)forceCreate
+//                 completionBlock:(BCCompletionBlock)completionBlock
+//            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+//                        cbObject:(BCCallbackObject)cbObject;
+
 /**
  * Authenticate the user using a steam userid and session ticket (without any validation on the
  *userid).

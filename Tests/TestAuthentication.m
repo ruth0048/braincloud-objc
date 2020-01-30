@@ -72,17 +72,17 @@
 }
 
 //testing parameters,need example app to test google calls
-- (void)testAuthenticateGoogleOpenId
-{
-    [[m_client authenticationService]
-     authenticateGoogleOpenId:@"fail"
-     idToken:@"fail"
-     forceCreate:true
-     completionBlock:successBlock
-     errorCompletionBlock:failureBlock
-     cbObject:nil];
-    [self waitForFailedResult];
-}
+//- (void)testAuthenticateGoogleOpenId
+//{
+//    [[m_client authenticationService]
+//     authenticateGoogleOpenId:@"fail"
+//     idToken:@"fail"
+//     forceCreate:true
+//     completionBlock:successBlock
+//     errorCompletionBlock:failureBlock
+//     cbObject:nil];
+//    [self waitForFailedResult];
+//}
 - (void)testAuthenticateGoogle
 {
     [[m_client authenticationService]
@@ -94,17 +94,17 @@
      cbObject:nil];
     [self waitForFailedResult];
 }
-- (void)testAuthenticateApple
-{
-    [[m_client authenticationService]
-     authenticateApple:@"fail"
-     identityToken:@"fail"
-     forceCreate:true
-     completionBlock:successBlock
-     errorCompletionBlock:failureBlock
-     cbObject:nil];
-    [self waitForFailedResult];
-}
+//- (void)testAuthenticateApple
+//{
+//    [[m_client authenticationService]
+//     authenticateApple:@"fail"
+//     identityToken:@"fail"
+//     forceCreate:true
+//     completionBlock:successBlock
+//     errorCompletionBlock:failureBlock
+//     cbObject:nil];
+//    [self waitForFailedResult];
+//}
 
 - (void)testAuthenticateEmailPassword
 {
