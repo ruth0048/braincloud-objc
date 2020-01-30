@@ -81,6 +81,12 @@
 		8512AF5F2193593A00D04938 /* BrainCloudChat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8512AF412191EA6C00D04938 /* BrainCloudChat.mm */; };
 		8512AF602193593A00D04938 /* BrainCloudChat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8512AF412191EA6C00D04938 /* BrainCloudChat.mm */; };
 		8512AF612193593C00D04938 /* BrainCloudChat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8512AF412191EA6C00D04938 /* BrainCloudChat.mm */; };
+		852C387923E368720023C347 /* BrainCloudRTT.hh in Headers */ = {isa = PBXBuildFile; fileRef = DB43F14323C4C0930011DBE6 /* BrainCloudRTT.hh */; };
+		852C387A23E3687D0023C347 /* BrainCloudAppStore.hh in Headers */ = {isa = PBXBuildFile; fileRef = 850BC8C3215589940012B6EE /* BrainCloudAppStore.hh */; };
+		852C387B23E368840023C347 /* BrainCloudPresence.hh in Headers */ = {isa = PBXBuildFile; fileRef = 854E10F4214AB470004197E0 /* BrainCloudPresence.hh */; };
+		852C387C23E368F50023C347 /* BrainCloudRTT.hh in Headers */ = {isa = PBXBuildFile; fileRef = DB43F14323C4C0930011DBE6 /* BrainCloudRTT.hh */; };
+		852C387D23E3693C0023C347 /* BrainCloudRTT.hh in Headers */ = {isa = PBXBuildFile; fileRef = DB43F14323C4C0930011DBE6 /* BrainCloudRTT.hh */; };
+		852C387E23E369540023C347 /* BrainCloudRTT.hh in Headers */ = {isa = PBXBuildFile; fileRef = DB43F14323C4C0930011DBE6 /* BrainCloudRTT.hh */; };
 		854E10F6214AB498004197E0 /* BrainCloudPresence.mm in Sources */ = {isa = PBXBuildFile; fileRef = 854E10F5214AB498004197E0 /* BrainCloudPresence.mm */; };
 		85756E592188C95E00EFEE09 /* BrainCloudMessaging.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85756E582188C95E00EFEE09 /* BrainCloudMessaging.mm */; };
 		85756E5C2188FF9300EFEE09 /* BrainCloudMessaging.hh in Headers */ = {isa = PBXBuildFile; fileRef = 85756E572188C92400EFEE09 /* BrainCloudMessaging.hh */; };
@@ -1356,6 +1362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24A524D11CA9C42E009A97D3 /* FriendPlatformObjc.hh in Headers */,
+				852C387D23E3693C0023C347 /* BrainCloudRTT.hh in Headers */,
 				858DDCDF216284B90068B016 /* BrainCloudVirtualCurrency.hh in Headers */,
 				8512AF5A2193592C00D04938 /* BrainCloudChat.hh in Headers */,
 				858DDCDE216284B30068B016 /* BrainCloudPresence.hh in Headers */,
@@ -1414,6 +1421,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				24AC16CF1E2028FE007D00EE /* BrainCloudTournament.hh in Headers */,
+				852C387B23E368840023C347 /* BrainCloudPresence.hh in Headers */,
+				852C387A23E3687D0023C347 /* BrainCloudAppStore.hh in Headers */,
+				852C387923E368720023C347 /* BrainCloudRTT.hh in Headers */,
 				85756E5C2188FF9300EFEE09 /* BrainCloudMessaging.hh in Headers */,
 				D84597841C6D23B3003DA016 /* BrainCloudAuthentication.hh in Headers */,
 				D84598231C6D23B4003DA016 /* BrainCloudTime.hh in Headers */,
@@ -1473,6 +1483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24A524CF1CA9C42E009A97D3 /* FriendPlatformObjc.hh in Headers */,
+				852C387C23E368F50023C347 /* BrainCloudRTT.hh in Headers */,
 				858DDCD9216284000068B016 /* BrainCloudVirtualCurrency.hh in Headers */,
 				8512AF592193592B00D04938 /* BrainCloudChat.hh in Headers */,
 				858DDCD8216283F50068B016 /* BrainCloudPresence.hh in Headers */,
@@ -1530,6 +1541,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				852C387E23E369540023C347 /* BrainCloudRTT.hh in Headers */,
 				858DDCE3216284E90068B016 /* BrainCloudAppStore.hh in Headers */,
 				858DDCE4216284E90068B016 /* BrainCloudPresence.hh in Headers */,
 				858DDCE5216284E90068B016 /* BrainCloudVirtualCurrency.hh in Headers */,
