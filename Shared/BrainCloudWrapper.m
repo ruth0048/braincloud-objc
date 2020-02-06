@@ -412,27 +412,49 @@ static BrainCloudWrapper *sharedWrapper = nil;
                                                  cbObject:aco];
 }
 
-//- (void)authenticateGoogleOpenId:(NSString *)googleUserAccountEmail
-//                         idToken:(NSString *)idToken
-//                     forceCreate:(BOOL)forceCreate
-//                 completionBlock:(BCCompletionBlock)completionBlock
-//            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
-//                        cbObject:(BCCallbackObject)cbObject
-//{
-//    [self _initializeIdentity:FALSE];
+- (void)authenticateGoogleOpenId:(NSString *)googleUserAccountEmail
+                         idToken:(NSString *)idToken
+                     forceCreate:(BOOL)forceCreate
+                 completionBlock:(BCCompletionBlock)completionBlock
+            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                        cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
     
-//    AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
-//    aco.completionBlock = completionBlock;
-//    aco.errorCompletionBlock = errorCompletionBlock;
-//    aco.cbObject = cbObject;
+    AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+    aco.completionBlock = completionBlock;
+    aco.errorCompletionBlock = errorCompletionBlock;
+    aco.cbObject = cbObject;
     
-//    [[_bcClient authenticationService] authenticateGoogleOpenId:googleUserAccountEmail
-//                                                        idToken:idToken
-//                                                    forceCreate:forceCreate
-//                                                completionBlock:self.authSuccessCompletionBlock
-//                                           errorCompletionBlock:self.authErrorCompletionBlock
-//                                                       cbObject:aco];
-//}
+    [[_bcClient authenticationService] authenticateGoogleOpenId:googleUserAccountEmail
+                                                        idToken:idToken
+                                                    forceCreate:forceCreate
+                                                completionBlock:self.authSuccessCompletionBlock
+                                           errorCompletionBlock:self.authErrorCompletionBlock
+                                                       cbObject:aco];
+}
+
+- (void)authenticateApple:(NSString *)appleUserId
+            identityToken:(NSString *)identityToken
+               forceCreate:(BOOL)forceCreate
+           completionBlock:(BCCompletionBlock)completionBlock
+      errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                  cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
+    
+    AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+    aco.completionBlock = completionBlock;
+    aco.errorCompletionBlock = errorCompletionBlock;
+    aco.cbObject = cbObject;
+    
+    [[_bcClient authenticationService] authenticateApple:appleUserId
+                                                  identityToken:identityToken
+                                                    forceCreate:forceCreate
+                                                completionBlock:self.authSuccessCompletionBlock
+                                           errorCompletionBlock:self.authErrorCompletionBlock
+                                                       cbObject:aco];
+}
 
 
 - (void)authenticateSteam:(NSString *)userId

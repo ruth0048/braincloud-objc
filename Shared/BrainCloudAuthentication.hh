@@ -187,12 +187,12 @@ extern NSString *const AUTH_FACEBOOK;
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
  */
-//- (void)authenticateApple:(NSString *)appleUserId
-//            identityToken:(NSString *)identityToken
-//               forceCreate:(BOOL)forceCreate
-//           completionBlock:(BCCompletionBlock)completionBlock
-//      errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
-//                  cbObject:(BCCallbackObject)cbObject;
+- (void)authenticateApple:(NSString *)appleUserId
+            identityToken:(NSString *)identityToken
+               forceCreate:(BOOL)forceCreate
+           completionBlock:(BCCompletionBlock)completionBlock
+      errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                  cbObject:(BCCallbackObject)cbObject;
 
 /**
 * Authenticate the user using a google userid(email address) and google authentication token.
@@ -227,12 +227,12 @@ extern NSString *const AUTH_FACEBOOK;
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
  */
-//- (void)authenticateGoogleOpenId:(NSString *)googleUserAccountEmail
-//                         idToken:(NSString *)idToken
-//                     forceCreate:(BOOL)forceCreate
-//                 completionBlock:(BCCompletionBlock)completionBlock
-//            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
-//                        cbObject:(BCCallbackObject)cbObject;
+- (void)authenticateGoogleOpenId:(NSString *)googleUserAccountEmail
+                         idToken:(NSString *)idToken
+                     forceCreate:(BOOL)forceCreate
+                 completionBlock:(BCCompletionBlock)completionBlock
+            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                        cbObject:(BCCallbackObject)cbObject;
 
 
 /**
