@@ -20,13 +20,11 @@ public:
     }
 
 protected:
-    void rttCallback(const Json::Value& eventJson) override
+    void rttCallback(const std::string& jsonData) override
     {
         if (m_eventBlock)
         {
-            Json::FastWriter fastWriter;
-            std::string jsonString = fastWriter.write(eventJson);
-            m_eventBlock([NSString stringWithUTF8String:jsonString.c_str()], m_cbObject);
+            m_eventBlock([NSString stringWithUTF8String:jsonData.c_str()], m_cbObject);
         }
     }
 

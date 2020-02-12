@@ -78,23 +78,23 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                                     new BrainCloudCallback(completionBlock, ecb, cbObject));
 }
 
-- (void)getPage:(NSString *)entityType
-    rowsPerPage:(int)rowsPerPage
-     searchJson:(NSString *)searchJson
-       sortJson:(NSString *)sortJson
-        doCount:(bool)doCount
-completionBlock:(BCCompletionBlock)completionBlock
-errorCompletionBlock:(BCErrorCompletionBlock)ecb
-       cbObject:(BCCallbackObject)cbObject
-{
-    _client->getCustomEntityService()->getEntityPage(
-                                                [entityType UTF8String],
-                                                rowsPerPage,
-                                                [searchJson UTF8String],
-                                                [sortJson UTF8String],
-                                                doCount,
-                                                new BrainCloudCallback(completionBlock, ecb, cbObject));
-}
+//- (void)getPage:(NSString *)entityType
+//    rowsPerPage:(int)rowsPerPage
+//     searchJson:(NSString *)searchJson
+//       sortJson:(NSString *)sortJson
+//        doCount:(bool)doCount
+//completionBlock:(BCCompletionBlock)completionBlock
+//errorCompletionBlock:(BCErrorCompletionBlock)ecb
+//       cbObject:(BCCallbackObject)cbObject
+//{
+//    _client->getCustomEntityService()->getEntityPage(
+//                                                [entityType UTF8String],
+//                                                rowsPerPage,
+//                                                [searchJson UTF8String],
+//                                                [sortJson UTF8String],
+//                                                doCount,
+//                                                new BrainCloudCallback(completionBlock, ecb, cbObject));
+//}
 
 - (void)getPageOffset:(NSString *)entityType
               context:(NSString *)context
