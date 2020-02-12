@@ -81,10 +81,7 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  * @param callback Callback.
  */
 - (void)getPage:(NSString *)entityType
-         rowsPerPage:(int)rowsPerPage
-          searchJson:(NSString *)searchJson
-            sortJson:(NSString *)sortJson
-             doCount:(bool)doCount
+             context:(NSString *)context
      completionBlock:(BCCompletionBlock)completionBlock
 errorCompletionBlock:(BCErrorCompletionBlock)ecb
             cbObject:(BCCallbackObject)cbObject;
