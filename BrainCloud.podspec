@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 
   s.name     = "BrainCloud"
 
-  s.version  = "4.3.5.4"
+  s.version  = "4.3.6"
 
   s.summary  = "The Objective-C/Swift client library for brainCloud"
   s.homepage = "http://getbraincloud.com/"
@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
 
   s.header_mappings_dir    = 'Shared'
   s.public_header_files    = 'Shared/**/*.{h,hh}'
-  s.private_header_files   = 'Shared/**/{BrainCloudCallback,TypeHelpers}.hh'
+  s.private_header_files   = 'Shared/**/{BrainCloudCallback,TypeHelpers,BrainCloudRTTCallback,BrainCloudRTTConnectCallback}.hh'
   s.source_files           = 'Shared/**/*.{h,hh,m,mm}'
 
 
@@ -53,6 +53,6 @@ Pod::Spec.new do |s|
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.dependency 'BrainCloudCpp', '4.3.5.3'
+  s.dependency 'BrainCloudCpp', '4.3.6'
 
 end
