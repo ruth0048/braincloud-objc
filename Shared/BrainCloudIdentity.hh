@@ -415,6 +415,144 @@
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject;
 
+
+/**
+* Attach the user's GoogleOpenId credentials to the current profile.
+*
+* Service Name - Identity
+* Service Operation - Attach
+*
+* @param googleUserAccountEmail user gmail
+* @param IdToken The validated token from the Google SDK
+*   (that will be further validated when sent to the bC service)
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*
+* Errors to watch for:  SWITCHING_PROFILES - this means that the Google identity you provided
+* already points to a different profile.  You will likely want to offer the user the
+* choice to *SWITCH* to that profile, or *MERGE* the profiles.
+*
+* To switch profiles, call ClearSavedProfileID() and call AuthenticateGoogle().
+*/
+- (void)attachGoogleOpenIdIdentity:(NSString *)googleUserAccountEmail
+                     IdToken:(NSString *)IdToken
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Merge the profile associated with the provided GoogleOpenId credentials with the
+* current profile.
+*
+* Service Name - Identity
+* Service Operation - Merge
+*
+* @param googleId The Google id of the user
+* @param authenticationToken The validated token from the Google SDK
+*   (that will be further validated when sent to the bC service)
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*
+*/
+- (void)mergeGoogleOpenIdIdentity:(NSString *)googleUserAccountEmail
+                    IdToken:(NSString *)IdToken
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Detach the GoogleOpenId identity from this profile.
+*
+* Service Name - Identity
+* Service Operation - Detach
+*
+* @param googleId The Google id of the user
+* @param continueAnon Proceed even if the profile will revert to anonymous?
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*
+* Watch for DOWNGRADING_TO_ANONYMOUS_ERROR - occurs if you set continueAnon to false, and
+* disconnecting this identity would result in the profile being anonymous (which means that
+* the profile wouldn't be retrievable if the user loses their device)
+*/
+- (void)detachGoogleOpenIdIdentity:(NSString *)googleUserAccountEmail
+                continueAnon:(bool)continueAnon
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Attach the user's Apple credentials to the current profile.
+*
+* Service Name - Identity
+* Service Operation - Attach
+*
+* @param appleUserId  this can be the userId or the email for the user of this account.
+* @param identityToken  the token confirming the users identity
+* @param forceCreate Should a new profile be created for this user if the account does not exist?
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*
+* Errors to watch for:  SWITCHING_PROFILES - this means that the Google identity you provided
+* already points to a different profile.  You will likely want to offer the user the
+* choice to *SWITCH* to that profile, or *MERGE* the profiles.
+*
+* To switch profiles, call ClearSavedProfileID() and call AuthenticateGoogle().
+*/
+- (void)attachAppleIdentity:(NSString *)appleUserId
+                     identityToken:(NSString *)identityToken
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Merge the profile associated with the provided Apple credentials with the
+* current profile.
+*
+* Service Name - Identity
+* Service Operation - Merge
+*
+* @param appleUserId  this can be the userId or the email for the user of this account.
+* @param identityToken  the token confirming the users identity
+* @param forceCreate Should a new profile be created for this user if the account does not exist?
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*
+*/
+- (void)mergeAppleIdentity:(NSString *)appleUserId
+                    identityToken:(NSString *)identityToken
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Detach the GoogleOpenId identity from this profile.
+*
+* Service Name - Identity
+* Service Operation - Detach
+*
+* @param appleUserId  this can be the userId or the email for the user of this account.
+* @param identityToken  the token confirming the users identity
+* @param forceCreate Should a new profile be created for this user if the account does not exist?
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*
+* Watch for DOWNGRADING_TO_ANONYMOUS_ERROR - occurs if you set continueAnon to false, and
+* disconnecting this identity would result in the profile being anonymous (which means that
+* the profile wouldn't be retrievable if the user loses their device)
+*/
+- (void)detachAppleIdentity:(NSString *)appleUserId
+                continueAnon:(bool)continueAnon
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject;
+
 /**
 * Attach the user's Twitter credentials to the current profile.
 *

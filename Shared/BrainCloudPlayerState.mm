@@ -226,4 +226,24 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                                               new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)updateTimeZoneOffset:(int)timeZoneOffset
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject
+{
+    _client->getPlayerStateService()->updateTimeZoneOffset(
+                                                              timeZoneOffset,
+                                                              new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)updateLanguageCode:(NSString *)languageCode
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject
+{
+    _client->getPlayerStateService()->updateLanguageCode(
+                                                              [languageCode UTF8String],
+                                                              new BrainCloudCallback(cb, ecb, cbObject));
+}
+
 @end

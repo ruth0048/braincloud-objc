@@ -330,5 +330,36 @@ errorCompletionBlock:(BCErrorCompletionBlock)ecb
  errorCompletionBlock:(BCErrorCompletionBlock)ecb
              cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Update user's time zone offset preference on their profile.
+ *
+ * Service Name - PlayerState
+ * Service Operation - UpdateTimeZoneOffset
+ *
+ * @param timeZoneOffset
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)updateTimeZoneOffset:(int)timeZoneOffset
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Update user's time zone offset preference on their profile.
+ *
+ * Service Name - PlayerState
+ * Service Operation - UpdateLanguageOffset
+ *
+ * @param timeZoneOffset
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)updateLanguageCode:(NSString *)languageCode
+      completionBlock:(BCCompletionBlock)cb
+ errorCompletionBlock:(BCErrorCompletionBlock)ecb
+             cbObject:(BCCallbackObject)cbObject;
 
 @end

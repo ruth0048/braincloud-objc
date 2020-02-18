@@ -211,6 +211,67 @@
         [googleId UTF8String], continueAnon, new BrainCloudCallback(cb, ecb, cbObject));
 }
 
+- (void)attachGoogleOpenIdIdentity:(NSString *)googleUserAccountEmail
+                     IdToken:(NSString *)IdToken
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject
+{
+    _client->getIdentityService()->attachGoogleOpenIdIdentity(
+        [googleUserAccountEmail UTF8String], [IdToken UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)mergeGoogleOpenIdIdentity:(NSString *)googleUserAccountEmail
+                    IdToken:(NSString *)IdToken
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject
+{
+    _client->getIdentityService()->mergeGoogleOpenIdIdentity(
+        [googleUserAccountEmail UTF8String], [IdToken UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)detachGoogleOpenIdIdentity:(NSString *)googleUserAccountEmail
+                continueAnon:(bool)continueAnon
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject
+{
+    _client->getIdentityService()->detachGoogleOpenIdIdentity(
+        [googleUserAccountEmail UTF8String], continueAnon, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)attachAppleIdentity:(NSString *)appleUserId
+                     identityToken:(NSString *)identityToken
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject
+{
+    _client->getIdentityService()->attachAppleIdentity(
+        [appleUserId UTF8String], [identityToken UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)mergeAppleIdentity:(NSString *)appleUserId
+                    identityToken:(NSString *)identityToken
+            completionBlock:(BCCompletionBlock)cb
+       errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                   cbObject:(BCCallbackObject)cbObject
+{
+    _client->getIdentityService()->mergeAppleIdentity(
+        [appleUserId UTF8String], [identityToken UTF8String], new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+- (void)detachAppleIdentity:(NSString *)appleUserId
+                continueAnon:(bool)continueAnon
+             completionBlock:(BCCompletionBlock)cb
+        errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                    cbObject:(BCCallbackObject)cbObject
+{
+    _client->getIdentityService()->detachAppleIdentity(
+        [appleUserId UTF8String], continueAnon, new BrainCloudCallback(cb, ecb, cbObject));
+}
+
+
 - (void)attachTwitterIdentity:(NSString *)twitterId
           authenticationToken:(NSString *)token
                        secret:(NSString *)secret

@@ -159,4 +159,36 @@
       errorCompletionBlock:(BCErrorCompletionBlock)ecb
                   cbObject:(BCCallbackObject)cbObject;
 
+/**
+ * Retrieves scripts scheduled to run up to and including the specified start time (UTC in ms).
+ *
+ * Service Name - Script
+ * Service Operation - GET_SCHEDULED_CLOUD_SCRIPTS
+ *
+ * @param startDateUTC the date time
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getScheduledCloudScripts:(NSDate *)startDateUTC
+           completionBlock:(BCCompletionBlock)cb
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Retrieves scripts currently running or queued.
+ *
+ * Service Name - Script
+ * Service Operation - GET_RUNNING_OR_QUEUED_SCRIPTS
+ *
+ * @param startDateUTC the date time
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ */
+- (void)getRunningOrQueuedCloudScripts:(BCCompletionBlock)cb
+      errorCompletionBlock:(BCErrorCompletionBlock)ecb
+                  cbObject:(BCCallbackObject)cbObject;
+
+
 @end

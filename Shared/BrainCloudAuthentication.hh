@@ -354,6 +354,52 @@ extern NSString *const AUTH_FACEBOOK;
                           cbObject:(BCCallbackObject)cbObject;
 
 /**
+* Reset Email password with Expiry - Sends a password reset email to the specified address
+*
+* Service Name - Authenticate
+* Operation - ResetEmailPasswordWithExpiry
+*
+* @param externalId The email address to send the reset email to.
+* @param tokenTtlInMinutes the tokery value
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*
+* Note the follow error reason codes:
+* SECURITY_ERROR (40209) - If the email address cannot be found.
+*/
+- (void)resetEmailPasswordWithExpiry:(NSString *)email
+         tokenTtlInMinutes:(int)tokenTtlInMinutes
+       withCompletionBlock:(BCCompletionBlock)completionBlock
+      errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                  cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Reset Email password with service parameters - Sends a password reset email to the specified address
+ *
+ * Service Name - Authenticate
+ * Operation - ResetEmailPasswordAdvancedWithExpiry
+ *
+ * @param appId the application Id
+ * @param externalId The email address to send the reset email to.
+ * @param serviceParams parameters to send to the email service. See the doc for
+ * a full list http:/getbraincloud.com/apidocs/apiref/#capi-mail
+ * @param tokenTtlInMinutes the tokery value
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * Note the follow error reason codes:
+ * SECURITY_ERROR (40209) - If the email address cannot be found.
+ */
+- (void)resetEmailPasswordAdvancedWithExpiry:(NSString *)email
+                     serviceParams:(NSString *)serviceParams
+                 tokenTtlInMinutes:(int)tokenTtlInMinutes
+               withCompletionBlock:(BCCompletionBlock)completionBlock
+              errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                          cbObject:(BCCallbackObject)cbObject;
+
+/**
  * Reset UniversalId password
  *
  * Service Name - Authenticate
@@ -392,6 +438,50 @@ extern NSString *const AUTH_FACEBOOK;
                      withCompletionBlock:(BCCompletionBlock)completionBlock
                     errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                                 cbObject:(BCCallbackObject)cbObject;
+/**
+ * Reset UniversalId password
+ *
+ * Service Name - Authenticate
+ * Operation - ResetUniversalIdPassword
+ *
+ * @param universalId The email address to send the reset email to.
+ * @param tokenTtlInMinutes the tokery value
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ */
+- (void)resetUniversalIdPasswordWithExpiry:(NSString *)universalId
+               tokenTtlInMinutes:(int)tokenTtlInMinutes
+             withCompletionBlock:(BCCompletionBlock)completionBlock
+            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                        cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Reset UniversalId password with template options
+ *
+ * Service Name - Authenticate
+ * Operation - ResetUniversalIdPasswordAdvanced
+ *
+ * @param appId the application Id
+ * @param universalId The universalId who's password you want to change.
+ * @param serviceParams parameters to send to the email service. See the doc for
+ * a full list http:/getbraincloud.com/apidocs/apiref/#capi-mail
+ * @param tokenTtlInMinutes the tokery value
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * Note the follow error reason codes:
+ * SECURITY_ERROR (40209) - If the email address cannot be found.
+ */
+- (void)resetUniversalIdPasswordAdvancedWithExpiry:(NSString *)universalId
+                           serviceParams:(NSString *)serviceParams
+                       tokenTtlInMinutes:(int)tokenTtlInMinutes
+                     withCompletionBlock:(BCCompletionBlock)completionBlock
+                    errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                                cbObject:(BCCallbackObject)cbObject;
+
 
 /**
 * Authenticate the user via cloud code (which in turn validates the supplied credentials against an external system).

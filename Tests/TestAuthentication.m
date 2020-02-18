@@ -180,4 +180,44 @@
     [self waitForResult];
 }
 
+- (void)testResetUniversalIdPasswordWithExpiry
+{
+    [[m_client authenticationService]
+     authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+     password:[TestFixtureBase getUser:@"UserA"].m_password
+     forceCreate:true
+     completionBlock:successBlock
+     errorCompletionBlock:failureBlock
+     cbObject:nil];
+    
+    [[m_client authenticationService] resetUniversalIdPasswordWithExpiry:[TestFixtureBase getUser:@"UserA"].m_id
+     tokenTtlInMinutes:5
+                                     withCompletionBlock:successBlock
+                                    errorCompletionBlock:failureBlock
+                                                cbObject:nil];
+    [self waitForResult];
+}
+
+- (void)testResetUniversalIdPasswordAdvancedWithExpiry
+{
+    [[m_client authenticationService]
+     authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+     password:[TestFixtureBase getUser:@"UserA"].m_password
+     forceCreate:true
+     completionBlock:successBlock
+     errorCompletionBlock:failureBlock
+     cbObject:nil];
+
+    NSString* content = @"{\"fromAddress\": \"ryanr@bitheads.com\",\"fromName\": \"ryan\",\"replyToAddress\": \"ryanr@bitheads.com\",\"replyToName\": \"replyToName\", \"templateId\": \"8f14c77d-61f4-4966-ab6d-0bee8b13d090\", \"substitutions\": { \":name\": \"John Doe\",\":resetLink\": \"www.dummuyLink.io\"}, \"categories\": [\"category1\",\"category2\" ]}";
+    
+    [[m_client authenticationService] resetUniversalIdPasswordAdvancedWithExpiry:[TestFixtureBase getUser:@"UserA"].m_id
+                                                   serviceParams:content
+                                                     tokenTtlInMinutes:5
+                                             withCompletionBlock:successBlock
+                                            errorCompletionBlock:failureBlock
+                                                        cbObject:nil];
+    //expect improper from address
+    [self waitForResult];
+}
+
 @end

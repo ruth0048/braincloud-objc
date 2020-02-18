@@ -666,6 +666,60 @@ static BrainCloudWrapper *sharedWrapper = nil;
     [self smartSwitchAuthentication:authCallback];
 }
 
+- (void)smartSwitchAuthenticateGoogleOpenId:(NSString *)googleUserAccountEmail
+                                token:(NSString *)idToken
+                          forceCreate:(BOOL)forceCreate
+                      completionBlock:(BCCompletionBlock)completionBlock
+                 errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                             cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
+
+    BCSmartSwitchCompletionBlock authCallback = ^() {
+    
+    AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+    aco.completionBlock = completionBlock;
+    aco.errorCompletionBlock = errorCompletionBlock;
+    aco.cbObject = cbObject;
+
+    [[_bcClient authenticationService] authenticateGoogleOpenId:googleUserAccountEmail
+                                           idToken:idToken
+                                              forceCreate:forceCreate
+                                          completionBlock:self.authSuccessCompletionBlock
+                                     errorCompletionBlock:self.authErrorCompletionBlock
+                                                 cbObject:aco];
+    };
+    
+    [self smartSwitchAuthentication:authCallback];
+}
+
+- (void)smartSwitchAuthenticateApple:(NSString *)appleUserId
+                                token:(NSString *)identityToken
+                          forceCreate:(BOOL)forceCreate
+                      completionBlock:(BCCompletionBlock)completionBlock
+                 errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                             cbObject:(BCCallbackObject)cbObject
+{
+    [self _initializeIdentity:FALSE];
+
+    BCSmartSwitchCompletionBlock authCallback = ^() {
+    
+    AuthenticationCallbackObject *aco = [[AuthenticationCallbackObject alloc] init];
+    aco.completionBlock = completionBlock;
+    aco.errorCompletionBlock = errorCompletionBlock;
+    aco.cbObject = cbObject;
+
+    [[_bcClient authenticationService] authenticateApple:appleUserId
+                                           identityToken:identityToken
+                                              forceCreate:forceCreate
+                                          completionBlock:self.authSuccessCompletionBlock
+                                     errorCompletionBlock:self.authErrorCompletionBlock
+                                                 cbObject:aco];
+    };
+    
+    [self smartSwitchAuthentication:authCallback];
+}
+
 
 - (void)smartSwitchAuthenticateSteam:(NSString *)userId
             sessionTicket:(NSString *)sessionticket
@@ -822,6 +876,88 @@ static BrainCloudWrapper *sharedWrapper = nil;
                                             errorCompletionBlock:errorCompletionBlock
                                                         cbObject:cbObject];
 }
+
+- (void)resetEmailPasswordWithExpiry:(NSString *)email
+         tokenTtlInMinutes:(int)tokenTtlInMinutes
+       withCompletionBlock:(BCCompletionBlock)completionBlock
+      errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                  cbObject:(BCCallbackObject)cbObject
+{
+    [[_bcClient authenticationService]resetEmailPasswordWithExpiry:email
+                                                   tokenTtlInMinutes:tokenTtlInMinutes
+                                             withCompletionBlock:completionBlock
+                                            errorCompletionBlock:errorCompletionBlock
+                                                        cbObject:cbObject];
+}
+
+- (void)resetEmailPasswordAdvancedWithExpiry:(NSString *)email
+                     serviceParams:(NSString *)serviceParams
+                 tokenTtlInMinutes:(int)tokenTtlInMinutes
+               withCompletionBlock:(BCCompletionBlock)completionBlock
+              errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                          cbObject:(BCCallbackObject)cbObject
+{
+    [[_bcClient authenticationService]resetEmailPasswordAdvancedWithExpiry:email
+                                                    serviceParams:serviceParams
+                                                   tokenTtlInMinutes:tokenTtlInMinutes
+                                             withCompletionBlock:completionBlock
+                                            errorCompletionBlock:errorCompletionBlock
+                                                        cbObject:cbObject];
+}
+
+
+- (void)resetUniversalIdPassword:(NSString *)universalId
+             withCompletionBlock:(BCCompletionBlock)completionBlock
+            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                        cbObject:(BCCallbackObject)cbObject
+{
+    [[_bcClient authenticationService]resetUniversalIdPassword:universalId
+                                     withCompletionBlock:completionBlock
+                                    errorCompletionBlock:errorCompletionBlock
+                                                cbObject:cbObject];
+}
+
+- (void)resetUniversalIdPasswordAdvanced:(NSString *)universalId
+                           serviceParams:(NSString *)serviceParams
+                     withCompletionBlock:(BCCompletionBlock)completionBlock
+                    errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                                cbObject:(BCCallbackObject)cbObject
+{
+    [[_bcClient authenticationService]resetUniversalIdPasswordAdvanced:universalId
+                                                   serviceParams:serviceParams
+                                             withCompletionBlock:completionBlock
+                                            errorCompletionBlock:errorCompletionBlock
+                                                        cbObject:cbObject];
+}
+
+- (void)resetUniversalIdPasswordWithExpiry:(NSString *)universalId
+               tokenTtlInMinutes:(int)tokenTtlInMinutes
+             withCompletionBlock:(BCCompletionBlock)completionBlock
+            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                        cbObject:(BCCallbackObject)cbObject
+{
+    [[_bcClient authenticationService]resetUniversalIdPasswordWithExpiry:universalId
+                                                   tokenTtlInMinutes:tokenTtlInMinutes
+                                             withCompletionBlock:completionBlock
+                                            errorCompletionBlock:errorCompletionBlock
+                                                        cbObject:cbObject];
+}
+
+- (void)resetUniversalIdPasswordAdvancedWithExpiry:(NSString *)universalId
+                           serviceParams:(NSString *)serviceParams
+                       tokenTtlInMinutes:(int)tokenTtlInMinutes
+                     withCompletionBlock:(BCCompletionBlock)completionBlock
+                    errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                                cbObject:(BCCallbackObject)cbObject
+{
+    [[_bcClient authenticationService]resetUniversalIdPasswordAdvancedWithExpiry:universalId
+                                                    serviceParams:serviceParams
+                                                   tokenTtlInMinutes:tokenTtlInMinutes
+                                             withCompletionBlock:completionBlock
+                                            errorCompletionBlock:errorCompletionBlock
+                                                        cbObject:cbObject];
+}
+
 
 - (void)reconnect:(BCCompletionBlock)completionBlock
 errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock

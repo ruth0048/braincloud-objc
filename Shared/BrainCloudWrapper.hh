@@ -506,6 +506,60 @@
  * In event the current session was previously an anonymous account, the smart switch will delete that profile.
  * Use this function to keep a clean designflow from anonymous to signed profiles
  *
+ *Authenticate the user using a google openId
+ *
+ * Service Name - Authenticate
+ * Service Operation - Authenticate
+ *
+ * @param googleUserAccountEmail  The email associated with the google user
+ * @param idToken  The account idToken. Gotten with calls like requestIdToken
+ * @param forceCreate Should a new profile be created for this user if the account does not exist?
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @returns   performs the in_success callback on success, in_failure callback on failure
+ *
+ */
+- (void)smartSwitchAuthenticateGoogleOpenId:(NSString *)googleUserAccountEmail
+                                token:(NSString *)idToken
+                          forceCreate:(BOOL)forceCreate
+                      completionBlock:(BCCompletionBlock)completionBlock
+                 errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                             cbObject:(BCCallbackObject)cbObject;
+
+/*
+ * Smart Switch Authenticate will logout of the current profile, and switch to the new authentication type.
+ * In event the current session was previously an anonymous account, the smart switch will delete that profile.
+ * Use this function to keep a clean designflow from anonymous to signed profiles
+ *
+ * Authenticate the user using a google userid(email address) and google authentication token.
+ *
+ * Service Name - Authenticate
+ * Service Operation - Authenticate
+ *
+ * @param appleUserId  this can be the userId or the email for the user of this account.
+ * @param identityToken  the token confirming the users identity
+ * @param forceCreate Should a new profile be created for this user if the account does not exist?
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * @returns   performs the in_success callback on success, in_failure callback on failure
+ *
+ */
+- (void)smartSwitchAuthenticateApple:(NSString *)appleUserId
+                                token:(NSString *)identityToken
+                          forceCreate:(BOOL)forceCreate
+                      completionBlock:(BCCompletionBlock)completionBlock
+                 errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                             cbObject:(BCCallbackObject)cbObject;
+
+/*
+ * Smart Switch Authenticate will logout of the current profile, and switch to the new authentication type.
+ * In event the current session was previously an anonymous account, the smart switch will delete that profile.
+ * Use this function to keep a clean designflow from anonymous to signed profiles
+ *
  * Authenticate the user using a steam userid and session ticket (without any validation on the userid).
  *
  * Service Name - Authenticate
@@ -619,6 +673,135 @@
                withCompletionBlock:(BCCompletionBlock)completionBlock
               errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
                           cbObject:(BCCallbackObject)cbObject;
+
+/**
+* Reset Email password with Expiry - Sends a password reset email to the specified address
+*
+* Service Name - Authenticate
+* Operation - ResetEmailPasswordWithExpiry
+*
+* @param externalId The email address to send the reset email to.
+* @param tokenTtlInMinutes the tokery value
+* @param completionBlock Block to call on return of successful server response
+* @param errorCompletionBlock Block to call on return of unsuccessful server response
+* @param cbObject User object sent to the completion blocks
+*
+* Note the follow error reason codes:
+* SECURITY_ERROR (40209) - If the email address cannot be found.
+*/
+- (void)resetEmailPasswordWithExpiry:(NSString *)email
+         tokenTtlInMinutes:(int)tokenTtlInMinutes
+       withCompletionBlock:(BCCompletionBlock)completionBlock
+      errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                  cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Reset Email password with service parameters - Sends a password reset email to the specified address
+ *
+ * Service Name - Authenticate
+ * Operation - ResetEmailPasswordAdvancedWithExpiry
+ *
+ * @param appId the application Id
+ * @param externalId The email address to send the reset email to.
+ * @param serviceParams parameters to send to the email service. See the doc for
+ * a full list http:/getbraincloud.com/apidocs/apiref/#capi-mail
+ * @param tokenTtlInMinutes the tokery value
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * Note the follow error reason codes:
+ * SECURITY_ERROR (40209) - If the email address cannot be found.
+ */
+- (void)resetEmailPasswordAdvancedWithExpiry:(NSString *)email
+                     serviceParams:(NSString *)serviceParams
+                 tokenTtlInMinutes:(int)tokenTtlInMinutes
+               withCompletionBlock:(BCCompletionBlock)completionBlock
+              errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                          cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Reset UniversalId password
+ *
+ * Service Name - Authenticate
+ * Operation - ResetUniversalIdPassword
+ *
+ * @param universalId The email address to send the reset email to.
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ */
+- (void)resetUniversalIdPassword:(NSString *)universalId
+             withCompletionBlock:(BCCompletionBlock)completionBlock
+            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                        cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Reset UniversalId password with template options
+ *
+ * Service Name - Authenticate
+ * Operation - ResetUniversalIdPasswordAdvanced
+ *
+ * @param appId the application Id
+ * @param universalId The universalId who's password you want to change.
+ * @param serviceParams parameters to send to the email service. See the doc for
+ * a full list http:/getbraincloud.com/apidocs/apiref/#capi-mail
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * Note the follow error reason codes:
+ * SECURITY_ERROR (40209) - If the email address cannot be found.
+ */
+- (void)resetUniversalIdPasswordAdvanced:(NSString *)universalId
+                           serviceParams:(NSString *)serviceParams
+                     withCompletionBlock:(BCCompletionBlock)completionBlock
+                    errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                                cbObject:(BCCallbackObject)cbObject;
+/**
+ * Reset UniversalId password
+ *
+ * Service Name - Authenticate
+ * Operation - ResetUniversalIdPassword
+ *
+ * @param universalId The email address to send the reset email to.
+ * @param tokenTtlInMinutes the tokery value
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ */
+- (void)resetUniversalIdPasswordWithExpiry:(NSString *)universalId
+               tokenTtlInMinutes:(int)tokenTtlInMinutes
+             withCompletionBlock:(BCCompletionBlock)completionBlock
+            errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                        cbObject:(BCCallbackObject)cbObject;
+
+/**
+ * Reset UniversalId password with template options
+ *
+ * Service Name - Authenticate
+ * Operation - ResetUniversalIdPasswordAdvanced
+ *
+ * @param appId the application Id
+ * @param universalId The universalId who's password you want to change.
+ * @param serviceParams parameters to send to the email service. See the doc for
+ * a full list http:/getbraincloud.com/apidocs/apiref/#capi-mail
+ * @param tokenTtlInMinutes the tokery value
+ * @param completionBlock Block to call on return of successful server response
+ * @param errorCompletionBlock Block to call on return of unsuccessful server response
+ * @param cbObject User object sent to the completion blocks
+ *
+ * Note the follow error reason codes:
+ * SECURITY_ERROR (40209) - If the email address cannot be found.
+ */
+- (void)resetUniversalIdPasswordAdvancedWithExpiry:(NSString *)universalId
+                           serviceParams:(NSString *)serviceParams
+                       tokenTtlInMinutes:(int)tokenTtlInMinutes
+                     withCompletionBlock:(BCCompletionBlock)completionBlock
+                    errorCompletionBlock:(BCErrorCompletionBlock)errorCompletionBlock
+                                cbObject:(BCCallbackObject)cbObject;
 
 
 /**
