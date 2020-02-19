@@ -23,6 +23,7 @@ DerivedData
 
 # CocoaPods
 Pods/
+Podfile.lock
 
 ids.txt
 *.swp

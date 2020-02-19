@@ -181,6 +181,14 @@
 
 - (void)testResetEmailPasswordWithExpiry
 {
+    [[m_client authenticationService]
+     authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+     password:[TestFixtureBase getUser:@"UserA"].m_password
+     forceCreate:true
+     completionBlock:successBlock
+     errorCompletionBlock:failureBlock
+     cbObject:nil];
+    
     NSString* email = @"ryanr@bitheads.com";
     
     [m_bcWrapper resetEmailPasswordWithExpiry:email
@@ -193,6 +201,14 @@
 
 - (void)testResetEmailPasswordAdvancedWithExpiry
 {
+    [[m_client authenticationService]
+     authenticateUniversal:[TestFixtureBase getUser:@"UserA"].m_id
+     password:[TestFixtureBase getUser:@"UserA"].m_password
+     forceCreate:true
+     completionBlock:successBlock
+     errorCompletionBlock:failureBlock
+     cbObject:nil];
+    
     NSString* email = @"ryanr@bitheads.com";
     NSString* content = @"{\"fromAddress\": \"ryanr@bitheads.com\",\"fromName\": \"ryan\",\"replyToAddress\": \"ryanr@bitheads.com\",\"replyToName\": \"replyToName\", \"templateId\": \"8f14c77d-61f4-4966-ab6d-0bee8b13d090\", \"substitutions\": { \":name\": \"John Doe\",\":resetLink\": \"www.dummuyLink.io\"}, \"categories\": [\"category1\",\"category2\" ]}";
     
