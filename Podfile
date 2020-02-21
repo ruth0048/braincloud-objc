@@ -9,7 +9,7 @@ inhibit_all_warnings!
 source 'https://github.com/CocoaPods/Specs.git'
 
 def shared_pods
-  pod 'BrainCloudCpp', '4.4.0'
+  pod 'BrainCloudCpp', '4.4.1'
 end
 
 target 'BrainCloud-iOS' do
