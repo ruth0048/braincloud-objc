@@ -175,14 +175,14 @@
  * @param fcmContent Valid Fcm data content
  * @param iosContent Valid ios data content
  * @param facebookContent Facebook template string
- * @param startTime Start time of sending the push notification
+ * @param startTimeUTC UTC Start time of sending the push notification
  * @param callback The method to be invoked when the server response is received
  */
 - (void)scheduleRawPushNotificationUTC:(NSString *)profileId
                             fcmContent:(NSString *)fcmContent
                             iosContent:(NSString *)iosContent
                        facebookContent:(NSString *)facebookContent
-                             startTime:(int)startTime
+                             startTimeUTC:(double)startTimeUTC
                        completionBlock:(BCCompletionBlock)cb
                   errorCompletionBlock:(BCErrorCompletionBlock)ecb
                               cbObject:(BCCallbackObject)cbObject;
@@ -263,7 +263,7 @@
  * @param profileId The profileId of the user to receive the notification
  * @param alertContentJson Body and title of alert
  * @param customDataJson Optional custom data
- * @param startTime Start time of sending the push notification
+ * @param startTimeUTC UTCStart time of sending the push notification
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
@@ -271,7 +271,7 @@
 - (void)scheduleNormalizedPushNotificationUTC:(NSString *)toProfileId
                              alertContentJson:(NSString *)alertContentJson
                                customDataJson:(NSString *)customDataJson
-                                    startTime:(int)startTime
+                                    startTimeUTC:(double)startTimeUTC
                               completionBlock:(BCCompletionBlock)cb
                          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                      cbObject:(BCCallbackObject)cbObject;
@@ -301,7 +301,7 @@
  * @param profileId The profileId of the user to receive the notification
  * @param notificationTemplateId Body and title of alert
  * @param substitutionJson Map of substitution positions to strings
- * @param startTime Start time of sending the push notification
+ * @param startTimeUTC UTC Start time of sending the push notification
  * @param completionBlock Block to call on return of successful server response
  * @param errorCompletionBlock Block to call on return of unsuccessful server response
  * @param cbObject User object sent to the completion blocks
@@ -309,7 +309,7 @@
 - (void)scheduleRichPushNotificationUTC:(NSString *)toProfileId
                  notificationTemplateId:(int)notificationTemplateId
                        substitutionJson:(NSString *)substitutionJson
-                              startTime:(int)startTime
+                              startTimeUTC:(double)startTimeUTC
                         completionBlock:(BCCompletionBlock)cb
                    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                cbObject:(BCCallbackObject)cbObject;

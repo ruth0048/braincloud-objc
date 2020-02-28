@@ -36,12 +36,12 @@
 
 - (void)scheduleRunScriptUTC:(NSString *)scriptName
               jsonScriptData:(NSString *)jsonScriptData
-              startDateInUTC:(NSDate *)startDateInUTC
+              startDateLocal:(NSDate *)startDateLocal
              completionBlock:(BCCompletionBlock)cb
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject
 {
-    time_t time = [startDateInUTC timeIntervalSince1970];
+    time_t time = [startDateLocal timeIntervalSince1970];
     struct tm *timeStruct = localtime(&time);
 
     _client->getScriptService()->scheduleRunScriptUTC(

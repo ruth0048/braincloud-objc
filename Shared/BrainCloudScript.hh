@@ -47,7 +47,7 @@
 *
 * @param scriptName The name of the script to be run
 * @param jsonScriptData Data to be sent to the script in json format
-* @param startDateInUTC The start date as a time struct
+* @param startDateInLocal The start date as a time struct in local time
 * @param completionBlock Block to call on return of successful server response
 * @param errorCompletionBlock Block to call on return of unsuccessful server response
 * @param cbObject User object sent to the completion blocks
@@ -55,7 +55,7 @@
 */
 - (void)scheduleRunScriptUTC:(NSString *)scriptName
               jsonScriptData:(NSString *)jsonScriptData
-              startDateInUTC:(NSDate *)startDateInUTC
+              startDateLocal:(NSDate *)startDateLocal
              completionBlock:(BCCompletionBlock)cb
         errorCompletionBlock:(BCErrorCompletionBlock)ecb
                     cbObject:(BCCallbackObject)cbObject;

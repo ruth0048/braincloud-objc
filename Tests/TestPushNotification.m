@@ -173,7 +173,7 @@
                                     fcmContent:fcmContent
                                     iosContent:iosContent
                                facebookContent:facebookContent
-                                     startTime:0
+                                     startTimeUTC:0
                                completionBlock:successBlock
                           errorCompletionBlock:failureBlock
                                       cbObject:nil];
@@ -289,7 +289,7 @@
             scheduleNormalizedPushNotificationUTC:[TestFixtureBase getUser:@"UserB"].m_profileId
                                  alertContentJson:@"{ \"body\": \"content of message\", \"title\": \"message title\" }"
                                    customDataJson:nil
-                                        startTime:0
+                                        startTimeUTC:0
                                   completionBlock:successBlock
                              errorCompletionBlock:failureBlock
                                          cbObject:nil];
@@ -315,7 +315,7 @@
             scheduleRichPushNotificationUTC:[TestFixtureBase getUser:@"UserB"].m_profileId
                      notificationTemplateId:1
                            substitutionJson:@"{\"1\":\"test sub\"}"
-                                  startTime:0
+                                  startTimeUTC:0
                             completionBlock:successBlock
                        errorCompletionBlock:failureBlock
                                    cbObject:nil];

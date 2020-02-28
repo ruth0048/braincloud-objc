@@ -45,7 +45,7 @@ NSString *_parentLevelName = @"Master";
 
     [[m_client scriptService] scheduleRunScriptUTC:scriptName
                                     jsonScriptData:@""
-                                    startDateInUTC:nextDate
+                                    startDateLocal:nextDate
                                    completionBlock:successBlock
                               errorCompletionBlock:failureBlock
                                           cbObject:nil];

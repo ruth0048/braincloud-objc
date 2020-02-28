@@ -159,7 +159,7 @@
                             fcmContent:(NSString *)fcmContent
                             iosContent:(NSString *)iosContent
                        facebookContent:(NSString *)facebookContent
-                             startTime:(int)startTime
+                             startTimeUTC:(double)startTimeUTC
                        completionBlock:(BCCompletionBlock)cb
                   errorCompletionBlock:(BCErrorCompletionBlock)ecb
                               cbObject:(BCCallbackObject)cbObject
@@ -176,7 +176,7 @@
     if (facebookContent != nil) facebook = [facebookContent UTF8String];
 
     _client->getPushNotificationService()->scheduleRawPushNotificationUTC(
-            [profileId UTF8String], fcm, ios, facebook, startTime, brainCloudCallback);
+            [profileId UTF8String], fcm, ios, facebook, startTimeUTC, brainCloudCallback);
 }
 
 - (void)scheduleRawPushNotificationMinutes:(NSString *)profileId
@@ -282,7 +282,7 @@
 - (void)scheduleNormalizedPushNotificationUTC:(NSString *)toProfileId
                              alertContentJson:(NSString *)alertContentJson
                                customDataJson:(NSString *)customDataJson
-                                    startTime:(int)startTime
+                                    startTimeUTC:(double)startTimeUTC
                               completionBlock:(BCCompletionBlock)cb
                          errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                      cbObject:(BCCallbackObject)cbObject
@@ -293,7 +293,7 @@
     if (customDataJson != nil) custom = [customDataJson UTF8String];
 
     _client->getPushNotificationService()->scheduleNormalizedPushNotificationUTC(
-            [toProfileId UTF8String], [alertContentJson UTF8String], custom, startTime, brainCloudCallback);
+            [toProfileId UTF8String], [alertContentJson UTF8String], custom, startTimeUTC, brainCloudCallback);
 }
 
 - (void)scheduleNormalizedPushNotificationMinutes:(NSString *)toProfileId
@@ -317,7 +317,7 @@
 - (void)scheduleRichPushNotificationUTC:(NSString *)toProfileId
                  notificationTemplateId:(int)notificationTemplateId
                        substitutionJson:(NSString *)substitutionJson
-                              startTime:(int)startTime
+                              startTimeUTC:(double)startTimeUTC
                         completionBlock:(BCCompletionBlock)cb
                    errorCompletionBlock:(BCErrorCompletionBlock)ecb
                                cbObject:(BCCallbackObject)cbObject
@@ -328,7 +328,7 @@
     if (substitutionJson != nil) substitutions = [substitutionJson UTF8String];
 
     _client->getPushNotificationService()->scheduleRichPushNotificationUTC(
-            [toProfileId UTF8String], notificationTemplateId, substitutions, startTime, brainCloudCallback);
+            [toProfileId UTF8String], notificationTemplateId, substitutions, startTimeUTC, brainCloudCallback);
 }
 
 - (void)scheduleRichPushNotificationMinutes:(NSString *)toProfileId
